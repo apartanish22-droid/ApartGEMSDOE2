@@ -31,7 +31,7 @@ def test_scorecard_matches_machine_audit():
     assert build_rows(m, a) in page
     parser = Links(); parser.feed(page)
     assert len(parser.sites) == 9 and len(set(parser.sites)) == 9
-    assert 'DOWNLOAD A NEW SUBMISSION: NO' in page
+    assert 'DOWNLOAD AS A SUBMISSION: NO' in page
     assert 'OK TO SUBMIT: NO' in page
 
 
@@ -61,7 +61,11 @@ def test_every_site_brief_is_negative_and_contains_its_hash():
 def test_single_card_negative_and_no_false_candidate():
     card = json.loads((ROOT/'docs/data/run-card.json').read_text())
     assert card['verdict'] == 'negative'
-    assert card['raster_sha256'] is None and card['holdout_dti'] is None
+    assert card['raster_sha256'] == '973e1615098e5636e9348a3ae1e12d9de392fda2b14f0313c81554cc26274d28'
+    assert card['holdout_dti'] == pytest.approx(0.03891061479186361)
+    assert 'not independently replayed' in card['result_label']
+    assert card['correlation_overlap_vs_registry']['final_dot_within_3px_lattice'] > 0.70
+    assert card['validator_output']['format_checks_pass'] is False
     assert card['submission_note'] is None or len(card['submission_note']) <= 140
     assert card['slot_approved'] is False
 

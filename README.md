@@ -1,6 +1,6 @@
 # ApartGEMSDOE2 — evidence-led GEMS fault discovery
 
-> **Start here every session.** Read this README, [the standing project brief](docs/PROJECT_BRIEF.md), and [the executive review](docs/EXECUTIVE_REVIEW.md) before doing research, training, or packaging. **Current decision: NO new TIFF is approved for download or submission.**
+> **Start here every session.** Read this README, [the standing project brief](docs/PROJECT_BRIEF.md), and [the executive review](docs/EXECUTIVE_REVIEW.md) before doing research, training, or packaging. **Current decision: NO TIFF is approved to submit.** A parallel-session file is available for research only.
 
 ## Mission and standing brief
 
@@ -22,10 +22,11 @@ The full durable operational brief, including the nine priority sites and the us
 
 ## Current state
 
-- **No new candidate, no score estimate, no weekly slot.** The prompt refers to an assigned lane but does not identify one. A full current registry, authenticated sample template, usable cached feature stack and same-evaluator baseline are also missing.
+- **No approved candidate, no leaderboard estimate, no approved slot.** A parallel session created [AP-1](docs/downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif) for research only. Its 37,654 saved dots overlap the lattice by **99.72%**, so it fails the user's literal novelty rule. The prompt does not identify the assigned lane; a parallel preregistration selected AP-1 but does not establish external assignment. The full current registry and organizer-authenticated sample are missing; this audit did not restore the full feature cache or replay the holdout.
+- The parallel branch reports three experiments/confirmation steps and a **HOLDOUT-DTI 0.0389** (95% CI 0.0282–0.0491; GEMSDOE32-HIDE-RECOVER-v3.0; 22,232 withheld positive instances) versus a fold-local parent proxy at 0.0992. Archived fold totals reproduce the arithmetic, but the predictions and intervals were not independently replayed, the comparator did not refill, and the novelty stop was bypassed. Treat the budget as spent; do not rerun or promote AP-1. [Byte audit](evidence/parallel_ap1_audit.json) · [current negative run card](docs/data/run-card.json).
 - A reproducible exact-pixel audit of the nine historical TIFFs and a lattice witness is available. The nine files are **not unique** under the literal 70% rule. The lattice geometry makes the commonly used 37,654-dot budget impossible under that rule on the mirror footprint. This is not a score.
 - The accessible owner mirror called `sample_submission.tif` is **not authenticated** and contains the mirrored label values instead of all-absence predictions described by the official page. It is used only for explicitly limited forensics.
-- The unmodified shared-tool pins were restored **read-only** for analysis, not vendored. Their upstream template is read-only to this account; a reproducible validator-label ambiguity is documented rather than privately patched, and [raised with the canonical maintainers](https://github.com/buffedlizard55-lab/GEMSDOE24/issues/74).
+- The mandated GEMSDOE24 shared-tool pins were restored **read-only** for analysis. A parallel branch also committed GEMSDOE32 snapshots as legacy references; those are not proof that the mandated shared cache/evaluator are available, and must not become a private fork. Their upstream template is read-only to this account; a reproducible validator-label ambiguity is documented rather than privately patched, and [raised with the canonical maintainers](https://github.com/buffedlizard55-lab/GEMSDOE24/issues/74).
 - The [GitHub Pages decision desk](docs/index.html) and [submission guide](docs/executive-summary.html) are static. The page checks public GitHub HEAD freshness in the browser; it does **not** silently update scores or approve uploads.
 
 ## Reproduce this run (no submission or model training)
@@ -38,14 +39,17 @@ python -m venv .venv
 .venv/bin/python scripts/fetch_audit_data.py        # 9 historical TIFFs, mirror sample/labels, one witness
 .venv/bin/python scripts/restore_shared_tools.py    # pinned read-only subset; not a complete runnable template
 .venv/bin/python scripts/audit_history.py
+.venv/bin/python scripts/audit_parallel_ap1.py       # saved bytes and reported-fold arithmetic only
 .venv/bin/python scripts/audit_shared_validator.py
 .venv/bin/python scripts/build_scorecard.py
 .venv/bin/pytest -q
 node --test tests/js/source_freshness.test.cjs
 ```
 
+The read-only [CI workflow](.github/workflows/audit.yml) fetches the pinned public audit inputs, replays the automated tests, and verifies generated pages; it does not train, update score claims or submit.
+
 `python scripts/refresh_source_heads.py` updates only the public GitHub HEAD snapshot; it does not update scores or validate new files. For a future candidate, `scripts/validate_raster.py <file.tif> --template <authenticated-sample.tif>` runs a conservative independent **format diagnostic**; it never authorizes upload or proves the template authentic. The stricter whole-array finite diagnostic is a project guard, not an official requirement; the official text permits null/NaN outside bounds. Read the [submission guide](docs/executive-summary.html) and [executive review](docs/EXECUTIVE_REVIEW.md) for the unresolved contradiction and source links.
 
 ## Next steps
 
-Obtain the actual assigned method lane, canonical cache and tools, the authentic organizer sample and data, and a complete current registry through authorized channels. Reconcile the lattice policy **without silently exempting it or gaming holes**; until then obey the literal stop. Fix the documented ambiguity once in the shared template with the maintainer. Then evaluate the assigned lane against the comparable incumbent with canaries, buffered folds and uncertainty before any separate slot selection. Do not store credentials, private training data, or large derived rasters in Git.
+Obtain the actual assigned method lane, canonical cache and tools, the authentic organizer sample and data, and a complete current registry through authorized channels. Reconcile the lattice policy **without silently exempting it or gaming holes**; until then obey the literal stop. Fix the documented ambiguity once in the shared template with the maintainer. Only under a newly authorized budget, evaluate the assigned lane against a comparable incumbent with canaries, buffered folds and uncertainty before any separate slot selection. Do not store credentials, private training data, or large derived rasters in Git.

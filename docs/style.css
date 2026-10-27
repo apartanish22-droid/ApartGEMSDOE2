@@ -134,3 +134,13 @@ footer { border-top: 1px solid var(--line); padding: 25px 0 36px; color: #73867a
   .metric { padding: 17px; }
   .decision-card { padding: 21px; }
 }
+
+/* Parallel candidate: research-only download, never a submission endorsement. */
+.parallel-card { margin: 0 0 4rem; border-left: 4px solid var(--rust); }
+.parallel-card h2 { margin: .65rem 0; font-size: clamp(1.45rem, 2vw, 1.9rem); letter-spacing: -.025em; line-height: 1.2; }
+.parallel-card p:not(.footnote) { max-width: 80ch; color: var(--muted); }
+.candidate-actions { display:flex; gap:.7rem; flex-wrap:wrap; margin:1.2rem 0; }
+.file-id { overflow-wrap:anywhere; font-family:ui-monospace, SFMono-Regular, Menlo, monospace; }
+.panel a.btn { color: #fff; }
+.panel a.btn.secondary { color: var(--ink); }
+.panel a.btn.secondary:hover { color: var(--green); }

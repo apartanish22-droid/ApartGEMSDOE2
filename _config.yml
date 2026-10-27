@@ -1,0 +1,9 @@
+title: ApartGEMSDOE2 — GEMS fault-prospectivity research
+description: Reproducible workflow for geothermal fault prospectivity and competition-format GeoTIFF submissions for the DOE GEMS competition (DrivenData competition 306).
+baseurl: "/ApartGEMSDOE2"
+url: "https://apartanish22-droid.github.io"
+theme: jekyll-theme-cayman
+encoding: utf-8
+show_downloads: false
+exclude: [".venv", "scripts", "artifacts", "Gemfile", "Gemfile.lock", "node_modules", "index.md", "docs/index.md"]
+# Pages is configured to publish main /; static index.html redirects to docs/.

@@ -1,25 +1,60 @@
 {
-  "hypothesis": "No experiment selected: the parallel-run prompt refers to a single method paragraph but does not identify one.",
-  "mechanism": "Forensic audit only: compare historical binary dot locations and test the necessary registry-lattice overlap bound; no new prediction surface was placed.",
-  "named_non_fault_process_that_could_mimic_candidate_fault": "Lithologic contacts and airborne survey-line artifacts can mimic a magnetic discontinuity in a future magnetic-offset hypothesis.",
-  "holdout_dti": null,
-  "holdout_ci_95": null,
-  "evaluator_version": null,
-  "withheld_positive_count": null,
+  "hypothesis": "AP-1 (parallel session): blind dilatational stepovers coincide with geodetic strain, conductivity, basement and gravity edges.",
+  "mechanism": "Geometric mean of feature percentile ranks followed by score-ordered 2.8-pixel Poisson emission and a 2-pixel catalogue collar.",
+  "named_non_fault_process_that_could_mimic_candidate_fault": "Basin-margin depocentre, buried volcanic or plutonic contact, or aquifer lithologic boundary.",
+  "result_label": "PARALLEL-SESSION REPORTED HOLDOUT-DTI; arithmetic checked but predictions, inputs and confidence interval not independently replayed; NOT an organizer score.",
+  "holdout_dti": 0.03891061479186361,
+  "holdout_ci_95": [
+    0.028166529159799374,
+    0.04914995757513441
+  ],
+  "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+  "withheld_positive_count": 22232,
+  "withheld_count_note": "Positive instances summed over 8 fold/draw cells, not necessarily distinct pixels.",
+  "reported_comparator": {
+    "holdout_dti": 0.09920232315251679,
+    "holdout_ci_95": [
+      0.08595140754809347,
+      0.11266835751415871
+    ],
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "withheld_positive_count": 22232,
+    "paired_delta_ci_95": [
+      -0.0858563597436911,
+      -0.040097633538812204
+    ],
+    "note": "Fold-local d2.8+B2 parent proxy, not a direct rescore of the final champion; candidate refilled, control did not."
+  },
   "correlation_overlap_vs_registry": {
-    "pre_placement_surface": "NOT RUN: no candidate or assigned lane",
-    "final_dots": "NOT RUN for a new candidate; all nine audited historical dot sets exceed 70% overlap with another focus file and the lattice witness.",
-    "registry_scope": "Nine immutable focus files and one lattice witness, not the full registry",
-    "geometry_bound_for_37654_dots": "At least 82.341849% overlap with the lattice, assuming the same mirror-derived footprint; not a score."
+    "pre_placement_surface": "Final EXP-2 surface not available or independently compared. EXP-1 report sampled nine focus rasters only; neither establishes a full-registry pass.",
+    "final_dot_within_3px_lattice": 0.9971848940351623,
+    "final_dot_spearman_lattice": -0.00020447314228848876,
+    "candidate_dots_within_3px_lattice": 37548,
+    "candidate_dots_total": 37654,
+    "final_max_within_3px_focus_nine": 0.2014394221065491,
+    "registry_scope": "Nine pinned focus TIFFs plus lattice witness; remaining registry not checked. More than 70% near any one witness is a fail."
   },
-  "raster_sha256": null,
+  "raster_sha256": "973e1615098e5636e9348a3ae1e12d9de392fda2b14f0313c81554cc26274d28",
   "validator_output": {
-    "candidate": "NOT RUN: no new candidate",
-    "sample_mirror": "NOT AUTHENTICATED; 60,988 positive cells and identical to mirrored fault labels, contrary to the official all-absence sample description.",
-    "champion_diagnostic": "Whole-array range passed; mirror-zero canary and null-outside-footprint checks failed. Grid matched the unauthenticated mirror. Not evidence of organizer rejection or acceptance."
+    "reference": "Unauthenticated owner mirror; 60,988 positives and equal to mirrored labels inside footprint.",
+    "single_band": true,
+    "float32": true,
+    "grid_matches_unauthenticated_mirror": true,
+    "nonfinite_inside": 0,
+    "out_of_range_inside": 0,
+    "masked_inside": 0,
+    "whole_array_finite_0_1": true,
+    "outside_not_null_or_masked": 7111787,
+    "format_checks_pass": false,
+    "organizer_acceptance": "unknown"
   },
-  "submission_name": null,
-  "submission_note": null,
+  "submission_name": "apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros",
+  "submission_note": "Research only: AP-1 fails lattice novelty; do not submit. SHA-256 starts 973e1615.",
+  "submission_note_characters": 82,
+  "name_and_note_status": "Archival identifiers only; not an approved upload.",
+  "parallel_experiments_reported": 3,
+  "new_experiments_in_this_audit": 0,
+  "organizer_receipt": null,
   "slot_approved": false,
   "verdict": "negative"
 }

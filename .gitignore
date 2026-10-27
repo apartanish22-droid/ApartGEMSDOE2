@@ -10,3 +10,19 @@ __pycache__/
 *.tiff
 *.zip
 !docs/assets/*.svg
+# Sensitive/local files and raster sidecars
+venv/
+.env
+*.env
+.credentials
+.git-credentials
+*.tif.aux.xml
+*.tfw
+*.npy
+*.npz
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+.cache/
+.DS_Store
+Thumbs.db
