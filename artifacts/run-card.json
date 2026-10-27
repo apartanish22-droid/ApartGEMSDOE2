@@ -1,0 +1,49 @@
+{
+  "created_utc": "2026-10-27T21:20:47.354798+00:00",
+  "hypothesis": "Coincident multi-scale magnetic edge persistence x K/eTh radiometric alteration gradient x topographic residual lineament, catalogue-masked to emphasise off-catalogue blind geothermal faults.",
+  "mechanism": "Multiply three independent normalised evidence layers; zero on known catalogue traces so only unmapped structures remain; values clipped to [0,1].",
+  "named_non_fault_mimic": "Non-tectonic lithologic contacts, surficial cover, and non-fault topographic edges can mimic linear magnetic/radiometric contrast.",
+  "holdout_dti": null,
+  "holdout_ci_95": null,
+  "evaluator_version": null,
+  "withheld_positive_count": null,
+  "correlation_overlap_vs_registry": "UNTESTED \u2014 registry rasters unavailable in this checkout.",
+  "raster_sha256": "54acf71ab5768f06b74428e7f87a6cd55fe18247d05c73ebd312e1c370ded2a0",
+  "validator_output": {
+    "file": "/home/user/ApartGEMSDOE2/artifacts/candidate_submission.tif",
+    "sha256": "54acf71ab5768f06b74428e7f87a6cd55fe18247d05c73ebd312e1c370ded2a0",
+    "opens_and_reads_back": true,
+    "single_band": true,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "shape": [
+      300,
+      300
+    ],
+    "transform": [
+      400.0,
+      0.0,
+      220000.0,
+      0.0,
+      -133.33333333333334,
+      4420000.0
+    ],
+    "finite": true,
+    "no_nan": true,
+    "no_inf": true,
+    "values_in_0_1": true,
+    "min": 0.0,
+    "max": 0.34373828768730164,
+    "matches_sample_crs_shape_transform": "UNVERIFIED \u2014 sample_submission.tif unavailable (DrivenData login required)",
+    "sample_path": null,
+    "gate_pass": false,
+    "failures": [
+      "CRS/shape/transform do not match official sample_submission.tif (or sample unavailable)"
+    ]
+  },
+  "submission_name": "gemsdoe-multi-evidence-prospectivity-v1",
+  "submission_note": "Unique multi-evidence geothermal prospectivity (mag-persistence x K/eTh-gradient x topo-residual, catalogue-masked). Pipeline demo; footprin",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "submit_blocker": "Cannot verify match to official sample_submission.tif CRS/shape/geotransform (competition data behind DrivenData login)."
+}
