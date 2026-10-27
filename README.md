@@ -43,7 +43,7 @@ This section retains the substantive, non-duplicated instructions from the proje
 - `scripts/restore_template.py`: restores those pinned source assets into ignored `.cache/` **without modification**. The selected assets alone are not a complete runnable template or prepared feature stack.
 - `scripts/audit_historical.py`: reproduces the exact nine-file geometry and local format diagnostics. This is not a model, holdout evaluator, submission writer or portal validator. Prior TIFFs remain in ignored scratch storage.
 - `scripts/restore_data.py`: integrity-checks and restores pinned owner mirrors and the nine focus references plus lattice; `--references-only` skips large core downloads. These are neither an authenticated sample nor the complete registry.
-- `scripts/audit_parallel_candidate.py`: independently reopens and hashes the existing research TIFF twins, compares their dots to the pinned focus sites and lattice, and records local format diagnostics without running a holdout.
+- `scripts/audit_parallel_candidate.py`: independently reopens and hashes the existing research TIFF twins, compares their dots to the pinned focus sites and lattice, and records local format diagnostics without running a holdout. `scripts/verify_independent_replays.py` replays both of the parallel audits and checks every recorded field except the observation timestamp.
 - `scripts/experiment_guard.py`: stops the parallel experiment and emission scripts before they run while preflight is blocked; it does not modify shared template tools.
 - `scripts/preflight.py`: reports this run's blocked state and exits nonzero; it cannot authorize a submission. `evidence/preflight.json` is a timestamped snapshot, not a promise about future files.
 - `scripts/build_site.py`: builds the canonical static site and nine detail pages from committed evidence. `scripts/build_scorecard.py` independently builds the eight-peer forensic comparison pages without overwriting the canonical site. `scripts/refresh_feed.py` updates timestamped public observations; scheduled GitHub Actions records failures as stale rather than fabricating freshness. `scripts/package_pages.py` includes both `/` and `/docs/` routes in the deploy artifact so links keep working while the legacy Pages source remains configured.
@@ -56,6 +56,7 @@ python -m venv .venv
 .venv/bin/python scripts/audit_historical.py
 .venv/bin/python scripts/restore_data.py --references-only --target-dir .cache/gems-data
 .venv/bin/python scripts/audit_parallel_candidate.py
+.venv/bin/python scripts/verify_independent_replays.py
 .venv/bin/python scripts/preflight.py       # expected exit 1: BLOCKED
 .venv/bin/python scripts/build_site.py
 .venv/bin/python scripts/build_scorecard.py

@@ -81,3 +81,13 @@ def test_committed_audit_is_scope_limited_and_reproduces_bound():
     assert audit['forensics']['gems31_only_at_most_2px_from_catalogue'] == 2545
     assert audit['sample_mirror']['identical_to_labels_in_footprint']
     assert not audit['new_tiff_generated']
+
+
+def test_replay_comparison_ignores_only_observation_time():
+    import pytest
+    from verify_independent_replays import compare_receipt
+    compare_receipt('example', {'observed_utc': 'new', 'count': 7},
+                    {'observed_utc': 'old', 'count': 7})
+    with pytest.raises(ValueError, match='count'):
+        compare_receipt('example', {'observed_utc': 'new', 'count': 8},
+                        {'observed_utc': 'old', 'count': 7})
