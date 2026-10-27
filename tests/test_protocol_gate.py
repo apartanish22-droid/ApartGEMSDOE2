@@ -34,4 +34,5 @@ def test_pages_workflow_deploys_without_pushing_to_any_branch():
     assert 'actions/deploy-pages@v4' in workflow
     assert 'actions/upload-pages-artifact@v3' in workflow
     assert 'git push' not in workflow
-    assert '--previous-url' in workflow
+    assert '--previous-url' in workflow and '/docs/data/source_feed.json' in workflow
+    assert 'scripts/package_pages.py' in workflow

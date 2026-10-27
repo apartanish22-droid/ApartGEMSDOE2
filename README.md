@@ -46,7 +46,7 @@ This section retains the substantive, non-duplicated instructions from the proje
 - `scripts/audit_parallel_candidate.py`: independently reopens and hashes the existing research TIFF twins, compares their dots to the pinned focus sites and lattice, and records local format diagnostics without running a holdout.
 - `scripts/experiment_guard.py`: stops the parallel experiment and emission scripts before they run while preflight is blocked; it does not modify shared template tools.
 - `scripts/preflight.py`: reports this run's blocked state and exits nonzero; it cannot authorize a submission. `evidence/preflight.json` is a timestamped snapshot, not a promise about future files.
-- `scripts/build_site.py`: builds the static site and nine detail pages from committed evidence. `scripts/refresh_feed.py` updates timestamped public observations; scheduled GitHub Actions records failures as stale rather than fabricating freshness.
+- `scripts/build_site.py`: builds the static site and nine detail pages from committed evidence. `scripts/refresh_feed.py` updates timestamped public observations; scheduled GitHub Actions records failures as stale rather than fabricating freshness. `scripts/package_pages.py` includes both `/` and `/docs/` routes in the deploy artifact so links keep working while GitHub's existing legacy Pages source remains configured.
 
 ```bash
 python -m venv .venv
