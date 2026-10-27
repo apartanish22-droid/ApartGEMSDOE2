@@ -64,7 +64,7 @@ python -m venv .venv
 python -m http.server 8000 --bind 0.0.0.0 --directory docs
 ```
 
-`gh` and GitHub access are needed to restore the hash-pinned historical/source assets. Competition-sized data are not committed. The prepared feature cache, complete parallel registry, user-assigned lane, authenticated template/receipts and current weekly allowance are not verified here. The sandbox can reach GitHub and package registries directly; the competition data page redirects unauthenticated users to login, and direct USGS/DrivenData downloads are blocked by the sandbox network policy. Public official metadata was reviewed separately; source bytes and coverage were not verified unless the audit explicitly says so.
+GitHub API access is needed to restore the hash-pinned historical/source assets. Downloads stream raw bytes, verify SHA-256, and can use `GH_TOKEN` already provided by GitHub Actions to avoid anonymous rate limits. Competition-sized data are not committed. The prepared feature cache, complete parallel registry, user-assigned lane, authenticated template/receipts and current weekly allowance are not verified here. The sandbox can reach GitHub and package registries directly; the competition data page redirects unauthenticated users to login, and direct USGS/DrivenData downloads are blocked by the sandbox network policy. Public official metadata was reviewed separately; source bytes and coverage were not verified unless the audit explicitly says so.
 
 ## Next work
 

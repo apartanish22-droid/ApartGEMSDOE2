@@ -16,10 +16,10 @@ import json
 import os
 from pathlib import Path
 import shutil
-import subprocess
 import tempfile
 
 from audit_historical import fetch_pin
+from github_raw import stream_raw
 
 ROOT = Path(__file__).resolve().parents[1]
 CORE_IDS = {"training_features", "labels", "sample_submission", "ext_derived_sgmc_faults_100m_u8"}
@@ -47,11 +47,7 @@ def safe_destination(root: Path, rel: str) -> Path:
 
 
 def stream_part(repo: str, ref: str, path: str, out) -> None:
-    subprocess.run(
-        ["gh", "api", f"repos/{repo}/contents/{path}?ref={ref}",
-         "-H", "Accept: application/vnd.github.raw"],
-        stdout=out, check=True, timeout=300,
-    )
+    stream_raw(repo, ref, path, out)
 
 
 def restore_core_entry(entry: dict, root: Path, stream=stream_part) -> Path:

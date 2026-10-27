@@ -36,12 +36,13 @@
   "integration_review": {
     "scope": "Integrated independent parallel audits, reconciled duplicate site generators and fail-closed entrypoints, linked eight-peer comparisons, and reviewed actual Pages packaging and mobile display.",
     "independent_holdout_replay": false,
-    "python_tests": "71 passed, plus 4 unittest subtests",
+    "python_tests": "75 passed, plus 4 unittest subtests",
     "javascript_tests": "feed success/stale/failure plus 2 HEAD-freshness tests passed",
     "browser": "Desktop and 390px mobile: 9 site rows, 8 GEMSDOE32 peer comparisons, research TIFF HTTP 200, live HEAD checks, no page errors or document overflow.",
     "fixes": "Wrapped long hashes on mobile; preserved both / and /docs/ deployment routes, and added a reachable mobile research link.",
     "new_scientific_experiments": 0,
     "weekly_slots_used_by_this_review": 0,
-    "independent_geometry_receipts": "Both historical and AP-1 audit receipts exactly replayed except for observation time; CI now repeats both checks."
+    "independent_geometry_receipts": "Both historical and AP-1 audit receipts exactly replayed except for observation time; CI now repeats both checks.",
+    "ci_binary_download_fix": "Replaced a GitHub CLI text-decoding failure on TIFF bytes with streamed raw API bytes, SHA-256 verification, atomic replacement and cross-host token redirect rejection."
   }
 }

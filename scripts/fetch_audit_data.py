@@ -11,9 +11,10 @@ import hashlib
 import json
 from pathlib import Path
 import re
-import subprocess
 import sys
 import tempfile
+
+from github_raw import stream_raw, validate_target
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_MANIFEST = ROOT / "evidence/history_manifest.json"
@@ -49,22 +50,23 @@ def checked_entries(manifest: dict) -> list[dict]:
 
 
 def fetch_one(entry: dict, dest: Path) -> str:
+    validate_target(entry["repo"], entry["ref"], entry["path"])
+    if not re.fullmatch(r"[0-9a-f]{64}", entry["sha256"]):
+        raise ValueError("invalid SHA-256")
+    if dest.is_symlink():
+        raise ValueError(f"Refusing symlink destination: {dest}")
     if dest.exists() and sha256_file(dest) == entry["sha256"]:
         return "verified cached bytes"
     dest.parent.mkdir(parents=True, exist_ok=True)
-    endpoint = f"repos/{entry['repo']}/contents/{entry['path']}?ref={entry['ref']}"
     temp_name = None
     try:
         with tempfile.NamedTemporaryFile(dir=dest.parent, delete=False) as tmp:
             temp_name = tmp.name
-            subprocess.run(
-                ["gh", "api", endpoint, "-H", "Accept: application/vnd.github.raw+json"],
-                stdout=tmp, check=True,
-            )
+            stream_raw(entry["repo"], entry["ref"], entry["path"], tmp)
         temp = Path(temp_name)
         actual = sha256_file(temp)
         if actual != entry["sha256"]:
-            raise ValueError(f"SHA-256 mismatch for {entry['id']}: {actual}")
+            raise ValueError(f"SHA-256 mismatch for {entry.get('id', 'input')}: {actual}")
         temp.replace(dest)
         return "downloaded and verified"
     finally:
@@ -82,7 +84,7 @@ def main() -> int:
         for entry in entries:
             result = fetch_one(entry, args.out / f"{entry['id']}.tif")
             print(f"{entry['id']}: {result}")
-    except (OSError, KeyError, ValueError, subprocess.CalledProcessError) as exc:
+    except (OSError, KeyError, ValueError) as exc:
         print(f"FETCH FAILED: {exc}", file=sys.stderr)
         return 1
     return 0

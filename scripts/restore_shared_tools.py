@@ -10,7 +10,6 @@ from __future__ import annotations
 import json
 from pathlib import Path
 import re
-import subprocess
 import sys
 
 from fetch_audit_data import fetch_one
@@ -35,7 +34,7 @@ def main() -> int:
             status = fetch_one(entry, DESTINATION / upstream)
             print(f"{upstream}: {status}")
         print('Partial read-only restoration only; the cache, all imports and a lane remain prerequisites.')
-    except (OSError, KeyError, ValueError, subprocess.CalledProcessError) as exc:
+    except (OSError, KeyError, ValueError) as exc:
         print(f'RESTORE FAILED: {exc}', file=sys.stderr)
         return 1
     return 0
