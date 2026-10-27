@@ -13,15 +13,18 @@ the highest-scoring GEMSDOE results, and a downloadable candidate GeoTIFF.
 
 ## 📥 Download submission file (click to download)
 
-**File:** [`artifacts/candidate_submission.tif`](artifacts/candidate_submission.tif)
+**File:** [`../assets/submission.tif`](../assets/submission.tif)
+(also archived as `../assets/gems-h1-radiometric-curvature-convergence-20261027T212405Z-59a3c88e.tif`)
 
 | Item | Value |
 |------|-------|
-| **Submission name** | `gemsdoe-multi-evidence-prospectivity-v1` |
-| **Note** (≤140 chars) | Unique multi-evidence geothermal prospectivity (mag-persistence × K/eTh-gradient × topo-residual, catalogue-masked). Pipeline demo; footprint match unverified. |
+| **Submission name** | `gems-h1-radiometric-curvature-convergence-20261027T212405Z-59a3c88e.tif` |
+| **Note** (≤140 chars) | Unique H1 radiometric anomaly x DEM curvature-convergence propensity; not a copy of any prior GEMSDOE site submission. |
 | **Format** | Single-band Float32 GeoTIFF, CRS EPSG:32611 |
-| **Values** | Finite, no NaN/Inf, all in **[0, 1]** |
-| **SHA-256** | `54acf71ab5768f06b74428e7f87a6cd55fe18247d05c73ebd312e1c370ded2a0` |
+| **Shape** | 1200 × 1200 (synthetic demo grid) |
+| **Values** | Finite, no NaN/Inf, all in **[0, 1]** (min 0.0, max ~0.9847) |
+| **SHA-256** | `250d2a554fd0c54c58437c9b724d80aef83173527a3b3bed5b6347b8e76b2d6e` |
+| **Status file** | [`../assets/SUBMISSION_STATUS.txt`](../assets/SUBMISSION_STATUS.txt) |
 
 ### ⚠️ Is it OK to download and submit?
 
@@ -35,17 +38,21 @@ the highest-scoring GEMSDOE results, and a downloadable candidate GeoTIFF.
 | All values in **[0, 1]** (fixes `"Predicted values must be in range [0, 1]"`) | ✅ Pass |
 | CRS / shape / geotransform match official `sample_submission.tif` | ❌ **UNVERIFIED** |
 
-**Blocker:** the official `sample_submission.tif` (which defines the required CRS, shape, and geotransform) is behind the DrivenData login and is **not present in this repository**. This candidate was therefore built on an illustrative grid and cannot be confirmed to match the official submission footprint.
+**Blocker:** this is a format demonstration on a synthetic demo grid (1200 × 1200, 100 m). It will NOT match the real submission CRS/shape/geotransform. The official `sample_submission.tif` is behind the DrivenData login and is not in this repository.
 
-### How to make it OK TO SUBMIT
+**How to reach OK TO SUBMIT:** on a machine with DrivenData access, run
+`bash scripts/download_competition_data.sh` to place
+`data/numeric_features.tif`, `data/labels.tif`, `data/example_submission.tif` in the repo,
+then `python scripts/prepare_data.py`, then
+`python src/generate_submission.py` (real-data mode) and
+`python src/validate_submission.py ../assets/submission.tif data/grid_reference.json`.
+Upload only when every gate passes.
 
-1. On a machine with DrivenData access, download `sample_submission.tif` into `data/` (do **not** commit credentials).
-2. Re-run `python scripts/generate_submission.py --match data/sample_submission.tif` so the output grid is re-projected/re-sampled to the **exact** official shape, transform, and CRS.
-3. Run `python scripts/validate_submission.py artifacts/candidate_submission.tif --sample data/sample_submission.tif --json artifacts/validator-report.json`.
-4. Only when every gate prints `true` / `GATE_PASS: true` should you upload the file with the submission name and note above, using a weekly submission slot.
-
-See the full [Executive Summary](executive-summary.md) for the GEMSDOE site comparison, the GEMSDOE32 analysis, sources, limitations, and the machine-readable run card.
+See the full [Executive Summary](EXECUTIVE_SUMMARY.md) for the GEMSDOE site comparison,
+the GEMSDOE32 analysis, candidate hypotheses, sources, limitations, and the machine-readable run
+card.
 
 ---
 
-**Scientific integrity:** no score here is represented as a measured result. All GEMSDOE figures below are user-reported and unverified; none are HOLDOUT-DTI or ORGANIZER-CONFIRMED.
+**Scientific integrity:** no score here is represented as a measured result. All GEMSDOE figures
+are user-reported and unverified; none are HOLDOUT-DTI or ORGANIZER-CONFIRMED.
