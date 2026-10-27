@@ -46,3 +46,5 @@ Official: [problem/metric](https://www.drivendata.org/competitions/306/competiti
 ## Project values
 
 Maximize P(Win). Own the outcome. Treat each measured result—positive or negative—as evidence that improves the next decision.
+
+> Merge note (2026-10-27): parallel H1 demo (`assets/…59a3c88e.tif`, synthetic 1200×1200 grid, no holdout, NOT OK) remains in-tree for provenance and is superseded by the measured AP-1 decision above. Do not submit either candidate.

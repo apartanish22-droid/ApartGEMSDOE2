@@ -1,0 +1,32 @@
+{
+  "file": "artifacts/candidate_submission.tif",
+  "sha256": "54acf71ab5768f06b74428e7f87a6cd55fe18247d05c73ebd312e1c370ded2a0",
+  "opens_and_reads_back": true,
+  "single_band": true,
+  "dtype": "float32",
+  "crs": "EPSG:32611",
+  "shape": [
+    300,
+    300
+  ],
+  "transform": [
+    400.0,
+    0.0,
+    220000.0,
+    0.0,
+    -133.33333333333334,
+    4420000.0
+  ],
+  "finite": true,
+  "no_nan": true,
+  "no_inf": true,
+  "values_in_0_1": true,
+  "min": 0.0,
+  "max": 0.34373828768730164,
+  "matches_sample_crs_shape_transform": "UNVERIFIED \u2014 sample_submission.tif unavailable (DrivenData login required)",
+  "sample_path": null,
+  "gate_pass": false,
+  "failures": [
+    "CRS/shape/transform do not match official sample_submission.tif (or sample unavailable)"
+  ]
+}

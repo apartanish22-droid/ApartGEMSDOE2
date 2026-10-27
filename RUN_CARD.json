@@ -1,0 +1,44 @@
+{
+  "schema": "parallel-run-protocol-run-card-v1",
+  "generated_at_utc": "2026-10-27T21:20:43Z",
+  "session_branch": "arena/767ac03c-apartgemsdoe2",
+  "hypothesis": "H1: concealed (blind) geothermal faults missing from the USGS/INGENIOUS catalogue express as radiometric anomalies coincident with DEM curvature-convergence (dilation/extensional) nodes; the product of normalized radiometric anomaly x normalized curvature convergence is a fault propensity not captured by scarp, catalogue-distance, openness, or dotted-ridge maps.",
+  "mechanism": "hydrothermal alteration and fluid pathways produce K/eU/eTh radiometric anomalies relative to local background; extensional fault nodes bend the surface toward a common centre (negative Laplacian of the 100 m DEM). Multiplying the two normalized layers yields propensity in [0,1], masked to the study footprint, 0 outside.",
+  "mimicking_non_fault_process": "uneven crustal radioactivity / lithologic (igneous-contact) boundaries can produce radiometric anomalies without faults; concave mass-wasting or glacial terrain can produce curvature convergence without faults. Both are the named non-fault mimics that must be ruled out on the holdout.",
+  "holdout_dti": null,
+  "holdout_withheld_positives": null,
+  "holdout_ci95": [null, null],
+  "score_label": "projection only — HOLDOUT-DTI cannot be computed without data/ (DrivenData login blocker verified; Dropbox mirrors unreachable from this sandbox). No organizer-confirmed receipt exists yet.",
+  "leakage_canary": "not run (no data). Rule: test each feature alone on the holdout; AUC > 0.90 means leakage until proven otherwise.",
+  "lane_check": "not run (no data). Rule: raster rank-correlation vs any registry raster > 0.90, or >70% of dots within 3 px of one registry raster's dots => duplicate lane, stop.",
+  "raster": "assets/submission.tif (latest copy) / assets/gems-h1-radiometric-curvature-convergence-20261027T212405Z-59a3c88e.tif",
+  "raster_sha256": "250d2a554fd0c54c58437c9b724d80aef83173527a3b3bed5b6347b8e76b2d6e",
+  "validator_output": {
+    "gates": {
+      "driver": "GTiff PASS",
+      "band_count": "1 PASS",
+      "crs": "EPSG:32611 PASS (matches synthetic demo grid; must be re-checked against the real labels grid once data is present)",
+      "shape": "[1200, 1200] PASS on demo grid",
+      "transform": "PASS on demo grid",
+      "no_nan_inside_footprint": "PASS (0 NaN)",
+      "values_in_range_0_1": "PASS (min 0.0, max 0.9847, 0 below zero, 0 above one)"
+    },
+    "all_pass_on_demo_grid": true,
+    "ok_to_submit_on_real_grid": false,
+    "reason": "demo grid (1200x1200, origin 500000/4500000) will not match the real submission grid shape/transform; re-run after data placement"
+  },
+  "submission_name": "gems-h1-radiometric-curvature-convergence-20261027T212405Z-59a3c88e.tif",
+  "note": "Unique H1 radiometric anomaly x DEM curvature-convergence propensity; not a copy of any prior GEMSDOE site submission.",
+  "note_length_chars": 118,
+  "verdict": "negative — do not promote to a real weekly submission slot until (1) data/ is placed on an authenticated machine, (2) scripts/prepare_data.py validates the grid, (3) holdout DTI + 95% CI beats the current holdout best, and (4) validate_submission.py passes all gates. The demo TIF is explicitly NOT OK to submit.",
+  "unique_vs_gemsdoe_sites": true,
+  "basis_for_uniqueness": "radiometric anomaly x DEM curvature convergence (H1); prior GEMSDOE focus-family submissions are dotted-ridge / scarp / openness / catalogue-distance / Poisson-dot maps, none of which combine radiometric and curvature layers.",
+  "blocker": "No DrivenData auth -> cannot download training_features.tif, labels.tif, sample_submission.tif (verified login redirect). www.dropbox.com mirrors not in sandbox outbound allowlist.",
+  "next_steps": [
+    "Place real data in data/ per scripts/download_competition_data.sh",
+    "Run python scripts/prepare_data.py",
+    "Re-run python src/generate_submission.py (real-data mode)",
+    "Run python src/validate_submission.py assets/<new>.tif; require all PASS",
+    "Run holdout DTI evaluation; require holdout DTI > current best with 95% CI before spending a weekly submission slot"
+  ]
+}

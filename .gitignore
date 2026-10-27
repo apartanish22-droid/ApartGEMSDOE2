@@ -1,14 +1,26 @@
 __pycache__/
 *.py[cod]
 .venv/
+venv/
+.env
 .pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
 .cache/
+.DS_Store
+Thumbs.db
+*.tif.aux.xml
+*.tfw
+*.env
+.credentials
+.git-credentials
 # Competition rasters are restored via scripts/restore_data.py (SHA-pinned mirrors); never commit them
 *.npy
 *.npz
 data/*
 !data/.gitkeep
-# Audited submission deliverables are kept in docs/downloads/
+# Audited submission deliverables are kept in docs/downloads/ (and legacy artifacts/assets on main)
 !docs/downloads/*.tif
 !docs/downloads/*.zip
 !docs/downloads/*.json

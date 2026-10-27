@@ -38,3 +38,8 @@ Pre-registration: `knowledge/preregistration-20261027.md`. Evidence: `evidence/*
   "verdict": "negative"
 }
 ```
+
+> Merge note (2026-10-27): a parallel session's H1 radiometric×curvature file on `main`
+> (`assets/gems-h1-radiometric-curvature-convergence-…-59a3c88e.tif`, RUN_CARD.json) is a
+> **synthetic 1200×1200 demo grid** with verdict NOT OK TO SUBMIT and no holdout. It is superseded
+> by the real-grid AP-1 result above (also negative, but measured). Do not submit either file.
