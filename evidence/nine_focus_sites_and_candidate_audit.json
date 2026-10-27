@@ -1,0 +1,281 @@
+{
+  "generated_utc": "2026-10-27T22:55:15Z",
+  "evaluator_versions": {
+    "hide_and_recover": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "sgmc_off_catalogue": "GEMSDOE32-SGMC-CAL-v3.0"
+  },
+  "n_focus_rasters_audited": 442,
+  "n_extended_rasters_audited": 488,
+  "rows": [
+    {
+      "site": "GEMSDOE32",
+      "best_file": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "repo_path": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "n_dots": 37654,
+      "outside_footprint_encoding": "0.0 (-zeros)",
+      "nodata": "None",
+      "repo_reported_lb_dti": 0.2778,
+      "repo_lb_score_label": "ORGANIZER-CONFIRMED (repo ledger; portal screenshot unarchived)",
+      "holdout_dti_static": 0.004515,
+      "holdout_ci95_static": [
+        0.003816,
+        0.005262
+      ],
+      "sgmc_cal_dti": 0.064121,
+      "sgmc_cal_ci95": [
+        0.05673,
+        0.071649
+      ],
+      "frac_gt_15px": 0.584,
+      "within_3px_vs_b2": 1.0,
+      "within_3px_vs_d28": 1.0,
+      "unique_vs_all_sites": false,
+      "submit_recommendation": "DO NOT SUBMIT (Non-unique H19-5/D2.8 lineage; already submitted)",
+      "mechanism_summary": "Best H19-5 B=2 collar trim (-6,436 flank dots from D2.8)"
+    },
+    {
+      "site": "GEMSDOE36",
+      "best_file": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "repo_path": "docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+      "n_dots": 38854,
+      "outside_footprint_encoding": "0.0 (-zeros)",
+      "nodata": "None",
+      "repo_reported_lb_dti": 0.275,
+      "repo_lb_score_label": "ORGANIZER-CONFIRMED (repo ledger; portal screenshot unarchived)",
+      "holdout_dti_static": 0.004577,
+      "holdout_ci95_static": [
+        0.003892,
+        0.005301
+      ],
+      "sgmc_cal_dti": 0.064444,
+      "sgmc_cal_ci95": [
+        0.057087,
+        0.071958
+      ],
+      "frac_gt_15px": 0.5809,
+      "within_3px_vs_b2": 0.97403,
+      "within_3px_vs_d28": 0.97498,
+      "unique_vs_all_sites": false,
+      "submit_recommendation": "DO NOT SUBMIT (Non-unique H19-5/D2.8 lineage; already submitted)",
+      "mechanism_summary": "Exact superset of GEMSDOE32 B2 (+1,200 off-ridge dots; kpl36-exp3=0.1647)"
+    },
+    {
+      "site": "GEMSDOE28",
+      "best_file": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "repo_path": "docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+      "n_dots": 37660,
+      "outside_footprint_encoding": "NaN (-nan)",
+      "nodata": "nan",
+      "repo_reported_lb_dti": 0.271,
+      "repo_lb_score_label": "ORGANIZER-CONFIRMED (repo ledger; portal screenshot unarchived)",
+      "holdout_dti_static": 0.02936,
+      "holdout_ci95_static": [
+        0.024959,
+        0.034382
+      ],
+      "sgmc_cal_dti": 0.062967,
+      "sgmc_cal_ci95": [
+        0.055719,
+        0.070375
+      ],
+      "frac_gt_15px": 0.5485,
+      "within_3px_vs_b2": 0.95473,
+      "within_3px_vs_d28": 1.0,
+      "unique_vs_all_sites": false,
+      "submit_recommendation": "DO NOT SUBMIT (Non-unique H19-5/D2.8 lineage; already submitted)",
+      "mechanism_summary": "H36-1 blind R1 derivative of D2.8 (37,660d, nodata=NaN)"
+    },
+    {
+      "site": "GEMSDOE31",
+      "best_file": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "repo_path": "docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+      "n_dots": 40199,
+      "outside_footprint_encoding": "NaN (-nan)",
+      "nodata": "nan",
+      "repo_reported_lb_dti": 0.2708,
+      "repo_lb_score_label": "ORGANIZER-CONFIRMED (repo ledger; portal screenshot unarchived)",
+      "holdout_dti_static": 0.030516,
+      "holdout_ci95_static": [
+        0.02568,
+        0.036051
+      ],
+      "sgmc_cal_dti": 0.06301,
+      "sgmc_cal_ci95": [
+        0.055781,
+        0.070395
+      ],
+      "frac_gt_15px": 0.547,
+      "within_3px_vs_b2": 0.9539,
+      "within_3px_vs_d28": 1.0,
+      "unique_vs_all_sites": false,
+      "submit_recommendation": "DO NOT SUBMIT (Non-unique H19-5/D2.8 lineage; already submitted)",
+      "mechanism_summary": "Subset of D2.8 removing 3,891 d<=1 px dots (40,199d, nodata=NaN)"
+    },
+    {
+      "site": "GEMSDOE33",
+      "best_file": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "repo_path": "docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+      "n_dots": 41865,
+      "outside_footprint_encoding": "0.0 (-zeros)",
+      "nodata": "None",
+      "repo_reported_lb_dti": 0.2632,
+      "repo_lb_score_label": "ORGANIZER-CONFIRMED (repo ledger; portal screenshot unarchived)",
+      "holdout_dti_static": 0.051969,
+      "holdout_ci95_static": [
+        0.045773,
+        0.058296
+      ],
+      "sgmc_cal_dti": 0.062551,
+      "sgmc_cal_ci95": [
+        0.055311,
+        0.069986
+      ],
+      "frac_gt_15px": 0.5291,
+      "within_3px_vs_b2": 0.92643,
+      "within_3px_vs_d28": 0.99704,
+      "unique_vs_all_sites": false,
+      "submit_recommendation": "DO NOT SUBMIT (Non-unique H19-5/D2.8 lineage; already submitted)",
+      "mechanism_summary": "H33d tip/stepover graft onto D2.8 (41,865d; OOF s33=0.0963)"
+    },
+    {
+      "site": "GEMSDOE25",
+      "best_file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "repo_path": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "n_dots": 44090,
+      "outside_footprint_encoding": "NaN (-nan)",
+      "nodata": "nan",
+      "repo_reported_lb_dti": 0.26,
+      "repo_lb_score_label": "ORGANIZER-CONFIRMED (repo ledger; portal screenshot unarchived)",
+      "holdout_dti_static": 0.096743,
+      "holdout_ci95_static": [
+        0.084162,
+        0.109525
+      ],
+      "sgmc_cal_dti": 0.060592,
+      "sgmc_cal_ci95": [
+        0.053583,
+        0.067855
+      ],
+      "frac_gt_15px": 0.4987,
+      "within_3px_vs_b2": 0.88172,
+      "within_3px_vs_d28": 1.0,
+      "unique_vs_all_sites": false,
+      "submit_recommendation": "DO NOT SUBMIT (Non-unique H19-5/D2.8 lineage; already submitted)",
+      "mechanism_summary": "D2.8 Poisson 300m thinning of H19-5 (44,090d, nodata=NaN)"
+    },
+    {
+      "site": "GEMSDOE30",
+      "best_file": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "repo_path": "docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+      "n_dots": 44090,
+      "outside_footprint_encoding": "0.0 (-zeros)",
+      "nodata": "None",
+      "repo_reported_lb_dti": 0.26,
+      "repo_lb_score_label": "ORGANIZER-CONFIRMED (repo ledger; portal screenshot unarchived)",
+      "holdout_dti_static": 0.096743,
+      "holdout_ci95_static": [
+        0.084162,
+        0.109525
+      ],
+      "sgmc_cal_dti": 0.060592,
+      "sgmc_cal_ci95": [
+        0.053583,
+        0.067855
+      ],
+      "frac_gt_15px": 0.4987,
+      "within_3px_vs_b2": 0.88172,
+      "within_3px_vs_d28": 1.0,
+      "unique_vs_all_sites": false,
+      "submit_recommendation": "DO NOT SUBMIT (Non-unique H19-5/D2.8 lineage; already submitted)",
+      "mechanism_summary": "Pixel-identical mask to GEMSDOE25 (G25^G30=0) encoded as -zeros.tif"
+    },
+    {
+      "site": "GEMSDOE24",
+      "best_file": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "repo_path": "docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+      "n_dots": 60069,
+      "outside_footprint_encoding": "NaN (-nan)",
+      "nodata": "nan",
+      "repo_reported_lb_dti": 0.2477,
+      "repo_lb_score_label": "ORGANIZER-CONFIRMED (repo ledger; portal screenshot unarchived)",
+      "holdout_dti_static": 0.093151,
+      "holdout_ci95_static": [
+        0.081279,
+        0.105968
+      ],
+      "sgmc_cal_dti": 0.057932,
+      "sgmc_cal_ci95": [
+        0.051127,
+        0.065217
+      ],
+      "frac_gt_15px": 0.4955,
+      "within_3px_vs_b2": 0.88477,
+      "within_3px_vs_d28": 1.0,
+      "unique_vs_all_sites": false,
+      "submit_recommendation": "DO NOT SUBMIT (Non-unique H19-5/D2.8 lineage; already submitted)",
+      "mechanism_summary": "D1.5 thinning of H19-5 (60,069d; OOF gvc1=0.0859)"
+    },
+    {
+      "site": "GEMSDOE27",
+      "best_file": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "repo_path": "docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+      "n_dots": 61328,
+      "outside_footprint_encoding": "NaN (-nan)",
+      "nodata": "nan",
+      "repo_reported_lb_dti": 0.2449,
+      "repo_lb_score_label": "ORGANIZER-CONFIRMED (repo ledger; portal screenshot unarchived)",
+      "holdout_dti_static": 0.092748,
+      "holdout_ci95_static": [
+        0.080856,
+        0.105397
+      ],
+      "sgmc_cal_dti": 0.058262,
+      "sgmc_cal_ci95": [
+        0.051476,
+        0.065534
+      ],
+      "frac_gt_15px": 0.4858,
+      "within_3px_vs_b2": 0.86719,
+      "within_3px_vs_d28": 0.98016,
+      "unique_vs_all_sites": false,
+      "submit_recommendation": "DO NOT SUBMIT (Non-unique H19-5/D2.8 lineage; already submitted)",
+      "mechanism_summary": "Topo gap-closure graft onto D1.5 (61,328d, nodata=NaN)"
+    },
+    {
+      "site": "ApartGEMSDOE2 (Ours)",
+      "best_file": "apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif",
+      "repo_path": "docs/downloads/apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif",
+      "sha256": "1f2c28e9eba172fe6a4da138b98afa28a43420549e174c801a02af658ef180b9",
+      "n_dots": 26173,
+      "outside_footprint_encoding": "0.0 (-zeros, nodata=None)",
+      "nodata": "None",
+      "repo_reported_lb_dti": null,
+      "repo_lb_score_label": "UNSUBMITTED (HOLDOUT-DTI reported; zero projections)",
+      "holdout_dti_static": 0.09469803767149196,
+      "holdout_ci95_static": [
+        0.08223995862117602,
+        0.10730672323299381
+      ],
+      "sgmc_cal_dti": 0.03980845670861025,
+      "sgmc_cal_ci95": [
+        0.03440431008192224,
+        0.04529138645141794
+      ],
+      "frac_gt_15px": 0.5043,
+      "within_3px_vs_b2": 0.46517,
+      "within_3px_vs_d28": 0.53154,
+      "unique_vs_all_sites": true,
+      "submit_recommendation": "UNIQUE & FORMAT-VALIDATED [0,1] \u2014 OK TO SUBMIT FOR ORTHOGONAL NON-H19-5 SLOT; PROTOCOL VERDICT: NEGATIVE VS FOLD-HONEST B2 (0.0992) / SGMC (0.0641)",
+      "mechanism_summary": "H-UDSR EXP-3: Footwall updip-advected gravity/RTP/MT + Dual-Cover OOF + 2-stage 300m submodular"
+    }
+  ]
+}

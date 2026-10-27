@@ -1,0 +1,49 @@
+{
+  "session": "H-UDSR (arena/03209562-apartgemsdoe2)",
+  "date_utc": "2026-10-27T23:09:00Z",
+  "candidate_file": "docs/downloads/apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif",
+  "candidate_sha256": "1f2c28e9eba172fe6a4da138b98afa28a43420549e174c801a02af658ef180b9",
+  "candidate_dots": 26173,
+  "null_calibrated_sparse_488_registry_max_within_3px": 0.694189,
+  "null_calibrated_sparse_488_passed_70pct": true,
+  "peer_and_lattice_comparisons": {
+    "AP1_dilatcond_37654": {
+      "shape": [
+        3730,
+        3292
+      ],
+      "ref_dots": 37654,
+      "exp3_within_3px_fraction": 0.160853,
+      "exact_pixel_intersection": 435
+    },
+    "AP2_oofctrl_44090": {
+      "shape": [
+        3730,
+        3292
+      ],
+      "ref_dots": 44090,
+      "exp3_within_3px_fraction": 0.669965,
+      "exact_pixel_intersection": 2400
+    },
+    "13GEMSDOE_lattice_206895": {
+      "shape": [
+        3730,
+        3292
+      ],
+      "ref_dots": 206895,
+      "exp3_within_3px_fraction": 0.998548,
+      "exact_pixel_intersection": 1012
+    },
+    "GEMSDOE32_B2_37654": {
+      "shape": [
+        3730,
+        3292
+      ],
+      "ref_dots": 37654,
+      "exp3_within_3px_fraction": 0.465174,
+      "exact_pixel_intersection": 1010
+    }
+  },
+  "integrated_verdict": "negative",
+  "integrated_decision": "DO NOT SUBMIT under literal all-registry rule (lattice overlap against 206,895-dot 13GEMSDOE calibration grid exceeds 70%, and paired HOLDOUT-DTI 0.0947 vs 0.0992 fold-honest control + SGMC 0.0398 vs 0.0641); uniquely passes all 488 non-lattice sparse rasters (max 69.42% <= 70%) plus both sibling parallel runs AP-1 & AP2!"
+}

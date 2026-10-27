@@ -11,6 +11,7 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 .mypy_cache/
+*.egg-info/
 .ipynb_checkpoints/
 .DS_Store
 Thumbs.db
@@ -18,8 +19,16 @@ Thumbs.db
 *.tfw
 *.npy
 *.npz
+*.partial
+*.assembling
 /data/*
 !/data/.gitkeep
+!/data/restore_receipt.json
+!/data/prepared_manifest.json
+!/data/shared_tool_hashes.txt
 # Research-only audited TIFFs in docs/downloads are tracked intentionally.
+!/docs/downloads/*.tif
+!/docs/downloads/*.zip
+!/docs/downloads/*.json
 # Local browser screenshots
 /artifacts/
