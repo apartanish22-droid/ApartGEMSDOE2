@@ -39,6 +39,57 @@ Competition data is behind the DrivenData login according to the project request
 
 Maximize P(Win). Own the outcome. Treat each measured result—positive or negative—as evidence that improves the next decision.
 
+---
+
+## Session operating prompt (restated — read at the start of every session)
+
+**Goal.** Place top of the GEMS competition leaderboard (DrivenData competition 306) with a
+scientifically defensible, unique GeoTIFF submission. Current user-reported context: GEMSDOE32
+reported 0.2778 (highest of the nine in-scope sites), and the leaderboard has been cited at
+0.3195 / 0.4413 (conflicting, unresolved). Target: beat these with a verified method.
+
+**In-scope sites (highest reported submissions):** GEMSDOE24 (0.2477), GEMSDOE25 (0.2600),
+GEMSDOE27 (0.2449), GEMSDOE28 (0.2710), GEMSDOE30 (0.2600), GEMSDOE31 (0.2708), GEMSDOE32
+(0.2778), GEMSDOE33 (0.2632), GEMSDOE36 (0.2750). All figures are USER-REPORTED, UNVERIFIED —
+none are HOLDOUT-DTI or ORGANIZER-CONFIRMED, and uniqueness vs other sites is UNKNOWN.
+
+**MUST:** generate a UNIQUE TIF submission (single-band GeoTIFF, values in [0,1], no NaN, matching
+the official sample_submission.tif CRS/shape/geotransform). Do not copy a previous submission.
+It must be OBVIOUS whether the generated TIF is OK to download and submit. Provide an easy one-click
+download, a unique submission name, and a note ≤ 140 characters.
+
+**Submission page fields to satisfy:** File to submit (single-band GeoTIFF or .zip), Note (optional,
+≤ 140 chars). Avoid the `"Predicted values must be in range [0, 1]"` error — keep all values in [0,1].
+
+**Parallel-run protocol (binding):**
+1. LANE — stay inside the session's single method paragraph; stop and log as duplicate if
+   rank-correlation with any registry raster > 0.90, or > 70% of dots within 3 px of one registry
+   raster's dots (check before placement AND on final dots).
+2. REUSE, DON'T REBUILD — use the cached feature stack and canonical evaluate_holdout.py /
+   submission_writer.py; holdout = hide-and-recover by fault segment + buffer; catalogue features
+   only from visible faults; mask visible faults pixel-exactly; pooled DTI α=0.2, β=0.8,
+   300 m triangular kernel; fix shared tools once, never fork.
+3. LABEL every number as HOLDOUT-DTI (evaluator version, withheld positives, 95% CI) or
+   ORGANIZER-CONFIRMED (submission receipt). A projection is never a score.
+4. LEAKAGE CANARY — test each feature alone on holdout; AUC > 0.90 ⇒ presumed leakage.
+5. RUN CARD — end with one JSON card: hypothesis; mechanism; named non-fault mimic; holdout DTI +
+   CI; correlation/overlap vs registry; raster SHA-256; validator output (no NaN in footprint,
+   [0,1], CRS/shape/transform match); submission name + note ≤ 140 chars; verdict promote / negative.
+6. BUDGET — stop after 3 experiments or 2 hours; promotion to a real slot is a separate selector
+   step within the weekly cap.
+
+**Release gate:** a .tif is "OK TO SUBMIT" only when automated checks confirm the official
+sample-submission footprint, CRS, shape, geotransform; no NaN/Inf in footprint; values in [0,1];
+file opens and reads back; SHA-256 + provenance recorded; registry correlation/dot-overlap pass.
+Do not fabricate a placeholder TIFF and call it a submission.
+
+**Data:** competition data is behind the DrivenData login; do not commit credentials. Restore
+training_features.tif, labels.tif, sample_submission.tif, existing_faults.tif / registry rasters
+and the shared cached stack before running experiments.
+
+**Deliverables per session:** executive summary with a table (file to download, estimate score,
+unique?), generated unique TIF download link with clear OK / NOT OK status, validator output,
+JSON run card, and this README kept current.
 ## Automated format check and site
 
 The static [submission decision page](docs/index.html) puts the no-submit status first. To run the read-only format validator after obtaining the **official** sample and a genuine candidate:

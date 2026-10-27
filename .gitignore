@@ -1,5 +1,28 @@
+# Python / virtual environment (do not track the venv or caches)
 .venv/
+venv/
+.env
 __pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large data / credentials (competition data is behind DrivenData login; do not commit)
 data/
-*.tif
-*.tiff
+*.tif.aux.xml
+*.tfw
+
+# Do not track credentials or tokens
+*.env
+.credentials
+.git-credentials
+
+# NOTE: artifacts/candidate_submission.tif is a required tracked deliverable;
+# do not add *.tif here, or it would be excluded from version control.
