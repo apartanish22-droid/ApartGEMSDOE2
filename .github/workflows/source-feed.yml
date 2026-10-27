@@ -1,33 +1,35 @@
-name: Refresh public source snapshot
+name: Publish Pages and refresh public sources
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
   schedule:
     - cron: '17 */6 * * *'
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 concurrency:
-  group: public-source-feed
+  group: pages
   cancel-in-progress: false
 jobs:
-  refresh:
+  publish:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref_name }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Refresh snapshot; record failures as stale
+      - uses: actions/configure-pages@v5
+      - name: Refresh the deploy copy; record failures as stale
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python scripts/refresh_feed.py
-      - name: Publish snapshot only
-        run: |
-          if git diff --quiet -- docs/data/source_feed.json; then exit 0; fi
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add docs/data/source_feed.json
-          git commit -m 'Refresh public source snapshot'
-          git pull --rebase origin "${GITHUB_REF_NAME}"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+        run: python scripts/refresh_feed.py --previous-url https://apartanish22-droid.github.io/ApartGEMSDOE2/data/source_feed.json
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+      - id: deploy
+        uses: actions/deploy-pages@v4

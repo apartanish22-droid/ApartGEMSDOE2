@@ -5,7 +5,7 @@ import sys
 import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
-from refresh_feed import SITES, parse_top_score, refresh
+from refresh_feed import SITES, parse_top_score, published_previous, refresh
 
 
 HTML = '''<html><table><tr><th>Rank</th><th>Participant</th><th>Best <br> public DW-Tversky</th></tr>
@@ -55,3 +55,14 @@ def test_invalid_git_sha_stays_unavailable():
         return '{"sha":"abc"}' if api_token else HTML
     result = refresh({}, 'now', get=fake)
     assert all(site['status'] == 'unavailable' for site in result['site_heads'].values())
+
+
+def test_last_published_snapshot_is_a_best_effort_stale_seed():
+    seed = {'schema': 'seed', 'leaderboard': {}, 'site_heads': {}}
+    saved = {'schema': 'apartgems-public-feed-v1', 'leaderboard': {'top_public_value': '0.5'}, 'site_heads': {}}
+    assert published_previous(seed, None) is seed
+    assert published_previous(seed, 'https://example.test/feed', get=lambda url: json.dumps(saved)) == saved
+    assert published_previous(seed, 'https://example.test/feed', get=lambda url: '{"schema": "wrong"}') is seed
+    def failure(url):
+        raise OSError('offline')
+    assert published_previous(seed, 'https://example.test/feed', get=failure) is seed

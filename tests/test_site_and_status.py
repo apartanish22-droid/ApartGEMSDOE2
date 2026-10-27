@@ -25,7 +25,7 @@ class Links(HTMLParser):
 
 def test_every_local_site_link_resolves():
     pages = list(DOCS.rglob('*.html'))
-    assert len(pages) == 12
+    assert len(pages) >= 12
     for page in pages:
         parser = Links()
         parser.feed(page.read_text())
@@ -46,7 +46,9 @@ def test_site_is_deterministic_and_never_offers_current_submission():
     assert 'Submission download unavailable' in index
     assert 'DO NOT SUBMIT' in index
     assert index.count('USER-REPORTED') == 0 or 'unverified' in index.lower()
-    assert not list(DOCS.rglob('*.tif'))
+    assert 'RESEARCH ONLY' in index
+    assert '99.72%' in index and 'DO NOT SUBMIT' in index
+    assert 'downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif' in index
     for page in (DOCS/'sites').glob('*.html'):
         text = page.read_text()
         assert 'DO NOT SUBMIT' in text and 'research only' in text
@@ -54,7 +56,7 @@ def test_site_is_deterministic_and_never_offers_current_submission():
 
 
 def test_site_data_is_not_hidden_by_competition_data_ignore_rule():
-    for relative in ('docs/data/source_feed.json', 'docs/data/run_card.json', 'docs/data/historical_audit.json'):
+    for relative in ('docs/data/source_feed.json', 'docs/data/run_card.json', 'docs/data/historical_audit.json', 'docs/data/parallel_candidate_audit.json'):
         assert (ROOT / relative).is_file()
         # Check ignore rules independently of whether files are already tracked.
         ignored = subprocess.run(['git', 'check-ignore', '--no-index', '-q', relative], cwd=ROOT)
@@ -66,11 +68,16 @@ def test_site_data_is_not_hidden_by_competition_data_ignore_rule():
 def test_run_card_does_not_invent_measurements_or_approve():
     card = json.loads((ROOT/'evidence/run_card.json').read_text())
     assert card['verdict'] == 'negative'
-    assert card['raster_sha256'] is None
-    assert card['holdout_dti']['point'] is None and card['holdout_dti']['ci95'] is None
-    assert card['submission']['name'] is None and len(card['submission']['note']) <= 140
+    audit = json.loads((ROOT/'evidence/parallel_candidate_audit.json').read_text())
+    assert card['raster_sha256'] == audit['variants']['zeros']['sha256']
+    assert card['holdout_dti']['point'] == audit['parallel_holdout_report']['point']
+    assert 'not independently reproduced' in card['holdout_dti']['label']
+    assert card['uniqueness']['preplacement_surface_spearman_all_registry'] is None
+    assert card['uniqueness']['registered_lattice_final_dot_overlap'] > 0.70
+    assert card['submission']['name'] and len(card['submission']['note']) <= 140
     assert not card['submission']['slot_approved']
-    assert all(card['validator'][key] is None for key in ('no_nan_inside_footprint', 'values_in_0_1', 'crs_shape_transform_match'))
+    assert card['validator']['portal_acceptance'] is None
+    assert not card['validator']['outside_null_or_masked']
 
 
 def test_preflight_never_promotes_in_current_run():

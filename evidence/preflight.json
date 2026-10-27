@@ -1,9 +1,10 @@
 {
   "schema": "apartgems-preflight-v1",
-  "checked_utc": "2026-10-27T21:28:19.431086+00:00",
+  "checked_utc": "2026-10-27T21:36:53.596129+00:00",
   "status": "BLOCKED",
   "verdict": "negative",
   "experiments_run": 0,
+  "parallel_run_reported_experiments": 3,
   "weekly_slots_used": 0,
   "lane_assigned": false,
   "complete_parallel_registry": false,
@@ -55,13 +56,14 @@
     "scope": "Conditional geometry bound, not a score and not proof against all smaller budgets."
   },
   "blockers": [
-    "No explicitly assigned single method lane or assignment source in this checkout.",
+    "No explicitly user-assigned method lane or assignment source was identified; the parallel AP-1 lane was self-selected.",
     "The shared parallel-run registry is not complete; no all-registry surface/final-dot pass is possible.",
-    "No frozen comparable current-best leakage-safe holdout and paired confidence interval are available here.",
+    "The parallel holdout/control comparison was not independently replayed and uses different refill rules.",
     "The cached prepared feature stack and metadata are absent or not verified here.",
     "At the historical champion's dot count, the literal registry lattice bound exceeds the 70% overlap limit.",
-    "No new pre-placement surface, holdout result, candidate TIFF, byte validator result, or separate selector decision exists."
+    "This review ran no experiment; the parallel AP-1 research TIFF fails the literal lattice gate and has no selector approval."
   ],
   "candidate": null,
+  "parallel_research_candidate": "evidence/parallel_candidate_audit.json",
   "submission_authorized": false
 }

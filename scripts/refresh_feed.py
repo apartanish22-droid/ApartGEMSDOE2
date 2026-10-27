@@ -6,6 +6,7 @@ This can run on GitHub Actions, whose egress differs from the Arena sandbox.
 """
 from __future__ import annotations
 
+import argparse
 from datetime import datetime, timezone
 from decimal import Decimal, InvalidOperation
 from html.parser import HTMLParser
@@ -132,8 +133,29 @@ def refresh(previous: dict, now: str, get=request_text) -> dict:
     return {"schema": "apartgems-public-feed-v1", "updated_utc": now, "note": "Snapshot only; source movement is not a new audit, score estimate, receipt, or upload approval.", "leaderboard": leader, "site_heads": sites}
 
 
+def published_previous(seed: dict, url: str | None, get=request_text) -> dict:
+    """Use the last deployed snapshot when available; never make failure fresh."""
+    if not url:
+        return seed
+    try:
+        previous = json.loads(get(url))
+        if (not isinstance(previous, dict)
+                or previous.get("schema") != "apartgems-public-feed-v1"
+                or not isinstance(previous.get("leaderboard"), dict)
+                or not isinstance(previous.get("site_heads"), dict)):
+            raise ValueError("Invalid previous feed")
+        return previous
+    except Exception as exc:
+        print(f"Last published snapshot unavailable; using committed seed ({type(exc).__name__}).")
+        return seed
+
+
 def main() -> int:
-    previous = json.loads(FEED.read_text()) if FEED.exists() else {}
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--previous-url", help="optional last deployed snapshot for stale-value fallback")
+    args = parser.parse_args()
+    seed = json.loads(FEED.read_text()) if FEED.exists() else {}
+    previous = published_previous(seed, args.previous_url)
     now = datetime.now(timezone.utc).isoformat()
     output = refresh(previous, now)
     FEED.parent.mkdir(parents=True, exist_ok=True)

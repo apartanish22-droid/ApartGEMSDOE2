@@ -17,9 +17,19 @@
     "pytest": "15 passed",
     "node_ui_test": "passed",
     "requested_outcomes_not_completed": [
-      "No new unique TIF or authenticated upload approval: lane assignment, complete registry, valid feature cache and comparable frozen best are missing; the champion-sized budget is stopped by the literal lattice gate.",
-      "No HOLDOUT-DTI or defensible leaderboard score estimate was generated.",
-      "Nine briefs are published in this repository; the nine independent sibling sites were not modified."
+      "No all-registry-unique TIFF or authenticated upload approval: AP-1 overlaps the registered lattice by 99.7185%, and no explicit user-assigned lane was identified.",
+      "This review generated no HOLDOUT-DTI or leaderboard estimate; a parallel HOLDOUT-DTI is reported with evaluator, CI and withheld count but was not independently reproduced.",
+      "Nine briefs are published here; the nine independent sibling sites were not modified."
     ]
+  },
+  "parallel_reconciliation": {
+    "scope": "After a parallel main-branch merge, independently reopened and hash-verified both AP-1 TIFFs; reproduced exact dot overlap against nine focus rasters and the registered lattice; distinguished owner-mirrored format diagnostics from organizer approval; reviewed the parallel control/refill discrepancy and literal-rule exemption.",
+    "fixes": "Retained research artifacts, blocked historic experiment/emission entrypoints, made their final gate fail closed on missing all-registry and surface checks, restored pinned references with hash checks, removed contradictory submission directions, and rebuilt Pages around the negative result.",
+    "audit_replay_matches": true,
+    "python_tests": "33 passed, plus 4 unittest subtests",
+    "node_ui_test": "passed",
+    "new_experiments_by_review": 0,
+    "parallel_experiments_reported": 3,
+    "weekly_slots_used": 0
   }
 }
