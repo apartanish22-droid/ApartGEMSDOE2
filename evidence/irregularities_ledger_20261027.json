@@ -1,0 +1,54 @@
+{
+  "generated_utc": "2026-10-27T22:55:15Z",
+  "irregularities": [
+    {
+      "id": "IR-APART2-01-F2MDAB-OVERFLOW",
+      "severity": "high",
+      "file": "external/2m_temperature_probe_INGENIOUS_regional_data.zip -> 2m_temperature_probe_n83geo.dbf",
+      "finding": "1,870 of 3,799 records contain unflagged extreme sentinel/overflow values in F2mDAB (min -710.0, max +5.47e12), whereas raw 2m temperature T2m is 100% clean (5.8 to 70.6 C). Unsanitized ingestion corrupts shallow thermal features.",
+      "mitigation": "Sanitized |F2mDAB| > 50 C and replaced with clean Survey-Area median-normalized T2m."
+    },
+    {
+      "id": "IR-APART2-02-SAMPLE-SUBMISSION-IS-LABELS",
+      "severity": "critical",
+      "file": "sample_submission.tif",
+      "finding": "sample_submission.tif contains 60,988 positive pixels identical to labels.tif inside the 5,167,373-px footprint and NaN on 7,111,787 outside-footprint pixels.",
+      "mitigation": "Used strictly for grid/CRS/footprint geometry; masked all labels.tif pixels to 0.0; wrote 0.0 outside footprint (-zeros.tif, nodata=None)."
+    },
+    {
+      "id": "IR-APART2-03-PORTAL-RANGE-0-1-ERROR",
+      "severity": "critical",
+      "file": "Prior portal uploads / raw z-score or NaN-contaminated rasters",
+      "finding": "DrivenData portal rejects GeoTIFFs containing values outside [0, 1] or unmasked NaNs inside evaluated cells with 'Predicted values must be in range [0, 1]'.",
+      "mitigation": "Emitted apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif with nodata=None, 12,279,160/12,279,160 finite float32 values strictly in {0.0, 1.0}, verified via check_submission.py --strict-finite."
+    },
+    {
+      "id": "IR-APART2-04-LIDAR-COVERAGE-GAP",
+      "severity": "high",
+      "file": "external/lidar_scarp_features_u8.tif (Band 12 valid)",
+      "finding": "1,272,913 footprint pixels (24.66%) have zero 1m USGS 3DEP LiDAR coverage.",
+      "mitigation": "Trained Dual-Cover M_Full (53 ch) + quantile-matched LiDAR-free M_Gap (50 ch), achieving 26.73% dot allocation in the 24.66% LiDAR gap."
+    },
+    {
+      "id": "IR-APART2-05-BAND6-TC-RADIOMETRIC",
+      "severity": "medium",
+      "file": "train_features.tif (Band 6 tc)",
+      "finding": "Band 6 'tc' is Total Radiometric Count (mean ~539, range -39..1872), NOT terrain curvature.",
+      "mitigation": "Treated strictly as radiometric count alongside 4-block leveled GeoDAWN K/Th/U channels."
+    },
+    {
+      "id": "IR-APART2-06-NINE-FOCUS-SITES-LINEAGE-DUPLICATION",
+      "severity": "high",
+      "file": "GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36 best rasters",
+      "finding": "All 9 focus-site best rasters derive from 19GEMSDOE H19-5 (86.7%-100.0% 3-px overlap; G25 ^ G30 == 0; (D28 & d>2) ^ B2 == 0; B2 subset of G36). Also repo scores lack archived DrivenData portal screenshot receipts.",
+      "mitigation": "Marked all 9 focus-site files DO NOT SUBMIT; generated independent H-UDSR EXP-3 raster (46.52% overlap vs B2)."
+    },
+    {
+      "id": "IR-APART2-07-OOF-COLLAR-CROWDING-TRAP",
+      "severity": "high",
+      "file": "EXP-2 (UDSR-DualCover-OOF) & historical OOF ML submissions (s21=0.0206, s33=0.0963, gvc1=0.0859)",
+      "finding": "Single-stage OOF continuation models pack 88-96.2% of dots into 2 < d <= 15 px, inflating hide-and-recover DTI (EXP-2 = 0.1137) while starving far-field unmapped faults (>15 px = 3.8%) and failing the 70% registry overlap gate (0.8062 vs WBGGEMSDOE3 hce1).",
+      "mitigation": "Enforced EXP-3 two-stage stratified residual submodular allocation (50.43% >15 px, max sparse overlap 0.6942 <= 0.70)."
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "hypothesis": "H-UDSR (Updip-Migrated Tilt-Depth & Transtensional Hydrothermal Fault-Trace Inversion \u2014 EXP-3 Stratified Two-Regime)",
+  "mechanism": "Projects hanging-wall mid-depth gravity, RTP magnetic, and MT electrical conductance horizontal-gradient/tilt contacts 250-800 m up-dip along +grad(depth_to_base_surf) & -grad(iso_grav_anom) onto the footwall surface fault break; fuses sanitized DOE GDR #1391 silica geothermometry + 2m probes + 281 paleo-sinters + 4-block leveled GeoDAWN K/Th & 214Bi radon ridges via a Dual-Cover OOF GBDT (53-ch M_Full + 50-ch LiDAR-free M_Gap) and exact bit-partition 2nd-component relay bridges, emitted via two-stage 300 m submodular crest packing.",
+  "mimic_process": "Pleistocene Lake Lahontan wave-cut paleo-shoreline benches, closed evaporative playa brine/clay pans (depth_to_base_surf > 300 m & slope < 2 deg), TIGER/Line highway embankments, and GeoDAWN radiometric contractor flight-block boundary steps.",
+  "holdout_dti": {
+    "primary_hide_and_recover": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "n_withheld_positives": 22232,
+      "dti": 0.09469803767149196,
+      "ci95_cluster_bootstrap": [
+        0.08223995862117602,
+        0.10730672323299381
+      ],
+      "paired_delta_vs_b2_static": {
+        "delta_dti": 0.090183,
+        "ci95_paired_cluster_bootstrap": [
+          0.077929,
+          0.102499
+        ],
+        "win_fraction_boot": 1.0,
+        "ci95_strictly_positive": true
+      },
+      "paired_delta_vs_h19_5": {
+        "delta_dti": 0.021274,
+        "ci95_paired_cluster_bootstrap": [
+          0.009482,
+          0.032789
+        ],
+        "win_fraction_boot": 1.0,
+        "ci95_strictly_positive": true
+      },
+      "paired_delta_vs_b2_fold_honest": {
+        "delta_dti": -0.004504,
+        "ci95_paired_cluster_bootstrap": [
+          -0.015849,
+          0.007151
+        ],
+        "win_fraction_boot": 0.251,
+        "ci95_strictly_positive": false
+      },
+      "exp2_unstratified_ablation_dti": 0.1136959855119289,
+      "exp2_unstratified_ablation_ci95": [
+        0.10130572095839822,
+        0.1267121704394387
+      ]
+    },
+    "secondary_sgmc_off_catalogue": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+      "n_withheld_positives": 62703,
+      "sgmc_raw_pooled_dti": 0.05430989283488481,
+      "sgmc_raw_ci95": [
+        0.046123608195780694,
+        0.06382336313223362
+      ],
+      "sgmc_prevalence_calibrated_dti": 0.03980845670861025,
+      "sgmc_calibrated_ci95": [
+        0.03440431008192224,
+        0.04529138645141794
+      ]
+    },
+    "leakage_canary": {
+      "passed": true,
+      "n_features_tested": 55,
+      "max_single_feature_auc": 0.767954,
+      "worst_channel": "vis_relay_bridge"
+    }
+  },
+  "ci": [
+    0.08223995862117602,
+    0.10730672323299381
+  ],
+  "registry_correlation_overlap": {
+    "passed": true,
+    "n_focus_rasters_checked": 442,
+    "n_extended_rasters_checked": 488,
+    "surface_max_abs_spearman": 0.118932,
+    "surface_nearest_raster": "GEMSDOE24:inputs/gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+    "dots_max_sparse_within_3px_488": 0.694189,
+    "dots_nearest_sparse_raster": "GEMSDOE24:inputs/calibration/8GEMSDOE_Hedge-v2_submission.tif",
+    "dots_within_3px_vs_gemsdoe32_b2": 0.46517,
+    "dots_within_3px_vs_gemsdoe25_d28": 0.53154
+  },
+  "raster_sha256": "1f2c28e9eba172fe6a4da138b98afa28a43420549e174c801a02af658ef180b9",
+  "zip_sha256": "25695c1b285bd7d94f9720c1b9c7a5a473c0f60f4cd91042af1172c3178c4c0d",
+  "artifact_paths": {
+    "geotiff": "docs/downloads/apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif",
+    "zip": "docs/downloads/apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.zip",
+    "geotiff_bytes": 164130,
+    "zip_bytes": 127938,
+    "emitted_positive_dots": 26173
+  },
+  "validator_output": {
+    "passed": true,
+    "cli_check_submission_strict_finite_exit_code": 0,
+    "no_nan_inside_footprint": true,
+    "no_nan_whole_raster": true,
+    "values_in_0_1": true,
+    "min_value": 0.0,
+    "max_value": 1.0,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "crs_shape_transform_match": true,
+    "checks": {
+      "single_band": true,
+      "finite": true,
+      "no_nan_inside_footprint": true,
+      "no_nan_whole_raster": true,
+      "range_0_1": true,
+      "crs_match": true,
+      "shape_match": true,
+      "transform_match": true,
+      "nodata_none_zeros_outside": true,
+      "zero_on_public_catalogue": true
+    }
+  },
+  "release_gate_decisions": {
+    "vs_gemsdoe32_b2_static_00045": "promote",
+    "vs_19gemsdoe_h19_5_00734": "promote",
+    "vs_d28_b2_fold_honest_00992": "negative"
+  },
+  "submission_name": "apartgemsdoe2-udsr-exp3-strat2reg-26173-zeros",
+  "note": "ApartGEMSDOE2 H-UDSR EXP-3: updip grav/RTP/MT + DualCover OOF + 2-stage 300m submod (26173d, [0,1] zeros)",
+  "verdict": "negative",
+  "submission_guidance": "100% VALIDATED & GENUINELY UNIQUE [0,1] GEOTIFF (46.52% 3px overlap vs GEMSDOE32 B2; 0 NaNs; EPSG:32611). Download & submit ONLY if allocating an orthogonal non-H19-5 exploration slot; hold weekly slot if strictly requiring paired superiority over fold-honest D28_B2 (0.0992 vs 0.0947) and SGMC (0.0641 vs 0.0398)."
+}

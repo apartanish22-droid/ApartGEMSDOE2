@@ -1,0 +1,122 @@
+{
+  "candidate_id": "apartgemsdoe2-udsr-exp3-strat2reg-26173-zeros",
+  "slug": "udsr-exp3-strat2reg-26173",
+  "content_digest8": "017adbb0",
+  "description": "ApartGEMSDOE2 H-UDSR EXP-3 Stratified Two-Regime submission: footwall updip-advected gravity, RTP magnetic & MT conductance traces + sanitized GDR #1391 geothermometry/2m probes/paleo-sinters + 4-block leveled GeoDAWN K/Th & 214Bi radon + Dual-Cover OOF GBDT + 2-stage 300m submodular crest packing.",
+  "submission_note_zeros": "ApartGEMSDOE2 H-UDSR EXP-3: updip grav/RTP/MT + DualCover OOF + 2-stage 300m submod (26173d, [0,1] zeros)",
+  "submission_note_nan": "ApartGEMSDOE2 H-UDSR EXP-3: updip grav/RTP/MT + DualCover OOF + 2-stage 300m submod (26173d, [0,1] nan)",
+  "zeros_tif": {
+    "filename": "apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif",
+    "size_bytes": 164130,
+    "sha256": "1f2c28e9eba172fe6a4da138b98afa28a43420549e174c801a02af658ef180b9",
+    "mode": "zeros",
+    "geometry_reference": "/home/user/ApartGEMSDOE2/.cache/gems_data/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "None",
+    "emitted_positive_pixels": 26173,
+    "footprint_fraction": 0.005065,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 12279160,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true,
+    "path": "/home/user/ApartGEMSDOE2/docs/downloads/apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif"
+  },
+  "nan_tif": {
+    "filename": "gemsdoe32-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-nan.tif",
+    "size_bytes": 300094,
+    "sha256": "57621231addcd2da8a57af06d42cbc6143cb1d23bbd509ed85e1860ce5774756",
+    "mode": "nan",
+    "geometry_reference": "/home/user/ApartGEMSDOE2/.cache/gems_data/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "nan",
+    "emitted_positive_pixels": 26173,
+    "footprint_fraction": 0.005065,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 5167373,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true
+  },
+  "holdout_metrics": {
+    "catalogue_hidden_mean": 0.09469803767149196,
+    "catalogue_hidden_per_quadrant": {
+      "NW": 0.1139305562051143,
+      "NE": 0.10011244889936674,
+      "SW": 0.06941945368386851,
+      "SE": 0.1050738220870108
+    },
+    "sgmc_prevalence_calibrated_dti": 0.03980845670861025,
+    "drift_corrected_holdout_mean": 0.0,
+    "drift_corrected_per_quadrant": {},
+    "predicted_leaderboard_dti": null,
+    "ei_drift_corrected": null,
+    "slot_decision": "HOLD-EXPLORATORY-UNIQUE-ONLY"
+  },
+  "zeros_zip": {
+    "filename": "apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.zip",
+    "path": "/home/user/ApartGEMSDOE2/docs/downloads/apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.zip",
+    "size_bytes": 127938,
+    "sha256": "25695c1b285bd7d94f9720c1b9c7a5a473c0f60f4cd91042af1172c3178c4c0d"
+  }
+}
