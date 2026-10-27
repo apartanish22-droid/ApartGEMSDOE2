@@ -1,175 +1,130 @@
-#!/usr/bin/env python3
-"""Prepare and audit the competition rasters for GEMSDOE32.
+"""scripts/prepare_data.py
 
-Reads training_features.tif (19 bands), labels.tif, and sample_submission.tif from data_dir(),
-audits CRS (EPSG:32611), shape (3730x3292), 100 m geotransform, and sentinel pixels (-3.4028235e+38)
-inside the 5,167,373-pixel footprint, writes fast per-band .npy arrays to work_dir()/bands, and saves
-the full audit receipt to data/prepared_manifest.json.
+Inspect and validate the competition grid once data has been placed in data/.
+
+Expected files (placed manually — see scripts/download_competition_data.sh):
+  data/numeric_features.tif  multi-band feature stack (EPSG:32611, 100 m)
+  data/labels.tif            fault labels on the same grid
+  data/example_submission.tif (optional) format reference
+
+Writes data/grid_reference.json with CRS, transform, shape, resolution, band
+descriptions, nodata and dtype — consumed by src/generate_submission.py,
+src/submission_writer.py and src/validate_submission.py.
+
+This script prints only; it never downloads data and never invents numbers.
 """
-
 from __future__ import annotations
 
-import hashlib
 import json
-import sys
-from datetime import datetime, timezone
 from pathlib import Path
 
-import numpy as np
-import rasterio
+try:
+    import rasterio
+except ImportError as exc:  # pragma: no cover - environment guard
+    raise SystemExit(
+        "rasterio is required. Install with: pip install numpy rasterio"
+    ) from exc
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "src"))
-from gems32.paths import data_dir, work_dir  # noqa: E402
-
-BASE_NAMES = [
-    "mag_anom",
-    "rtp",
-    "tmi_hg",
-    "geod_2ndinv",
-    "iso_grav_anom_slope",
-    "tc",
-    "geod_shearrate",
-    "geod_dilaterate",
-    "tmi_vg",
-    "deq_n100a15",
-    "iso_grav_anom_vg",
-    "det_elev",
-    "iso_grav_anom",
-    "tmi",
-    "depth_to_base_surf",
-    "ieq_n100a15",
-    "cond_surf",
-    "iso_grav_anom_hg",
-    "det_elev_slope",
-]
+REPO_ROOT = Path(__file__).resolve().parent.parent
+DATA_DIR = REPO_ROOT / "data"
+FEATURES = DATA_DIR / "numeric_features.tif"
+LABELS = DATA_DIR / "labels.tif"
+EXAMPLE = DATA_DIR / "example_submission.tif"
+GRID_REF = DATA_DIR / "grid_reference.json"
 
 
-def sha256_file(path: Path) -> str:
-    h = hashlib.sha256()
-    with path.open("rb") as f:
-        for chunk in iter(lambda: f.read(1 << 20), b""):
-            h.update(chunk)
-    return h.hexdigest()
-
-
-def prepare() -> dict:
-    ddir = data_dir()
-    wdir = work_dir()
-    bands_dir = wdir / "bands"
-    bands_dir.mkdir(parents=True, exist_ok=True)
-
-    feat_path = ddir / "training_features.tif"
-    lab_path = ddir / "labels.tif"
-    tmpl_path = ddir / "sample_submission.tif"
-
-    for p in (feat_path, lab_path, tmpl_path):
-        if not p.exists():
-            raise FileNotFoundError(
-                f"Missing required competition file {p}. Run `bash scripts/download_competition_data.sh` first."
-            )
-
-    with rasterio.open(tmpl_path) as tmpl:
-        epsg = tmpl.crs.to_epsg()
-        if epsg != 32611:
-            raise ValueError(f"Expected EPSG:32611, got {tmpl.crs}")
-        shape_hw = (tmpl.height, tmpl.width)
-        if shape_hw != (3730, 3292):
-            raise ValueError(f"Expected shape (3730, 3292), got {shape_hw}")
-        transform_tuple = tuple(float(v) for v in tmpl.transform)[:6]
-        foot_arr = tmpl.read(1)
-        foot = np.isfinite(foot_arr)
-
-    with rasterio.open(lab_path) as lab_src:
-        if (lab_src.height, lab_src.width) != shape_hw:
-            raise ValueError("labels.tif shape mismatch")
-        lab_raw = lab_src.read(1)
-        lab = (lab_raw == 1) & foot
-
-    np.save(bands_dir / "_footprint.npy", foot)
-    np.save(bands_dir / "_labels.npy", lab)
-
-    band_stats = []
-    total_sentinel_in_foot = 0
-    any_sentinel_in_foot = np.zeros(shape_hw, dtype=bool)
-
-    with rasterio.open(feat_path) as feat_src:
-        if (feat_src.height, feat_src.width) != shape_hw:
-            raise ValueError("training_features.tif shape mismatch")
-        names = [feat_src.tags(i).get("band_name", f"band_{i}") for i in range(1, feat_src.count + 1)]
-        if names != BASE_NAMES:
-            raise ValueError(f"Unexpected band order: {names}")
-        nd = feat_src.nodata
-        for idx, bname in enumerate(names, 1):
-            arr = feat_src.read(idx).astype(np.float32)
-            is_sentinel = (~np.isfinite(arr)) | (arr < -1e38)
-            if nd is not None and not np.isnan(nd):
-                is_sentinel |= arr == nd
-            sentinel_in_foot = int(np.sum(is_sentinel & foot))
-            total_sentinel_in_foot += sentinel_in_foot
-            any_sentinel_in_foot |= is_sentinel & foot
-
-            arr[is_sentinel] = np.nan
-            arr[~foot] = np.nan
-            np.save(bands_dir / f"{idx:02d}_{bname}.npy", arr)
-
-            valid_vals = arr[foot & np.isfinite(arr)]
-            band_stats.append(
+def _band_descriptions(path: Path) -> list[dict]:
+    out = []
+    with rasterio.open(path) as src:
+        for i in range(1, src.count + 1):
+            tags = src.tags(i)
+            out.append(
                 {
-                    "index": idx,
-                    "name": bname,
-                    "finite_in_footprint": int(valid_vals.size),
-                    "sentinel_in_footprint": sentinel_in_foot,
-                    "min": float(np.min(valid_vals)),
-                    "p05": float(np.percentile(valid_vals, 5)),
-                    "median": float(np.median(valid_vals)),
-                    "p95": float(np.percentile(valid_vals, 95)),
-                    "max": float(np.max(valid_vals)),
+                    "band": i,
+                    "description": tags.get("description", ""),
+                    "data_category": tags.get("data_category", ""),
                 }
             )
+    return out
 
-    manifest = {
-        "schema_version": 1,
-        "prepared_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "grid": {
-            "epsg": epsg,
-            "height": shape_hw[0],
-            "width": shape_hw[1],
-            "total_cells": int(shape_hw[0] * shape_hw[1]),
-            "transform": list(transform_tuple),
-            "pixel_size_m": [100.0, 100.0],
-        },
-        "counts": {
-            "footprint_valid_pixels": int(foot.sum()),
-            "outside_footprint_pixels": int((~foot).sum()),
-            "positive_catalogue_label_pixels": int(lab.sum()),
-            "negative_in_footprint_pixels": int(foot.sum() - lab.sum()),
-            "total_sentinel_band_pixels_inside_footprint": total_sentinel_in_foot,
-            "unique_footprint_pixels_with_any_sentinel": int(any_sentinel_in_foot.sum()),
-        },
-        "source_hashes": {
-            "training_features.tif": sha256_file(feat_path),
-            "labels.tif": sha256_file(lab_path),
-            "sample_submission.tif": sha256_file(tmpl_path),
-        },
-        "bands": band_stats,
+
+def inspect_tif(path: Path) -> dict:
+    with rasterio.open(path) as src:
+        return {
+            "path": str(path),
+            "driver": src.driver,
+            "width": src.width,
+            "height": src.height,
+            "count": src.count,
+            "dtype": src.dtypes[0] if src.count else None,
+            "crs": src.crs.to_string() if src.crs is not None else None,
+            "transform": list(src.transform)[:6],
+            "resolution_m": float(src.res[0]) if src.res else None,
+            "nodata": src.nodata,
+            "bounds": list(src.bounds),
+            "bands": _band_descriptions(path),
+        }
+
+
+def main() -> int:
+    print("=== GEMS data preparation ===")
+    print(f"Repo root: {REPO_ROOT}")
+    print(f"Data dir:  {DATA_DIR}")
+
+    missing = [f for f in (FEATURES, LABELS) if not f.exists()]
+    if missing:
+        print("\nBLOCKER: required competition data not found:")
+        for m in missing:
+            print(f"  {m}")
+        print("\nSee scripts/download_competition_data.sh for manual placement steps.")
+        print("This sandbox cannot reach DrivenData (login wall) or Dropbox (not allowlisted).")
+        return 1
+
+    feature_info = inspect_tif(FEATURES)
+    label_info = inspect_tif(LABELS)
+
+    print("\n--- numeric_features.tif ---")
+    for k, v in feature_info.items():
+        print(f"  {k}: {v}")
+    print("\n--- labels.tif ---")
+    for k, v in label_info.items():
+        print(f"  {k}: {v}")
+
+    # Cross-check grid compatibility (the submission must match the labels grid).
+    ok = True
+    if feature_info["width"] != label_info["width"]:
+        ok = False
+        print(f"\nFAIL: width mismatch features={feature_info['width']} labels={label_info['width']}")
+    if feature_info["height"] != label_info["height"]:
+        ok = False
+        print(f"FAIL: height mismatch features={feature_info['height']} labels={label_info['height']}")
+    if feature_info["crs"] != label_info["crs"]:
+        ok = False
+        print(f"FAIL: CRS mismatch features={feature_info['crs']} labels={label_info['crs']}")
+    if feature_info["transform"] != label_info["transform"]:
+        ok = False
+        print("FAIL: geotransform mismatch between features and labels")
+
+    grid_reference = {
+        "source": "inspected from data/numeric_features.tif and data/labels.tif",
+        "crs": label_info["crs"],
+        "transform": label_info["transform"],
+        "width": label_info["width"],
+        "height": label_info["height"],
+        "count": 1,
+        "dtype": "float32",
+        "driver": "GTiff",
+        "resolution_m": label_info["resolution_m"],
+        "nodata": label_info["nodata"],
+        "bounds": label_info["bounds"],
+        "feature_bands": feature_info["bands"],
+        "grids_compatible": bool(ok),
     }
-
-    out_path = ROOT / "data" / "prepared_manifest.json"
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(json.dumps(manifest, indent=2) + "\n")
-    return manifest
-
-
-def main() -> None:
-    manifest = prepare()
-    print(
-        f"[GEMSDOE32] Prepared {len(manifest['bands'])} bands | "
-        f"Footprint={manifest['counts']['footprint_valid_pixels']:,} px | "
-        f"Catalogue positives={manifest['counts']['positive_catalogue_label_pixels']:,} px | "
-        f"Sanitized {manifest['counts']['total_sentinel_band_pixels_inside_footprint']:,} sentinel band-pixels."
-    )
+    GRID_REF.write_text(json.dumps(grid_reference, indent=2))
+    print(f"\nWrote grid reference: {GRID_REF}")
+    print("Grids compatible:", ok)
+    return 0 if ok else 2
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

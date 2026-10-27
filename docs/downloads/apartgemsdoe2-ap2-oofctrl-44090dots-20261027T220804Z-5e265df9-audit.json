@@ -1,0 +1,120 @@
+{
+  "candidate_id": "AP2-OOFCTRL",
+  "slug": "ap2-oofctrl-44090dots",
+  "content_digest8": "5e265df9",
+  "description": "ApartGEMSDOE2 AP2 lane candidate: crest-sharpened 4-quadrant OOF HistGB (35ch canonical stack incl. 20 external, PU lidar-gap neg weight 0.5), EXP1 control selected over the chain gate by the preregistered EXP3 rule; exact emitter min_sep 0.0, B=2, credit-bar budget. See evidence/ap2_run_card.json.",
+  "submission_note_zeros": "AP2 OOFCTRL crest+creditbar 44090dots B2 HOLDOUT-DTI 0.1060 vs champ0.0992 uniq-score shaedf60fd4",
+  "submission_note_nan": "AP2 OOFCTRL crest+creditbar 44090dots B2 HOLDOUT-DTI 0.1060 vs champ0.0992 uniq-score shaf9206a4a",
+  "zeros_tif": {
+    "filename": "apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros.tif",
+    "size_bytes": 231547,
+    "sha256": "edf60fd492cc18b835abee8cb7479825f47cd1077aa8609de37f1d9de5ccf50e",
+    "mode": "zeros",
+    "geometry_reference": "/tmp/gems_data/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "None",
+    "emitted_positive_pixels": 44090,
+    "footprint_fraction": 0.008532,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 12279160,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true
+  },
+  "nan_tif": {
+    "filename": "apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-nan.tif",
+    "size_bytes": 366968,
+    "sha256": "f9206a4aab5f7cdec7003689e3ee5c627da542c2c2641ea2227aa71d75086472",
+    "mode": "nan",
+    "geometry_reference": "/tmp/gems_data/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "nan",
+    "emitted_positive_pixels": 44090,
+    "footprint_fraction": 0.008532,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 5167373,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true
+  },
+  "holdout_metrics": {
+    "catalogue_hidden_mean": 0.10604277499157562,
+    "catalogue_hidden_per_quadrant": {
+      "NW": 0.11268152768457174,
+      "NE": 0.11939879451282112,
+      "SW": 0.06562150780741158,
+      "SE": 0.13502678272985708
+    },
+    "sgmc_prevalence_calibrated_dti": 0.05825378918503215,
+    "drift_corrected_holdout_mean": 0.10604277499157562,
+    "drift_corrected_per_quadrant": {
+      "NW": 0.11268152768457174,
+      "NE": 0.11939879451282112,
+      "SW": 0.06562150780741158,
+      "SE": 0.13502678272985708
+    },
+    "predicted_leaderboard_dti": null,
+    "ei_drift_corrected": null,
+    "slot_decision": "HOLD-DO-NOT-SUBMIT"
+  }
+}

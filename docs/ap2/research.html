@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Research & experiments · ApartGEMSDOE2</title><style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:980px;margin:0 auto;padding:20px;color:#17202a;line-height:1.55}
+a{color:#155e9c} table{border-collapse:collapse;width:100%;margin:14px 0;font-size:.92em}
+th,td{border:1px solid #d5dce3;padding:6px 8px;vertical-align:top;text-align:left} th{background:#eef2f6}
+code{background:#f3f4f6;padding:1px 4px;border-radius:4px;word-break:break-all}
+.banner{border:3px solid #b45309;background:#fffbeb;border-radius:10px;padding:16px 20px;margin:16px 0}
+.banner h2{margin:4px 0} .ok{border-color:#15803d;background:#f0fdf4} .no{border-color:#b91c1c;background:#fef2f2}
+.btn{display:inline-block;background:#15803d;color:#fff;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:700;margin:6px 6px 6px 0}
+.btn2{display:inline-block;background:#155e9c;color:#fff;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:700;margin:6px 6px 6px 0}
+small{color:#5b6770} .nav a{margin-right:14px} pre{background:#0f172a;color:#e2e8f0;padding:12px;border-radius:8px;overflow:auto}
+.pass{color:#15803d;font-weight:700}.fail{color:#b91c1c;font-weight:700}
+</style></head><body><p class="nav"><a href="index.html">Home / download</a><a href="executive-summary.html">Executive summary (9 sites)</a><a href="how-to-submit.html">How to submit</a><a href="research.html">Research &amp; experiments</a><a href="sources.html">Sources</a></p>
+<h1>Research: hypotheses, experiments, and what failed</h1>
+<p>Five ranked hypotheses were written <em>before</em> implementation in the preregistration
+(<code>docs/research/ap2-preregistration-20261027.md</code> in the GitHub repo). Lane executed: <strong>AP2-H1 CCCB test; final emitted field is EXP1 OOF CTRL because the chain arm lost</strong> —
+4-quadrant OOF HistGB over the canonical 35-ch stack + 20 hash-pinned external channels, PU-aware LiDAR-gap negative weighting,
+chain corroboration, exact 300 m emitter, B=2. AP2-H2 (blind-basin reallocation) and AP2-H3 (dip migration) were deferred to stay in-lane;
+AP2-H4 (SGMC-difference) rejected (would invalidate the SGMC evaluator; measured live ≈0.05 when tried solo);
+AP2-H5 (raw seismicity) is data-blocked in this sandbox (named official source: USGS ComCat FDSN — egress here is GitHub/PyPI only).</p>
+<h2>The five ranked hypotheses (preregistered)</h2>
+<table><tr><th>#</th><th>Hypothesis (layers)</th><th>Physical signature / transform</th><th>Why it targets catalogue-missing faults</th><th>Different from prior repo work</th><th>Gain / cost · outcome</th></tr>
+<tr><td>1</td><td><strong>AP2-H1 CCCB</strong> — 35-ch stack (19 core bands + LiDAR/radiometric externals)</td><td>OOF HistGB posterior × along-axis chain vote (4 axes, ±5 px) on its own top decile; exact emitter; credit-bar budget</td><td>Expert mappers trace continuous lineaments; isolated speckles (the champion's measured FP load) are what a mapper would not draw</td><td>Chain votes existed only as channels — never a hard gate × OOF posterior with a derived budget</td><td>High / medium · <strong>tested: chain arm rejected; CTRL field emitted</strong></td></tr>
+<tr><td>2</td><td>AP2-H2 Blind-basin reallocation — LiDAR-valid mask, potential fields, SGMC only to measure prevalence</td><td>Split the dot budget between LiDAR-valid and gap regimes by measured off-catalogue prevalence (≈1.61× denser in gap)</td><td>Pre-LiDAR mapping missed gap-basin faults; area-proportional budgets under-sample them</td><td>H45/H48 used a fixed ~30% gap quota; this derives quota from prevalence and changes model class per regime</td><td>Medium / medium · deferred (one lane)</td></tr>
+<tr><td>3</td><td>AP2-H3 Dip-migrated basement step — depth-to-basement + gravity + RTP</td><td>Shift potential-field worm crests basinward by a depth-scaled offset for a ~60° normal fault (≤2 px)</td><td>A buried fault's geophysical edge sits updip of its surface trace by 150–300 m — the full kernel width</td><td>H32-A/H44-5 used dip only as an additive arm, never standalone, never depth-scaled</td><td>Medium / low–medium · deferred (one lane)</td></tr>
+<tr><td>4</td><td>AP2-H4 SGMC/Qfaults catalogue-difference — SGMC raster + ≥2 coincident geophysical edges</td><td>Emit compiled traces absent from the competition catalogue only where edges corroborate within 300 m</td><td>Targets faults in newer state compilations that the competition catalogue lacks</td><td>Tried solo upstream (owner-reported ≈0.05); using SGMC as input also invalidates the SGMC evaluator</td><td>Low (measured) / low · rejected</td></tr>
+<tr><td>5</td><td>AP2-H5 Seismicity-chain lineaments — bands 10/16; raw source if needed: USGS ComCat FDSN (named, not fetchable from this sandbox)</td><td>Hough/Radon collinearity of earthquake-density ridges</td><td>Blind faults can host microseismicity without a surface scarp</td><td>Bands 10/16 solo AUC only 0.55–0.57 upstream; raw-catalogue version is egress-blocked here</td><td>Low / high (blocked) · rejected</td></tr></table>
+<h2>Leakage canary (EXP1a)</h2>
+<p>55 channels tested alone on withheld holdout positives: worst <code>curv_s2</code> oriented AUC
+0.5840 ≤ 0.90 — <span class="pass">PASS</span>. OOF quadrant AUCs: {'NW': 0.69085, 'NE': 0.74986, 'SW': 0.62004, 'SE': 0.69153}.</p>
+<h2>Experiments (3, preregistered; corrected rerun)</h2>
+<table><tr><th>Arm</th><th>HOLDOUT-DTI v3.0</th><th>SGMC-cal</th></tr>
+<tr><td>Champion-recipe control (D28 parent, visible-only B=2)</td><td>0.099202</td><td>0.064121</td></tr>
+<tr><td>EXP1 CTRL (OOF surface, 37,654)</td><td>0.104588</td><td>0.057017</td></tr>
+<tr><td>EXP2 CHAIN (×chain, gate ≥0.2, 37,654)</td><td>0.103458</td><td>0.053531</td></tr>
+<tr><td colspan="3"><em>EXP3 credit-bar budget scan on the better field (CTRL):</em></td></tr><tr><td>25000</td><td>0.096802</td><td>0.049454</td></tr><tr><td>32000</td><td>0.102695</td><td>0.054351</td></tr><tr><td>37654</td><td>0.104588</td><td>0.057017</td></tr><tr><td>44090</td><td>0.106043</td><td>0.058254</td></tr>
+</table>
+<p><strong>Negative results (deliverables).</strong> (1) The chain gate <em>hurt</em> both metrics — along-strike continuity of a per-pixel
+probability ridge at 100 m does not separate faults from Lake Lahontan shorelines/basalt margins in this stack. (2) The first, literal
+implementation of the preregistered emitter (<code>min_sep_px=2.8</code> on the raw field) saturated at 20,223 dots regardless of budget,
+and the first champion control was censorship-biased (0.0045). Both bugs, the fixes, and the retained flawed receipts are documented in
+<code>docs/research/ap2-pass2-amendment-20261027.md</code> and <code>evidence/ap2_experiments_flawed_v1_minsep.json</code>.</p>
+<p><strong>Evaluator verification.</strong> The vendored evaluator reproduces upstream GEMSDOE32's published control bit-exactly:
+D28 with visible-only B=2 → 0.09920232315251679 (22,232 withheld).</p>
+<p><strong>What would actually move the score (next sessions).</strong> (a) GPU full-footprint Tversky-loss segmentation on the 55-ch stack
+(impossible here: 2 vCPU / 3.8 GB, verified); (b) label-free physics channels that find <em>different</em> secondary ridges — the binding
+constraint is uniqueness vs the modern unscored registry, not another GBM on the same ridges; (c) an organiser receipt for one AP2-class file,
+without which holdout→live transfer above 0.2778 remains uncalibrated.</p>
+<img src="../assets/ap2_diagnostic.png" style="max-width:100%" alt="AP2 diagnostic map">
+<hr><small>Generated by <code>scripts/build_ap2_site.py</code> from <code>evidence/*.json</code> — no hand-typed scores. HOLDOUT-DTI = local evaluator, never a leaderboard score. OWNER-REPORTED = transcribed claims without organiser receipts. PROJECTION = not a score.</small></body></html>

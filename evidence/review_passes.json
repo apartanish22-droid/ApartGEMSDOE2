@@ -1,0 +1,49 @@
+{
+  "schema": "apartgems-three-pass-review-v1",
+  "date_utc": "2026-10-27",
+  "pass_1": {
+    "scope": "Repository and official-source review; pinned nine historical archival TIFFs, mirrored sample/labels, shared registry lattice and selected shared template assets; produced independent geometry audit, negative run card, source-led site and research slate.",
+    "scientific_experiments": 0,
+    "weekly_slots_used": 0,
+    "new_tiff_generated": false
+  },
+  "pass_2": {
+    "scope": "Adversarial review and fixes: added an explicit unmasked-inside-footprint and EPSG/resolution check to local format diagnostics; retained the difference between masked numeric nodata and whole-array range; bundled licensed fonts locally; added tests for geometry, stale feed, status and links.",
+    "result": "Local diagnostics are not portal acceptance or submission authorization."
+  },
+  "pass_3": {
+    "scope": "Replayed the pinned nine-file audit independently from cached exact bytes and compared all results except observation time; checked rendered routes, generated-site determinism, JSON evidence, stale/partial browser feed states and current blockers; fixed an ignore rule that would have omitted the site feed and audit files, and made pinned template restoration repair read-only corrupt files atomically.",
+    "audit_replay_matches": true,
+    "pytest": "15 passed",
+    "node_ui_test": "passed",
+    "requested_outcomes_not_completed": [
+      "No all-registry-unique TIFF or authenticated upload approval: AP-1 overlaps the registered lattice by 99.7185%, and no explicit user-assigned lane was identified.",
+      "This review generated no HOLDOUT-DTI or leaderboard estimate; a parallel HOLDOUT-DTI is reported with evaluator, CI and withheld count but was not independently reproduced.",
+      "Nine briefs are published here; the nine independent sibling sites were not modified."
+    ]
+  },
+  "parallel_reconciliation": {
+    "scope": "After a parallel main-branch merge, independently reopened and hash-verified both AP-1 TIFFs; reproduced exact dot overlap against nine focus rasters and the registered lattice; distinguished owner-mirrored format diagnostics from organizer approval; reviewed the parallel control/refill discrepancy and literal-rule exemption.",
+    "fixes": "Retained research artifacts, blocked historic experiment/emission entrypoints, made their final gate fail closed on missing all-registry and surface checks, restored pinned references with hash checks, removed contradictory submission directions, and rebuilt Pages around the negative result.",
+    "audit_replay_matches": true,
+    "python_tests": "35 passed, plus 4 unittest subtests",
+    "node_ui_test": "passed",
+    "new_experiments_by_review": 0,
+    "parallel_experiments_reported": 3,
+    "weekly_slots_used": 0,
+    "pages_deployment": "Pages source settings remained legacy due to integration permissions; scheduled deploy artifacts carry identical root and /docs routes, without branch pushes."
+  },
+  "integration_review": {
+    "scope": "Integrated independent parallel audits, reconciled duplicate site generators and fail-closed entrypoints, linked eight-peer comparisons, and reviewed actual Pages packaging and mobile display.",
+    "independent_holdout_replay": false,
+    "python_tests": "78 passed, plus 4 unittest subtests",
+    "javascript_tests": "feed success/stale/failure plus 2 HEAD-freshness tests passed",
+    "browser": "Desktop and 390px mobile: 9 site rows, 8 GEMSDOE32 peer comparisons, research TIFF HTTP 200, live HEAD checks, no page errors or document overflow.",
+    "fixes": "Wrapped long hashes on mobile; preserved both / and /docs/ deployment routes, and added a reachable mobile research link.",
+    "new_scientific_experiments": 0,
+    "weekly_slots_used_by_this_review": 0,
+    "independent_geometry_receipts": "Both historical and AP-1 audit receipts exactly replayed except for observation time; CI now repeats both checks.",
+    "ci_binary_download_fix": "Replaced a GitHub CLI text-decoding failure on TIFF bytes with streamed raw API bytes, SHA-256 verification, atomic replacement and cross-host token redirect rejection.",
+    "deployment_ordering": "On pushes, the refreshed Pages artifact waits for the same commit’s legacy deployment; unit tests cover missing, running, completed, timeout and Actions-only states."
+  }
+}

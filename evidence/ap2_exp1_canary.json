@@ -1,0 +1,288 @@
+{
+ "experiment": "EXP1a_leakage_canary",
+ "n_channels": 55,
+ "n_withheld_positive_union": 20321,
+ "n_negatives": 200000,
+ "worst_channel": "curv_s2",
+ "worst_auc_oriented": 0.5839668627282122,
+ "threshold_auc": 0.9,
+ "passed": true,
+ "channels": {
+  "band01": {
+   "auc_raw": 0.48546,
+   "auc_oriented": 0.51454,
+   "finite_fraction": 1.0
+  },
+  "band02": {
+   "auc_raw": 0.51241,
+   "auc_oriented": 0.51241,
+   "finite_fraction": 1.0
+  },
+  "band03": {
+   "auc_raw": 0.51966,
+   "auc_oriented": 0.51966,
+   "finite_fraction": 1.0
+  },
+  "band04": {
+   "auc_raw": 0.55996,
+   "auc_oriented": 0.55996,
+   "finite_fraction": 1.0
+  },
+  "band05": {
+   "auc_raw": 0.53456,
+   "auc_oriented": 0.53456,
+   "finite_fraction": 1.0
+  },
+  "band06": {
+   "auc_raw": 0.4593,
+   "auc_oriented": 0.5407,
+   "finite_fraction": 1.0
+  },
+  "band07": {
+   "auc_raw": 0.56219,
+   "auc_oriented": 0.56219,
+   "finite_fraction": 1.0
+  },
+  "band08": {
+   "auc_raw": 0.52165,
+   "auc_oriented": 0.52165,
+   "finite_fraction": 1.0
+  },
+  "band09": {
+   "auc_raw": 0.49789,
+   "auc_oriented": 0.50211,
+   "finite_fraction": 1.0
+  },
+  "band10": {
+   "auc_raw": 0.5526,
+   "auc_oriented": 0.5526,
+   "finite_fraction": 1.0
+  },
+  "band11": {
+   "auc_raw": 0.5388,
+   "auc_oriented": 0.5388,
+   "finite_fraction": 1.0
+  },
+  "band12": {
+   "auc_raw": 0.48965,
+   "auc_oriented": 0.51035,
+   "finite_fraction": 1.0
+  },
+  "band13": {
+   "auc_raw": 0.46502,
+   "auc_oriented": 0.53498,
+   "finite_fraction": 1.0
+  },
+  "band14": {
+   "auc_raw": 0.49235,
+   "auc_oriented": 0.50765,
+   "finite_fraction": 1.0
+  },
+  "band15": {
+   "auc_raw": 0.50957,
+   "auc_oriented": 0.50957,
+   "finite_fraction": 1.0
+  },
+  "band16": {
+   "auc_raw": 0.56418,
+   "auc_oriented": 0.56418,
+   "finite_fraction": 1.0
+  },
+  "band17": {
+   "auc_raw": 0.49095,
+   "auc_oriented": 0.50905,
+   "finite_fraction": 1.0
+  },
+  "band18": {
+   "auc_raw": 0.49385,
+   "auc_oriented": 0.50615,
+   "finite_fraction": 1.0
+  },
+  "band19": {
+   "auc_raw": 0.55169,
+   "auc_oriented": 0.55169,
+   "finite_fraction": 1.0
+  },
+  "curv_s1": {
+   "auc_raw": 0.56731,
+   "auc_oriented": 0.56731,
+   "finite_fraction": 1.0
+  },
+  "curv_s2": {
+   "auc_raw": 0.58397,
+   "auc_oriented": 0.58397,
+   "finite_fraction": 1.0
+  },
+  "ridge_s1": {
+   "auc_raw": 0.49072,
+   "auc_oriented": 0.50928,
+   "finite_fraction": 1.0
+  },
+  "ridge_s2": {
+   "auc_raw": 0.48903,
+   "auc_oriented": 0.51097,
+   "finite_fraction": 1.0
+  },
+  "ridge_s3": {
+   "auc_raw": 0.48437,
+   "auc_oriented": 0.51563,
+   "finite_fraction": 1.0
+  },
+  "relief5": {
+   "auc_raw": 0.55878,
+   "auc_oriented": 0.55878,
+   "finite_fraction": 1.0
+  },
+  "tophat2": {
+   "auc_raw": 0.47469,
+   "auc_oriented": 0.52531,
+   "finite_fraction": 1.0
+  },
+  "tmi_edge": {
+   "auc_raw": 0.52018,
+   "auc_oriented": 0.52018,
+   "finite_fraction": 1.0
+  },
+  "rtp_edge": {
+   "auc_raw": 0.52393,
+   "auc_oriented": 0.52393,
+   "finite_fraction": 1.0
+  },
+  "grav_edge": {
+   "auc_raw": 0.53884,
+   "auc_oriented": 0.53884,
+   "finite_fraction": 1.0
+  },
+  "cond_edge": {
+   "auc_raw": 0.49132,
+   "auc_oriented": 0.50868,
+   "finite_fraction": 1.0
+  },
+  "depth_grad": {
+   "auc_raw": 0.53881,
+   "auc_oriented": 0.53881,
+   "finite_fraction": 1.0
+  },
+  "coherence_s2": {
+   "auc_raw": 0.56119,
+   "auc_oriented": 0.56119,
+   "finite_fraction": 1.0
+  },
+  "strike_cos": {
+   "auc_raw": 0.55936,
+   "auc_oriented": 0.55936,
+   "finite_fraction": 1.0
+  },
+  "strike_sin": {
+   "auc_raw": 0.53921,
+   "auc_oriented": 0.53921,
+   "finite_fraction": 1.0
+  },
+  "footprint": {
+   "auc_raw": null,
+   "auc_oriented": null,
+   "finite_fraction": 1.0
+  },
+  "lidar_ex_max": {
+   "auc_raw": 0.55679,
+   "auc_oriented": 0.55679,
+   "finite_fraction": 1.0
+  },
+  "lidar_ex_mean": {
+   "auc_raw": 0.54808,
+   "auc_oriented": 0.54808,
+   "finite_fraction": 1.0
+  },
+  "lidar_step_max": {
+   "auc_raw": 0.55646,
+   "auc_oriented": 0.55646,
+   "finite_fraction": 1.0
+  },
+  "lidar_lapneg_max": {
+   "auc_raw": 0.56013,
+   "auc_oriented": 0.56013,
+   "finite_fraction": 1.0
+  },
+  "lidar_lappos_max": {
+   "auc_raw": 0.56178,
+   "auc_oriented": 0.56178,
+   "finite_fraction": 1.0
+  },
+  "lidar_downface_max": {
+   "auc_raw": 0.56812,
+   "auc_oriented": 0.56812,
+   "finite_fraction": 1.0
+  },
+  "lidar_upface_max": {
+   "auc_raw": 0.57345,
+   "auc_oriented": 0.57345,
+   "finite_fraction": 1.0
+  },
+  "lidar_cross_max": {
+   "auc_raw": 0.56397,
+   "auc_oriented": 0.56397,
+   "finite_fraction": 1.0
+  },
+  "lidar_relief": {
+   "auc_raw": 0.55424,
+   "auc_oriented": 0.55424,
+   "finite_fraction": 1.0
+  },
+  "lidar_coh100": {
+   "auc_raw": 0.50095,
+   "auc_oriented": 0.50095,
+   "finite_fraction": 1.0
+  },
+  "lidar_strike": {
+   "auc_raw": 0.52853,
+   "auc_oriented": 0.52853,
+   "finite_fraction": 1.0
+  },
+  "lidar_valid": {
+   "auc_raw": 0.51909,
+   "auc_oriented": 0.51909,
+   "finite_fraction": 1.0
+  },
+  "rad_K": {
+   "auc_raw": 0.45605,
+   "auc_oriented": 0.54395,
+   "finite_fraction": 1.0
+  },
+  "rad_Th": {
+   "auc_raw": 0.46004,
+   "auc_oriented": 0.53996,
+   "finite_fraction": 1.0
+  },
+  "rad_U": {
+   "auc_raw": 0.4777,
+   "auc_oriented": 0.5223,
+   "finite_fraction": 1.0
+  },
+  "rad_TC": {
+   "auc_raw": 0.45943,
+   "auc_oriented": 0.54057,
+   "finite_fraction": 1.0
+  },
+  "ext_ThK": {
+   "auc_raw": 0.48714,
+   "auc_oriented": 0.51286,
+   "finite_fraction": 1.0
+  },
+  "ext_UK": {
+   "auc_raw": 0.51867,
+   "auc_oriented": 0.51867,
+   "finite_fraction": 1.0
+  },
+  "ext_UTh": {
+   "auc_raw": 0.53039,
+   "auc_oriented": 0.53039,
+   "finite_fraction": 1.0
+  },
+  "ext_TMI_up150": {
+   "auc_raw": 0.49759,
+   "auc_oriented": 0.50241,
+   "finite_fraction": 1.0
+  }
+ },
+ "note": "Positives are withheld hide-and-recover segments; negatives >3px from catalogue. Oriented AUC = max(AUC,1-AUC)."
+}

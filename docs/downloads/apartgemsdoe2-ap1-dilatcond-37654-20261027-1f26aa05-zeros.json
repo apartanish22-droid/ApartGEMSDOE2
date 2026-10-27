@@ -1,0 +1,55 @@
+{
+  "later_independent_review_notice": "Historical parallel record: DO NOT SUBMIT. Literal lattice novelty failed (99.718489%); organizer template and portal acceptance are unverified. See evidence/parallel_ap1_audit.json and docs/data/run_card.json.",
+  "file_path": "/home/user/ApartGEMSDOE2/docs/downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif",
+  "file_name": "apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif",
+  "unique_id": "973e1615098e",
+  "sha256": "973e1615098e5636e9348a3ae1e12d9de392fda2b14f0313c81554cc26274d28",
+  "timestamp_utc": "20261027T212532Z",
+  "outside_mode": "zeros",
+  "portal_compliant_range": true,
+  "emitted_dots_count": 37654,
+  "note": "GEMSDOE32 | id:973e1615098e | dots:37654 | mode:zeros",
+  "validation_passed": true,
+  "validation_report": {
+    "file_path": "/home/user/ApartGEMSDOE2/docs/downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif",
+    "sha256": "973e1615098e5636e9348a3ae1e12d9de392fda2b14f0313c81554cc26274d28",
+    "passed": true,
+    "checks": [
+      {
+        "name": "dimensions",
+        "passed": true,
+        "detail": "shape (3730, 3292) (expected (3730, 3292))"
+      },
+      {
+        "name": "band_count",
+        "passed": true,
+        "detail": "bands: 1 (expected 1)"
+      },
+      {
+        "name": "crs",
+        "passed": true,
+        "detail": "CRS: EPSG:32611 (expected EPSG:32611)"
+      },
+      {
+        "name": "transform",
+        "passed": true,
+        "detail": "transform matched template"
+      },
+      {
+        "name": "dtype",
+        "passed": true,
+        "detail": "dtype: float32 (expected float32)"
+      },
+      {
+        "name": "in_footprint_range",
+        "passed": true,
+        "detail": "in-footprint range [0.0000, 1.0000], all finite"
+      },
+      {
+        "name": "portal_safe_whole_array",
+        "passed": true,
+        "detail": "whole-array range [0.0000, 1.0000], finite=True"
+      }
+    ]
+  }
+}

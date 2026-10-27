@@ -1,0 +1,54 @@
+name: Reproducible evidence audit
+
+on:
+  pull_request:
+  push:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install audit dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Fetch hash-pinned public research inputs and read-only tools
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Surface the actual fetch error in an Actions annotation as well as logs.
+          # This keeps a failed audit diagnosable even when raw logs are unavailable.
+          run_fetch() {
+            local log
+            log=$(mktemp)
+            if "$@" >"$log" 2>&1; then
+              cat "$log"
+            else
+              cat "$log"
+              echo "::error title=Audit input restoration failed::$(tail -n 4 "$log" | tr '\n' ' ')"
+              rm -f "$log"
+              return 1
+            fi
+            rm -f "$log"
+          }
+          run_fetch python scripts/fetch_audit_data.py
+          run_fetch python scripts/restore_shared_tools.py
+      - name: Replay independent historical and AP-1 geometry receipts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/verify_independent_replays.py
+      - name: Replay forensic and diagnostic tests
+        run: |
+          pytest -q
+          node --test tests/js/source_freshness.test.cjs
+      - name: Verify generated site briefs are current
+        run: |
+          python scripts/build_site.py
+          python scripts/build_scorecard.py
+          git diff --exit-code -- docs/index.html docs/executive-summary.html docs/research.html docs/sites docs/forensics docs/data/run_card.json

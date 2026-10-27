@@ -1,0 +1,42 @@
+ARCHIVED SYNTHETIC DEMO ONLY — NOT OK TO SUBMIT
+The checks below apply only to the 1200×1200 demo grid, not the competition
+footprint, novelty, holdout or slot selection. See docs/index.html for the
+current decision. The AP-1 research file also fails the lattice novelty gate.
+
+GEMS SUBMISSION STATUS
+=====================
+File: gems-h1-radiometric-curvature-convergence-20261027T212405Z-59a3c88e.tif
+Mode: demo
+Hypothesis: H1 — radiometric anomaly x DEM curvature convergence
+SHA-256: 250d2a554fd0c54c58437c9b724d80aef83173527a3b3bed5b6347b8e76b2d6e
+Note (118 chars): Unique H1 radiometric anomaly x DEM curvature-convergence propensity; not a copy of any prior GEMSDOE site submission.
+
+VALIDATION REPORT:
+{
+  "shape_ok": true,
+  "shape": [
+    1200,
+    1200
+  ],
+  "expected_shape": [
+    1200,
+    1200
+  ],
+  "dtype": "float32",
+  "has_nan_inside_footprint": false,
+  "min": 0.0,
+  "max": 0.9846773147583008,
+  "in_range_0_1": true,
+  "nan_count_inside_footprint": 0,
+  "below_zero_count": 0,
+  "above_one_count": 0,
+  "sha256": "250d2a554fd0c54c58437c9b724d80aef83173527a3b3bed5b6347b8e76b2d6e",
+  "bytes_written": 5775268,
+  "path": "/home/user/ApartGEMSDOE2/assets/gems-h1-radiometric-curvature-convergence-20261027T212405Z-59a3c88e.tif",
+  "all_gates_pass": true
+}
+
+VERDICT:
+NOT OK TO SUBMIT — format demonstration on a synthetic grid. It will NOT match the real submission CRS/shape/geotransform. Do not rerun this lane or upload based on this demo.
+
+Historical owner-reported GEMSDOE32 value 0.2778 is unconfirmed; the official leaderboard is time-varying.

@@ -116,17 +116,20 @@ def test_shared_tool_hashes_and_docs_integrity():
         expected_sha, rel_path = line.strip().split()
         assert _sha256(ROOT / rel_path) == expected_sha, f"Modified shared tool: {rel_path}"
 
-    # Verify README contains Arena Core Values & zero score projections
+    # Verify README contains Arena Core Values, exact raster SHA-256 & zero score projections
+    rc = json.loads((ROOT / "evidence/apartgemsdoe2_run_card_20261027.json").read_text())
     readme = (ROOT / "README.md").read_text()
     assert "Maximize P(Win)" in readme
     assert "Own the Outcome" in readme
+    assert rc["raster_sha256"] in readme
 
-    # Verify all local asset/download links in docs/ resolve cleanly and ban projections
+    # Verify all local asset/download links in docs/udsr/ resolve cleanly and ban projections
     forbidden = re.compile(r"(projected\s+leaderboard\s+score|estimated\s+live\s+score\s*:)", re.I)
     for html_name in ("index.html", "executive-summary.html"):
-        html_path = ROOT / "docs" / html_name
+        html_path = ROOT / "docs/udsr" / html_name
         assert html_path.is_file()
         txt = html_path.read_text()
+        assert rc["raster_sha256"] in txt
         assert not forbidden.search(txt), f"Projection phrasing found in {html_name}"
         for m in re.finditer(r'(?:href|src)="([^"#]+)"', txt):
             ref = m.group(1)

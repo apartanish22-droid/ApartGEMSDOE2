@@ -1,152 +1,122 @@
 #!/usr/bin/env python3
-"""Restore and SHA-256 verify all competition, external, and historical scored files in registry/data_manifest.json."""
+"""Restore integrity-pinned owner mirrors and selected registry references.
 
+This is data ingestion only, not authorization to train, emit, or submit. The
+mirror is not organizer-authenticated and the nine focus references plus lattice
+are not the complete parallel registry. Large feature shards are streamed.
+
+    python scripts/restore_data.py --target-dir /tmp/gems_data
+    python scripts/restore_data.py --target-dir /tmp/gems_data --references-only
+"""
 from __future__ import annotations
 
 import argparse
 import hashlib
 import json
-import shutil
-import subprocess
-import sys
+import os
 from pathlib import Path
+import shutil
+import tempfile
+
+from audit_historical import fetch_pin
+from github_raw import stream_raw
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "src"))
-from gems32.paths import data_dir  # noqa: E402
+CORE_IDS = {"training_features", "labels", "sample_submission", "ext_derived_sgmc_faults_100m_u8"}
 
 
-def sha256_file(p: Path) -> str:
+def sha256(path: Path) -> str:
     h = hashlib.sha256()
-    with p.open("rb") as f:
-        for chunk in iter(lambda: f.read(1 << 20), b""):
+    with path.open("rb") as src:
+        for chunk in iter(lambda: src.read(1 << 20), b""):
             h.update(chunk)
     return h.hexdigest()
 
 
-def _fetch_from_codeload(repo: str, ref: str, path: str, dest: Path) -> None:
-    import tarfile
-    import urllib.request
-
-    url = f"https://codeload.github.com/{repo}/tar.gz/{ref}"
-    with urllib.request.urlopen(url, timeout=120) as resp, tarfile.open(fileobj=resp, mode="r|gz") as tf:
-        for member in tf:
-            if not member.isfile() or "/" not in member.name:
-                continue
-            rel = member.name.split("/", 1)[1]
-            if rel == path:
-                src = tf.extractfile(member)
-                if src is None:
-                    break
-                with dest.open("wb") as out:
-                    shutil.copyfileobj(src, out, 1 << 20)
-                return
-    raise FileNotFoundError(f"{path} not found in codeload tarball {repo}@{ref}")
-
-
-def fetch(repo: str, ref: str, path: str, dest: Path) -> None:
+def safe_destination(root: Path, rel: str) -> Path:
+    path = Path(rel)
+    if path.is_absolute() or ".." in path.parts or not path.parts:
+        raise ValueError(f"Unsafe manifest destination: {rel}")
+    dest = root / path
+    if dest.is_symlink() or not dest.parent.resolve().is_relative_to(root.resolve()):
+        raise ValueError(f"Symlink or escaped manifest destination: {dest}")
     dest.parent.mkdir(parents=True, exist_ok=True)
-    tmp = dest.with_suffix(dest.suffix + ".partial")
+    if dest.is_symlink() or not dest.parent.resolve().is_relative_to(root.resolve()):
+        raise ValueError(f"Symlink or escaped manifest destination: {dest}")
+    return dest
+
+
+def stream_part(repo: str, ref: str, path: str, out) -> None:
+    stream_raw(repo, ref, path, out)
+
+
+def restore_core_entry(entry: dict, root: Path, stream=stream_part) -> Path:
+    dest = safe_destination(root, entry["dest"])
+    if dest.is_file() and sha256(dest) == entry["sha256"]:
+        return dest
+    fd, name = tempfile.mkstemp(prefix="." + dest.name + ".", suffix=".partial", dir=dest.parent)
+    tmp = Path(name)
     try:
-        if shutil.which("gh"):
-            try:
-                with tmp.open("wb") as out:
-                    subprocess.run(
-                        [
-                            "gh",
-                            "api",
-                            f"repos/{repo}/contents/{path}?ref={ref}",
-                            "-H",
-                            "Accept: application/vnd.github.raw",
-                        ],
-                        stdout=out,
-                        stderr=subprocess.PIPE,
-                        check=True,
-                    )
-                tmp.replace(dest)
-                return
-            except subprocess.CalledProcessError:
-                tmp.unlink(missing_ok=True)
-        _fetch_from_codeload(repo, ref, path, tmp)
+        with os.fdopen(fd, "wb") as out:
+            for part in entry.get("parts", [entry.get("path")]):
+                if not part:
+                    raise ValueError(f"Missing source for {entry['id']}")
+                stream(entry["repo"], entry["ref"], part, out)
+        actual = sha256(tmp)
+        if actual != entry["sha256"]:
+            raise ValueError(f"Hash mismatch for {entry['id']}: {actual}")
         tmp.replace(dest)
     finally:
         tmp.unlink(missing_ok=True)
+    return dest
 
 
-def restore_entry(entry: dict, root: Path) -> dict:
-    dest = root / entry["dest"]
-    if dest.exists() and sha256_file(dest) == entry["sha256"]:
-        return {
-            "id": entry["id"],
-            "dest": entry["dest"],
-            "group": entry["group"],
-            "status": "present",
-            "bytes": dest.stat().st_size,
-            "sha256": entry["sha256"],
-        }
-    if "parts" in entry:
-        tmp = dest.with_suffix(".assembling")
-        tmp.parent.mkdir(parents=True, exist_ok=True)
-        with tmp.open("wb") as out:
-            for part in entry["parts"]:
-                p = root / "raw_parts" / Path(part).name
-                fetch(entry["repo"], entry["ref"], part, p)
-                with p.open("rb") as src:
-                    shutil.copyfileobj(src, out, 1 << 20)
-                p.unlink()
-        got = sha256_file(tmp)
-        if got != entry["sha256"]:
-            tmp.unlink(missing_ok=True)
-            raise SystemExit(f"HASH MISMATCH for {entry['id']}: {got} != {entry['sha256']}")
-        tmp.replace(dest)
-    else:
-        fetch(entry["repo"], entry["ref"], entry["path"], dest)
-        got = sha256_file(dest)
-        if got != entry["sha256"]:
-            dest.unlink(missing_ok=True)
-            raise SystemExit(f"HASH MISMATCH for {entry['id']}: {got} != {entry['sha256']}")
-    return {
-        "id": entry["id"],
-        "dest": entry["dest"],
-        "group": entry["group"],
-        "status": "restored",
-        "bytes": dest.stat().st_size,
-        "sha256": entry["sha256"],
-    }
+def restore_reference_pins(root: Path, pins: dict, cache: Path, fetch=fetch_pin) -> list[Path]:
+    result = []
+    named_pins = [(p["site"] + "_best.tif", p) for p in pins["focus"]]
+    named_pins.append(("LATTICE_r13.tif", pins["lattice"]))
+    for name, pin in named_pins:
+        src = fetch(pin, cache)
+        if sha256(src) != pin["sha256"]:
+            raise ValueError(f"Hash mismatch for reference {name}")
+        dest = safe_destination(root, f"registry_focus/{name}")
+        if not dest.is_file() or sha256(dest) != pin["sha256"]:
+            fd, tmp_name = tempfile.mkstemp(prefix="." + name + ".", suffix=".partial", dir=dest.parent)
+            tmp = Path(tmp_name)
+            try:
+                with os.fdopen(fd, "wb") as out, src.open("rb") as source:
+                    shutil.copyfileobj(source, out, length=1 << 20)
+                if sha256(tmp) != pin["sha256"]:
+                    raise ValueError(f"Copied reference hash mismatch: {name}")
+                tmp.replace(dest)
+            finally:
+                tmp.unlink(missing_ok=True)
+        result.append(dest)
+    return result
 
 
-def main() -> None:
+def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--group", default="all", choices=["core", "external", "scored", "all"])
-    ap.add_argument("--manifest", default=str(ROOT / "registry" / "data_manifest.json"))
-    ap.add_argument("--target-dir", default=None, help="Override destination directory")
+    ap.add_argument("--target-dir", type=Path, default=Path("/tmp/gems_data"))
+    ap.add_argument("--references-only", action="store_true", help="skip the 419 MB feature mirror and other core files")
     args = ap.parse_args()
-
-    man = json.loads(Path(args.manifest).read_text())
-    root = Path(args.target_dir) if args.target_dir else data_dir()
+    root = args.target_dir
     root.mkdir(parents=True, exist_ok=True)
-
-    results = []
-    for e in man["files"]:
-        if args.group in ("all", e["group"]):
-            r = restore_entry(e, root)
-            results.append(r)
-            print(f"{r['status']:>8}  {e['dest']:82s}  sha256={r['sha256'][:12]}…")
-
-    try:
-        storage_root = root.resolve().relative_to(ROOT.resolve()).as_posix()
-    except ValueError:
-        storage_root = str(root)
-    receipt = {
-        "schema_version": 1,
-        "verified_files_count": len(results),
-        "storage_root": storage_root,
-        "files": results,
-    }
-    (ROOT / "data").mkdir(parents=True, exist_ok=True)
-    (ROOT / "data" / "restore_receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
-    print(f"Verified {len(results)} files; receipt written to data/restore_receipt.json")
+    manifest = json.loads((ROOT / "registry/data_manifest.json").read_text())
+    if not args.references_only:
+        entries = [e for e in manifest["files"] if e["id"] in CORE_IDS]
+        if {e["id"] for e in entries} != CORE_IDS:
+            raise ValueError("The pinned core-data manifest is incomplete")
+        for entry in entries:
+            dest = restore_core_entry(entry, root)
+            print(f"verified {dest.relative_to(root)} sha256={entry['sha256'][:12]}…")
+    pins = json.loads((ROOT / "registry/historical-pins.json").read_text())
+    refs = restore_reference_pins(root, pins, ROOT / ".cache/audit")
+    print(f"Verified {len(refs)} selected references in {root / 'registry_focus'}.")
+    print("These owner mirrors are not organizer-authenticated and are not the complete registry. "
+          "No experiment or submission is authorized; see evidence/preflight.json.")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

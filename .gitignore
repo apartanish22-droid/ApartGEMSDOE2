@@ -1,37 +1,34 @@
-# Python & build artifacts
-__pycache__/
-*.py[cod]
+# Local environment, credentials, caches and restored competition data.
+.cache/
 .venv/
 venv/
+.env
+*.env
+.credentials
+.git-credentials
+__pycache__/
+*.py[cod]
 .pytest_cache/
 .ruff_cache/
 .mypy_cache/
 *.egg-info/
-.cache/
-
-# Large competition rasters and regenerable numpy caches are restored via
-# bash scripts/download_competition_data.sh and python scripts/prepare_data.py
-data/*
-!data/.gitkeep
-!data/README.md
-!data/restore_receipt.json
-!data/prepared_manifest.json
-!data/shared_tool_hashes.txt
-!data/holdout_surrogate_log.json
-!data/holdout_surrogate_log.csv
-
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+*.tif.aux.xml
+*.tfw
 *.npy
 *.npz
 *.partial
 *.assembling
-
-# Keep audited submission deliverables and verification sidecars in docs/downloads/
-!docs/downloads/*.tif
-!docs/downloads/*.zip
-!docs/downloads/*.json
-
-# OS / Editor
-.vscode/
-.idea/
-.DS_Store
-Thumbs.db
+/data/*
+!/data/.gitkeep
+!/data/restore_receipt.json
+!/data/prepared_manifest.json
+!/data/shared_tool_hashes.txt
+# Research-only audited TIFFs in docs/downloads are tracked intentionally.
+!/docs/downloads/*.tif
+!/docs/downloads/*.zip
+!/docs/downloads/*.json
+# Local browser screenshots
+/artifacts/
