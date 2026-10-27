@@ -1,9 +1,18 @@
 # Executive summary — ApartGEMSDOE2 (2026-10-27)
 
-**Decision: NO file is OK TO SUBMIT.** Download the new unique AP-1 GeoTIFF for research only
+> **Reconciliation / supersedes conflicting wording below:** AP-1 is distinct from the selected
+> focus-nine variants, but it is **not unique under the literal all-registry rule**: 99.7185% of its
+> dots are within three pixels of the registered lattice. Its zero-exterior file fails the
+> conservative published null/NaN-outside reading, and neither variant has an authenticated
+> organizer-template or portal receipt. The recorded holdout is from the parallel run, not
+> independently reproduced here; candidate and control used different refill rules.
+> **DO NOT SUBMIT.** [Current audit](../evidence/parallel_candidate_audit.json) ·
+> [Current decision page](index.html).
+
+**Decision: NO file is OK TO SUBMIT.** Download the AP-1 GeoTIFF for research only
 (`docs/downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif`, SHA-256
-`973e1615098e5636e9348a3ae1e12d9de392fda2b14f0313c81554cc26274d28`). It is unique (max 20.1% within
-3 px of any focus-9 best) and format-valid (13/13 strict audit), but failed the holdout gate
+`973e1615098e5636e9348a3ae1e12d9de392fda2b14f0313c81554cc26274d28`). It differs from the focus-nine bests (max 20.1% within
+3 px) but fails the registered lattice rule, and its local format checks are not portal authorization; it also failed the reported holdout gate
 (HOLDOUT-DTI 0.0389 [0.0282, 0.0491], GEMSDOE32-HIDE-RECOVER-v3.0, 22,232 withheld, vs champion
 fold-local 0.0992 [0.0860, 0.1127]; paired Δ −0.0603 [−0.0859, −0.0401]) and SGMC gate
 (0.0190 vs 0.0641 calibrated). Leaderboard estimate: **NOT ESTIMABLE** (no validated transfer).

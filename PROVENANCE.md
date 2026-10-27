@@ -19,6 +19,9 @@ They are integrity-pinned, **not organizer-authenticated**. Official problem/met
 https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/ (fetched 2026-10-27).
 Reference solution: https://github.com/drivendataorg/gems-prize-reference-solution
 
-New code in this repo (this session's lane): `src/apart/*`, `scripts/build_candidate.py`,
-`scripts/audit_uniqueness.py`, `scripts/restore_data.py`. If a vendored tool is found wrong,
-fix it here once and report it — do not keep a private fork elsewhere.
+The parallel session added `src/apart/*` and experiment scripts as a self-selected AP-1 lane.
+The GEMSDOE32 files above are a vendored historical snapshot, not the user-specified GEMSDOE24
+shared template. This review did not modify those shared evaluator/writer files. Any defect in a
+shared tool must be fixed once in the shared template and reported, not patched in a private fork.
+The local experiment/selector orchestration is disabled while the literal protocol fails; see
+`evidence/parallel_candidate_audit.json` and `scripts/experiment_guard.py`.

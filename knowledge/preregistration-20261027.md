@@ -1,5 +1,13 @@
 # Pre-registration — ApartGEMSDOE2 AP-1 (frozen before any candidate surface was computed)
 
+> **Reconciliation after the parallel run:** AP-1 was self-selected in that session; no explicit
+> user assignment was identified. The exemption for the registered lattice below conflicts with
+> the user's literal **any registry raster** rule and does not authorize uniqueness. The claim
+> that *any* in-footprint candidate fails is too broad: 6,649 mirrored-footprint cells are outside
+> the 3-pixel lattice neighborhood. At this 37,654-dot budget the bound is 82.34%, and the actual
+> saved AP-1 overlap is 99.7185%; it is a duplicate-stop. The parallel session reports three
+> experiments spent, so no more are permitted in that budget. See `evidence/parallel_candidate_audit.json`.
+
 - Frozen: 2026-10-27T21:21Z (before building the AP-1 surface; only registry/label forensics in
   `evidence/forensic_registry.json` had been computed — no candidate surface, fit, or dot set existed).
 - Budget (Parallel-Run Protocol rule 6): at most **3 experiments** or 2 hours. Promotion to a weekly

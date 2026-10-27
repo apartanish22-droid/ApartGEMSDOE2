@@ -1,35 +1,3 @@
-<!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>How to make a submission — ApartGEMSDOE2</title>
-<style>
-body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:900px;margin:0 auto;padding:24px;line-height:1.6;color:#17202a}
-code{background:#f4f6f7;padding:1px 5px;border-radius:4px}.warn{border:2px solid #b03a2e;background:#fdedec;padding:12px 16px;border-radius:8px}
-ol li{margin:.5rem 0}</style></head><body>
-<p><a href="index.html">← Decision &amp; download</a> · <a href="executive-summary.html">Executive summary</a></p>
-<h1>How to make a competition submission (exactly)</h1>
-<div class="warn"><b>Current instruction: do not submit.</b> This repo's only new file failed its
-scientific gates (see decision page). Follow the steps below only for a future file whose run card
-says <code>verdict: promote</code> / OK TO SUBMIT. Submitting a <code>negative</code> file wastes a weekly slot.</div>
-<ol>
-<li><b>Pick the portal-safe file:</b> the <code>-zeros.tif</code> (whole array finite in [0,1]).
-Never upload the <code>-nan.tif</code> twin through the web form — NaN triggers
-“Predicted values must be in range [0, 1]” even though the written spec allows NaN outside the footprint.</li>
-<li><b>Verify locally first (must PASS):</b><br>
-<code>GEMS_DATA_DIR=/tmp/gems_data .venv/bin/python scripts/check_submission.py docs/downloads/&lt;file&gt;-zeros.tif --strict-finite</code><br>
-Require: single band, float32, EPSG:32611, 3730×3292, template transform, in-footprint [0,1], whole-array [0,1].</li>
-<li><b>Open the competition:</b> <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize</a> → Submissions → <i>New submission</i>.</li>
-<li><b>File to submit:</b> choose the single <code>-zeros.tif</code> (or the single-TIFF <code>-zeros.zip</code> containing exactly that one GeoTIFF).</li>
-<li><b>Unique name / Note:</b> paste the run card's name and ≤140-char note verbatim so the slot is
-traceable to its SHA-256. Current research file (for illustration — <b>do not submit it</b>):<br>
-Name: <code>apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros</code><br>
-Note: <code>AP-1 dilat+cond+base+grav coincidence 37654d B2 | HOLDOUT-DTI 0.0389 vs champ 0.0992 | 1f26aa05 | DO NOT SUBMIT</code></li>
-<li><b>Create submission</b>, then save the submission-page receipt (score + file hash) back into
-<code>evidence/</code> — only then may a score be called <b>ORGANIZER-CONFIRMED</b>. Without a receipt it stays OWNER-REPORTED.</li>
-<li><b>Weekly cap:</b> promotion is a separate selector decision within the cap shown on the submission
-page. One slot per experiment; never resubmit an already-scored file (e.g. GEMSDOE32 B2 0.2778).</li>
-</ol>
-<p>Format rules (official, page 967, fetched 2026-10-27): same CRS (EPSG:32611), 100 m, same bounds,
-single-band float32, values in [0,1]; metric DTI α=0.2, β=0.8, R=300 m triangular kernel.
-Guidance PDF: <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR FY26OSTI 96647</a> (organizer submission guidance, as supplied in brief).</p>
-</body></html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Submission guide moved</title></head>
+<body><main><h1>Submission guide moved</h1><p><strong>DO NOT SUBMIT.</strong> The parallel research TIFF fails the literal registry rule and has no organizer authorization.</p><p><a href="executive-summary.html">Open the current, evidence-led submission guide</a>.</p></main></body></html>

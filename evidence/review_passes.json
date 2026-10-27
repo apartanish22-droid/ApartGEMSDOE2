@@ -1,0 +1,35 @@
+{
+  "schema": "apartgems-three-pass-review-v1",
+  "date_utc": "2026-10-27",
+  "pass_1": {
+    "scope": "Repository and official-source review; pinned nine historical archival TIFFs, mirrored sample/labels, shared registry lattice and selected shared template assets; produced independent geometry audit, negative run card, source-led site and research slate.",
+    "scientific_experiments": 0,
+    "weekly_slots_used": 0,
+    "new_tiff_generated": false
+  },
+  "pass_2": {
+    "scope": "Adversarial review and fixes: added an explicit unmasked-inside-footprint and EPSG/resolution check to local format diagnostics; retained the difference between masked numeric nodata and whole-array range; bundled licensed fonts locally; added tests for geometry, stale feed, status and links.",
+    "result": "Local diagnostics are not portal acceptance or submission authorization."
+  },
+  "pass_3": {
+    "scope": "Replayed the pinned nine-file audit independently from cached exact bytes and compared all results except observation time; checked rendered routes, generated-site determinism, JSON evidence, stale/partial browser feed states and current blockers; fixed an ignore rule that would have omitted the site feed and audit files, and made pinned template restoration repair read-only corrupt files atomically.",
+    "audit_replay_matches": true,
+    "pytest": "15 passed",
+    "node_ui_test": "passed",
+    "requested_outcomes_not_completed": [
+      "No all-registry-unique TIFF or authenticated upload approval: AP-1 overlaps the registered lattice by 99.7185%, and no explicit user-assigned lane was identified.",
+      "This review generated no HOLDOUT-DTI or leaderboard estimate; a parallel HOLDOUT-DTI is reported with evaluator, CI and withheld count but was not independently reproduced.",
+      "Nine briefs are published here; the nine independent sibling sites were not modified."
+    ]
+  },
+  "parallel_reconciliation": {
+    "scope": "After a parallel main-branch merge, independently reopened and hash-verified both AP-1 TIFFs; reproduced exact dot overlap against nine focus rasters and the registered lattice; distinguished owner-mirrored format diagnostics from organizer approval; reviewed the parallel control/refill discrepancy and literal-rule exemption.",
+    "fixes": "Retained research artifacts, blocked historic experiment/emission entrypoints, made their final gate fail closed on missing all-registry and surface checks, restored pinned references with hash checks, removed contradictory submission directions, and rebuilt Pages around the negative result.",
+    "audit_replay_matches": true,
+    "python_tests": "33 passed, plus 4 unittest subtests",
+    "node_ui_test": "passed",
+    "new_experiments_by_review": 0,
+    "parallel_experiments_reported": 3,
+    "weekly_slots_used": 0
+  }
+}

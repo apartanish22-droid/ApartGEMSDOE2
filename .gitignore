@@ -1,26 +1,23 @@
-__pycache__/
-*.py[cod]
+# Local environment, credentials, caches and restored competition data.
+.cache/
 .venv/
 venv/
 .env
+*.env
+.credentials
+.git-credentials
+__pycache__/
+*.py[cod]
 .pytest_cache/
 .ruff_cache/
 .mypy_cache/
 .ipynb_checkpoints/
-.cache/
 .DS_Store
 Thumbs.db
 *.tif.aux.xml
 *.tfw
-*.env
-.credentials
-.git-credentials
-# Competition rasters are restored via scripts/restore_data.py (SHA-pinned mirrors); never commit them
 *.npy
 *.npz
-data/*
-!data/.gitkeep
-# Audited submission deliverables are kept in docs/downloads/ (and legacy artifacts/assets on main)
-!docs/downloads/*.tif
-!docs/downloads/*.zip
-!docs/downloads/*.json
+/data/*
+!/data/.gitkeep
+# Research-only audited TIFFs in docs/downloads are tracked intentionally.

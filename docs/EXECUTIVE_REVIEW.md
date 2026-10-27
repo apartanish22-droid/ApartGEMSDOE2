@@ -1,5 +1,7 @@
 # Executive review: GEMSDOE24/25/27/28/30/31/32/33/36
 
+> Historical first-pass review; subsequent parallel evidence and the independent candidate audit supersede its earlier repository/data status. No file is approved. See [the current decision](index.html).
+
 **Review scope:** repository contents and the submission/result information supplied in the task. **This is not a raster-level comparison or an independent confirmation of the listed scores.**
 
 ## Decision summary
