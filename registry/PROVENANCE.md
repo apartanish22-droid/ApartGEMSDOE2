@@ -10,7 +10,11 @@ write access to the upstream template (different GitHub owner), so the canonical
   `registry/data_manifest.json`, `registry/prepared_manifest_upstream.json`
 - Competition data restored from the hashes in `data_manifest.json`
   (sources: `buffedlizard55-lab/GEMSDOE` @ `c0c06ac82178…`, `GEMSDOE24` @ `07345ea06049…` etc.,
-  each file SHA-256-verified by `scripts/restore_data.py`).
+  each file SHA-256-verified by the upstream `scripts/restore_data.py` as copied in AP2 commit
+  `f5e4823`). **Merge note:** the integrated repository's `scripts/restore_data.py` is now the
+  parallel sessions' safer streaming restore (it restores core files + focus references, not the
+  full external-channel set AP2 used); the AP2-era copy remains in git history at `f5e4823`.
+  `scripts/evaluate_holdout.py` was byte-identical on both sides of the merge.
 
 Reference clones reviewed this session (HEAD at review time):
 

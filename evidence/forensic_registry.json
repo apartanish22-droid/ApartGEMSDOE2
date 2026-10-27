@@ -1,0 +1,91 @@
+{
+ "measured_utc": "2026-10-27",
+ "method": "rasterio read of SHA-256-verified champion TIFs (focus_registry_manifest 2026-10-27T17:30Z pins); scipy EDT + cKDTree NN (40k subsample, seed 0)",
+ "grid": {
+  "height": 3730,
+  "width": 3292,
+  "crs": "EPSG:32611",
+  "transform": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ],
+  "footprint_px": 5167373,
+  "label_px": 60988
+ },
+ "champions": {
+  "GEMSDOE24_best": {
+   "dots": 60069,
+   "on_catalogue": 0,
+   "frac_dcat_le2px": 0.146,
+   "median_dcat_px": 14.9
+  },
+  "GEMSDOE25_best": {
+   "dots": 44090,
+   "on_catalogue": 0,
+   "frac_dcat_le2px": 0.146,
+   "median_dcat_px": 15.0
+  },
+  "GEMSDOE27_best": {
+   "dots": 61328,
+   "on_catalogue": 0,
+   "frac_dcat_le2px": 0.1447,
+   "median_dcat_px": 14.1
+  },
+  "GEMSDOE28_best": {
+   "dots": 37660,
+   "on_catalogue": 0,
+   "frac_dcat_le2px": 0.0625,
+   "median_dcat_px": 17.7
+  },
+  "GEMSDOE30_best": {
+   "dots": 44090,
+   "on_catalogue": 0,
+   "frac_dcat_le2px": 0.146,
+   "median_dcat_px": 15.0
+  },
+  "GEMSDOE31_best": {
+   "dots": 40199,
+   "on_catalogue": 0,
+   "frac_dcat_le2px": 0.0633,
+   "median_dcat_px": 17.7
+  },
+  "GEMSDOE32_best": {
+   "dots": 37654,
+   "on_catalogue": 0,
+   "frac_dcat_le2px": 0.0,
+   "median_dcat_px": 19.6
+  },
+  "GEMSDOE33_best": {
+   "dots": 41865,
+   "on_catalogue": 0,
+   "frac_dcat_le2px": 0.093,
+   "median_dcat_px": 16.6
+  },
+  "GEMSDOE36_best": {
+   "dots": 38854,
+   "on_catalogue": 0,
+   "frac_dcat_le2px": 0.0,
+   "median_dcat_px": 19.2
+  }
+ },
+ "pairwise_within3px": {
+  "GEMSDOE32_vs_GEMSDOE25": 1.0,
+  "GEMSDOE25_vs_GEMSDOE30_exact": 1.0,
+  "GEMSDOE31_vs_GEMSDOE32": 0.9539,
+  "GEMSDOE36_vs_GEMSDOE32_exact": 0.9691
+ },
+ "lattice": {
+  "dots": 206895,
+  "footprint_frac_within3px": 0.9987,
+  "note": "IR-AP-01: literal any-raster uniqueness vs this calibration grid is geometrically impossible at 37,654-dot budget (lower bound ~82%); judged vs genuine submissions, lattice always disclosed."
+ },
+ "interpretation": [
+  "GEMSDOE32 B2 = GEMSDOE25 d2.8 dot set minus 6,436 dots with d_cat<=2px (44,090-6,436=37,654; 14.60% of 44,090 = 6,437, rounding).",
+  "GEMSDOE25 best and GEMSDOE30 best dot sets are pixel-identical (exact overlap 1.0) despite different names \u2014 same 0.2600 OWNER-REPORTED is therefore one measurement, not two.",
+  "All champions place 0 dots on the catalogue; the winning move in the family was removing near-catalogue mass, consistent with DTI marginal rule k > 0.2*DTI."
+ ]
+}

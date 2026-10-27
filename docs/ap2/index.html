@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Download · ApartGEMSDOE2</title><style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:980px;margin:0 auto;padding:20px;color:#17202a;line-height:1.55}
+a{color:#155e9c} table{border-collapse:collapse;width:100%;margin:14px 0;font-size:.92em}
+th,td{border:1px solid #d5dce3;padding:6px 8px;vertical-align:top;text-align:left} th{background:#eef2f6}
+code{background:#f3f4f6;padding:1px 4px;border-radius:4px;word-break:break-all}
+.banner{border:3px solid #b45309;background:#fffbeb;border-radius:10px;padding:16px 20px;margin:16px 0}
+.banner h2{margin:4px 0} .ok{border-color:#15803d;background:#f0fdf4} .no{border-color:#b91c1c;background:#fef2f2}
+.btn{display:inline-block;background:#15803d;color:#fff;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:700;margin:6px 6px 6px 0}
+.btn2{display:inline-block;background:#155e9c;color:#fff;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:700;margin:6px 6px 6px 0}
+small{color:#5b6770} .nav a{margin-right:14px} pre{background:#0f172a;color:#e2e8f0;padding:12px;border-radius:8px;overflow:auto}
+.pass{color:#15803d;font-weight:700}.fail{color:#b91c1c;font-weight:700}
+</style></head><body><p class="nav"><a href="index.html">Home / download</a><a href="executive-summary.html">Executive summary (9 sites)</a><a href="how-to-submit.html">How to submit</a><a href="research.html">Research &amp; experiments</a><a href="sources.html">Sources</a></p>
+<h1>ApartGEMSDOE2 — GEMS fault submission</h1>
+<div class="banner no">
+<h2>🔴 DO NOT SUBMIT — research/learning download only</h2>
+<p>Integrated repository decision after merge (see <code>evidence/ap2_merge_addendum.json</code> and the
+<a href="../index.html">canonical decision site</a>): this file fails the literal all-registry novelty rule
+(99.9% of its dots lie within 3 px of the registered 5-px calibration lattice — a covering lattice AP2 had
+preregistered as exempt, IR-AP2-02; the stricter integrated reading governs), in addition to the two
+statistical/uniqueness cautions below. <strong>If a future selector ever reverses this under a new authorised
+budget, this is the exact file and note:</strong></p>
+<p><a class="btn" href="../downloads/apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros.tif">⬇ Download apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros.tif</a>
+<a class="btn2" href="../downloads/apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros.zip">⬇ Same file as .zip</a></p>
+<p>Tracking name: <code>ApartGEMSDOE2-AP2-OOFCTRL-EDF60FD4</code><br>DrivenData “Note” to paste: <code>AP2 OOFCTRL crest+creditbar 44090dots B2 HOLDOUT-DTI 0.1060 vs champ0.0992 uniq-score shaedf60fd4</code> (97 chars)<br>
+SHA-256: <code>edf60fd492cc18b835abee8cb7479825f47cd1077aa8609de37f1d9de5ccf50e</code> · dots: 44,090 · 0 on-catalogue</p>
+<ul>
+<li><span class="pass">Format PASS</span> — re-read bytes are single-band float32, EPSG:32611, 3730×3292, template transform, every one of the 12,279,160 cells finite in [0,1] (the exact property behind the portal error “Predicted values must be in range [0, 1]”).</li>
+<li><span class="pass">Unique vs every scored submission in the brief</span> — worst 3-px dot overlap 56.7% (≤70%), worst surface |ρ| 0.349 (≤0.90), not a subset/superset/identical copy of any of the nine winners. No registry pixel was used as model input.</li>
+<li><span class="fail">Caution 1 (statistics):</span> HOLDOUT-DTI 0.1060 [0.0907, 0.1219] beats the champion-recipe control 0.0992 [0.0860, 0.1127] on point estimate, but the paired 95% CI on the difference is [-0.0015, +0.0152] (P(Δ&gt;0)=93.9%) — it straddles zero.</li>
+<li><span class="fail">Caution 2 (broad uniqueness):</span> 74.5% of its dots lie within 3 px of one <em>unscored</em> research raster (<code>GEMSDOE32/docs/downloads/gemsdoe32-arena8a-mdrc-crestbar-b2-44090-20261026T011955Z-ce1abd39-nan.tif</code>), above the 70% parallel-run line; against all <em>scored</em> submissions it is unique (above).</li>
+</ul>
+<p>Preregistered run-card verdict: <code>negative</code> · weekly slots used by this session: <strong>0</strong>. Procedure, for the record only: <a href="how-to-submit.html">How to submit</a>.</p>
+</div>
+
+<h2>Score estimate (labelled — not a leaderboard score)</h2>
+<table><tr><th>Evidence class</th><th>AP2 candidate</th><th>Champion recipe control</th></tr>
+<tr><td>HOLDOUT-DTI (<code>GEMSDOE32-HIDE-RECOVER-v3.0</code>, 22,232 withheld, 95% CI)</td>
+<td><strong>0.1060</strong> [0.0907, 0.1219]</td><td>0.0992 [0.0860, 0.1127]</td></tr>
+<tr><td>HOLDOUT-DTI off-catalogue SGMC, prevalence-calibrated</td><td>0.0583</td><td>0.0641</td></tr>
+<tr><td>Live leaderboard score</td><td>Not submitted — unknown</td><td>0.2778 (OWNER-REPORTED, no receipt)</td></tr>
+<tr><td>PROJECTION (not a score; champion-anchored ratio/delta maps)</td><td colspan="2"><strong>0.2846 – 0.2970</strong>. Unvalidated transfer: every holdout-beating candidate since Oct 2025 was held DO-NOT-SUBMIT, so no holdout->live pair above the champion exists. Holdout truth is catalogue-style segments; live truth is expert-mapped off-catalogue faults. Treat as planning range only.</td></tr></table>
+
+<h2>Release gates</h2><table><tr><th>Gate</th><th>Result</th></tr><tr><td><code>G1_format_strict_saved_bytes</code></td><td class="pass">PASS</td></tr><tr><td><code>G2_holdout_beats_champion_paired_ci_gt_0</code></td><td class="fail">FAIL</td></tr><tr><td><code>G3_unique_vs_9_winners</code></td><td class="pass">PASS</td></tr><tr><td><code>G3b_unique_vs_broad_focus_registry</code></td><td class="fail">FAIL</td></tr><tr><td><code>G4_leakage_canary</code></td><td class="pass">PASS</td></tr><tr><td><code>G5_zero_on_catalogue_and_Bgt2</code></td><td class="pass">PASS</td></tr><tr><td><code>G6_no_exact_subset_or_identical</code></td><td class="pass">PASS</td></tr></table>
+
+<h2>The nine focus winners — and why none is the file to (re)submit</h2>
+<table><tr><th>Site</th><th>Best-listed submission</th><th>Score</th><th>Dots (measured)</th><th>AP2 dots within 3 px</th><th>AP2 surface ρ</th><th>Decision</th></tr><tr><td>GEMSDOE32</td><td><code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code></td><td>0.2778 (OWNER-REPORTED)</td><td>37,654</td><td>0.52706</td><td>0.30129</td><td>Already scored — do not resubmit identical family bytes</td></tr><tr><td>GEMSDOE36</td><td><code>anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros</code></td><td>0.2750 (OWNER-REPORTED)</td><td>38,854</td><td>0.52883</td><td>0.29596</td><td>Already scored — do not resubmit identical family bytes</td></tr><tr><td>GEMSDOE28</td><td><code>h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan</code></td><td>0.2710 (OWNER-REPORTED)</td><td>37,660</td><td>0.53729</td><td>0.31509</td><td>Already scored — do not resubmit identical family bytes</td></tr><tr><td>GEMSDOE31</td><td><code>h27-4-solo-d28-20261004-8acb75e1-nan</code></td><td>0.2708 (OWNER-REPORTED)</td><td>40,199</td><td>0.54148</td><td>0.31849</td><td>Already scored — do not resubmit identical family bytes</td></tr><tr><td>GEMSDOE33</td><td><code>h33d-analog-tip-stepover-r30-20261004-cb490425926e</code></td><td>0.2632 (OWNER-REPORTED)</td><td>41,865</td><td>0.54704</td><td>0.32608</td><td>Already scored — do not resubmit identical family bytes</td></tr><tr><td>GEMSDOE25</td><td><code>dotted-h19-5-d2-8-20261002-e56ea318af89-nan</code></td><td>0.2600 (OWNER-REPORTED)</td><td>44,090</td><td>0.54985</td><td>0.34041</td><td>Already scored — do not resubmit identical family bytes</td></tr><tr><td>GEMSDOE30</td><td><code>d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca</code></td><td>0.2600 (OWNER-REPORTED)</td><td>44,090</td><td>0.54985</td><td>0.34041</td><td>Already scored — do not resubmit identical family bytes</td></tr><tr><td>GEMSDOE24</td><td><code>h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan</code></td><td>0.2477 (OWNER-REPORTED)</td><td>60,069</td><td>0.5643</td><td>0.34936</td><td>Already scored — do not resubmit identical family bytes</td></tr><tr><td>GEMSDOE27</td><td><code>topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan</code></td><td>0.2449 (OWNER-REPORTED)</td><td>61,328</td><td>0.56729</td><td>0.3473</td><td>Already scored — do not resubmit identical family bytes</td></tr></table>
+
+<h2>Diagnostic map</h2><img src="../assets/ap2_diagnostic.png" style="max-width:100%" alt="AP2 diagnostic map">
+<hr><small>Generated by <code>scripts/build_ap2_site.py</code> from <code>evidence/*.json</code> — no hand-typed scores. HOLDOUT-DTI = local evaluator, never a leaderboard score. OWNER-REPORTED = transcribed claims without organiser receipts. PROJECTION = not a score.</small></body></html>

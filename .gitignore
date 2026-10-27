@@ -1,8 +1,25 @@
+# Local environment, credentials, caches and restored competition data.
 .cache/
 .venv/
+venv/
+.env
+*.env
+.credentials
+.git-credentials
 __pycache__/
-*.pyc
-data/
-!docs/downloads/*.tif
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+*.tif.aux.xml
+*.tfw
 *.npy
 *.npz
+/data/*
+!/data/.gitkeep
+# Research-only audited TIFFs in docs/downloads are tracked intentionally.
+# Local browser screenshots
+/artifacts/

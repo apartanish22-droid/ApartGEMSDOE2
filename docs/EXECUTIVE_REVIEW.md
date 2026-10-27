@@ -1,100 +1,77 @@
-# Executive review: GEMSDOE24/25/27/28/30/31/32/33/36 — byte-measured rerun (2026-10-27)
+# Executive review — 27 October 2026
 
-> This supersedes the earlier documentation-only review, which correctly refused to infer
-> anything from filenames when no rasters were present. Everything below was re-measured
-> in the AP2 session from the actual TIFF bytes of the nine cloned focus repos
-> (`scripts/audit_focus9.py` → `evidence/ap2_focus9_forensics.json`; clone HEADs pinned in
-> `registry/PROVENANCE.md`). Live scores remain **OWNER-REPORTED**: no repo stores a
-> DrivenData receipt binding a score to these bytes.
+## Decision: NO NEW FILE IS APPROVED
 
-## Decision
+**Research download: YES. OK to submit: NO.** A parallel branch created an AP-1 TIFF, but its recorded lattice overlap exceeds the literal duplicate threshold; this audit independently confirmed that failure. This audit made no new model, prediction surface, TIFF, leaderboard forecast or portal submission. Historical TIFFs below are **research-only** references; their score associations are owner-provided, not verified by organizer receipts. The requested unique, high-scoring submission remains **unfulfilled**.
 
-| Question | Answer |
-|---|---|
-| Which single file should be downloaded from this repo? | `docs/downloads/apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros.tif`, SHA-256 `edf60fd492cc18b835abee8cb7479825f47cd1077aa8609de37f1d9de5ccf50e` |
-| Is it safe for the portal format gate? | **Yes.** Saved-byte validator PASS: single-band float32, EPSG:32611, 3730×3292, template transform, all 12,279,160 cells finite in [0,1], 0 dots on catalogue. |
-| Is it unique vs all listed GEMSDOE submissions? | **Yes vs every scored winner** (worst 56.7% of dots within 3 px, worst surface \|ρ\| 0.349, no subset/identical relation). **No** under the stricter broad-registry rule: 74.5% vs one *unscored* Arena8a research raster. |
-| Estimated score | HOLDOUT-DTI (`GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld) **0.1060 [0.0907, 0.1219]** vs champion-recipe control 0.0992 [0.0860, 0.1127]. PROJECTION (not a score) 0.2846–0.2970. Paired Δ CI [−0.0015, +0.0152], P(Δ>0)=93.9%. |
-| OK to submit? | **Selector decision required** — preregistered run-card verdict is `negative` (G2 paired-CI and G3b broad-uniqueness fail). This session used **0 weekly slots**. |
-| Should any of the nine historical files be (re)submitted? | **No.** They are one measured family (below) and already have owner-reported scores. |
+The [official public leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) displayed **0.4544** at rank 1 when checked on 2026-10-27 UTC. Evidence class: **ORGANIZER-PUBLISHED LEADERBOARD SNAPSHOT**, not an organizer submission-page receipt for any file. It supersedes neither the user's older 0.3195/0.4413 claims as historical statements nor proves a current score after that check. A **new-file leaderboard estimate is unavailable**: a mapped-catalogue holdout is not demonstrably calibrated to the expert-hidden test set.
 
-## The nine winners, measured
+## Parallel AP-1 result: evidence, not a promotion
 
-| Site | Best-listed file (measured bytes) | OWNER-REPORTED | Dots | sha256[:8] | AP2 dots ≤3 px | AP2 surface ρ |
-|---|---|---:|---:|---|---:|---:|
-| GEMSDOE32 | `gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif` | 0.2778 | 37,654 | c55bafc4 | 52.7% | 0.301 |
-| GEMSDOE36 | `gemsdoe36-anderson-geothermal-pinn-38854-...-zeros.tif` | 0.2750 | 38,854 | e1589102 | 52.9% | 0.296 |
-| GEMSDOE28 | `gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif` | 0.2710 | 37,660 | 7c74270a | 53.7% | 0.315 |
-| GEMSDOE31 | `gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif` | 0.2708 | 40,199 | acd85393 | 54.1% | 0.318 |
-| GEMSDOE33 | `GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif` | 0.2632 | 41,865 | 87f857d5 | 54.7% | 0.326 |
-| GEMSDOE25 | `gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif` | 0.2600 | 44,090 | 3e78737f | 55.0% | 0.340 |
-| GEMSDOE30 | `gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif` | 0.2600 | 44,090 | 8cf893ea | 55.0% | 0.340 |
-| GEMSDOE24 | `gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif` | 0.2477 | 60,069 | 3e0730e8 | 56.4% | 0.349 |
-| GEMSDOE27 | `gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif` | 0.2449 | 61,328 | a9bf76b5 | 56.7% | 0.347 |
+The parallel work merged through [PR #7](https://github.com/apartanish22-droid/ApartGEMSDOE2/pull/7) reports three experiment/confirmation steps and produced [`apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif`](downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif), SHA-256 `973e1615098e5636e9348a3ae1e12d9de392fda2b14f0313c81554cc26274d28`. It is **research only**. Its stated AP-1 hypothesis combines strain, conductivity, basement and gravity edges; basin-margin depocentres, igneous contacts and aquifers are non-fault mimics.
 
-Exact dot-set relations measured (not inferred from names): **25 ≡ 30** (identical dot
-masks in different byte encodings); **24 ⊂ 27**; **31 ⊂ 25/30**; **32 (champion) ⊂ 25/30,
-31, 36**. The nine are therefore repeated measurements of one H19-5 backbone under
-progressive deletion, not nine independent methods.
+The parallel record reports **HOLDOUT-DTI 0.0389106**, 95% CI **[0.0281665, 0.0491500]**, evaluator `GEMSDOE32-HIDE-RECOVER-v3.0`, **22,232 withheld positive instances** across eight fold/draw cells. The reported fold-local d2.8+B2 parent proxy is **0.0992023** [0.0859514, 0.1126684]; the candidate refilled each fold, the proxy did not. Our arithmetic check of archived TP/FP/FN totals matches both pooled values. We did **not** replay the inputs, predictions, or bootstrap intervals; the reported paired interval resamples eight fold/draw cells, including repeated draws of four quadrants, whose independence has not been established. Do not equate these reports to organizer results or an independently validated holdout. The upstream full feature stack is listed as a hash-pinned mirror in `registry/data_manifest.json`, but is not locally restored in this audit.
 
-## Why the GEMSDOE32 champion scored 0.2778
+Most importantly, the parallel record unilaterally exempted the lattice from its novelty gate. Our saved-byte remeasurement found **37,548 / 37,654 = 99.718489%** of AP-1's dots within three pixels of that witness; the literal rule therefore requires **duplicate → stop**, even though maximum overlap vs the nine chosen focus TIFFs is 20.14%. The archived sampled pre-placement correlations are for EXP-1 against nine references, not a full check of the final EXP-2 surface; the full registry was not tested. AP-1 passes a whole-array finite `[0,1]` diagnostic, but has 7,111,787 unmasked exterior zeros against the unauthenticated mirror, which does not satisfy our separate null/mask check. This does not establish portal behavior.
 
-The champion is four deletions, not a new detector: H19-5 dense 121,131 px (0.1922) →
-thin to 60,069 (0.2477) → 44,090 (0.2600) → delete dots ≤1 px (100 m) from the catalogue
-→ 40,199 (0.2708) → delete ≤2 px → 37,654 (0.2778); all scores OWNER-REPORTED. Under
-DTI = TPw/(TPw + 0.2·FPw + 0.8·FNw) with a 300 m triangular kernel, the thinning kept
-75.9% of kernel credit while removing 63.6% of false-positive mass, and the B=2 step
-removed 2,545 dots whose measured credit (≈0.002–0.016/dot) sat far below the
-marginal break-even α·DTI ≈ 0.0556. Predictions on or beside mapped faults can only add
-FP mass (the private test faults are off-catalogue), so each documented deletion
-monotonically raised DTI. Full derivation in the preregistration §0.
+The available prompt did not identify an assigned lane. Treat the parallel three-run budget as spent and the result as a negative protocol-deviating record; the old experiment/build entry points now stop before doing more work or promoting. [Independent AP-1 audit](../evidence/parallel_ap1_audit.json) · [archived holdout record](../evidence/experiment_exp2.json) · [current JSON run card](data/run_card.json). A separate parallel H1 TIFF under `assets/` is a **1200×1200 synthetic demo**, not a competition-grid submission.
 
-**Can it be beaten?** Unproven. AP2 is better on hide-and-recover point estimate
-(+6.9% relative) but worse off-catalogue on SGMC (0.0583 vs 0.0641 calibrated), and the
-paired CI straddles zero. The official public leaderboard read directly this session
-stands at **0.4544** (xiaofanhu) — the earlier prompt values 0.3195 and 0.4413 were stale
-snapshots. That gap is a modelling-capacity gap (GPU segmentation), not something dot
-post-processing on the same ridges has ever closed under this evaluator. Only an
-organiser receipt can settle >0.2778.
+## Nine focus sites: independently read historical bytes
 
-## Hypotheses and experiments (3, preregistered)
+On 2026-10-27, `scripts/audit_history.py` opened nine immutable-commit TIFFs, checked their SHA-256s, grid and binary values, and compared all positive pixels in the owner-mirror footprint. The table's result is the highest value supplied for each site, **USER-REPORTED / UNVERIFIED**, not **ORGANIZER-CONFIRMED**. The owner-published all-finite variants linked here may not be the exact uploaded bytes; no receipt establishes their score-to-file mapping. “Not unique” means the directional fraction of this row's dots within three Euclidean pixels of another pinned row exceeds 70%; **all 72 ordered pair comparisons exceed 70%**. The nine rasters and one lattice witness are not the full registry.
 
-Five ranked hypotheses were written before code (`docs/research/ap2-preregistration-20261027.md`):
+| Site / research-only TIFF | Supplied value (USER-REPORTED, UNVERIFIED) | New-file score estimate | Unique vs eight peers? | OK to submit? |
+|---|---:|---|---|---|
+| [GEMSDOE24: `gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif`](https://github.com/buffedlizard55-lab/GEMSDOE24/blob/2521cb676e172c141a4417e4925b73b6a896c1eb/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif?raw=1) | 0.2477 | Not estimable | **No:** 100.00% within 3 px of GEMSDOE30 | **NO** |
+| [GEMSDOE25: `gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif`](https://github.com/buffedlizard55-lab/GEMSDOE25/blob/5a60fb475b7171af93cfce795abe6d96c4021ea2/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif?raw=1) | 0.2600 | Not estimable | **No:** 100.00% within 3 px of GEMSDOE30 | **NO** |
+| [GEMSDOE27: `gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif`](https://github.com/buffedlizard55-lab/GEMSDOE27/blob/4d39bbf92edd51fdf47004df5873793a035592e5/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif?raw=1) | 0.2449 | Not estimable | **No:** 98.02% within 3 px of GEMSDOE24 | **NO** |
+| [GEMSDOE28: `gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif`](https://github.com/buffedlizard55-lab/GEMSDOE28/blob/67dbdf4da84fc92a98dd9644ab816ed18ae36bcc/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif?raw=1) | 0.2710 | Not estimable | **No:** 100.00% within 3 px of GEMSDOE30 | **NO** |
+| [GEMSDOE30: `gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif`](https://github.com/buffedlizard55-lab/GEMSDOE30/blob/3c3d7255fdbb3a94375eff086522463a8eaca449/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif?raw=1) | 0.2600 | Not estimable | **No:** 100.00% within 3 px of GEMSDOE27 | **NO** |
+| [GEMSDOE31: `gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif`](https://github.com/buffedlizard55-lab/GEMSDOE31/blob/abd9a45cc7adf046d7d3829eb6e8c980943f462d/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif?raw=1) | 0.2708 | Not estimable | **No:** 100.00% within 3 px of GEMSDOE30 | **NO** |
+| [GEMSDOE32: `gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif`](https://github.com/buffedlizard55-lab/GEMSDOE32/blob/1398109a23f04a2ace71c1bd2f527cfba87860b5/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif?raw=1) | 0.2778 | Not estimable | **No:** 100.00% within 3 px of GEMSDOE36 | **NO** |
+| [GEMSDOE33: `GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif`](https://github.com/buffedlizard55-lab/GEMSDOE33/blob/122e2240a835c9c84831943ee3489dbb48fd6e85/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif?raw=1) | 0.2632 | Not estimable | **No:** 99.71% within 3 px of GEMSDOE27 | **NO** |
+| [GEMSDOE36: `gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif`](https://github.com/buffedlizard55-lab/GEMSDOE36/blob/61783525af4aa6dcf8da0bc68b06fa38b89ed27a/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif?raw=1) | 0.2750 | Not estimable | **No:** 97.58% within 3 px of GEMSDOE27 | **NO** |
 
-| # | Hypothesis (layers) | Signature / transform | Gain / cost | Outcome |
-|---|---|---|---|---|
-| 1 | AP2-H1 CCCB: OOF HistGB on the 35-ch stack (core + LiDAR/radiometric externals) × along-axis chain vote; credit-bar budget. Experts trace continuous lineaments; speckles are the champion's FP load. Chain had existed only as channels, never as gate×posterior. | Chain = max over 4 axes of top-decile support ±5 px; field ×(0.6+0.4·chain), gate ≥0.2 | High / medium | **Tested; chain rejected, CTRL emitted** |
-| 2 | AP2-H2 blind-basin reallocation (LiDAR-valid, potential fields; SGMC only for prevalence). Gap basins hold faults pre-LiDAR mapping missed; prior work used a fixed gap quota. | Budget split by measured off-catalogue prevalence (≈1.61× gap) | Medium / medium | Deferred (one lane) |
-| 3 | AP2-H3 dip-migrated basement step (depth-to-basement, gravity, RTP). Buried-fault edges sit updip of the trace by the kernel width; prior dip use was an additive arm only. | Basinward depth-scaled crest shift ≤2 px | Medium / low–medium | Deferred (one lane) |
-| 4 | AP2-H4 SGMC/Qfaults difference gated by ≥2 coincident edges. Targets newer compilations; solo ≈0.05 upstream and SGMC-as-input breaks the SGMC evaluator. | Corroborated off-catalogue traces | Low (measured) / low | Rejected |
-| 5 | AP2-H5 seismicity-chain lineaments (bands 10/16; USGS ComCat FDSN named but egress-blocked here). Blind faults may host microseismicity; band solo AUC 0.55–0.57. | Hough/Radon collinearity of density ridges | Low / high (blocked) | Rejected |
+[Machine-readable audit, including all 72 comparisons and SHA-256s](../evidence/history_audit.json) · [Pinned input manifest](../evidence/history_manifest.json) · [User-facing scorecard](index.html#sites). The public links make historical material easy to inspect; they are **not** download links for an approved submission.
 
-Executed lane: recover the OOF multi-physics stack (PU LiDAR-gap weighting) and test
-chain corroboration + a credit-bar budget scan. Results (`evidence/ap2_experiments.json`):
-canary PASS (worst `curv_s2` AUC 0.584); OOF quadrant AUC 0.620–0.750; EXP1 CTRL
-0.1046 vs EXP2 CHAIN 0.1035 (chain also worse on SGMC-cal, 0.0535 vs 0.0570) → **chain
-mechanism rejected**; EXP3 selected CTRL @44,090 (0.1060). The evaluator was verified
-bit-exactly against upstream's published control (D28 visible-only B=2 → 0.09920232315251679).
-Two first-run implementation bugs (censorship-biased control, `min_sep=2.8` saturation)
-were found in Pass 2, amended openly, and the flawed receipts retained
-(`evidence/ap2_*flawed_v1*.json`, `docs/research/ap2-pass2-amendment-20261027.md`).
+## Why the GEMSDOE32 result might be higher
 
-## Remaining limitations / next work
+This run directly measured the following **pixel geometry, not scores**:
 
-1. No ORGANIZER-CONFIRMED score exists for any file in this family — fetch and pin
-   receipts before treating 0.2778 (or any projection) as measured.
-2. The binding uniqueness constraint is now the *unscored* modern registry (Arena8a/H47/
-   H48 share the same GBM+crest ridges; even the chain mask overlaps Arena8a 77.4%).
-   A genuinely orthogonal field needs label-free physics channels that move secondary
-   ridges, or potential-field-only modelling — not another GBM variant.
-3. A GPU is required for the obvious next modelling step (Tversky-loss segmentation);
-   this sandbox has 2 vCPU / 3.8 GB RAM and GitHub/PyPI-only egress (AP2-H5 seismicity
-   via USGS ComCat FDSN remains data-blocked here).
-4. Do not re-tune variants against the same holdout until the CI clears zero — that is
-   gate-shopping; the protocol's 3-experiment budget exists to prevent it.
+- GEMSDOE25 and GEMSDOE30 contain the **same 44,090 positive locations** despite different bytes/names.
+- GEMSDOE32 contains every GEMSDOE31 positive location except **2,545**; it contains every GEMSDOE25 location except **6,436**. GEMSDOE36 contains the entire GEMSDOE32 set plus **1,200** locations.
+- The nine focus files' nearest-neighbor overlap ranges from **86.72% to 100%** across the ordered comparisons; the strict 70% uniqueness gate fails. Their prior pre-placement surfaces were not available or examined.
 
-## Run card
+The [official metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#performance-metric) awards each truth pixel its best distance-weighted predicted credit and penalizes prediction mass according to distance from truth. Removing redundant or poorly placed dots can improve DTI without discovering an additional fault. The reported pattern is consistent with that mechanism, but the private truth and score receipt are unavailable: **we cannot prove that this caused the reported 0.2778, or claim a new method exceeds it.** The filename or a different SHA-256 is not a novelty proof.
 
-`evidence/ap2_run_card.json` (verdict `negative`; gates G1 ✓, G2 ✗, G3 ✓, G3b ✗, G4 ✓,
-G5 ✓, G6 ✓; raster sha256, validator output, submission name
-`ApartGEMSDOE2-AP2-OOFCTRL-EDF60FD4`, 97-character note, weekly slots used: 0).
+## Literal registry feasibility stop
+
+We independently read a hash-pinned [13GEMSDOE spacing-five lattice](https://github.com/buffedlizard55-lab/13GEMSDOE/blob/92ee6f074323f161eed837b80ec3ee5b662e26f5/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif) as a **comparison witness only**, not as a model feature or candidate. Against the mirrored valid footprint of 5,167,373 cells, it leaves **6,649** cells more than 3 pixels away. For `N` distinct dots in this footprint, at least `max(0, N − 6,649)` must lie within the lattice neighborhood. At `N = 37,654`, the lower bound is **31,005 / 37,654 = 82.341849%**, above the literal 70% limit; more than **22,163** dots necessarily fail this one comparator. This is exact geometry—not HOLDOUT-DTI or a score estimate. The bound does not prove every smaller budget passes; moving dots into holes solely to evade the rule is not a geological result. The registry is incomplete, and one decisive failing witness suffices to stop.
+
+## Authenticated data and shared-tool irregularities
+
+1. The [official problem description](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#submission-format) says the sample predicts total fault absence. The [owner-mirrored `sample_submission.tif`](https://github.com/buffedlizard55-lab/GEMSDOE24/blob/07345ea0604953d7efb858d9cfbc21e20c7aca0b/data/bridge/sample_submission.tif) has **60,988 positive pixels** and exactly equals the mirrored label values inside their common footprint. Its SHA-256 is `2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc`; the label mirror's SHA-256 is `7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093`. Neither copy is organizer-authenticated. Treat the mirror only as a provisional footprint for this audit, **not as the official template**.
+2. The pinned upstream `gems.submission.check_variants` marks `official_template_grid_and_footprint` true using grid/footprint values, without checking source authenticity; with the suspect mirror and GEMSDOE32 it returns `format_valid: true` but `official_format_compliant: false` for its own outside-NaN check. This is a labeling/gating ambiguity, not proof of portal behavior. [Reproduction receipt](../evidence/shared_validator_diagnostic.json); [upstream source](https://github.com/buffedlizard55-lab/GEMSDOE24/blob/2521cb676e172c141a4417e4925b73b6a896c1eb/src/gems/submission.py). Upstream main at `a73f9ff` subsequently pins exact footprint locations and comments that this does not authenticate the mirror; the check name still risks implying authentication. The upstream repository is read-only to this GitHub account, so we [raised the distinction with its maintainers](https://github.com/buffedlizard55-lab/GEMSDOE24/issues/74). No private fork or upstream fix was made. Our separate forensic diagnostic fails closed and never grants upload permission.
+3. The pinned GEMSDOE32 all-finite TIFF has no nonfinite or out-of-range pixels and matches the **unverified** mirror's grid, but has unmasked zeros outside that mirror footprint. The published text says outside bounds is null or NaN, whereas the user's prior portal error could involve a strict whole-array range check. Cause and organizer acceptance are unknown. The diagnostic reports both conditions separately and requires a self-contained TIFF so a sidecar mask cannot disappear on upload. See [the read-back receipt](../evidence/champion_format_diagnostic.json). Do **not** infer that this was the user's rejected file.
+4. The restricted shell cannot access DrivenData, Dropbox, USGS, or GDR binaries directly. Official pages were read through the research tool: the [data page](https://www.drivendata.org/competitions/306/competition-doe-gems/data/) redirects to login, while the [GeoDAWN release](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and) and [GDR #1391](https://gdr.openei.org/submissions/1391) list public data. Actual official binary downloads and licensing of mirrored competition data have not been verified. GitHub pins are a provenance aid, not a substitute for official authentication.
+5. The original checkout lacked the claimed pipeline. Parallel work later added an AP-1 pipeline, data manifest and archived evaluator snapshots; its actual assignment and full-registry compliance remain unestablished. The complete current registry, authenticated template, locally restored full feature cache, independently validated comparable baseline and weekly-slot decision remain missing. The mandated shared-tool files restored by this audit are only a pinned subset, and the evaluator has additional imports.
+6. The competition landing page lists **December 3, 2026 at 11:59 p.m. UTC**; the [rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf) contains general appendix language mentioning **5 p.m. ET**. Check the current official deadline and rules rather than assume the discrepancy is resolved. The PDF says **three submissions per week**, subject to the current platform limit, and requires generative-AI disclosure in the narrative.
+
+## Ranked hypothesis slate, before any experiment
+
+Qualitative order is an engineering/scientific judgment, **not a projected DTI**. All ideas are unimplemented in this repository; peer work overlaps in general and registry uniqueness is unproved. The [research page](research.html) presents a separate independent four-idea slate with layers, mechanisms, non-fault mimics and source links. The additional ideas below are **not assigned lanes**.
+
+1. **Magnetic cross-contact offset consistency** — TMI and reduced-to-pole magnetics; measure correlated opposite-side displacement of magnetic textures instead of just gradient magnitude. Could detect a displaced lithologic contact under cover. Mimics: igneous contacts and flight-line artifacts. Medium–high cost. The two bands are listed on the official problem page, but not present locally as a usable feature cache.
+2. **Cross-scale gravity/terrain step asymmetry** — isostatic gravity and detrended elevation; paired directional signed steps across scales. Could identify subdued basin-margin structures. Mimics: erosional scarps and alluvial-fan edges. Medium cost; related peer gravity/relief work exists.
+3. **Seismicity-shape residual** — earthquake-density plus gravity-slope layers; test whether an elongated local residual aligns with an independent boundary. Could highlight an unmapped seismic corridor. Mimics: variable detection and quarry activity. Medium cost; density resolution/provenance may be inadequate.
+4. **Radiometric across-contact reversal** — GeoDAWN K/eTh and detrended elevation; across-boundary differences corrected for cover. Mimics: stratigraphy, moisture and surficial deposits. High cost; **not viable yet**: the official USGS release lists the grids publicly and identifies CC0, but the actual binary/layer access has not been verified from this restricted shell. Similar peer radiometric work exists.
+
+With an explicit lane and authentic inputs, use the **shared** evaluator/writer and cache, withhold whole fault segments spatially with a buffer, recompute all catalogue-derived features from visible faults only, mask visible faults pixel-exactly, run a feature-by-feature leakage canary (AUC > 0.90 is suspect), and compare pooled DTI with a paired 95% interval against the frozen same-evaluator best. Enforce novelty before and after placement, stop at three experiments or two hours, and keep the separate weekly-slot selector. This audit ran no such experiment; do not repeat the parallel AP-1 lane or exceed its reported three-run budget.
+
+## What was verified in three passes
+
+1. **Implementation:** fetched and hash-verified nine historical TIFFs, the lattice witness, and two owner-mirrored data files; implemented and ran a full-pixel geometry audit, read-back diagnostics and static decision site.
+2. **Bug and edge-case review:** independently found the mirror sample/label inconsistency and upstream format-label ambiguity; made the local diagnostic fail closed on external mask sidecars, nonfinite/out-of-range values, and a non-absence reference. Tested a soft prediction and a pixel-exact known-fault mask against the unmodified pinned metric on synthetic examples.
+3. **Original-request recheck and parallel merge:** discovered the parallel AP-1 TIFF and reported holdout, independently checked its bytes and pooled arithmetic, and confirmed the literal lattice stop. No external lane assignment, authenticated template, complete registry or independently replayed comparable holdout has been established; the site labels the TIFF research-only. Historical scores remain unverified and no live score forecast is asserted. Repository HEAD freshness is checked in-browser; it is not a live leaderboard or fresh scientific audit. Desktop and mobile pages, the unavailable-source fallback and a live GitHub HEAD request were checked in a headless browser; automated tests and a read-only CI replay are included.
+
+See the single [JSON run card](data/run_card.json). Negative results are deliverables; no slot was selected.

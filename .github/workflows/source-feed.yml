@@ -1,0 +1,43 @@
+name: Publish Pages and refresh public sources
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '17 */6 * * *'
+permissions:
+  actions: read
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/configure-pages@v5
+      - name: Let legacy Pages finish before publishing the refreshed feed
+        if: github.event_name == 'push'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/wait_for_legacy_pages.py
+      - name: Refresh the deploy copy; record failures as stale
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/refresh_feed.py --previous-url https://apartanish22-droid.github.io/ApartGEMSDOE2/docs/data/source_feed.json
+      - name: Package both root and legacy /docs paths
+        run: python scripts/package_pages.py
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .cache/pages-artifact
+      - id: deploy
+        uses: actions/deploy-pages@v4
