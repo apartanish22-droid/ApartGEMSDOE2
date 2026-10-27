@@ -1,0 +1,12 @@
+# Local environments, downloaded research inputs and generated rasters
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+/data/
+/shared_template/
+/artifacts/
+*.tif
+*.tiff
+*.zip
+!docs/assets/*.svg

@@ -1,40 +1,51 @@
-# ApartGEMSDOE2 — GEMS fault-prospectivity research
+# ApartGEMSDOE2 — evidence-led GEMS fault discovery
 
-> **Start here every session.** Read this README and [`docs/EXECUTIVE_REVIEW.md`](docs/EXECUTIVE_REVIEW.md) before proposing experiments or preparing a submission. Keep the work auditable and evidence-led; never represent an estimate as a measured score.
+> **Start here every session.** Read this README, [the standing project brief](docs/PROJECT_BRIEF.md), and [the executive review](docs/EXECUTIVE_REVIEW.md) before doing research, training, or packaging. **Current decision: NO new TIFF is approved for download or submission.**
 
-## Mission and operating charter
+## Mission and standing brief
 
-Build a reproducible, scientifically defensible workflow for identifying previously unmapped faults relevant to geothermal exploration in the GEMS competition, evaluating it without spatial leakage, and producing a competition-format GeoTIFF only after it passes the project's validation gates. The objective is to improve the probability of a strong competition result—not to maximize the number of experiments or submissions.
+Build a scientifically defensible, auditable workflow for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/): predict previously unmapped geological faults relevant to geothermal exploration, and publish an easy-to-find, unique submission **only after** it passes all scientific, registry, file-format and slot-selection gates. A predicted fault is not a verified geothermal vent. Maximize the probability of a robust result, not merely a public leaderboard snapshot.
 
-Core working principles:
+The user's operative instructions, preserved as the starting point for every session:
 
-- **Maximize P(Win):** prioritize robust spatial holdout performance, reproducibility, and compliance over speculative leaderboard claims.
-- **Own the outcome:** report failures, blockers, and negative results; fix shared tooling in its canonical location rather than maintaining private forks.
-- **Scientific integrity:** distinguish reported leaderboard values, organizer-confirmed receipts, holdout results, and projections. Cite sources and label uncertainty.
-- **No leakage:** hide whole fault segments with a buffer; derive catalogue-dependent features only from visible faults; mask visible faults pixel-exactly; test individual features for leakage before using them.
-- **No unauthorized selection:** do not use a weekly submission slot until the candidate beats the current spatial-holdout best and passes validation. The protocol's separate selector step makes the final promotion decision.
-- **No false deliverables:** do not create a synthetic or placeholder TIFF and call it a submission. A submission is download-ready only after the correct data, transform, footprint, finite values, `[0,1]` range, and uniqueness checks have all passed.
+> **Maximize P(Win).** Weigh tradeoffs, assess risk, and choose the path that maximizes the probability of success.
+>
+> **Own the Outcome.** Own results end to end. Treat failure and success as signals and use them to improve.
+>
+> **MUST GENERATE A UNIQUE TIF SUBMISSION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION.** It must be obvious whether it is OK to download and submit the generated TIFF. Validate through the project without manual inspection; supply a unique name and a short note when a candidate is actually approved.
+>
+> **PARALLEL-RUN PROTOCOL.** Follow the single assigned method lane. Stop if rank correlation with any registry raster exceeds 0.90 or more than 70% of candidate dots fall within 3 pixels of a registry raster, checking the pre-placement surface and final dots. Reuse the template cache, `evaluate_holdout.py` and `submission_writer.py`; never maintain a private fork. Hide whole fault segments with a buffer, rebuild all catalogue features from visible faults only, mask visible faults pixel-exactly, and pool distance-weighted Tversky with alpha 0.2, beta 0.8, and a 300 m triangular kernel. Test each feature alone; AUC above 0.90 is leakage until resolved. Label HOLDOUT-DTI with evaluator version, withheld positives and 95% CI; call a score ORGANIZER-CONFIRMED only with a submission-page receipt. Projections are not scores. Stop after three experiments or two hours. Promotion to a weekly slot is a separate selector step.
+>
+> Before implementing a method, rank 3–5 candidate geological hypotheses by expected improvement and cost, name their layers, physics, non-fault mimics and differences from prior work, and verify any required external data source. Validate the top candidate on the buffered spatial holdout and against the current same-evaluator best before considering a weekly slot. Record one JSON run card with hypothesis, mechanism, mimic, holdout DTI and CI, registry comparison, raster SHA-256, validator output, submission name and ≤140-character note, and promote/negative verdict. Negative results are deliverables.
 
-## Required experimental protocol
+The full durable operational brief, including the nine priority sites and the user's sources and release goals (with repeated text consolidated), is in [docs/PROJECT_BRIEF.md](docs/PROJECT_BRIEF.md).
 
-1. Follow the session's explicitly assigned scientific-method lane. Before surface placement and again on the final dots, compare the raster with every available registry raster: stop and record a duplicate if rank-correlation is greater than `0.90` or more than `70%` of dots lie within `3` pixels of a registry raster's dots.
-2. Reuse the project's cached feature stack and canonical `evaluate_holdout.py` / `submission_writer.py` (or their established equivalents). Do not fork shared tools. The holdout is hide-and-recover by fault segment plus buffer; pool DTI using `alpha=0.2`, `beta=0.8`, and a `300 m` triangular kernel.
-3. Run the leakage canary for each feature alone. An AUC above `0.90` is presumed leakage until investigated and explained.
-4. Label every score as either **HOLDOUT-DTI** (include evaluator version, withheld-positive count, and 95% CI) or **ORGANIZER-CONFIRMED** (transcribe from a submission receipt). Never label an estimate or projection as a score.
-5. Stop at the assigned experiment/time budget. Record a JSON run card with hypothesis, mechanism, a plausible non-fault mimic, holdout DTI and CI, registry correlation/overlap, raster SHA-256, validator output (finite values within footprint, `[0,1]`, CRS/shape/transform), submission name, a note no longer than 140 characters, and `promote` / `negative` verdict.
+## Current state
 
-## Submission release gate
+- **No new candidate, no score estimate, no weekly slot.** The prompt refers to an assigned lane but does not identify one. A full current registry, authenticated sample template, usable cached feature stack and same-evaluator baseline are also missing.
+- A reproducible exact-pixel audit of the nine historical TIFFs and a lattice witness is available. The nine files are **not unique** under the literal 70% rule. The lattice geometry makes the commonly used 37,654-dot budget impossible under that rule on the mirror footprint. This is not a score.
+- The accessible owner mirror called `sample_submission.tif` is **not authenticated** and contains the mirrored label values instead of all-absence predictions described by the official page. It is used only for explicitly limited forensics.
+- The unmodified shared-tool pins were restored **read-only** for analysis, not vendored. Their upstream template is read-only to this account; a reproducible validator-label ambiguity is documented rather than privately patched, and [raised with the canonical maintainers](https://github.com/buffedlizard55-lab/GEMSDOE24/issues/74).
+- The [GitHub Pages decision desk](docs/index.html) and [submission guide](docs/executive-summary.html) are static. The page checks public GitHub HEAD freshness in the browser; it does **not** silently update scores or approve uploads.
 
-A downloadable `.tif` may be marked **OK TO SUBMIT** only when it is a single-band GeoTIFF and automated checks confirm the official sample-submission footprint, CRS, shape, and geotransform; no NaN/Inf within the footprint; all predicted values are in `[0,1]`; the output opens and reads back; its SHA-256 and method provenance are recorded; and the registry correlation/dot-overlap checks pass. The downloadable file should be accompanied by a unique submission name and a concise note. A valid TIFF is not evidence of a high score, and a score projection is not an official result.
+## Reproduce this run (no submission or model training)
 
-## Current repository state
+Requirements: Python 3.11, `gh` with access to public GitHub, and package access to install dependencies. Large raster inputs and shared code are ignored by Git; input hashes are pinned.
 
-This checkout currently contains only project documentation (`README.md` and `docs/EXECUTIVE_REVIEW.md`). It does **not** contain the feature stack, labels, sample-submission raster, registry rasters, cached feature stack, holdout evaluator, submission writer, dataset downloader, or an existing candidate TIFF. Consequently, no holdout experiment, raster-level uniqueness test, score estimate, or valid competition TIFF can be produced from this checkout alone. The work and blockers are itemized in [`docs/EXECUTIVE_REVIEW.md`](docs/EXECUTIVE_REVIEW.md). Do not infer that a TIFF exists just because the desired workflow is described here.
+```sh
+python -m venv .venv
+.venv/bin/pip install -r requirements.txt
+.venv/bin/python scripts/fetch_audit_data.py        # 9 historical TIFFs, mirror sample/labels, one witness
+.venv/bin/python scripts/restore_shared_tools.py    # pinned read-only subset; not a complete runnable template
+.venv/bin/python scripts/audit_history.py
+.venv/bin/python scripts/audit_shared_validator.py
+.venv/bin/python scripts/build_scorecard.py
+.venv/bin/pytest -q
+node --test tests/js/source_freshness.test.cjs
+```
 
-## Data and source references
+`python scripts/refresh_source_heads.py` updates only the public GitHub HEAD snapshot; it does not update scores or validate new files. For a future candidate, `scripts/validate_raster.py <file.tif> --template <authenticated-sample.tif>` runs a conservative independent **format diagnostic**; it never authorizes upload or proves the template authentic. The stricter whole-array finite diagnostic is a project guard, not an official requirement; the official text permits null/NaN outside bounds. Read the [submission guide](docs/executive-summary.html) and [executive review](docs/EXECUTIVE_REVIEW.md) for the unresolved contradiction and source links.
 
-Competition data is behind the DrivenData login according to the project request. Do not place credentials in this repository. The supplied public references are listed in the review document; availability and file contents must be checked in an environment with access before they are treated as verified inputs.
+## Next steps
 
-## Project values
-
-Maximize P(Win). Own the outcome. Treat each measured result—positive or negative—as evidence that improves the next decision.
+Obtain the actual assigned method lane, canonical cache and tools, the authentic organizer sample and data, and a complete current registry through authorized channels. Reconcile the lattice policy **without silently exempting it or gaming holes**; until then obey the literal stop. Fix the documented ambiguity once in the shared template with the maintainer. Then evaluate the assigned lane against the comparable incumbent with canaries, buffered folds and uncertainty before any separate slot selection. Do not store credentials, private training data, or large derived rasters in Git.

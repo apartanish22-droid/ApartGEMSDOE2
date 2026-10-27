@@ -1,0 +1,25 @@
+{
+  "hypothesis": "No experiment selected: the parallel-run prompt refers to a single method paragraph but does not identify one.",
+  "mechanism": "Forensic audit only: compare historical binary dot locations and test the necessary registry-lattice overlap bound; no new prediction surface was placed.",
+  "named_non_fault_process_that_could_mimic_candidate_fault": "Lithologic contacts and airborne survey-line artifacts can mimic a magnetic discontinuity in a future magnetic-offset hypothesis.",
+  "holdout_dti": null,
+  "holdout_ci_95": null,
+  "evaluator_version": null,
+  "withheld_positive_count": null,
+  "correlation_overlap_vs_registry": {
+    "pre_placement_surface": "NOT RUN: no candidate or assigned lane",
+    "final_dots": "NOT RUN for a new candidate; all nine audited historical dot sets exceed 70% overlap with another focus file and the lattice witness.",
+    "registry_scope": "Nine immutable focus files and one lattice witness, not the full registry",
+    "geometry_bound_for_37654_dots": "At least 82.341849% overlap with the lattice, assuming the same mirror-derived footprint; not a score."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "candidate": "NOT RUN: no new candidate",
+    "sample_mirror": "NOT AUTHENTICATED; 60,988 positive cells and identical to mirrored fault labels, contrary to the official all-absence sample description.",
+    "champion_diagnostic": "Whole-array range passed; mirror-zero canary and null-outside-footprint checks failed. Grid matched the unauthenticated mirror. Not evidence of organizer rejection or acceptance."
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "slot_approved": false,
+  "verdict": "negative"
+}

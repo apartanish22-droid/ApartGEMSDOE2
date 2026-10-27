@@ -1,0 +1,21 @@
+{
+  "upstream_commit": "2521cb676e172c141a4417e4925b73b6a896c1eb",
+  "upstream_file": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/2521cb676e172c141a4417e4925b73b6a896c1eb/src/gems/submission.py",
+  "candidate_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "unauthenticated_reference_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "format_valid": true,
+  "official_format_compliant": false,
+  "submission_authorized": false,
+  "official_template_grid_and_footprint": {
+    "pass": true,
+    "detail": "Template must be the pinned organizer grid, not just a self-consistent arbitrary raster",
+    "hard_requirement": true
+  },
+  "outside_is_nan_official_text": {
+    "pass": false,
+    "detail": "0 of 7,111,787 outside pixels are NaN",
+    "hard_requirement": false
+  },
+  "finding": "The official-template-named check uses grid/footprint numbers, not template origin or hash. This owner mirror fails the official all-absence sample canary. format_valid can be true while official_format_compliant is false. This demonstrates a labeling/gating ambiguity, not portal acceptance.",
+  "action": "Do not rely on format_valid alone. Upstream repository is read-only for this account; no private fork or upstream modification was made."
+}
