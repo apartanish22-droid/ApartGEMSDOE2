@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+.venv/
+
+# Data (competition data is placed manually, never committed)
+data/*.tif
+data/*.json
+
+# OS
+.DS_Store
