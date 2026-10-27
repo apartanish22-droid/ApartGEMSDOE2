@@ -22,8 +22,23 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          python scripts/fetch_audit_data.py
-          python scripts/restore_shared_tools.py
+          # Surface the actual fetch error in an Actions annotation as well as logs.
+          # This keeps a failed audit diagnosable even when raw logs are unavailable.
+          run_fetch() {
+            local log
+            log=$(mktemp)
+            if "$@" >"$log" 2>&1; then
+              cat "$log"
+            else
+              cat "$log"
+              echo "::error title=Audit input restoration failed::$(tail -n 4 "$log" | tr '\n' ' ')"
+              rm -f "$log"
+              return 1
+            fi
+            rm -f "$log"
+          }
+          run_fetch python scripts/fetch_audit_data.py
+          run_fetch python scripts/restore_shared_tools.py
       - name: Replay independent historical and AP-1 geometry receipts
         env:
           GH_TOKEN: ${{ github.token }}
