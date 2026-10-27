@@ -1,0 +1,19 @@
+{
+  "addendum_to": "evidence/ap2_run_card.json",
+  "reason": "Merge integration with parallel sessions on main (PR #13). Main enforces the literal all-registry novelty rule and does not accept AP2's documented calibration-lattice exemption (IR-AP2-02). The lattice overlap that the preregistration promised to measure and report is recorded here, and the integrated decision supersedes the AP2 site's earlier selector-decision banner.",
+  "measured_utc": "2026-10-27",
+  "lattice": {
+    "file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "source_pin": "registry/historical-pins.json (buffedlizard55-lab/13GEMSDOE @ 92ee6f074323f161eed837b80ec3ee5b662e26f5)",
+    "sha256_verified": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "lattice_dots_in_footprint": 206895,
+    "footprint_fraction_within_3px_of_lattice": 0.9987132726822701,
+    "frac_ap2_candidate_dots_within_3px": 0.9989793603991834,
+    "literal_70pct_rule": "FAIL",
+    "note": "A 5-px lattice's 3-px balls cover 99.87% of the footprint, so any 44,090-dot candidate must overlap >=84.9% by construction. AP2's preregistration excluded this synthetic covering lattice from the uniqueness denominator (IR-AP2-02); the integrated repository decision applies the rule literally. Both positions are on record; the stricter one governs submission."
+  },
+  "integrated_decision": "DO NOT SUBMIT. Research/learning download only. Reasons: (1) run-card verdict negative (paired HOLDOUT-DTI delta CI straddles 0); (2) 74.5% within-3px vs unscored Arena8a raster; (3) 99.9% within-3px vs registered lattice under the literal all-registry rule.",
+  "weekly_slots_used": 0,
+  "candidate_file": "apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros.tif",
+  "candidate_sha256": "edf60fd492cc18b835abee8cb7479825f47cd1077aa8609de37f1d9de5ccf50e"
+}

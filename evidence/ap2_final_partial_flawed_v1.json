@@ -1,0 +1,28 @@
+{
+ "final_field": "EXP1_CTRL",
+ "final_budget": 32000,
+ "final_dots": 20223,
+ "paired_vs_champion": {
+  "mean_boot_delta": 0.0854424847722017,
+  "ci95": [
+   0.06967377713852886,
+   0.10167773009344964
+  ],
+  "prob_positive": 1.0,
+  "note": "256-block cluster-bootstrap replicates share the evaluator seed; candidate used per-cell visible-only emission, champion is a fixed full raster gated by visible-only B (see preregistration)."
+ },
+ "shoreline_risk_proxy_share": 0.12114918656974731,
+ "min_distance_to_catalogue_px": 2.23606797749979,
+ "on_catalogue_dots": 0,
+ "canary": {
+  "worst_channel": "curv_s2",
+  "worst_auc_oriented": 0.5839668627282122,
+  "passed": true
+ },
+ "oof_fold_aucs": {
+  "NW": 0.69085,
+  "NE": 0.74986,
+  "SW": 0.62004,
+  "SE": 0.69153
+ }
+}

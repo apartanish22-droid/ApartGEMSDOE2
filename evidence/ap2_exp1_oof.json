@@ -1,0 +1,23 @@
+{
+ "experiment": "EXP1b_OOF_HistGB",
+ "fold_aucs": {
+  "NW": 0.69085,
+  "NE": 0.74986,
+  "SW": 0.62004,
+  "SE": 0.69153
+ },
+ "model": {
+  "kind": "HistGradientBoostingClassifier",
+  "max_iter": 180,
+  "learning_rate": 0.07,
+  "max_leaf_nodes": 31,
+  "min_samples_leaf": 40,
+  "l2_regularization": 0.1,
+  "sample_pos_cap": 60000,
+  "sample_neg_cap": 240000,
+  "neg_exclusion_px": 3,
+  "pu_neg_weight_lidar_gap": 0.5,
+  "seed": 20261027
+ },
+ "surface": "/tmp/gems_work/ap2_oof_surface.npy"
+}
