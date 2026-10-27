@@ -1,3 +1,8 @@
+---
+layout: default
+title: ApartGEMSDOE2 — GEMS competition submission
+---
+
 # ApartGEMSDOE2 — GEMS competition submission
 
 **DOE GEMS fault-prospectivity competition** (DrivenData competition 306).

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Executive summary — GEMS competition submission pipeline
+---
+
 # Executive summary — GEMS competition submission pipeline
 
 **Repository:** [apartanish22-droid/ApartGEMSDOE2](https://github.com/apartanish22-droid/ApartGEMSDOE2)
