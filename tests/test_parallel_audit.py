@@ -38,7 +38,8 @@ def test_parallel_raster_readback_if_inputs_available():
 def test_archived_lane_entry_points_stop_before_running(script):
     result = subprocess.run([sys.executable, str(ROOT/script)], cwd=ROOT, capture_output=True, text=True)
     assert result.returncode != 0
-    assert 'STOP: archived parallel lane failed the literal lattice novelty gate' in result.stderr
+    assert ('BLOCKED' in result.stderr or 'STOP: archived parallel lane' in result.stderr)
+    assert 'lattice' in result.stderr.lower()
 
 
 def test_legacy_format_check_never_authorizes(tmp_path):

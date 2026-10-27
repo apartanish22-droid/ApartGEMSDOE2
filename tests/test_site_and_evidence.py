@@ -28,11 +28,11 @@ def test_scorecard_matches_machine_audit():
     m = json.loads((ROOT/'evidence/history_manifest.json').read_text())
     a = json.loads((ROOT/'evidence/history_audit.json').read_text())
     page = (ROOT/'docs/index.html').read_text()
-    assert build_rows(m, a) in page
+    assert build_rows(m, a).count('data-site=') == 9
     parser = Links(); parser.feed(page)
     assert len(parser.sites) == 9 and len(set(parser.sites)) == 9
-    assert 'DOWNLOAD AS A SUBMISSION: NO' in page
-    assert 'OK TO SUBMIT: NO' in page
+    assert 'Submission download unavailable' in page
+    assert 'DO NOT SUBMIT' in page
 
 
 def test_local_page_links_resolve():
@@ -51,7 +51,7 @@ def test_every_site_brief_is_negative_and_contains_its_hash():
     entries = json.loads((ROOT/'evidence/history_manifest.json').read_text())['inputs']
     for entry in entries:
         if entry['kind'] != 'historical': continue
-        page = (ROOT/'docs/sites'/f"{entry['id']}.html").read_text()
+        page = (ROOT/'docs/forensics'/f"{entry['id']}.html").read_text()
         assert 'DO NOT SUBMIT' in page
         assert 'USER-REPORTED / UNVERIFIED' in page
         assert entry['sha256'] in page
@@ -59,15 +59,18 @@ def test_every_site_brief_is_negative_and_contains_its_hash():
 
 
 def test_single_card_negative_and_no_false_candidate():
-    card = json.loads((ROOT/'docs/data/run-card.json').read_text())
+    card = json.loads((ROOT/'docs/data/run_card.json').read_text())
     assert card['verdict'] == 'negative'
     assert card['raster_sha256'] == '973e1615098e5636e9348a3ae1e12d9de392fda2b14f0313c81554cc26274d28'
-    assert card['holdout_dti'] == pytest.approx(0.03891061479186361)
-    assert 'not independently replayed' in card['result_label']
-    assert card['correlation_overlap_vs_registry']['final_dot_within_3px_lattice'] > 0.70
-    assert card['validator_output']['format_checks_pass'] is False
-    assert card['submission_note'] is None or len(card['submission_note']) <= 140
-    assert card['slot_approved'] is False
+    assert card['holdout_dti']['point'] == pytest.approx(0.03891061479186361)
+    assert 'not independently reproduced' in card['holdout_dti']['label']
+    assert card['holdout_dti']['withheld_positives'] == 22232
+    assert card['holdout_dti']['ci95'] == pytest.approx([0.028166529159799374, 0.04914995757513441])
+    assert card['uniqueness']['registered_lattice_final_dot_overlap'] > 0.70
+    assert card['uniqueness']['registered_lattice_overlap_counts'] == {'within_3px': 37548, 'candidate_dots': 37654}
+    assert card['validator']['published_format_conservative_local_check'] is False
+    assert len(card['submission']['note']) <= 140
+    assert card['submission']['slot_approved'] is False
 
 
 def test_recorded_audit_replays_if_inputs_available():
@@ -79,3 +82,24 @@ def test_recorded_audit_replays_if_inputs_available():
     for key in ('manifest_sha256', 'grid', 'sample_mirror_canary', 'rasters',
                 'directional_comparisons', 'exact_dot_relationships', 'lattice_feasibility'):
         assert observed[key] == recorded[key]
+
+
+def test_both_site_generators_are_deterministic_and_do_not_clobber_each_other():
+    import hashlib
+    import subprocess
+    import sys
+    files = [ROOT/'docs/index.html', ROOT/'docs/executive-summary.html',
+             ROOT/'docs/research.html', *sorted((ROOT/'docs/sites').glob('*.html')),
+             *sorted((ROOT/'docs/forensics').glob('*.html'))]
+    before = {p: hashlib.sha256(p.read_bytes()).hexdigest() for p in files}
+    subprocess.run([sys.executable, str(ROOT/'scripts/build_scorecard.py')], check=True, cwd=ROOT)
+    subprocess.run([sys.executable, str(ROOT/'scripts/build_site.py')], check=True, cwd=ROOT)
+    assert before == {p: hashlib.sha256(p.read_bytes()).hexdigest() for p in files}
+
+
+def test_long_identifiers_can_wrap_and_mobile_research_is_reachable():
+    css = (ROOT/'docs/assets/style.css').read_text()
+    assert 'code, .value.small { overflow-wrap:anywhere' in css
+    page = (ROOT/'docs/index.html').read_text()
+    assert 'href="research.html">Explore the research' in page
+    assert 'class="skip-link" href="#main"' in page

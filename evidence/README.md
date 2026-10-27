@@ -1,6 +1,6 @@
 # Evidence interpretation
 
-The [current negative run card](../docs/data/run-card.json) and
+The [current negative run card](../docs/data/run_card.json) and
 [parallel AP-1 byte audit](parallel_ap1_audit.json) are the current decision.
 `experiment_exp1.json`, `experiment_exp2.json`, `run_card_final.json`,
 `validator_final.json` and the receipts in `docs/downloads/` are retained as

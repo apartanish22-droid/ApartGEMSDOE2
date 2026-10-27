@@ -39,7 +39,9 @@ def paired_delta(cand_cells: dict, ctrl_cells: dict, n_boot=2000, seed=7):
 
 
 def main() -> int:
-    raise SystemExit('STOP: archived parallel lane failed the literal lattice novelty gate and the experiment budget was reported spent; no new run or promotion is authorized.')
+    from experiment_guard import require_current_protocol
+    if not require_current_protocol():
+        return 1
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--variant", choices=["equal", "strain2"], default="equal")
     ap.add_argument("--order", choices=["raw", "smooth"], default="raw",

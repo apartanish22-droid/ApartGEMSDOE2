@@ -26,7 +26,9 @@ def dots_overlap_3px(cand: np.ndarray, reg: np.ndarray) -> float:
 
 
 def main() -> int:
-    raise SystemExit('STOP: archived parallel lane failed the literal lattice novelty gate and the experiment budget was reported spent; no new run or promotion is authorized.')
+    from experiment_guard import require_current_protocol
+    if not require_current_protocol():
+        return 1
     import rasterio
     from gemsdoe32.submission import write_submission_geotiff, validate_submission_geotiff
 
@@ -36,7 +38,8 @@ def main() -> int:
         foot = np.isfinite(ds.read(1))
     with rasterio.open(DDATA / "labels.tif") as ds:
         labels = (ds.read(1) == 1) & foot
-    assert int(mask.sum()) == 37654 and int((mask & labels).sum()) == 0
+    if int(mask.sum()) != 37654 or int((mask & labels).sum()) != 0:
+        raise ValueError("Candidate dot count or catalogue mask mismatch")
 
     digest8 = hashlib.sha256(np.packbits(mask)).hexdigest()[:8]
     stamp = "20261027"
@@ -68,13 +71,13 @@ def main() -> int:
         "sgmc_no_regression_vs_champion": bool(
             e2["sgmc_candidate_final"]["sgmc_prevalence_calibrated_dti"]
             >= e2["sgmc_champion_final"]["sgmc_prevalence_calibrated_dti"]),
-        "uniqueness_focus9_within3px_le_0.70": bool(
-            max(v["within3px_frac"] for k, v in uniq.items() if k.startswith("GEMSDOE")) <= 0.70),
-        # The archived code below is stopped above. Even if the stop is removed,
-        # the lattice is not exempt and an incomplete registry cannot promote.
-        "uniqueness_including_lattice_within3px_le_0.70": bool(
-            "LATTICE_r13" in uniq and uniq["LATTICE_r13"]["within3px_frac"] <= 0.70),
-        "complete_registry_and_final_surface_verified": False,
+        # All references count, including the registered lattice. Missing checks
+        # cannot be converted into a pass. A complete, hash-verified registry and
+        # an all-registry surface check are not implemented by this old runner.
+        "uniqueness_all_available_within3px_le_0.70": bool(uniq) and all(
+            0 <= v["within3px_frac"] <= 0.70 for v in uniq.values()),
+        "complete_registry_verified": False,
+        "all_registry_preplacement_surface_checked": False,
     }
     verdict = "promote" if all(gates.values()) else "negative"
     note = f"AP-1 dilat+cond+base+grav coincidence 37654d B2 | HOLDOUT-DTI 0.0389 vs champ 0.0992 | {digest8} | DO NOT SUBMIT"[:140]
@@ -102,7 +105,7 @@ def main() -> int:
         "submission_note_140": note, "note_chars": len(note),
         "leaderboard_estimate": "NOT ESTIMABLE — no validated HOLDOUT-DTI to live-score transfer (cross-family RMSE 0.09-0.20 in GEMSDOE31 calibration audit); HOLDOUT-DTI is not a leaderboard score.",
         "verdict": verdict,
-        "download_ok": True, "submit_ok": bool(verdict == "promote"),
+        "download_ok": True, "submit_ok": False, "selector_approval": None,
     }
     (ROOT / "evidence/run_card_final.json").write_text(json.dumps(card, indent=1) + "\n")
     (outdir / f"receipt-{base}-zeros.json").write_text(json.dumps(card, indent=1) + "\n")

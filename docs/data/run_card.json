@@ -1,0 +1,71 @@
+{
+  "schema": "parallel-run-card-v1",
+  "run_id": "apartgemsdoe2-parallel-ap1-reconciliation-20261027",
+  "hypothesis": "Blind dilatational stepovers coincide in geodetic strain, conductivity edge, basement step and gravity edge (AP-1 lane, knowledge/preregistration-20261027.md).",
+  "mechanism": "Geometric-mean percentile-rank coincidence (bands 4/7/8 x grad 17 x grad 15 x grad 13), score-ordered Poisson emission min-sep 2.8px, B=2 collar, 37,654 dots.",
+  "named_non_fault_mimic": "Basin-margin depocentre edges, buried volcanic/pluton contacts, aquifer lithologic boundaries.",
+  "lane_assignment": "Self-preregistered by parallel run; no explicit user assignment identified.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI (reported by parallel run, not independently reproduced)",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "withheld_positives": 22232,
+    "point": 0.03891061479186361,
+    "ci95": [
+      0.028166529159799374,
+      0.04914995757513441
+    ],
+    "parallel_control_point": 0.09920232315251679,
+    "paired_delta_ci95": [
+      -0.0858563597436911,
+      -0.040097633538812204
+    ],
+    "qualification": "Candidate refilled to 37,654 per cell; champion control used a visible-fault collar without refill. Source: evidence/experiment_exp2.json.",
+    "fold_total_arithmetic_check": "Pooled candidate and control arithmetic reproduced from archived totals only; inputs, predictions and intervals not replayed.",
+    "ci_caveat": "The paired interval resamples eight fold/draw cells, including repeated draws from four quadrants; independence is not established.",
+    "withheld_positive_basis": "Reported instances summed across eight fold/draw cells; repeated quadrants mean a distinct-positive count is not established."
+  },
+  "uniqueness": {
+    "preplacement_surface_spearman_all_registry": null,
+    "preplacement_reason": "Parallel EXP-1 sampled the nine focus references, not all registry rasters; the final EXP-2 surface was not checked here.",
+    "max_focus9_final_dot_overlap": {
+      "reference": "GEMSDOE27",
+      "fraction": 0.2014394221065491
+    },
+    "registered_lattice_final_dot_overlap": 0.9971848940351623,
+    "registered_lattice_final_binary_spearman": -0.00020447314228848876,
+    "literal_registry_gate": "FAIL: overlap exceeds 70%; full registry also incomplete.",
+    "registered_lattice_overlap_counts": {
+      "within_3px": 37548,
+      "candidate_dots": 37654
+    }
+  },
+  "raster_file": "docs/downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif",
+  "raster_sha256": "973e1615098e5636e9348a3ae1e12d9de392fda2b14f0313c81554cc26274d28",
+  "validator": {
+    "reference": "Owner-mirrored sample, not organizer-authenticated.",
+    "no_nan_inside_footprint": true,
+    "inside_all_unmasked": true,
+    "values_in_0_1_inside": true,
+    "crs_shape_transform_match_mirror": true,
+    "single_band_float32_geotiff": true,
+    "whole_array_finite_in_range_diagnostic": true,
+    "outside_null_or_masked": false,
+    "published_format_conservative_local_check": false,
+    "portal_acceptance": null,
+    "outside_unmasked_cells_against_mirror": 7111787,
+    "mirror_sample_zero_on_footprint": false,
+    "shared_validator_note": "A format_valid label alone does not authenticate the reference or grant submission authorization; official_format_compliant was false in the pinned diagnostic."
+  },
+  "submission": {
+    "name": "apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros",
+    "note": "AP-1 research only: duplicate vs lattice and below reported holdout control. DO NOT SUBMIT.",
+    "slot_approved": false
+  },
+  "experiments_run_by_this_review": 0,
+  "parallel_run_reported_experiments": 3,
+  "verdict": "negative",
+  "independent_audits": [
+    "evidence/parallel_candidate_audit.json",
+    "evidence/parallel_ap1_audit.json"
+  ]
+}

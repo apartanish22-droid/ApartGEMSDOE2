@@ -1,6 +1,11 @@
-# Archived landing page — do not submit
+---
+title: Archived parallel landing page
+permalink: /archived-parallel-review/index.html
+---
 
-The maintained [decision desk](index.html) lists the research-only AP-1 TIFF,
-its independently checked novelty failure, and the current negative run card.
-The older H1 synthetic demo is not on the competition grid. This Markdown file
-is excluded from the Pages build to avoid competing with `index.html`.
+# Archived parallel landing page
+
+This page has been superseded by the [current decision desk](../index.html).
+The old 1200 × 1200 synthetic demonstration was never submission-ready. The
+parallel AP-1 research TIFF also fails the literal registered-lattice uniqueness
+rule. **DO NOT SUBMIT either file.**

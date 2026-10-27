@@ -1,0 +1,26 @@
+name: Verify evidence and site
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: python -m pip install -r requirements.txt
+      - run: python -m pytest -q
+      - run: node tests/feed_ui.cjs
+      - run: node --test tests/js/source_freshness.test.cjs
+      - run: python scripts/build_site.py && python scripts/build_scorecard.py
+      - name: Verify generated site is committed
+        run: git diff --exit-code -- docs

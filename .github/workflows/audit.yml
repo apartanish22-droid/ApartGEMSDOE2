@@ -30,5 +30,6 @@ jobs:
           node --test tests/js/source_freshness.test.cjs
       - name: Verify generated site briefs are current
         run: |
+          python scripts/build_site.py
           python scripts/build_scorecard.py
-          git diff --exit-code -- docs/index.html docs/sites
+          git diff --exit-code -- docs/index.html docs/executive-summary.html docs/research.html docs/sites docs/forensics docs/data/run_card.json

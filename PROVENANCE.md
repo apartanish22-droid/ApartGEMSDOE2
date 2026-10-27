@@ -1,6 +1,4 @@
-> **2026-10-27 reconciliation:** These are archived GEMSDOE32 snapshots from a parallel session, not the mandated GEMSDOE24 shared-tool pin or evidence of an assigned lane. Do not run the stopped AP-1 entry points or treat a format check as a slot selector. Fix shared defects in the canonical upstream repository; do not maintain a private fork. See [the current review](docs/EXECUTIVE_REVIEW.md) and [upstream issue](https://github.com/buffedlizard55-lab/GEMSDOE24/issues/74).
-
-# Provenance — vendored canonical tools (reuse, don't rebuild)
+# Provenance — archived tools and the specified shared template
 
 Vendored verbatim on 2026-10-27 from `buffedlizard55-lab/GEMSDOE32` (cloned at `main`,
 2026-10-27; file SHA-256 checked at copy time, e.g. `src/gems32/metric.py`
@@ -21,5 +19,15 @@ They are integrity-pinned, **not organizer-authenticated**. Official problem/met
 https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/ (fetched 2026-10-27).
 Reference solution: https://github.com/drivendataorg/gems-prize-reference-solution
 
-New code in this repo (this session's lane): `src/apart/*`, `scripts/build_candidate.py`,
-`scripts/audit_uniqueness.py`, `scripts/restore_data.py`. If a shared tool is found wrong, report and fix it in the canonical upstream repository; these snapshots are retained only to explain the archived results.
+The parallel session added `src/apart/*` and experiment scripts as a self-selected AP-1 lane.
+The GEMSDOE32 files above are a vendored historical snapshot, not the user-specified GEMSDOE24
+shared template. This review did not modify those shared evaluator/writer files. Any defect in a
+shared tool must be fixed once in the shared template and reported, not patched in a private fork.
+The local experiment/selector orchestration is disabled while the literal protocol fails; see
+`evidence/parallel_candidate_audit.json` and `scripts/experiment_guard.py`.
+
+The pinned shared-template diagnostic returned `format_valid: true` while its own
+`official_format_compliant` was false for the suspect mirror's exterior. A grid match is
+not authentication or permission to submit. [Diagnostic receipt](evidence/shared_validator_diagnostic.json) ·
+[upstream issue #74](https://github.com/buffedlizard55-lab/GEMSDOE24/issues/74). This account
+cannot push to the shared repository; no private modification or upstream fix is claimed.

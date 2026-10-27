@@ -7,11 +7,8 @@
   "mimicking_non_fault_process": "uneven crustal radioactivity / lithologic (igneous-contact) boundaries can produce radiometric anomalies without faults; concave mass-wasting or glacial terrain can produce curvature convergence without faults. Both are the named non-fault mimics that must be ruled out on the holdout.",
   "holdout_dti": null,
   "holdout_withheld_positives": null,
-  "holdout_ci95": [
-    null,
-    null
-  ],
-  "score_label": "projection only \u2014 HOLDOUT-DTI cannot be computed without data/ (DrivenData login blocker verified; Dropbox mirrors unreachable from this sandbox). No organizer-confirmed receipt exists yet.",
+  "holdout_ci95": [null, null],
+  "score_label": "projection only — HOLDOUT-DTI cannot be computed without data/ (DrivenData login blocker verified; Dropbox mirrors unreachable from this sandbox). No organizer-confirmed receipt exists yet.",
   "leakage_canary": "not run (no data). Rule: test each feature alone on the holdout; AUC > 0.90 means leakage until proven otherwise.",
   "lane_check": "not run (no data). Rule: raster rank-correlation vs any registry raster > 0.90, or >70% of dots within 3 px of one registry raster's dots => duplicate lane, stop.",
   "raster": "assets/submission.tif (latest copy) / assets/gems-h1-radiometric-curvature-convergence-20261027T212405Z-59a3c88e.tif",
@@ -41,6 +38,6 @@
     "Do not upload this synthetic demo or rerun its lane.",
     "Consult docs/EXECUTIVE_REVIEW.md and the current negative run card before any new authorized work."
   ],
-  "record_type": "ARCHIVED SYNTHETIC DEMO \u2014 NOT THE CURRENT RUN CARD",
-  "review_notice": "Synthetic 1200x1200 demo grid; not a submission. See docs/data/run-card.json for the current negative AP-1 record."
+  "record_type": "ARCHIVED SYNTHETIC DEMO — NOT THE CURRENT RUN CARD",
+  "review_notice": "Synthetic 1200x1200 demo grid; not a submission. See docs/data/run_card.json for the current negative AP-1 record."
 }

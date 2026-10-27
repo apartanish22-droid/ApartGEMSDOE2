@@ -1,7 +1,16 @@
-# Archived landing page — do not submit
+---
+title: ApartGEMS — research decision
+---
 
-The current decision desk is [here](docs/index.html). The earlier H1 synthetic
-1200×1200 demo is **not a competition submission**. The newer parallel AP-1
-research raster also fails the literal lattice uniqueness gate. No file is
-approved for upload. This Markdown file is excluded from the Pages build to
-avoid competing with the static root `index.html`.
+# ApartGEMS — research decision
+
+**DO NOT SUBMIT.** A parallel AP-1 research TIFF exists, but it fails the literal
+all-registry lattice uniqueness rule and its reported holdout is below its control.
+No selector has approved a file or used a weekly slot.
+
+[Open the current decision desk and research-only artifact](docs/index.html)
+· [Executive guide](docs/executive-summary.html)
+· [Independent AP-1 audit](evidence/parallel_candidate_audit.json)
+
+The older synthetic 1200 × 1200 demonstration files in `assets/` are not competition
+submissions and do not match the verified provisional grid.
