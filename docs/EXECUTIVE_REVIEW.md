@@ -4,7 +4,7 @@
 
 ## Decision summary
 
-**No submission TIFF is generated or authorized for download from this checkout.** The repository contains only `README.md` (now updated); it has no competition data, cached features, reference rasters, canonical holdout/evaluation tools, writer, or candidate TIFF. A fabricated TIFF would not have verifiable competition CRS/shape/transform or calibrated predictions and could reproduce the reported `[0,1]` validation failure. It would be misleading to call one submission-ready.
+**No submission TIFF is generated or authorized for download from this checkout.** The repository has documentation and a read-only format validator, but no competition data, cached features, reference rasters, canonical holdout/evaluation tools, writer, or candidate TIFF. A fabricated TIFF would not have verifiable competition CRS/shape/transform or calibrated predictions and could reproduce the reported `[0,1]` validation failure. It would be misleading to call one submission-ready.
 
 **No score estimate is defensible.** There is no local spatial holdout dataset or evaluator. The numerical results below are transcribed from the user-provided prompt only. They are **USER-REPORTED, UNVERIFIED**—not HOLDOUT-DTI and not ORGANIZER-CONFIRMED. In particular, the prompt gives conflicting leaderboard context (`0.4413` and `0.3195`) as well as `0.2778` for GEMSDOE32. The current official leaderboard and submission-page receipts were not available in this checkout, so the conflict remains unresolved.
 
@@ -52,7 +52,7 @@ No external dataset is proposed as a viable dependency in this review: the poten
 ## Required next inputs and limitations
 
 1. Restore or supply through the approved project mechanism: `training_features.tif`, `labels.tif`, `sample_submission.tif`, `existing_faults.tif` / registry rasters, and feature-band metadata. Do not commit private credentials or large data artifacts.
-2. Restore the shared cached stack and canonical holdout evaluator/writer referenced in the protocol. The repository currently has no scripts, dependencies, tests, or CI configuration.
+2. Restore the shared cached stack and canonical holdout evaluator/writer referenced in the protocol. The repository has a read-only TIFF format validator and synthetic tests, but no modeling scripts, cached features, canonical evaluator/writer, or CI configuration.
 3. Provide the exact single method paragraph that defines this parallel session's lane, and the evaluator version plus the prior best comparable HOLDOUT-DTI with withheld-positive count and confidence interval.
 4. For each listed site, obtain the actual TIFF and method record plus an organizer submission receipt if its score is to be treated as confirmed. A landing-page name and number do not permit a raster uniqueness check.
 5. Before download is enabled, run the complete release gate from the README and save machine-readable validator output, raster SHA-256, registry correlation and dot overlap. Current uniqueness status is unknown, not “unique.”

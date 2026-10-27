@@ -29,7 +29,7 @@ A downloadable `.tif` may be marked **OK TO SUBMIT** only when it is a single-ba
 
 ## Current repository state
 
-This checkout currently contains only project documentation (`README.md` and `docs/EXECUTIVE_REVIEW.md`). It does **not** contain the feature stack, labels, sample-submission raster, registry rasters, cached feature stack, holdout evaluator, submission writer, dataset downloader, or an existing candidate TIFF. Consequently, no holdout experiment, raster-level uniqueness test, score estimate, or valid competition TIFF can be produced from this checkout alone. The work and blockers are itemized in [`docs/EXECUTIVE_REVIEW.md`](docs/EXECUTIVE_REVIEW.md). Do not infer that a TIFF exists just because the desired workflow is described here.
+This checkout contains documentation, a static decision page, and a read-only format validator with synthetic tests. It does **not** contain the feature stack, labels, sample-submission raster, registry rasters, cached feature stack, holdout evaluator, submission writer, dataset downloader, or an existing candidate TIFF. Consequently, no holdout experiment, raster-level uniqueness test, score estimate, or valid competition TIFF can be produced from this checkout alone. The work and blockers are itemized in [`docs/EXECUTIVE_REVIEW.md`](docs/EXECUTIVE_REVIEW.md). Do not infer that a TIFF exists just because the desired workflow is described here.
 
 ## Data and source references
 
@@ -90,3 +90,15 @@ and the shared cached stack before running experiments.
 **Deliverables per session:** executive summary with a table (file to download, estimate score,
 unique?), generated unique TIF download link with clear OK / NOT OK status, validator output,
 JSON run card, and this README kept current.
+## Automated format check and site
+
+The static [submission decision page](docs/index.html) puts the no-submit status first. To run the read-only format validator after obtaining the **official** sample and a genuine candidate:
+
+```sh
+python -m venv .venv
+.venv/bin/pip install -r requirements-validation.txt
+.venv/bin/python scripts/validate_tif.py data/sample_submission.tif data/candidate.tif
+.venv/bin/python -m unittest discover -s tests -v
+```
+
+The validator intentionally returns `submission_authorized: false` even if `format_valid: true`: it cannot certify geology, holdout performance, or uniqueness. No TIFF can currently be generated responsibly from this documentation-only checkout. GitHub Pages must be configured to serve `/docs` on the default branch after merge; the HTML page itself does not deploy the site.

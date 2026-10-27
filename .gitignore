@@ -23,3 +23,6 @@ data/
 *.env
 .credentials
 .git-credentials
+
+# NOTE: artifacts/candidate_submission.tif is a required tracked deliverable;
+# do not add *.tif here, or it would be excluded from version control.
