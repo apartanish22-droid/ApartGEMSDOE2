@@ -1,0 +1,7 @@
+# Competition data and reproduced audit bytes are not source files.
+.cache/
+.venv/
+__pycache__/
+.pytest_cache/
+/data/
+*.pyc
