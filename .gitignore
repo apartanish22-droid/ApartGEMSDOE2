@@ -1,28 +1,26 @@
-# Python / virtual environment (do not track the venv or caches)
+__pycache__/
+*.py[cod]
 .venv/
 venv/
 .env
-__pycache__/
-*.pyc
-*.pyo
 .pytest_cache/
 .ruff_cache/
 .mypy_cache/
 .ipynb_checkpoints/
-
-# OS
+.cache/
 .DS_Store
 Thumbs.db
-
-# Large data / credentials (competition data is behind DrivenData login; do not commit)
-data/
 *.tif.aux.xml
 *.tfw
-
-# Do not track credentials or tokens
 *.env
 .credentials
 .git-credentials
-
-# NOTE: artifacts/candidate_submission.tif is a required tracked deliverable;
-# do not add *.tif here, or it would be excluded from version control.
+# Competition rasters are restored via scripts/restore_data.py (SHA-pinned mirrors); never commit them
+*.npy
+*.npz
+data/*
+!data/.gitkeep
+# Audited submission deliverables are kept in docs/downloads/ (and legacy artifacts/assets on main)
+!docs/downloads/*.tif
+!docs/downloads/*.zip
+!docs/downloads/*.json

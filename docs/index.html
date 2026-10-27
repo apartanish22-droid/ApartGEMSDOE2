@@ -1,2 +1,86 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ApartGEMSDOE2 | Submission decision</title><style>body{font:17px/1.55 system-ui,sans-serif;color:#162333;background:#f5f7fa;margin:0}main{max-width:1000px;margin:auto;padding:2rem}h1,h2{line-height:1.2}.banner{background:#fff1e8;border-left:6px solid #b73c17;padding:1.5rem;margin:1.5rem 0}.card{background:white;border:1px solid #d5dde5;border-radius:10px;padding:1.5rem;margin:1rem 0}table{border-collapse:collapse;width:100%}th,td{border-bottom:1px solid #ddd;padding:.7rem;text-align:left}th{background:#eaf0f5}a{color:#07529a}code{overflow-wrap:anywhere}.scroll{overflow-x:auto}</style></head><body><main><h1>GEMS submission decision</h1><div class="banner"><strong>DO NOT SUBMIT — no validated candidate is available.</strong><p>There is no download-ready TIFF in this repository. Names and reported scores do not prove uniqueness or predicted-score performance. No competition slot has been used.</p></div><div class="card"><h2>Executive summary</h2><p>The top user-reported result among these nine sites is GEMSDOE32 (0.2778), <strong>not independently verified</strong>. Estimated score for any new file: <strong>unavailable</strong> without a spatial holdout. For every site below, uniqueness against the other sites is <strong>unknown</strong>.</p><div class="scroll"><table><thead><tr><th>Site</th><th>Highest user-reported result</th><th>File to download here</th><th>Estimate / unique?</th></tr></thead><tbody>
-<tr><td>24</td><td>0.2477</td><td>None</td><td>Unavailable / unknown</td></tr><tr><td>25</td><td>0.2600</td><td>None</td><td>Unavailable / unknown</td></tr><tr><td>27</td><td>0.2449</td><td>None</td><td>Unavailable / unknown</td></tr><tr><td>28</td><td>0.2710</td><td>None</td><td>Unavailable / unknown</td></tr><tr><td>30</td><td>0.2600</td><td>None</td><td>Unavailable / unknown</td></tr><tr><td>31</td><td>0.2708</td><td>None</td><td>Unavailable / unknown</td></tr><tr><td>32</td><td>0.2778</td><td>None</td><td>Unavailable / unknown</td></tr><tr><td>33</td><td>0.2632</td><td>None</td><td>Unavailable / unknown</td></tr><tr><td>36</td><td>0.2750</td><td>None</td><td>Unavailable / unknown</td></tr></tbody></table></div><p>See <a href="EXECUTIVE_REVIEW.md">full review, filenames and evidence status</a>.</p></div><div class="card"><h2>How to submit — once a candidate passes all gates</h2><ol><li>Obtain the official sample format and competition data from <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">DrivenData</a>; confirm the current <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">rules</a>.</li><li>Use the canonical spatially buffered hide-and-recover evaluator; beat the comparable holdout best and document confidence intervals and leakage canaries.</li><li>Compare candidate surface and final dots against every registry raster; fail if rank correlation &gt;0.90 or dot overlap within 3 pixels &gt;70%.</li><li>Run <code>python scripts/validate_tif.py sample_submission.tif candidate.tif</code> and save its JSON. It checks a single float band, grid, footprint, finite pixels and [0,1] range. A pass is <em>format only</em>, never authorization.</li><li>After independent selector approval within the weekly cap, upload the validated TIFF on the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">competition submission page</a>, with a unique name and note (max 140 characters). Save the organizer receipt.</li></ol><p>If you see “Predicted values must be in range [0, 1],” do not submit again until the pixel range check passes; renaming the file cannot repair its pixels.</p></div><p>Source of site results: user-supplied list, not organizer receipts. <a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference solution</a>.</p></main></body></html>
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ApartGEMSDOE2 — GEMS fault discovery: decision, download &amp; evidence</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:1020px;margin:0 auto;padding:24px;line-height:1.55;color:#17202a}
+h1{font-size:1.7rem} h2{margin-top:2rem;border-bottom:2px solid #e5e8eb;padding-bottom:.3rem}
+.banner{border:3px solid #b03a2e;background:#fdedec;padding:16px 18px;border-radius:10px}
+.ok{border:3px solid #1e8449;background:#eafaf1;padding:14px 18px;border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:.92rem} th,td{border:1px solid #ccd1d5;padding:7px 8px;text-align:left;vertical-align:top}
+th{background:#f2f3f4} code{background:#f4f6f7;padding:1px 5px;border-radius:4px;font-size:.88em}
+.btn{display:inline-block;background:#1a5276;color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none;margin:4px 6px 4px 0}
+.btn.alt{background:#566573} .small{font-size:.88rem;color:#444} .no{color:#b03a2e;font-weight:700}.yes{color:#1e8449;font-weight:700}
+</style></head><body>
+<h1>ApartGEMSDOE2 — DOE GEMS fault-discovery</h1>
+<p><b>Core values:</b> Maximize P(Win) · Own the Outcome. Every number below is labelled
+<b>HOLDOUT-DTI</b>, <b>ORGANIZER-CONFIRMED</b>, or <b>OWNER-REPORTED</b>. A projection is never written as a score.
+Reviewed 2026-10-27. Start every session from the repo <code>README.md</code>.</p>
+
+<div class="banner"><h2 style="border:none;margin-top:0">🔴 Submission decision: DO NOT SUBMIT any file as a new entry</h2>
+<p><b>Best historical file (already submitted — do not resubmit):</b> GEMSDOE32
+<code>h33-h33-2-b2-…-e5eb6e7e-zeros</code> — <b>0.2778 OWNER-REPORTED</b> (no organizer receipt in any repo).
+Resubmitting it spends a weekly slot and adds no information.</p>
+<p><b>New unique file from this repo (research only):</b> AP-1 below is genuinely new
+(max 20.1% of dots within 3 px of any focus-9 best; surface Spearman ≈ 0.01) and format-valid,
+but it <b>failed</b> the holdout gate (HOLDOUT-DTI 0.0389 vs champion 0.0992, paired Δ −0.0603
+[−0.0859, −0.0401]) and the SGMC gate (0.0190 vs 0.0641). Spending a slot on it would lower P(Win).</p>
+<p>Live public leaderboard fetched 2026-10-27: <b>#1 xiaofanhu 0.4544</b> — the 0.3195 / 0.4413 figures in older briefs are stale.
+See the <a href="executive-summary.html">executive summary per site</a> and the <a href="submission-guide.html">submission guide</a>.</p></div>
+
+<div class="ok"><h2 style="border:none;margin-top:0">⬇ Download the new unique GeoTIFF (research / inspection only)</h2>
+<p><a class="btn" href="downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif">Download .tif (portal-safe, whole-array [0,1])</a>
+<a class="btn alt" href="downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.zip">Single-TIFF .zip</a>
+<a class="btn alt" href="downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-nan.tif">NaN-outside twin (.tif)</a>
+<a class="btn alt" href="downloads/receipt-apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.json">Validator + run-card receipt (JSON)</a></p>
+<p><b>Unique submission name:</b> <code>apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros</code><br>
+<b>Note (111/140 chars, copy-paste):</b> <code>AP-1 dilat+cond+base+grav coincidence 37654d B2 | HOLDOUT-DTI 0.0389 vs champ 0.0992 | 1f26aa05 | DO NOT SUBMIT</code><br>
+<b>SHA-256 (.tif):</b> <code>973e1615098e5636e9348a3ae1e12d9de392fda2b14f0313c81554cc26274d28</code> ·
+37,654 binary dots · 0 on catalogue · single-band float32 · EPSG:32611 · 3730×3292 · whole array finite in [0,1]
+(fixes the portal error “Predicted values must be in range [0, 1]” — use the <code>-zeros</code> file, never the <code>-nan</code> twin, in the web form).<br>
+<span class="no">OK TO DOWNLOAD: YES (research) · OK TO SUBMIT: NO.</span></p></div>
+
+<h2>Decision table — what to download, estimated score, unique?</h2>
+<table><tr><th>File to download</th><th>Estimated score (labelled)</th><th>Unique vs the other focus sites?</th><th>Submit?</th></tr>
+<tr><td><a href="downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif">apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif</a> (this repo, NEW)</td>
+<td><b>HOLDOUT-DTI 0.0389</b> [0.0282, 0.0491] (GEMSDOE32-HIDE-RECOVER-v3.0, 22,232 withheld positives). <b>Leaderboard estimate: NOT ESTIMABLE</b> (no validated holdout→live transfer).</td>
+<td><span class="yes">YES</span> vs focus-9 bests (max 20.1% within 3 px; lattice 99.7% disclosed, IR-AP-01)</td>
+<td><span class="no">NO — holdout + SGMC gates failed</span></td></tr>
+<tr><td>GEMSDOE32 <code>h33-h33-2-b2-…-e5eb6e7e-zeros.tif</code> (historical best)</td>
+<td><b>0.2778 OWNER-REPORTED</b> (no receipt). HOLDOUT-DTI 0.0992 [0.0860, 0.1127] fold-local on same evaluator.</td>
+<td><span class="no">NO</span> — exact subset of GEMSDOE25 d2.8 (measured 100% exact overlap)</td>
+<td><span class="no">NO — already submitted; do not resubmit</span></td></tr>
+<tr><td>All other focus-9 bests (24/25/27/28/30/31/33/36)</td>
+<td>0.2449–0.2750 OWNER-REPORTED (see executive summary)</td>
+<td><span class="no">NO</span> — one nested H19-5 family (pairwise 3-px overlaps 87–100%)</td>
+<td><span class="no">NO — already scored / duplicate family</span></td></tr></table>
+
+<h2>Why did GEMSDOE32 get 0.2778 — and can we beat it?</h2>
+<p>Measured here (SHA-verified rasters): the champion is exactly the GEMSDOE25 <i>d2.8</i> dot set
+(44,090 dots) minus the 6,436 dots within 2 px of the catalogue → 37,654 dots. The metric
+(DTI, α=0.2, β=0.8, 300 m triangular kernel, official page 967) charges 0.2 per unit of
+uncredited prediction mass; an isolated dot helps only if its kernel credit <i>k &gt; 0.2·DTI</i>.
+Thinning (121,131 → 60,069 → 44,090 → 37,654) progressively removed sub-break-even mass, and the
+B=2 collar removed the most catalogue-hugging remainder. Add-back variants scored less
+(GEMSDOE33 +tips 0.2632; GEMSDOE36 +1,200 0.2750), consistent with dilution. This is OWNER-REPORTED
+ladder + measured geometry, not a causal proof (no receipts, hidden truth unseen).</p>
+<p><b>Can we beat it?</b> In principle yes — at the same 37,654-dot mass it needs a field whose top
+dots average materially higher hidden-fault credit (older algebra on the reported ladder: ≈ +25%
+mean credit for 0.3195; more for today's 0.4544). Emission tweaks are nearly exhausted; only a
+better detector field can do it. Our AP-1 field did not (see gates above), so <b>no file in hand
+beats 0.2778 on evidence</b>. Detail: <a href="executive-summary.html">executive summary</a>.</p>
+
+<h2>Reproduce (no human inspection; automated gates only)</h2>
+<p class="small"><code>python -m venv .venv &amp;&amp; .venv/bin/pip install -r requirements.txt</code> ·
+<code>.venv/bin/python scripts/restore_data.py --target-dir /tmp/gems_data</code> ·
+<code>GEMS_DATA_DIR=/tmp/gems_data .venv/bin/python scripts/run_experiment_oof.py --variant strain2 --order smooth --tag exp2</code> ·
+<code>.venv/bin/python scripts/build_final.py</code> ·
+<code>GEMS_DATA_DIR=/tmp/gems_data .venv/bin/python scripts/check_submission.py docs/downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif --strict-finite</code></p>
+<p class="small">Sources for manual review: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem &amp; metric (official)</a> ·
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a> ·
+<a href="https://github.com/drivendataorg/gems-prize-reference-solution">reference solution</a> ·
+<a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a> ·
+<a href="https://gbcge.org/current-projects/ingenious/">INGENIOUS</a> · <a href="https://epsg.io/32611">EPSG:32611</a> ·
+<a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a>. Full audit text: repo <code>docs/EXECUTIVE_SUMMARY.md</code>, <code>evidence/</code>, <code>knowledge/preregistration-20261027.md</code>.</p>
+<p class="small">Parallel-session H1 demo (<code>assets/gems-h1-radiometric-curvature-convergence-…-59a3c88e.tif</code>) is a synthetic 1200×1200 grid, verdict NOT OK — superseded by the measured AP-1 result here. Do not submit either file.</p>
+</body></html>

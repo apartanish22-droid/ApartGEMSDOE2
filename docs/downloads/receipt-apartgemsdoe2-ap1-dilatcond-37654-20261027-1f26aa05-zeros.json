@@ -1,0 +1,180 @@
+{
+ "hypothesis": "Blind dilatational stepovers coincide in geodetic strain, conductivity edge, basement step and gravity edge (AP-1 lane, knowledge/preregistration-20261027.md).",
+ "mechanism": "Geometric-mean percentile-rank coincidence (bands 4/7/8 x grad 17 x grad 15 x grad 13), score-ordered Poisson emission min-sep 2.8px, B=2 collar, 37,654 dots.",
+ "named_non_fault_mimic": "Basin-margin depocentre edges, buried volcanic/pluton contacts, aquifer lithologic boundaries.",
+ "evidence_class": "HOLDOUT-DTI",
+ "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+ "holdout_dti": 0.03891061479186361,
+ "holdout_ci95": [
+  0.028166529159799374,
+  0.04914995757513441
+ ],
+ "n_withheld_positives": 22232,
+ "champion_foldlocal_dti": 0.09920232315251679,
+ "paired_delta_vs_champion": {
+  "paired_delta": -0.06029170836065313,
+  "paired_ci95": [
+   -0.0858563597436911,
+   -0.040097633538812204
+  ],
+  "n_cells": 8
+ },
+ "sgmc_cal_candidate": 0.01898282585366267,
+ "sgmc_cal_champion": 0.0641209376417646,
+ "correlation_overlap_vs_registry": {
+  "surface_spearman_sample300k_exp1": {
+   "GEMSDOE24_best": 0.013772745520343277,
+   "GEMSDOE25_best": 0.010683704588462252,
+   "GEMSDOE27_best": 0.013642629893786585,
+   "GEMSDOE28_best": 0.008494088578972105,
+   "GEMSDOE30_best": 0.010683704588462252,
+   "GEMSDOE31_best": 0.009233457628383348,
+   "GEMSDOE32_best": 0.008960359304624296,
+   "GEMSDOE33_best": 0.010885789285679693,
+   "GEMSDOE36_best": 0.009607780059085006
+  },
+  "final_dots_within3px": {
+   "GEMSDOE24_best": {
+    "within3px_frac": 0.19687151431454825,
+    "dots": 60069
+   },
+   "GEMSDOE25_best": {
+    "within3px_frac": 0.18712487385138366,
+    "dots": 44090
+   },
+   "GEMSDOE27_best": {
+    "within3px_frac": 0.2014394221065491,
+    "dots": 61328
+   },
+   "GEMSDOE28_best": {
+    "within3px_frac": 0.17759069421575396,
+    "dots": 37660
+   },
+   "GEMSDOE30_best": {
+    "within3px_frac": 0.18712487385138366,
+    "dots": 44090
+   },
+   "GEMSDOE31_best": {
+    "within3px_frac": 0.18029956976682424,
+    "dots": 40199
+   },
+   "GEMSDOE32_best": {
+    "within3px_frac": 0.17421787857863708,
+    "dots": 37654
+   },
+   "GEMSDOE33_best": {
+    "within3px_frac": 0.18571732086896478,
+    "dots": 41865
+   },
+   "GEMSDOE36_best": {
+    "within3px_frac": 0.17583789238859085,
+    "dots": 38854
+   },
+   "LATTICE_r13": {
+    "within3px_frac": 0.9971848940351623,
+    "dots": 206895
+   }
+  }
+ },
+ "gates": {
+  "format_validator_zeros": true,
+  "format_validator_nan": true,
+  "leakage_canary_le_0.90": true,
+  "holdout_beats_champion_paired_ci_gt_0": false,
+  "sgmc_no_regression_vs_champion": false,
+  "uniqueness_focus9_within3px_le_0.70": true
+ },
+ "raster_sha256_zeros": "973e1615098e5636e9348a3ae1e12d9de392fda2b14f0313c81554cc26274d28",
+ "raster_sha256_nan": "c12f17f3e7dac14212d3646d7a95fc2a59c962c03363e4836fb3427c291e3682",
+ "validator_output": {
+  "zeros": {
+   "file_path": "/home/user/ApartGEMSDOE2/docs/downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif",
+   "sha256": "973e1615098e5636e9348a3ae1e12d9de392fda2b14f0313c81554cc26274d28",
+   "passed": true,
+   "checks": [
+    {
+     "name": "dimensions",
+     "passed": true,
+     "detail": "shape (3730, 3292) (expected (3730, 3292))"
+    },
+    {
+     "name": "band_count",
+     "passed": true,
+     "detail": "bands: 1 (expected 1)"
+    },
+    {
+     "name": "crs",
+     "passed": true,
+     "detail": "CRS: EPSG:32611 (expected EPSG:32611)"
+    },
+    {
+     "name": "transform",
+     "passed": true,
+     "detail": "transform matched template"
+    },
+    {
+     "name": "dtype",
+     "passed": true,
+     "detail": "dtype: float32 (expected float32)"
+    },
+    {
+     "name": "in_footprint_range",
+     "passed": true,
+     "detail": "in-footprint range [0.0000, 1.0000], all finite"
+    },
+    {
+     "name": "portal_safe_whole_array",
+     "passed": true,
+     "detail": "whole-array range [0.0000, 1.0000], finite=True"
+    }
+   ]
+  },
+  "nan": {
+   "file_path": "/home/user/ApartGEMSDOE2/docs/downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-nan.tif",
+   "sha256": "c12f17f3e7dac14212d3646d7a95fc2a59c962c03363e4836fb3427c291e3682",
+   "passed": true,
+   "checks": [
+    {
+     "name": "dimensions",
+     "passed": true,
+     "detail": "shape (3730, 3292) (expected (3730, 3292))"
+    },
+    {
+     "name": "band_count",
+     "passed": true,
+     "detail": "bands: 1 (expected 1)"
+    },
+    {
+     "name": "crs",
+     "passed": true,
+     "detail": "CRS: EPSG:32611 (expected EPSG:32611)"
+    },
+    {
+     "name": "transform",
+     "passed": true,
+     "detail": "transform matched template"
+    },
+    {
+     "name": "dtype",
+     "passed": true,
+     "detail": "dtype: float32 (expected float32)"
+    },
+    {
+     "name": "in_footprint_range",
+     "passed": true,
+     "detail": "in-footprint range [0.0000, 1.0000], all finite"
+    }
+   ]
+  },
+  "dots": 37654,
+  "on_catalogue": 0,
+  "footprint_px": 5167373
+ },
+ "submission_name": "apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros",
+ "submission_note_140": "AP-1 dilat+cond+base+grav coincidence 37654d B2 | HOLDOUT-DTI 0.0389 vs champ 0.0992 | 1f26aa05 | DO NOT SUBMIT",
+ "note_chars": 111,
+ "leaderboard_estimate": "NOT ESTIMABLE \u2014 no validated HOLDOUT-DTI to live-score transfer (cross-family RMSE 0.09-0.20 in GEMSDOE31 calibration audit); HOLDOUT-DTI is not a leaderboard score.",
+ "verdict": "negative",
+ "download_ok": true,
+ "submit_ok": false
+}

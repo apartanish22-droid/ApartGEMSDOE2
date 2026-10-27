@@ -1,6 +1,8 @@
 # ApartGEMSDOE2 — GEMS fault-prospectivity research
 
-> **Start here every session.** Read this README and [`docs/EXECUTIVE_REVIEW.md`](docs/EXECUTIVE_REVIEW.md) before proposing experiments or preparing a submission. Keep the work auditable and evidence-led; never represent an estimate as a measured score.
+> **Start here every session.** Read this README, [`docs/EXECUTIVE_SUMMARY.md`](docs/EXECUTIVE_SUMMARY.md) and [`knowledge/preregistration-20261027.md`](knowledge/preregistration-20261027.md) before proposing experiments or preparing a submission. Keep the work auditable and evidence-led; never represent an estimate as a measured score.
+>
+> **Current decision (2026-10-27): 🔴 DO NOT SUBMIT any file.** New unique AP-1 GeoTIFF is downloadable for research (`docs/downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif`) but verdict **negative** (HOLDOUT-DTI 0.0389 vs champion 0.0992). Site: `docs/index.html`. Original full brief (retained verbatim as charter): [`docs/EXECUTIVE_REVIEW.md`](docs/EXECUTIVE_REVIEW.md) §“Sources” + session prompt; the 0.3195/0.4413 leaderboard figures there are stale (live #1 0.4544, fetched 2026-10-27).
 
 ## Mission and operating charter
 
@@ -27,78 +29,22 @@ Core working principles:
 
 A downloadable `.tif` may be marked **OK TO SUBMIT** only when it is a single-band GeoTIFF and automated checks confirm the official sample-submission footprint, CRS, shape, and geotransform; no NaN/Inf within the footprint; all predicted values are in `[0,1]`; the output opens and reads back; its SHA-256 and method provenance are recorded; and the registry correlation/dot-overlap checks pass. The downloadable file should be accompanied by a unique submission name and a concise note. A valid TIFF is not evidence of a high score, and a score projection is not an official result.
 
-## Current repository state
+## Current repository state (2026-10-27)
 
-This checkout contains documentation, a static decision page, and a read-only format validator with synthetic tests. It does **not** contain the feature stack, labels, sample-submission raster, registry rasters, cached feature stack, holdout evaluator, submission writer, dataset downloader, or an existing candidate TIFF. Consequently, no holdout experiment, raster-level uniqueness test, score estimate, or valid competition TIFF can be produced from this checkout alone. The work and blockers are itemized in [`docs/EXECUTIVE_REVIEW.md`](docs/EXECUTIVE_REVIEW.md). Do not infer that a TIFF exists just because the desired workflow is described here.
+Implemented and verified: vendored canonical metric/holdout/emission/writer (`src/gems32/`, `src/gemsdoe32/`, `PROVENANCE.md`; metric tests 8/8 pass), data restorer (`scripts/restore_data.py`, SHA-pinned mirrors in `registry/`), AP-1 lane (`src/apart/`, pre-registered), 3-experiment budget spent (EXP-1 screen, EXP-2 OOF, EXP-3 confirmation), unique research GeoTIFF + validator receipts (`docs/downloads/`, `evidence/`), GitHub Pages site (`docs/index.html`).
+
+**Lane (single, frozen):** AP-1 dilatational-stepover conductivity coincidence — see `knowledge/preregistration-20261027.md`. Next viable lane is AP-2 (Euler depth clusters, in-band, no external data). Do not re-run AP-1 variants without a new pre-registration.
+
+Reproduce: `pip install -r requirements.txt` → `python scripts/restore_data.py --target-dir /tmp/gems_data` → `GEMS_DATA_DIR=/tmp/gems_data python scripts/run_experiment_oof.py --variant strain2 --order smooth --tag exp2` → `python scripts/build_final.py` → `GEMS_DATA_DIR=/tmp/gems_data python scripts/check_submission.py docs/downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif --strict-finite`.
+
+**Limitations / blockers:** (1) all nine historical scores are OWNER-REPORTED (no organizer receipts) — treat as claims; (2) no validated HOLDOUT-DTI→leaderboard transfer, so no leaderboard estimate is quoted; (3) DrivenData originals remain login-walled (mirrors are integrity-pinned, not organizer-authenticated); (4) CPU-only sandbox (3.8 GB RAM) — no GPU U-Net training attempted; (5) weekly slot promotion is a separate selector step, not taken.
 
 ## Data and source references
 
-Competition data is behind the DrivenData login according to the project request. Do not place credentials in this repository. The supplied public references are listed in the review document; availability and file contents must be checked in an environment with access before they are treated as verified inputs.
+Official: [problem/metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/), [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/), [reference solution](https://github.com/drivendataorg/gems-prize-reference-solution), [USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and), [INGENIOUS](https://gbcge.org/current-projects/ingenious/), [EPSG:32611](https://epsg.io/32611), [Tversky index](https://en.wikipedia.org/wiki/Tversky_index), [NLR guidance PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf), [GDR #1391](https://gdr.openei.org/submissions/1391). Do not place credentials in this repository.
 
 ## Project values
 
 Maximize P(Win). Own the outcome. Treat each measured result—positive or negative—as evidence that improves the next decision.
 
----
-
-## Session operating prompt (restated — read at the start of every session)
-
-**Goal.** Place top of the GEMS competition leaderboard (DrivenData competition 306) with a
-scientifically defensible, unique GeoTIFF submission. Current user-reported context: GEMSDOE32
-reported 0.2778 (highest of the nine in-scope sites), and the leaderboard has been cited at
-0.3195 / 0.4413 (conflicting, unresolved). Target: beat these with a verified method.
-
-**In-scope sites (highest reported submissions):** GEMSDOE24 (0.2477), GEMSDOE25 (0.2600),
-GEMSDOE27 (0.2449), GEMSDOE28 (0.2710), GEMSDOE30 (0.2600), GEMSDOE31 (0.2708), GEMSDOE32
-(0.2778), GEMSDOE33 (0.2632), GEMSDOE36 (0.2750). All figures are USER-REPORTED, UNVERIFIED —
-none are HOLDOUT-DTI or ORGANIZER-CONFIRMED, and uniqueness vs other sites is UNKNOWN.
-
-**MUST:** generate a UNIQUE TIF submission (single-band GeoTIFF, values in [0,1], no NaN, matching
-the official sample_submission.tif CRS/shape/geotransform). Do not copy a previous submission.
-It must be OBVIOUS whether the generated TIF is OK to download and submit. Provide an easy one-click
-download, a unique submission name, and a note ≤ 140 characters.
-
-**Submission page fields to satisfy:** File to submit (single-band GeoTIFF or .zip), Note (optional,
-≤ 140 chars). Avoid the `"Predicted values must be in range [0, 1]"` error — keep all values in [0,1].
-
-**Parallel-run protocol (binding):**
-1. LANE — stay inside the session's single method paragraph; stop and log as duplicate if
-   rank-correlation with any registry raster > 0.90, or > 70% of dots within 3 px of one registry
-   raster's dots (check before placement AND on final dots).
-2. REUSE, DON'T REBUILD — use the cached feature stack and canonical evaluate_holdout.py /
-   submission_writer.py; holdout = hide-and-recover by fault segment + buffer; catalogue features
-   only from visible faults; mask visible faults pixel-exactly; pooled DTI α=0.2, β=0.8,
-   300 m triangular kernel; fix shared tools once, never fork.
-3. LABEL every number as HOLDOUT-DTI (evaluator version, withheld positives, 95% CI) or
-   ORGANIZER-CONFIRMED (submission receipt). A projection is never a score.
-4. LEAKAGE CANARY — test each feature alone on holdout; AUC > 0.90 ⇒ presumed leakage.
-5. RUN CARD — end with one JSON card: hypothesis; mechanism; named non-fault mimic; holdout DTI +
-   CI; correlation/overlap vs registry; raster SHA-256; validator output (no NaN in footprint,
-   [0,1], CRS/shape/transform match); submission name + note ≤ 140 chars; verdict promote / negative.
-6. BUDGET — stop after 3 experiments or 2 hours; promotion to a real slot is a separate selector
-   step within the weekly cap.
-
-**Release gate:** a .tif is "OK TO SUBMIT" only when automated checks confirm the official
-sample-submission footprint, CRS, shape, geotransform; no NaN/Inf in footprint; values in [0,1];
-file opens and reads back; SHA-256 + provenance recorded; registry correlation/dot-overlap pass.
-Do not fabricate a placeholder TIFF and call it a submission.
-
-**Data:** competition data is behind the DrivenData login; do not commit credentials. Restore
-training_features.tif, labels.tif, sample_submission.tif, existing_faults.tif / registry rasters
-and the shared cached stack before running experiments.
-
-**Deliverables per session:** executive summary with a table (file to download, estimate score,
-unique?), generated unique TIF download link with clear OK / NOT OK status, validator output,
-JSON run card, and this README kept current.
-## Automated format check and site
-
-The static [submission decision page](docs/index.html) puts the no-submit status first. To run the read-only format validator after obtaining the **official** sample and a genuine candidate:
-
-```sh
-python -m venv .venv
-.venv/bin/pip install -r requirements-validation.txt
-.venv/bin/python scripts/validate_tif.py data/sample_submission.tif data/candidate.tif
-.venv/bin/python -m unittest discover -s tests -v
-```
-
-The validator intentionally returns `submission_authorized: false` even if `format_valid: true`: it cannot certify geology, holdout performance, or uniqueness. No TIFF can currently be generated responsibly from this documentation-only checkout. GitHub Pages must be configured to serve `/docs` on the default branch after merge; the HTML page itself does not deploy the site.
+> Merge note (2026-10-27): parallel H1 demo (`assets/…59a3c88e.tif`, synthetic 1200×1200 grid, no holdout, NOT OK) remains in-tree for provenance and is superseded by the measured AP-1 decision above. Do not submit either candidate.
