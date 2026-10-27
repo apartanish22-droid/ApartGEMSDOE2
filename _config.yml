@@ -5,5 +5,5 @@ url: "https://apartanish22-droid.github.io"
 theme: jekyll-theme-cayman
 encoding: utf-8
 show_downloads: false
-exclude: [".venv", "scripts", "artifacts", "Gemfile", "Gemfile.lock", "node_modules"]
-# GitHub Pages: enable in repo settings with source = /docs folder to publish.
+exclude: [".venv", "scripts", "artifacts", "Gemfile", "Gemfile.lock", "node_modules", "index.md", "docs/index.md"]
+# Pages is configured to publish main /; static index.html redirects to docs/.

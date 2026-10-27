@@ -21,3 +21,5 @@ Thumbs.db
 /data/*
 !/data/.gitkeep
 # Research-only audited TIFFs in docs/downloads are tracked intentionally.
+# Local browser screenshots
+/artifacts/

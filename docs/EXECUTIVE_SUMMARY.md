@@ -1,54 +1,13 @@
-# Executive summary — ApartGEMSDOE2 (2026-10-27)
+# Executive summary — reconciled decision (2026-10-27)
 
-> **Reconciliation / supersedes conflicting wording below:** AP-1 is distinct from the selected
-> focus-nine variants, but it is **not unique under the literal all-registry rule**: 99.7185% of its
-> dots are within three pixels of the registered lattice. Its zero-exterior file fails the
-> conservative published null/NaN-outside reading, and neither variant has an authenticated
-> organizer-template or portal receipt. The recorded holdout is from the parallel run, not
-> independently reproduced here; candidate and control used different refill rules.
-> **DO NOT SUBMIT.** [Current audit](../evidence/parallel_candidate_audit.json) ·
-> [Current decision page](index.html).
+**OK TO SUBMIT: NO.** A parallel session created [AP-1](downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif) for **research only**. Independent saved-byte analysis found 37,548 of 37,654 dots (99.718489%) within three pixels of the lattice witness: the literal 70% novelty rule fails. The original parallel decision reported the lattice but exempted it; that exemption was not authorized. The full registry and final surface were not checked here.
 
-**Decision: NO file is OK TO SUBMIT.** Download the AP-1 GeoTIFF for research only
-(`docs/downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif`, SHA-256
-`973e1615098e5636e9348a3ae1e12d9de392fda2b14f0313c81554cc26274d28`). It differs from the focus-nine bests (max 20.1% within
-3 px) but fails the registered lattice rule, and its local format checks are not portal authorization; it also failed the reported holdout gate
-(HOLDOUT-DTI 0.0389 [0.0282, 0.0491], GEMSDOE32-HIDE-RECOVER-v3.0, 22,232 withheld, vs champion
-fold-local 0.0992 [0.0860, 0.1127]; paired Δ −0.0603 [−0.0859, −0.0401]) and SGMC gate
-(0.0190 vs 0.0641 calibrated). Leaderboard estimate: **NOT ESTIMABLE** (no validated transfer).
-Best historical submission remains GEMSDOE32 B2 at **0.2778 OWNER-REPORTED** (no receipt) — already
-submitted, do not resubmit. Live #1 fetched 2026-10-27: **0.4544** (xiaofanhu).
+The parallel record reports **HOLDOUT-DTI 0.0389** (95% CI [0.0282, 0.0491], `GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld positive instances) versus 0.0992 [0.0860, 0.1127] for its fold-local d2.8+B2 proxy. Fold totals reproduce the pooled arithmetic; this audit did not rerun predictions or validate the confidence intervals, and the proxy did not refill. These are not organizer-confirmed scores. No valid mapping to an estimated leaderboard score exists.
 
-Why 0.2778 leads the family (measured geometry + OWNER-REPORTED ladder): champion = d2.8 (44,090)
-minus 6,436 dots with d_cat ≤ 2 px. DTI (α=0.2, β=0.8, R=300 m) charges 0.2 per uncredited dot;
-thinning to the break-even (k > 0.2·DTI) and collaring raised mean credit. Add-backs scored less
-(33: 0.2632; 36: 0.2750). Beating it needs a better *field* (≈+25% mean credit for 0.3195 on the old
-ladder; more today), not more emission tuning. AP-1's field was worse — a negative result, recorded.
+- [Decision desk, nine-site comparison and research TIFF](index.html)
+- [Full executive review and sources](EXECUTIVE_REVIEW.md)
+- [Saved-byte and reported-fold arithmetic audit](../evidence/parallel_ap1_audit.json)
+- [Current negative JSON run card](data/run_card.json)
+- [Historical parallel run report](../evidence/experiment_exp2.json) and [preregistration with later protocol warning](../knowledge/preregistration-20261027.md)
 
-Per-site detail, hypotheses AP-1…AP-5, and irregularities IR-AP-01…06: `docs/executive-summary.html`.
-Pre-registration: `knowledge/preregistration-20261027.md`. Evidence: `evidence/*.json`.
-
-## Run card (final)
-
-```json
-{
-  "hypothesis": "Blind dilatational stepovers coincide in geodetic strain, conductivity edge, basement step and gravity edge (AP-1).",
-  "mechanism": "Geometric-mean percentile-rank coincidence (bands 4/7/8 x grad17 x grad15 x grad13), score-ordered Poisson min-sep 2.8px, B=2, 37,654 dots.",
-  "named_non_fault_mimic": "Basin-margin depocentre edges, buried volcanic/pluton contacts, aquifer lithologic boundaries.",
-  "holdout_dti": 0.0389,
-  "holdout_ci95": [0.0282, 0.0491],
-  "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
-  "n_withheld_positives": 22232,
-  "correlation_overlap_vs_registry": "surface Spearman ~0.01 (300k sample); final dots max 20.1% within 3px vs focus-9; lattice 99.7% (IR-AP-01)",
-  "raster_sha256": "973e1615098e5636e9348a3ae1e12d9de392fda2b14f0313c81554cc26274d28",
-  "validator_output": "PASS 13/13 strict audit, both -zeros (whole-array [0,1]) and -nan modes; 0 NaN in footprint; CRS/shape/transform match template",
-  "submission_name": "apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros",
-  "submission_note": "AP-1 dilat+cond+base+grav coincidence 37654d B2 | HOLDOUT-DTI 0.0389 vs champ 0.0992 | 1f26aa05 | DO NOT SUBMIT",
-  "verdict": "negative"
-}
-```
-
-> Merge note (2026-10-27): a parallel session's H1 radiometric×curvature file on `main`
-> (`assets/gems-h1-radiometric-curvature-convergence-…-59a3c88e.tif`, RUN_CARD.json) is a
-> **synthetic 1200×1200 demo grid** with verdict NOT OK TO SUBMIT and no holdout. It is superseded
-> by the real-grid AP-1 result above (also negative, but measured). Do not submit either file.
+GEMSDOE32's 0.2778 is **owner-/user-reported, unverified**; no organizer receipt binds it to a specific file. An official public leaderboard snapshot showed 0.4544 on 2026-10-27, but it is not a receipt for this project. A separate H1 raster under `assets/` is only a synthetic 1200×1200 demo; it is **not** on the submission grid. Neither file is approved.

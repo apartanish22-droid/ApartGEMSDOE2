@@ -1,4 +1,4 @@
-# Provenance — vendored canonical tools (reuse, don't rebuild)
+# Provenance — archived tools and the specified shared template
 
 Vendored verbatim on 2026-10-27 from `buffedlizard55-lab/GEMSDOE32` (cloned at `main`,
 2026-10-27; file SHA-256 checked at copy time, e.g. `src/gems32/metric.py`
@@ -25,3 +25,9 @@ shared template. This review did not modify those shared evaluator/writer files.
 shared tool must be fixed once in the shared template and reported, not patched in a private fork.
 The local experiment/selector orchestration is disabled while the literal protocol fails; see
 `evidence/parallel_candidate_audit.json` and `scripts/experiment_guard.py`.
+
+The pinned shared-template diagnostic returned `format_valid: true` while its own
+`official_format_compliant` was false for the suspect mirror's exterior. A grid match is
+not authentication or permission to submit. [Diagnostic receipt](evidence/shared_validator_diagnostic.json) ·
+[upstream issue #74](https://github.com/buffedlizard55-lab/GEMSDOE24/issues/74). This account
+cannot push to the shared repository; no private modification or upstream fix is claimed.

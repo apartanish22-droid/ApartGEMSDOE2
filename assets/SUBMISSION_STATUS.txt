@@ -1,3 +1,8 @@
+ARCHIVED SYNTHETIC DEMO ONLY — NOT OK TO SUBMIT
+The checks below apply only to the 1200×1200 demo grid, not the competition
+footprint, novelty, holdout or slot selection. See docs/index.html for the
+current decision. The AP-1 research file also fails the lattice novelty gate.
+
 GEMS SUBMISSION STATUS
 =====================
 File: gems-h1-radiometric-curvature-convergence-20261027T212405Z-59a3c88e.tif
@@ -32,6 +37,6 @@ VALIDATION REPORT:
 }
 
 VERDICT:
-NOT OK TO SUBMIT — format demonstration on a synthetic grid. It will NOT match the real submission CRS/shape/geotransform. Place real data in data/ (see scripts/download_competition_data.sh), run scripts/prepare_data.py, then re-run this script.
+NOT OK TO SUBMIT — format demonstration on a synthetic grid. It will NOT match the real submission CRS/shape/geotransform. Do not rerun this lane or upload based on this demo.
 
-Leaderhead reference: best GEMSDOE focus-family score 0.2778 (GEMSDOE32); live leaderboard high cited as 0.4413 (verify against live leaderboard).
+Historical owner-reported GEMSDOE32 value 0.2778 is unconfirmed; the official leaderboard is time-varying.

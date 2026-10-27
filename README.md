@@ -26,7 +26,7 @@ This section retains the substantive, non-duplicated instructions from the proje
 ## Current findings (27 October 2026)
 
 1. The initial checkout contained only this README; the claimed train→inference pipeline and cached stack were not present. No single geological method paragraph was explicitly assigned in the supplied prompt, so this review did not invent a lane. A parallel session subsequently self-preregistered AP-1; that is not a user assignment.
-2. The [organizer's public leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) displayed **0.4544** for its leader at the timestamp in [`docs/data/source_feed.json`](docs/data/source_feed.json). This is an **OFFICIAL PUBLIC LEADERBOARD OBSERVATION**, not a file-bound submission-page receipt. The prompt's 0.4413 and 0.3195 references are older/inconsistent snapshots.
+2. The [organizer's public leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) displayed **0.4544** for its leader at the timestamp in [`docs/data/source_feed.json`](docs/data/source_feed.json). This is an **OFFICIAL PUBLIC LEADERBOARD OBSERVATION**, not a file-bound submission-page receipt. The prompt's 0.4413 and 0.3195 claims conflict and their timestamps were not independently established.
 3. The requested nine historical values, including GEMSDOE32's **0.2778**, are **USER-REPORTED / UNVERIFIED**: no organizer receipt binding a file hash to that value was available. No hidden-score estimate is defensible. Of the supplied claims, GEMSDOE32 is highest; that does not authorize resubmission.
 4. We fetched immutable archival TIFFs **only for comparison**, hash-checked their bytes, and independently computed all 72 directional focus-site comparisons. All nine archived dot sets fail the literal overlap rule against at least one other focus-site reference. Pre-placement surfaces and a complete current registry are unavailable.
 5. The registered 13GEMSDOE lattice covers 5,160,724 of 5,167,373 mirrored-footprint cells within 3 pixels. Only 6,649 are uncovered; at 37,654 distinct dots, at least `(37,654 − 6,649) / 37,654 = 82.34%` must overlap. This **GEOMETRY-AUDIT** stops a champion-sized run under the literal rule. It does **not** rule out every smaller budget. Never move dots into lattice holes merely to manufacture a pass.
@@ -43,10 +43,11 @@ This section retains the substantive, non-duplicated instructions from the proje
 - `scripts/restore_template.py`: restores those pinned source assets into ignored `.cache/` **without modification**. The selected assets alone are not a complete runnable template or prepared feature stack.
 - `scripts/audit_historical.py`: reproduces the exact nine-file geometry and local format diagnostics. This is not a model, holdout evaluator, submission writer or portal validator. Prior TIFFs remain in ignored scratch storage.
 - `scripts/restore_data.py`: integrity-checks and restores pinned owner mirrors and the nine focus references plus lattice; `--references-only` skips large core downloads. These are neither an authenticated sample nor the complete registry.
-- `scripts/audit_parallel_candidate.py`: independently reopens and hashes the existing research TIFF twins, compares their dots to the pinned focus sites and lattice, and records local format diagnostics without running a holdout.
+- `scripts/audit_parallel_candidate.py`: independently reopens and hashes the existing research TIFF twins, compares their dots to the pinned focus sites and lattice, and records local format diagnostics without running a holdout. `scripts/verify_independent_replays.py` replays both of the parallel audits and checks every recorded field except the observation timestamp.
 - `scripts/experiment_guard.py`: stops the parallel experiment and emission scripts before they run while preflight is blocked; it does not modify shared template tools.
 - `scripts/preflight.py`: reports this run's blocked state and exits nonzero; it cannot authorize a submission. `evidence/preflight.json` is a timestamped snapshot, not a promise about future files.
-- `scripts/build_site.py`: builds the static site and nine detail pages from committed evidence. `scripts/refresh_feed.py` updates timestamped public observations; scheduled GitHub Actions records failures as stale rather than fabricating freshness. `scripts/package_pages.py` includes both `/` and `/docs/` routes in the deploy artifact so links keep working while GitHub's existing legacy Pages source remains configured.
+- `scripts/build_site.py`: builds the canonical static site and nine detail pages from committed evidence. `scripts/build_scorecard.py` independently builds the eight-peer forensic comparison pages without overwriting the canonical site. `scripts/refresh_feed.py` updates timestamped public observations; scheduled GitHub Actions records failures as stale rather than fabricating freshness. `scripts/package_pages.py` includes both `/` and `/docs/` routes in the deploy artifact so links keep working while the legacy Pages source remains configured.
+- `scripts/audit_parallel_ap1.py`: a second saved-byte check of AP-1 against the focus files and lattice, plus arithmetic reproduction of archived fold totals (not predictions or confidence intervals). `scripts/audit_shared_validator.py` records a shared-validator labeling ambiguity; [issue #74](https://github.com/buffedlizard55-lab/GEMSDOE24/issues/74) was filed upstream because this account cannot push to that repository.
 
 ```bash
 python -m venv .venv
@@ -55,13 +56,15 @@ python -m venv .venv
 .venv/bin/python scripts/audit_historical.py
 .venv/bin/python scripts/restore_data.py --references-only --target-dir .cache/gems-data
 .venv/bin/python scripts/audit_parallel_candidate.py
+.venv/bin/python scripts/verify_independent_replays.py
 .venv/bin/python scripts/preflight.py       # expected exit 1: BLOCKED
 .venv/bin/python scripts/build_site.py
+.venv/bin/python scripts/build_scorecard.py
 .venv/bin/pytest -q
 python -m http.server 8000 --bind 0.0.0.0 --directory docs
 ```
 
-`gh` and GitHub access are needed to restore the hash-pinned historical/source assets. Competition-sized data are not committed. The prepared feature cache, complete parallel registry, user-assigned lane, authenticated template/receipts and current weekly allowance are not verified here. The sandbox can reach GitHub and package registries directly; the competition data page redirects unauthenticated users to login, and direct USGS/DrivenData downloads are blocked by the sandbox network policy. Public official metadata was reviewed separately; source bytes and coverage were not verified unless the audit explicitly says so.
+GitHub API access is needed to restore the hash-pinned historical/source assets. Downloads stream raw bytes, verify SHA-256, and can use `GH_TOKEN` already provided by GitHub Actions to avoid anonymous rate limits. Competition-sized data are not committed. The prepared feature cache, complete parallel registry, user-assigned lane, authenticated template/receipts and current weekly allowance are not verified here. The sandbox can reach GitHub and package registries directly; the competition data page redirects unauthenticated users to login, and direct USGS/DrivenData downloads are blocked by the sandbox network policy. Public official metadata was reviewed separately; source bytes and coverage were not verified unless the audit explicitly says so.
 
 ## Next work
 

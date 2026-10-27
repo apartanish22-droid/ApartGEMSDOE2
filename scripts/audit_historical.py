@@ -10,15 +10,14 @@ import argparse
 import hashlib
 import json
 import math
-import os
 from pathlib import Path
-import subprocess
-import tempfile
 from datetime import datetime, timezone
 
 import numpy as np
 import rasterio
 from scipy import ndimage
+
+from fetch_audit_data import fetch_one
 
 ROOT = Path(__file__).resolve().parents[1]
 PINS = ROOT / "registry" / "historical-pins.json"
@@ -33,31 +32,10 @@ def sha256_file(path: Path) -> str:
 
 
 def fetch_pin(pin: dict, cache: Path) -> Path:
-    """Obtain immutable GitHub content via gh; never trust unverified cache bytes."""
+    """Obtain immutable content as bytes; never trust an unverified cache."""
     cache.mkdir(parents=True, exist_ok=True)
-    # Content-addressed names avoid collisions between variants from different repos.
     path = cache / (pin["sha256"] + Path(pin["path"]).suffix)
-    if path.exists() and sha256_file(path) == pin["sha256"]:
-        return path
-    if path.exists():
-        path.unlink()
-    endpoint = f"repos/{pin['repo']}/contents/{pin['path']}?ref={pin['ref']}"
-    fd, name = tempfile.mkstemp(prefix="download-", suffix=".partial", dir=cache)
-    tmp = Path(name)
-    try:
-        with os.fdopen(fd, "wb") as out:
-            subprocess.run(
-                ["gh", "api", endpoint, "-H", "Accept: application/vnd.github.raw"],
-                stdout=out,
-                check=True,
-                timeout=120,
-            )
-        got = sha256_file(tmp)
-        if got != pin["sha256"]:
-            raise ValueError(f"Hash mismatch for {endpoint}: {got}")
-        tmp.replace(path)
-    finally:
-        tmp.unlink(missing_ok=True)
+    fetch_one(pin, path)
     return path
 
 

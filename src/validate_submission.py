@@ -1,6 +1,6 @@
 """src/validate_submission.py
 
-CLI: validate a candidate submission TIF against the reference grid.
+LEGACY diagnostic only: never authorizes a submission or authenticates a reference grid.
 
 Gates (all must PASS):
   1. single band, GTiff driver
@@ -81,7 +81,12 @@ def validate_submission(tif_path: Path, grid_ref_path: Path = DEFAULT_GRID_REF) 
         }
 
     report["gates"]["all_pass"] = all(g["pass"] for g in report["gates"].values())
-    report["ok"] = bool(report["gates"]["all_pass"])
+    # These legacy checks use the candidate's own nodata to infer a footprint;
+    # they do not establish organizer-template provenance or any scientific gate.
+    # Keep them for historical diagnostics only, never as upload authorization.
+    report["format_checks_only_passed"] = bool(report["gates"]["all_pass"])
+    report["ok"] = False
+    report["submission_authorized"] = False
 
     # Human-readable verdict
     lines = [f"Validation of {tif_path.name}"]
@@ -93,10 +98,7 @@ def validate_submission(tif_path: Path, grid_ref_path: Path = DEFAULT_GRID_REF) 
         if "actual" in g:
             detail = f" (actual={g['actual']}, expected={g['expected']})"
         lines.append(f"  [{mark}] {name}{detail}")
-    if not report["ok"]:
-        lines.append("VERDICT: NOT OK TO SUBMIT — fix failing gates first.")
-    else:
-        lines.append("VERDICT: OK — all validation gates passed.")
+    lines.append("VERDICT: NOT AUTHORIZED — legacy checks do not authenticate a template or assess scientific gates. Use scripts/validate_raster.py for a read-back diagnostic.")
     print("\n".join(lines))
     return report
 

@@ -28,17 +28,16 @@
     "reason": "demo grid (1200x1200, origin 500000/4500000) will not match the real submission grid shape/transform; re-run after data placement"
   },
   "submission_name": "gems-h1-radiometric-curvature-convergence-20261027T212405Z-59a3c88e.tif",
-  "note": "Unique H1 radiometric anomaly x DEM curvature-convergence propensity; not a copy of any prior GEMSDOE site submission.",
-  "note_length_chars": 118,
-  "verdict": "negative — do not promote to a real weekly submission slot until (1) data/ is placed on an authenticated machine, (2) scripts/prepare_data.py validates the grid, (3) holdout DTI + 95% CI beats the current holdout best, and (4) validate_submission.py passes all gates. The demo TIF is explicitly NOT OK to submit.",
-  "unique_vs_gemsdoe_sites": true,
-  "basis_for_uniqueness": "radiometric anomaly x DEM curvature convergence (H1); prior GEMSDOE focus-family submissions are dotted-ridge / scarp / openness / catalogue-distance / Poisson-dot maps, none of which combine radiometric and curvature layers.",
+  "note": "Synthetic demonstration only; not approved for submission or evaluated for uniqueness.",
+  "note_length_chars": 86,
+  "verdict": "negative",
+  "unique_vs_gemsdoe_sites": null,
+  "basis_for_uniqueness": "Not checked against registry rasters; an unverified method description is not evidence of uniqueness.",
   "blocker": "No DrivenData auth -> cannot download training_features.tif, labels.tif, sample_submission.tif (verified login redirect). www.dropbox.com mirrors not in sandbox outbound allowlist.",
   "next_steps": [
-    "Place real data in data/ per scripts/download_competition_data.sh",
-    "Run python scripts/prepare_data.py",
-    "Re-run python src/generate_submission.py (real-data mode)",
-    "Run python src/validate_submission.py assets/<new>.tif; require all PASS",
-    "Run holdout DTI evaluation; require holdout DTI > current best with 95% CI before spending a weekly submission slot"
-  ]
+    "Do not upload this synthetic demo or rerun its lane.",
+    "Consult docs/EXECUTIVE_REVIEW.md and the current negative run card before any new authorized work."
+  ],
+  "record_type": "ARCHIVED SYNTHETIC DEMO — NOT THE CURRENT RUN CARD",
+  "review_notice": "Synthetic 1200x1200 demo grid; not a submission. See docs/data/run_card.json for the current negative AP-1 record."
 }

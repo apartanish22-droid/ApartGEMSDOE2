@@ -1,3 +1,5 @@
+> **Later review — NOT AN AUTHORIZED EXCEPTION:** this is a historical parallel-session record. Its assertion that AP-1 was “assigned” is not established by the available user prompt, and its unilateral exclusion of the lattice conflicts with the user's literal duplicate rule. The independently audited AP-1 raster is 99.718489% near the lattice and must stop. Three runs/confirmation steps were reported, so do not rerun this lane. See [the current decision](../docs/EXECUTIVE_REVIEW.md#parallel-ap-1-result-evidence-not-a-promotion).
+
 # Pre-registration — ApartGEMSDOE2 AP-1 (frozen before any candidate surface was computed)
 
 > **Reconciliation after the parallel run:** AP-1 was self-selected in that session; no explicit

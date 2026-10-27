@@ -23,7 +23,7 @@ src/submission_writer.py and validated with src/validate_submission.py.
 
 MODES:
   * real data (data/numeric_features.tif + data/labels.tif present): builds the
-    H1 map on the true grid → OK to submit after validate_submission passes.
+    H1 map on the true grid → format-only diagnostic; not upload authorization.
   * demo mode (no data): builds the same pipeline on a SYNTHETIC EPSG:32611
     100 m grid → a FORMAT DEMONSTRATION ONLY, NOT OK TO SUBMIT (shape/transform
     will not match the real submission grid).
@@ -200,6 +200,7 @@ def build_synthetic_demo() -> tuple[np.ndarray, np.ndarray, dict]:
 
 
 def main() -> int:
+    raise SystemExit('STOP: archived parallel lane failed the literal lattice novelty gate and the experiment budget was reported spent; no new run or promotion is authorized.')
     print(f"=== GEMS unique submission generator (hypothesis {HYPOTHESIS}) ===")
     real_data = FEATURES.exists() and LABELS.exists() and GRID_REF.exists()
 
@@ -225,10 +226,7 @@ def main() -> int:
     report = write_submission(propensity, grid_spec, out_path, footprint=footprint)
 
     # Status banner file — makes it OBVIOUS whether OK to submit.
-    status_ok = (
-        mode == "real"
-        and report["all_gates_pass"]
-    )
+    status_ok = False  # A format-only result can never authorize a competition slot.
     status_lines = [
         "GEMS SUBMISSION STATUS",
         "=====================",
@@ -243,15 +241,7 @@ def main() -> int:
         "",
         "VERDICT:",
     ]
-    if status_ok:
-        status_lines.append("OK TO SUBMIT — all validation gates passed on the real grid.")
-    else:
-        status_lines.append(
-            "NOT OK TO SUBMIT — format demonstration on a synthetic grid. "
-            "It will NOT match the real submission CRS/shape/geotransform. "
-            "Place real data in data/ (see scripts/download_competition_data.sh), "
-            "run scripts/prepare_data.py, then re-run this script."
-        )
+    status_lines.append("NOT OK TO SUBMIT — a format check cannot establish scientific, registry or slot authorization.")
     status_lines.append("")
     status_lines.append("Leaderhead reference: best GEMSDOE focus-family score 0.2778 (GEMSDOE32); "
                         "live leaderboard high cited as 0.4413 (verify against live leaderboard).")
@@ -261,7 +251,7 @@ def main() -> int:
     print(f"\nWrote {out_path}")
     print(f"Validation: {'PASS' if report['all_gates_pass'] else 'FAIL/DEMO'}")
     print(f"OK to submit: {status_ok}")
-    return 0 if status_ok else 0  # exit 0 either way; verdict is in the status file
+    return 1  # Format-only/demo output is never an approved submission.
 
 
 if __name__ == "__main__":
