@@ -6,6 +6,7 @@ on:
   schedule:
     - cron: '17 */6 * * *'
 permissions:
+  actions: read
   contents: read
   pages: write
   id-token: write
@@ -24,6 +25,11 @@ jobs:
         with:
           python-version: '3.11'
       - uses: actions/configure-pages@v5
+      - name: Let legacy Pages finish before publishing the refreshed feed
+        if: github.event_name == 'push'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/wait_for_legacy_pages.py
       - name: Refresh the deploy copy; record failures as stale
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
