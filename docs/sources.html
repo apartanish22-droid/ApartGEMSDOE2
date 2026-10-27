@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sources · ApartGEMSDOE2</title><style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:980px;margin:0 auto;padding:20px;color:#17202a;line-height:1.55}
+a{color:#155e9c} table{border-collapse:collapse;width:100%;margin:14px 0;font-size:.92em}
+th,td{border:1px solid #d5dce3;padding:6px 8px;vertical-align:top;text-align:left} th{background:#eef2f6}
+code{background:#f3f4f6;padding:1px 4px;border-radius:4px;word-break:break-all}
+.banner{border:3px solid #b45309;background:#fffbeb;border-radius:10px;padding:16px 20px;margin:16px 0}
+.banner h2{margin:4px 0} .ok{border-color:#15803d;background:#f0fdf4} .no{border-color:#b91c1c;background:#fef2f2}
+.btn{display:inline-block;background:#15803d;color:#fff;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:700;margin:6px 6px 6px 0}
+.btn2{display:inline-block;background:#155e9c;color:#fff;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:700;margin:6px 6px 6px 0}
+small{color:#5b6770} .nav a{margin-right:14px} pre{background:#0f172a;color:#e2e8f0;padding:12px;border-radius:8px;overflow:auto}
+.pass{color:#15803d;font-weight:700}.fail{color:#b91c1c;font-weight:700}
+</style></head><body><p class="nav"><a href="index.html">Home / download</a><a href="executive-summary.html">Executive summary (9 sites)</a><a href="how-to-submit.html">How to submit</a><a href="research.html">Research &amp; experiments</a><a href="sources.html">Sources</a></p>
+<h1>Sources — what was actually verified, and how</h1>
+<table><tr><th>Claim used</th><th>Source</th><th>How verified this session</th></tr>
+<tr><td>Metric DTI(α=0.2, β=0.8), 300 m triangular kernel; submission must be EPSG:32611, 100 m, single-band float32 in [0,1]; test faults are expert-mapped and absent from the USGS catalogue; final round rescoring on expanded labels</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem description (p.967)</a></td><td>Fetched and read both pages in full this session; metric re-derived in <code>src/gems32/metric.py</code> and unit-tested against the page's worked example (3.00, 1.89, 2.00 → 0.60).</td></tr>
+<tr><td>Public leaderboard rank 1 = 0.4544 (xiaofanhu)</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official leaderboard</a></td><td>OFFICIAL-SNAPSHOT fetched this session (top 23 ranks read). Earlier prompt values 0.3195 / 0.4413 are stale snapshots.</td></tr>
+<tr><td>Grid: 3730×3292, EPSG:32611, origin 243350/4508550, footprint 5,167,373 px; 19 band semantics; nodata −3.4e38 (3,061 sentinel px inside footprint)</td><td>Competition rasters themselves</td><td>Measured with rasterio on SHA-256-verified restored files (<code>registry/data_manifest.json</code> → <code>scripts/restore_data.py</code>); band names taken from GeoTIFF descriptions.</td></tr>
+<tr><td>Reference U-Net exists and skips all-negative tiles</td><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution">drivendataorg/gems-prize-reference-solution</a> @ aebe92f7</td><td>Cloned this session (notebook present); tile-skip behaviour as documented in GEMSDOE32 IR-32-REFNB-01.</td></tr>
+<tr><td>Champion = thinning + B-ladder on H19-5; subset relations; credit-per-dot inversions</td><td>GEMSDOE32/GEMSDOE36 forensic receipts at pinned commits (<code>registry/PROVENANCE.md</code>)</td><td>Re-measured independently from the cloned TIFF bytes (<code>scripts/audit_focus9.py</code>) — subset relations and dot counts reproduced exactly.</td></tr>
+<tr><td>GeoDAWN survey; INGENIOUS/GDR record</td><td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a> · <a href="https://gdr.openei.org/submissions/1391">GDR #1391</a> · <a href="https://gbcge.org/current-projects/ingenious/">INGENIOUS</a></td><td>Links confirmed from the DrivenData problem page and the data manifests; the underlying GeoDAWN/GDR files used here are the hash-pinned mirrors in <code>data_manifest.json</code>. Pages outside the GitHub/PyPI egress allowlist could not be fetched from the sandbox shell.</td></tr>
+<tr><td>Rules PDF</td><td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">DOE/NLR 96647 (PDF)</a></td><td>User-supplied link, listed for manual review; no numeric claim in this repo depends on it beyond the p.967 text above.</td></tr>
+<tr><td>Tversky index background</td><td><a href="https://en.wikipedia.org/wiki/Tversky_index">Wikipedia</a> (linked by the organisers)</td><td>Background only; the operative definition is p.967.</td></tr>
+</table>
+<p><strong>Not verified:</strong> every live score in the prompt (0.2449–0.2778 etc.) remains OWNER-REPORTED — no repository reviewed
+stores a DrivenData receipt binding a score to a file's bytes. This is flagged, not resolved.</p>
+<hr><small>Generated by <code>scripts/build_site.py</code> from <code>evidence/*.json</code> — no hand-typed scores. HOLDOUT-DTI = local evaluator, never a leaderboard score. OWNER-REPORTED = transcribed claims without organiser receipts. PROJECTION = not a score.</small></body></html>

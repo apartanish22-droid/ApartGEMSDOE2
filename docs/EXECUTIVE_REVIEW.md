@@ -1,102 +1,100 @@
-# Executive review: GEMSDOE24/25/27/28/30/31/32/33/36
+# Executive review: GEMSDOE24/25/27/28/30/31/32/33/36 — byte-measured rerun (2026-10-27)
 
-**Review scope:** repository contents and the submission/result information supplied in the task. **This is not a raster-level comparison or an independent confirmation of the listed scores.**
+> This supersedes the earlier documentation-only review, which correctly refused to infer
+> anything from filenames when no rasters were present. Everything below was re-measured
+> in the AP2 session from the actual TIFF bytes of the nine cloned focus repos
+> (`scripts/audit_focus9.py` → `evidence/ap2_focus9_forensics.json`; clone HEADs pinned in
+> `registry/PROVENANCE.md`). Live scores remain **OWNER-REPORTED**: no repo stores a
+> DrivenData receipt binding a score to these bytes.
 
-## Decision summary
+## Decision
 
-**No submission TIFF is generated or authorized for download from this checkout.** The repository contains only `README.md` (now updated); it has no competition data, cached features, reference rasters, canonical holdout/evaluation tools, writer, or candidate TIFF. A fabricated TIFF would not have verifiable competition CRS/shape/transform or calibrated predictions and could reproduce the reported `[0,1]` validation failure. It would be misleading to call one submission-ready.
+| Question | Answer |
+|---|---|
+| Which single file should be downloaded from this repo? | `docs/downloads/apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros.tif`, SHA-256 `edf60fd492cc18b835abee8cb7479825f47cd1077aa8609de37f1d9de5ccf50e` |
+| Is it safe for the portal format gate? | **Yes.** Saved-byte validator PASS: single-band float32, EPSG:32611, 3730×3292, template transform, all 12,279,160 cells finite in [0,1], 0 dots on catalogue. |
+| Is it unique vs all listed GEMSDOE submissions? | **Yes vs every scored winner** (worst 56.7% of dots within 3 px, worst surface \|ρ\| 0.349, no subset/identical relation). **No** under the stricter broad-registry rule: 74.5% vs one *unscored* Arena8a research raster. |
+| Estimated score | HOLDOUT-DTI (`GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld) **0.1060 [0.0907, 0.1219]** vs champion-recipe control 0.0992 [0.0860, 0.1127]. PROJECTION (not a score) 0.2846–0.2970. Paired Δ CI [−0.0015, +0.0152], P(Δ>0)=93.9%. |
+| OK to submit? | **Selector decision required** — preregistered run-card verdict is `negative` (G2 paired-CI and G3b broad-uniqueness fail). This session used **0 weekly slots**. |
+| Should any of the nine historical files be (re)submitted? | **No.** They are one measured family (below) and already have owner-reported scores. |
 
-**No score estimate is defensible.** There is no local spatial holdout dataset or evaluator. The numerical results below are transcribed from the user-provided prompt only. They are **USER-REPORTED, UNVERIFIED**—not HOLDOUT-DTI and not ORGANIZER-CONFIRMED. In particular, the prompt gives conflicting leaderboard context (`0.4413` and `0.3195`) as well as `0.2778` for GEMSDOE32. The current official leaderboard and submission-page receipts were not available in this checkout, so the conflict remains unresolved.
+## The nine winners, measured
 
-The requested lane paragraph is not present as an identifiable single method specification: the protocol refers to “the single method paragraph below,” but the supplied text contains multiple previous methods/results and no unambiguous sole method paragraph. In accordance with the parallel-run rule, no method was selected, no experiment was run, and no weekly submission slot should be used.
+| Site | Best-listed file (measured bytes) | OWNER-REPORTED | Dots | sha256[:8] | AP2 dots ≤3 px | AP2 surface ρ |
+|---|---|---:|---:|---|---:|---:|
+| GEMSDOE32 | `gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif` | 0.2778 | 37,654 | c55bafc4 | 52.7% | 0.301 |
+| GEMSDOE36 | `gemsdoe36-anderson-geothermal-pinn-38854-...-zeros.tif` | 0.2750 | 38,854 | e1589102 | 52.9% | 0.296 |
+| GEMSDOE28 | `gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif` | 0.2710 | 37,660 | 7c74270a | 53.7% | 0.315 |
+| GEMSDOE31 | `gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif` | 0.2708 | 40,199 | acd85393 | 54.1% | 0.318 |
+| GEMSDOE33 | `GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif` | 0.2632 | 41,865 | 87f857d5 | 54.7% | 0.326 |
+| GEMSDOE25 | `gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif` | 0.2600 | 44,090 | 3e78737f | 55.0% | 0.340 |
+| GEMSDOE30 | `gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif` | 0.2600 | 44,090 | 8cf893ea | 55.0% | 0.340 |
+| GEMSDOE24 | `gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif` | 0.2477 | 60,069 | 3e0730e8 | 56.4% | 0.349 |
+| GEMSDOE27 | `gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif` | 0.2449 | 61,328 | a9bf76b5 | 56.7% | 0.347 |
 
-## Highest user-reported result by target site
+Exact dot-set relations measured (not inferred from names): **25 ≡ 30** (identical dot
+masks in different byte encodings); **24 ⊂ 27**; **31 ⊂ 25/30**; **32 (champion) ⊂ 25/30,
+31, 36**. The nine are therefore repeated measurements of one H19-5 backbone under
+progressive deletion, not nine independent methods.
 
-“Best reported” below means only the highest score shown for that site in the prompt, not a validated recommendation. Since registry rasters and the candidate TIFFs are absent, pixelwise uniqueness is **UNKNOWN** for every row. Distinct names or methods do not establish distinct raster contents. “No” in the submit column means do not submit on the evidence currently available; it does not claim the original file is invalid.
+## Why the GEMSDOE32 champion scored 0.2778
 
-| Site | Highest result stated in the prompt | Score status | File / uniqueness / submission decision |
-|---|---|---|---|
-| [GEMSDOE24](https://buffedlizard55-lab.github.io/GEMSDOE24/) | `h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan` — 0.2477 | USER-REPORTED, UNVERIFIED | Raster download URL/content not checked; uniqueness UNKNOWN; **do not submit** based on this review. |
-| [GEMSDOE25](https://buffedlizard55-lab.github.io/GEMSDOE25/) | `dotted-h19-5-d2-8-20261002-e56ea318af89-nan` — 0.2600 | USER-REPORTED, UNVERIFIED | Raster download URL/content not checked; uniqueness UNKNOWN; **do not submit**. |
-| [GEMSDOE27](https://buffedlizard55-lab.github.io/GEMSDOE27/) | `topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan` — 0.2449 | USER-REPORTED, UNVERIFIED | Raster download URL/content not checked; uniqueness UNKNOWN; **do not submit**. The prompt also reports later entries at 0.2190 and 0.2250; neither exceeds 0.2449. |
-| [GEMSDOE28](https://buffedlizard55-lab.github.io/GEMSDOE28/) | `h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan` — 0.2710 | USER-REPORTED, UNVERIFIED | Raster download URL/content not checked; uniqueness UNKNOWN; **do not submit**. The listed 0.2710 is slightly above the other listed 28 entries. |
-| [GEMSDOE30](https://buffedlizard55-lab.github.io/GEMSDOE30/) | `d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca` — 0.2600 | USER-REPORTED, UNVERIFIED | Raster download URL/content not checked; uniqueness UNKNOWN; **do not submit**. |
-| [GEMSDOE31](https://buffedlizard55-lab.github.io/GEMSDOE31/docs/) | `h27-4-solo-d28-20261004-8acb75e1-nan` — 0.2708 | USER-REPORTED, UNVERIFIED | Raster download URL/content not checked; uniqueness UNKNOWN; **do not submit**. |
-| [GEMSDOE32](https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html) | `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` — 0.2778 | USER-REPORTED, UNVERIFIED | This is the highest of the named sites in the supplied list. Raster content/uniqueness not checked; **do not submit**. |
-| [GEMSDOE33](https://buffedlizard55-lab.github.io/GEMSDOE33/) | `h33d-analog-tip-stepover-r30-20261004-cb490425926e` — 0.2632 | USER-REPORTED, UNVERIFIED | Raster download URL/content not checked; uniqueness UNKNOWN; **do not submit**. |
-| [GEMSDOE36](https://buffedlizard55-lab.github.io/GEMSDOE36/docs/) | `anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros` — 0.2750 | USER-REPORTED, UNVERIFIED | Raster download URL/content not checked; uniqueness UNKNOWN; **do not submit**. |
+The champion is four deletions, not a new detector: H19-5 dense 121,131 px (0.1922) →
+thin to 60,069 (0.2477) → 44,090 (0.2600) → delete dots ≤1 px (100 m) from the catalogue
+→ 40,199 (0.2708) → delete ≤2 px → 37,654 (0.2778); all scores OWNER-REPORTED. Under
+DTI = TPw/(TPw + 0.2·FPw + 0.8·FNw) with a 300 m triangular kernel, the thinning kept
+75.9% of kernel credit while removing 63.6% of false-positive mass, and the B=2 step
+removed 2,545 dots whose measured credit (≈0.002–0.016/dot) sat far below the
+marginal break-even α·DTI ≈ 0.0556. Predictions on or beside mapped faults can only add
+FP mass (the private test faults are off-catalogue), so each documented deletion
+monotonically raised DTI. Full derivation in the preregistration §0.
 
-The table is an executive index of the prompt's claims—not an endorsement, expected score, or ranking that implies transfer to a hidden test set. Scores from different experiments may be incomparable if their evaluator versions, data splits, or raster conventions differed.
+**Can it be beaten?** Unproven. AP2 is better on hide-and-recover point estimate
+(+6.9% relative) but worse off-catalogue on SGMC (0.0583 vs 0.0641 calibrated), and the
+paired CI straddles zero. The official public leaderboard read directly this session
+stands at **0.4544** (xiaofanhu) — the earlier prompt values 0.3195 and 0.4413 were stale
+snapshots. That gap is a modelling-capacity gap (GPU segmentation), not something dot
+post-processing on the same ridges has ever closed under this evaluator. Only an
+organiser receipt can settle >0.2778.
 
-## GEMSDOE32: what can and cannot be inferred
+## Hypotheses and experiments (3, preregistered)
 
-The prompt identifies the `h33-h33-2-b2-...-zeros` run at 0.2778 as the top of the nine named sites. Its filename suggests a particular experimental family and a “zeros” output convention, but a filename alone does not establish the algorithm, why it worked, or whether it was leakage-free. Without its method card, source code, input raster, holdout definition, score receipt, and comparison raster, a PhD-level causal explanation would be speculation.
+Five ranked hypotheses were written before code (`docs/research/ap2-preregistration-20261027.md`):
 
-It is **possible in principle** to beat a prior score, but this repository has no evidence that a new method does so. “Higher than 0.2778” can be claimed only after a comparable, leakage-resistant holdout experiment or an organizer receipt. The separate prompt values 0.3195 and 0.4413 are not used as estimates or verified current standings here.
-
-## Hypothesis slate and experiment gate
-
-The requested protocol assigns one method lane, limits the run to three experiments/two hours, requires a cached stack and canonical tools, and requires holdout validation before any slot is touched. The lane is ambiguous in the supplied prompt, and none of the required data/tools exist in this repository. Therefore the following are **research questions, not approved experiments**; they are not scored or claimed to be novel. Their signal layers must be confirmed in the feature-stack metadata and checked against prior methods before implementation.
-
-| Priority (conditional) | Candidate physical question | Required layer and target signature | Why it could find uncatalogued structures | Distinction / risk / cost |
+| # | Hypothesis (layers) | Signature / transform | Gain / cost | Outcome |
 |---|---|---|---|---|
-| 1 (low-cost screen) | Are persistent magnetic boundaries more informative when normalized for local field amplitude? | Airborne magnetic total-field-derived gradients/edge persistence at multiple scales. | A sharp, spatially continuous susceptibility boundary can mark a buried structure that is not expressed as a mapped surface fault; it must be spatially separated from known catalogued traces during evaluation. | Different from simple edge magnitude only if persistence/scale stability is tested; existing GEMSDOE30 is explicitly named as an edge method, so novelty is **not established**. Low–medium cost. |
-| 2 (conditional) | Do radiometric gradients reveal alteration/contact corridors that are structurally aligned but not already mapped? | Available K, eTh, eU channels and ratios; robust local gradients/ratios, not raw intensity alone. | Hydrothermal alteration or juxtaposed lithologies may create linear radiometric contrasts along concealed structures; the same signature can be caused by non-fault lithologic contacts or surficial cover. | Radiometric fusion appears in the supplied prior list (GEMSDOE46), so this is not shown to be novel. Medium cost; requires verified bands and careful non-fault controls. |
-| 3 (conditional) | Do coincident magnetic and radiometric breaks improve specificity over either alone? | Co-registered magnetic and radiometric feature channels; spatial concordance of independent edges. | Cross-sensor agreement can suppress single-sensor noise and highlight a structure that is not in the fault catalogue. | Prior fusion has been reported, making “fusion” alone not novel; a carefully specified concordance statistic would need proof of distinction. Medium cost. |
-| 4 (conditional) | Are structural edges preferentially preserved at a particular topographic scale after removing broad relief? | DEM-derived curvature/terrain position plus the relevant geophysical layer; scale-selective residual lineaments. | A buried or subtle fault may produce a weak, scale-dependent geomorphic expression absent from the inventory. | Topographic/scarp/ridge methods are extensively represented in the prompt's prior list; high duplication risk. Medium–high cost. |
+| 1 | AP2-H1 CCCB: OOF HistGB on the 35-ch stack (core + LiDAR/radiometric externals) × along-axis chain vote; credit-bar budget. Experts trace continuous lineaments; speckles are the champion's FP load. Chain had existed only as channels, never as gate×posterior. | Chain = max over 4 axes of top-decile support ±5 px; field ×(0.6+0.4·chain), gate ≥0.2 | High / medium | **Tested; chain rejected, CTRL emitted** |
+| 2 | AP2-H2 blind-basin reallocation (LiDAR-valid, potential fields; SGMC only for prevalence). Gap basins hold faults pre-LiDAR mapping missed; prior work used a fixed gap quota. | Budget split by measured off-catalogue prevalence (≈1.61× gap) | Medium / medium | Deferred (one lane) |
+| 3 | AP2-H3 dip-migrated basement step (depth-to-basement, gravity, RTP). Buried-fault edges sit updip of the trace by the kernel width; prior dip use was an additive arm only. | Basinward depth-scaled crest shift ≤2 px | Medium / low–medium | Deferred (one lane) |
+| 4 | AP2-H4 SGMC/Qfaults difference gated by ≥2 coincident edges. Targets newer compilations; solo ≈0.05 upstream and SGMC-as-input breaks the SGMC evaluator. | Corroborated off-catalogue traces | Low (measured) / low | Rejected |
+| 5 | AP2-H5 seismicity-chain lineaments (bands 10/16; USGS ComCat FDSN named but egress-blocked here). Blind faults may host microseismicity; band solo AUC 0.55–0.57. | Hough/Radon collinearity of density ridges | Low / high (blocked) | Rejected |
 
-No winner is selected from this slate. In particular, the protocol prohibits choosing a submission here. First recover the missing single-lane method paragraph, actual feature-band inventory, and canonical evaluation artifacts. Then do the prescribed leakage canary and segment-buffered hide-and-recover evaluation for at most three experiments. If no candidate beats the existing comparable HOLDOUT-DTI best with uncertainty accounted for, record a negative result and do not create a slot candidate.
+Executed lane: recover the OOF multi-physics stack (PU LiDAR-gap weighting) and test
+chain corroboration + a credit-bar budget scan. Results (`evidence/ap2_experiments.json`):
+canary PASS (worst `curv_s2` AUC 0.584); OOF quadrant AUC 0.620–0.750; EXP1 CTRL
+0.1046 vs EXP2 CHAIN 0.1035 (chain also worse on SGMC-cal, 0.0535 vs 0.0570) → **chain
+mechanism rejected**; EXP3 selected CTRL @44,090 (0.1060). The evaluator was verified
+bit-exactly against upstream's published control (D28 visible-only B=2 → 0.09920232315251679).
+Two first-run implementation bugs (censorship-biased control, `min_sep=2.8` saturation)
+were found in Pass 2, amended openly, and the flawed receipts retained
+(`evidence/ap2_*flawed_v1*.json`, `docs/research/ap2-pass2-amendment-20261027.md`).
 
-No external dataset is proposed as a viable dependency in this review: the potential signals above are conditional on layers already being present in the competition's cached feature stack. If a needed layer is absent, the exact source and access must be checked before promoting that hypothesis; external network access was not available for that check in this repository review.
+## Remaining limitations / next work
 
-## Required next inputs and limitations
+1. No ORGANIZER-CONFIRMED score exists for any file in this family — fetch and pin
+   receipts before treating 0.2778 (or any projection) as measured.
+2. The binding uniqueness constraint is now the *unscored* modern registry (Arena8a/H47/
+   H48 share the same GBM+crest ridges; even the chain mask overlaps Arena8a 77.4%).
+   A genuinely orthogonal field needs label-free physics channels that move secondary
+   ridges, or potential-field-only modelling — not another GBM variant.
+3. A GPU is required for the obvious next modelling step (Tversky-loss segmentation);
+   this sandbox has 2 vCPU / 3.8 GB RAM and GitHub/PyPI-only egress (AP2-H5 seismicity
+   via USGS ComCat FDSN remains data-blocked here).
+4. Do not re-tune variants against the same holdout until the CI clears zero — that is
+   gate-shopping; the protocol's 3-experiment budget exists to prevent it.
 
-1. Restore or supply through the approved project mechanism: `training_features.tif`, `labels.tif`, `sample_submission.tif`, `existing_faults.tif` / registry rasters, and feature-band metadata. Do not commit private credentials or large data artifacts.
-2. Restore the shared cached stack and canonical holdout evaluator/writer referenced in the protocol. The repository currently has no scripts, dependencies, tests, or CI configuration.
-3. Provide the exact single method paragraph that defines this parallel session's lane, and the evaluator version plus the prior best comparable HOLDOUT-DTI with withheld-positive count and confidence interval.
-4. For each listed site, obtain the actual TIFF and method record plus an organizer submission receipt if its score is to be treated as confirmed. A landing-page name and number do not permit a raster uniqueness check.
-5. Before download is enabled, run the complete release gate from the README and save machine-readable validator output, raster SHA-256, registry correlation and dot overlap. Current uniqueness status is unknown, not “unique.”
+## Run card
 
-### Unverified / conflicting claims to resolve
-
-- The prompt reports both 0.3195 and 0.4413 as the current highest competition score, and also supplies the GEMSDOE32 score 0.2778. These may refer to different times or leaderboards, but no evidence in this checkout resolves that.
-- Multiple listed submissions contain `nan` in their IDs; this suffix alone does not prove NaN values occur in a raster. They must be inspected directly.
-- “Zeros”/“allfinite” suffixes are not proof of correct footprint, calibration, uniqueness, or submission acceptance.
-- Several reported results are repeated in the prompt. Repetition is not independent corroboration.
-
-## Sources supplied by the user
-
-These are links supplied in the task for review. They were not fetched or independently checked during this repository-only review; they should therefore be treated as leads, not verified evidence.
-
-- [DrivenData competition overview](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)
-- [DrivenData competition about page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/)
-- [Competition rules / landing page](https://www.drivendata.org/competitions/306/competition-doe-gems/)
-- [Competition data page (login required per user report)](https://www.drivendata.org/competitions/306/competition-doe-gems/data/)
-- [Competition leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)
-- [DrivenData reference solution repository](https://github.com/drivendataorg/gems-prize-reference-solution)
-- [USGS GeoDawn survey information](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and)
-- [INGENIOUS project](https://gbcge.org/current-projects/ingenious/)
-- [Submission guidance PDF (NLR)](https://docs.nlr.gov/docs/fy26osti/96647.pdf)
-- [USGS OpenEI project submission](https://gdr.openei.org/submissions/1391)
-- [EPSG:32611 reference](https://epsg.io/32611)
-- [Tversky index background](https://en.wikipedia.org/wiki/Tversky_index)
-
-## Run card (this review; no experiment performed)
-
-```json
-{
-  "hypothesis": "No experiment selected: the session's single-method lane is ambiguous and the required data/tools are absent.",
-  "mechanism": "Not tested; no surface placement or holdout was run.",
-  "named_non_fault_mimic": "Not evaluated; lithologic contacts, surficial cover, and non-tectonic topographic edges are plausible mimics for the conditional hypotheses above.",
-  "holdout_dti": null,
-  "holdout_ci_95": null,
-  "evaluator_version": null,
-  "withheld_positive_count": null,
-  "correlation_overlap_vs_registry": "NOT TESTED — registry rasters/candidate raster unavailable.",
-  "raster_sha256": null,
-  "validator_output": "NOT RUN — no candidate TIFF or sample-submission raster; NaN/range/CRS/shape/transform are unverified.",
-  "submission_name": null,
-  "submission_note": null,
-  "verdict": "negative"
-}
-```
+`evidence/ap2_run_card.json` (verdict `negative`; gates G1 ✓, G2 ✗, G3 ✓, G3b ✗, G4 ✓,
+G5 ✓, G6 ✓; raster sha256, validator output, submission name
+`ApartGEMSDOE2-AP2-OOFCTRL-EDF60FD4`, 97-character note, weekly slots used: 0).

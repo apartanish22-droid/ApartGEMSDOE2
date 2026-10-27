@@ -1,6 +1,12 @@
 # ApartGEMSDOE2 — GEMS fault-prospectivity research
 
-> **Start here every session.** Read this README and [`docs/EXECUTIVE_REVIEW.md`](docs/EXECUTIVE_REVIEW.md) before proposing experiments or preparing a submission. Keep the work auditable and evidence-led; never represent an estimate as a measured score.
+> **Start here every session.** Read this README, the [standing prompt](docs/research/standing-prompt-ap2.md), and [`docs/EXECUTIVE_REVIEW.md`](docs/EXECUTIVE_REVIEW.md) before proposing experiments or preparing a submission. Keep the work auditable and evidence-led; never represent an estimate as a measured score.
+
+## Decision (2026-10-27 AP2 session)
+
+- 🟡 **DOWNLOAD: YES — a new, format-valid file is ready:** [`docs/downloads/apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros.tif`](docs/downloads/apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros.tif) (SHA-256 `edf60fd492cc18b835abee8cb7479825f47cd1077aa8609de37f1d9de5ccf50e`, 44,090 dots, 0 on-catalogue). Tracking name `ApartGEMSDOE2-AP2-OOFCTRL-EDF60FD4`; portal note in [`evidence/ap2_run_card.json`](evidence/ap2_run_card.json).
+- 🔴 **AUTO-PROMOTE: NO — run-card verdict is `negative`.** It beats the champion-recipe control on HOLDOUT-DTI point estimate (0.1060 [0.0907, 0.1219] vs 0.0992 [0.0860, 0.1127], evaluator `GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld), but the paired 95% CI on the difference is [−0.0015, +0.0152] (P(Δ>0)=93.9%), and 74.5% of its dots sit within 3 px of one *unscored* Arena8a research raster. **It is unique vs every scored submission in the brief** (worst 56.7% ≤70%, worst |ρ| 0.349 ≤0.90). Spending a slot is an explicit selector decision; this session used **0 slots**.
+- The promoted format is the strict `-zeros` file (all 12,279,160 cells finite in [0,1]); do not submit the `-nan` twin. Steps: site → `how-to-submit.html`. Live site (GitHub Pages): https://apartanish22-droid.github.io/ApartGEMSDOE2/
 
 ## Mission and operating charter
 
@@ -29,7 +35,21 @@ A downloadable `.tif` may be marked **OK TO SUBMIT** only when it is a single-ba
 
 ## Current repository state
 
-This checkout currently contains only project documentation (`README.md` and `docs/EXECUTIVE_REVIEW.md`). It does **not** contain the feature stack, labels, sample-submission raster, registry rasters, cached feature stack, holdout evaluator, submission writer, dataset downloader, or an existing candidate TIFF. Consequently, no holdout experiment, raster-level uniqueness test, score estimate, or valid competition TIFF can be produced from this checkout alone. The work and blockers are itemized in [`docs/EXECUTIVE_REVIEW.md`](docs/EXECUTIVE_REVIEW.md). Do not infer that a TIFF exists just because the desired workflow is described here.
+The AP2 session vendored the pinned GEMSDOE32 shared tools (`src/gems32/`, see `registry/PROVENANCE.md`), restored the hash-verified competition data, rebuilt the 35-channel feature stack, and ran the preregistered 3 experiments ([`docs/research/ap2-preregistration-20261027.md`](docs/research/ap2-preregistration-20261027.md); corrections in [`docs/research/ap2-pass2-amendment-20261027.md`](docs/research/ap2-pass2-amendment-20261027.md)). Machine-readable evidence lives in `evidence/` (canary, OOF AUCs, experiments, Focus-9 byte forensics, final run card). The emitted candidate (decision banner above) is the EXP3-selected **EXP1 OOFCTRL** field at 44,090 dots — the chain-corroboration arm (AP2-H1's novel mechanism) **lost** on both holdout metrics and was not applied to the final field. The site under `docs/` is generated from that evidence by `scripts/build_site.py`.
+
+Reproduce (needs ~10 GB scratch; expected ≈ 15 min without the broad-registry check):
+
+```bash
+pip install -r requirements.txt
+export GEMS_DATA_DIR=$PWD/.cache/gems_data GEMS_WORK_DIR=$PWD/.cache/gems_work   # git-ignored
+python scripts/restore_data.py
+python scripts/build_features.py
+python scripts/run_ap2.py --refs-dir /path/to/focus-repo-clones
+python scripts/finalize_ap2.py --refs-dir /path/to/focus-repo-clones --broad-registry
+python scripts/validate_submission.py docs/downloads/*-zeros.tif
+python scripts/build_site.py
+python -m unittest discover -s tests -v
+```
 
 ## Data and source references
 
