@@ -1,6 +1,8 @@
 # ApartGEMSDOE2 — GEMS fault-prospectivity research
 
-> **Start here every session.** Read this README and [`docs/EXECUTIVE_REVIEW.md`](docs/EXECUTIVE_REVIEW.md) before proposing experiments or preparing a submission. Keep the work auditable and evidence-led; never represent an estimate as a measured score.
+> **Start here every session.** Read this README, [`docs/EXECUTIVE_SUMMARY.md`](docs/EXECUTIVE_SUMMARY.md) and [`knowledge/preregistration-20261027.md`](knowledge/preregistration-20261027.md) before proposing experiments or preparing a submission. Keep the work auditable and evidence-led; never represent an estimate as a measured score.
+>
+> **Current decision (2026-10-27): 🔴 DO NOT SUBMIT any file.** New unique AP-1 GeoTIFF is downloadable for research (`docs/downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif`) but verdict **negative** (HOLDOUT-DTI 0.0389 vs champion 0.0992). Site: `docs/index.html`. Original full brief (retained verbatim as charter): [`docs/EXECUTIVE_REVIEW.md`](docs/EXECUTIVE_REVIEW.md) §“Sources” + session prompt; the 0.3195/0.4413 leaderboard figures there are stale (live #1 0.4544, fetched 2026-10-27).
 
 ## Mission and operating charter
 
@@ -27,13 +29,19 @@ Core working principles:
 
 A downloadable `.tif` may be marked **OK TO SUBMIT** only when it is a single-band GeoTIFF and automated checks confirm the official sample-submission footprint, CRS, shape, and geotransform; no NaN/Inf within the footprint; all predicted values are in `[0,1]`; the output opens and reads back; its SHA-256 and method provenance are recorded; and the registry correlation/dot-overlap checks pass. The downloadable file should be accompanied by a unique submission name and a concise note. A valid TIFF is not evidence of a high score, and a score projection is not an official result.
 
-## Current repository state
+## Current repository state (2026-10-27)
 
-This checkout currently contains only project documentation (`README.md` and `docs/EXECUTIVE_REVIEW.md`). It does **not** contain the feature stack, labels, sample-submission raster, registry rasters, cached feature stack, holdout evaluator, submission writer, dataset downloader, or an existing candidate TIFF. Consequently, no holdout experiment, raster-level uniqueness test, score estimate, or valid competition TIFF can be produced from this checkout alone. The work and blockers are itemized in [`docs/EXECUTIVE_REVIEW.md`](docs/EXECUTIVE_REVIEW.md). Do not infer that a TIFF exists just because the desired workflow is described here.
+Implemented and verified: vendored canonical metric/holdout/emission/writer (`src/gems32/`, `src/gemsdoe32/`, `PROVENANCE.md`; metric tests 8/8 pass), data restorer (`scripts/restore_data.py`, SHA-pinned mirrors in `registry/`), AP-1 lane (`src/apart/`, pre-registered), 3-experiment budget spent (EXP-1 screen, EXP-2 OOF, EXP-3 confirmation), unique research GeoTIFF + validator receipts (`docs/downloads/`, `evidence/`), GitHub Pages site (`docs/index.html`).
+
+**Lane (single, frozen):** AP-1 dilatational-stepover conductivity coincidence — see `knowledge/preregistration-20261027.md`. Next viable lane is AP-2 (Euler depth clusters, in-band, no external data). Do not re-run AP-1 variants without a new pre-registration.
+
+Reproduce: `pip install -r requirements.txt` → `python scripts/restore_data.py --target-dir /tmp/gems_data` → `GEMS_DATA_DIR=/tmp/gems_data python scripts/run_experiment_oof.py --variant strain2 --order smooth --tag exp2` → `python scripts/build_final.py` → `GEMS_DATA_DIR=/tmp/gems_data python scripts/check_submission.py docs/downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif --strict-finite`.
+
+**Limitations / blockers:** (1) all nine historical scores are OWNER-REPORTED (no organizer receipts) — treat as claims; (2) no validated HOLDOUT-DTI→leaderboard transfer, so no leaderboard estimate is quoted; (3) DrivenData originals remain login-walled (mirrors are integrity-pinned, not organizer-authenticated); (4) CPU-only sandbox (3.8 GB RAM) — no GPU U-Net training attempted; (5) weekly slot promotion is a separate selector step, not taken.
 
 ## Data and source references
 
-Competition data is behind the DrivenData login according to the project request. Do not place credentials in this repository. The supplied public references are listed in the review document; availability and file contents must be checked in an environment with access before they are treated as verified inputs.
+Official: [problem/metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/), [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/), [reference solution](https://github.com/drivendataorg/gems-prize-reference-solution), [USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and), [INGENIOUS](https://gbcge.org/current-projects/ingenious/), [EPSG:32611](https://epsg.io/32611), [Tversky index](https://en.wikipedia.org/wiki/Tversky_index), [NLR guidance PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf), [GDR #1391](https://gdr.openei.org/submissions/1391). Do not place credentials in this repository.
 
 ## Project values
 

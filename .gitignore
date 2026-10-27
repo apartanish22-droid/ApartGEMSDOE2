@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.cache/
+# Competition rasters are restored via scripts/restore_data.py (SHA-pinned mirrors); never commit them
+*.npy
+*.npz
+data/*
+!data/.gitkeep
+# Audited submission deliverables are kept in docs/downloads/
+!docs/downloads/*.tif
+!docs/downloads/*.zip
+!docs/downloads/*.json

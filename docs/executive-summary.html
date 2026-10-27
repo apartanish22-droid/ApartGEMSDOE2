@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive summary per site — ApartGEMSDOE2</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:1020px;margin:0 auto;padding:24px;line-height:1.55;color:#17202a}
+table{border-collapse:collapse;width:100%;font-size:.9rem} th,td{border:1px solid #ccd1d5;padding:7px 8px;text-align:left;vertical-align:top}
+th{background:#f2f3f4} code{background:#f4f6f7;padding:1px 5px;border-radius:4px;font-size:.86em}.no{color:#b03a2e;font-weight:700}.yes{color:#1e8449;font-weight:700}
+h2{margin-top:2rem;border-bottom:2px solid #e5e8eb;padding-bottom:.3rem}.small{font-size:.88rem;color:#444}
+</style></head><body>
+<p><a href="index.html">← Decision &amp; download</a> · <a href="submission-guide.html">Submission guide</a></p>
+<h1>Executive summary — the nine focus sites</h1>
+<p>Scores are <b>OWNER-REPORTED</b> (transcribed from the brief/sites; no submission-page receipt linking
+bytes to score exists in any repo — verified by registry audit). Dot counts, overlaps and catalogue
+distances were <b>measured here</b> on SHA-256-verified rasters (2026-10-27). “Best to submit” answer:
+<b>none of the nine as a new entry</b> — they are one nested family, already scored. The only new,
+unique, downloadable file is this repo's AP-1 (research only, gates failed).</p>
+
+<h2>Per-site cards</h2>
+<h3>GEMSDOE24 — 0.2477 OWNER-REPORTED</h3>
+<p>Best: <code>gems24-h25-1-dotted-h19-5-d1-5-…-989f59505db1</code> · 60,069 dots (measured) · H19-5 multiline
+field thinned at 1.5 px. 14.6% of dots within 2 px of catalogue. Parent of the whole ladder; superseded by
+denser-thinned children. <span class="no">Do not submit (already scored; family duplicate).</span></p>
+<h3>GEMSDOE25 — 0.2600 OWNER-REPORTED</h3>
+<p>Best: <code>gems25-dotted-h19-5-d2-8-…-e56ea318af89</code> · 44,090 dots · same H19-5 field at 2.8 px spacing.
+Its dot set is <b>pixel-identical to GEMSDOE30's best</b> (measured exact overlap 100%) — one measurement
+wearing two names (IR-AP-02). <span class="no">Do not submit.</span></p>
+<h3>GEMSDOE27 — 0.2449 OWNER-REPORTED</h3>
+<p>Best: <code>gems27-topo-gap-closure-t-v2-on-d1-5-…-5512495c6bd1</code> · 61,328 dots · d1.5 + topographic gap
+closure. Added mass scored <i>below</i> its d1.5 parent (0.2449 &lt; 0.2477), an early sign the FP tax dominates.
+Later H31-1 0.2250 also lower. <span class="no">Do not submit.</span></p>
+<h3>GEMSDOE28 — 0.2710 OWNER-REPORTED</h3>
+<p>Best: <code>gems28-h36-1-rung30-blind-r1-…-b531dae0a36f</code> · 37,660 dots · champion B2 set + 6 probe dots
+(95.5% within 3 px of champion). Second-highest claim; essentially the champion. <span class="no">Do not submit.</span></p>
+<h3>GEMSDOE30 — 0.2600 OWNER-REPORTED</h3>
+<p>Best: <code>gemsdoe30-d28-poisson300m-offcat-44090-…-91eae1ca</code> · 44,090 dots · dot set identical to
+GEMSDOE25 best (measured). Same score, same dots: not independent corroboration. <span class="no">Do not submit.</span></p>
+<h3>GEMSDOE31 — 0.2708 OWNER-REPORTED</h3>
+<p>Best: <code>gemsdoe31-h27-4-solo-d28-…-8acb75e1</code> · 40,199 dots · intermediate prune (d2.8 minus 3,891;
+6.3% still within 2 px of catalogue). Sits exactly on the thinning ladder between 0.2600 and 0.2778.
+<span class="no">Do not submit.</span></p>
+<h3>GEMSDOE32 — 0.2778 OWNER-REPORTED ★ highest of the nine</h3>
+<p>Best: <code>gemsdoe32-h33-h33-2-b2-…-e5eb6e7e-zeros.tif</code> · 37,654 dots · SHA-256
+<code>c55bafc470054e82…</code> · d2.8 minus all dots with catalogue distance ≤ 2 px (measured: 0.0% within 2 px;
+median distance 19.6 px; exact subset of d2.8). Why it leads: the DTI charges 0.2·FP — removing
+sub-break-even (<i>k ≤ 0.2·DTI</i>) near-catalogue mass raises mean credit per dot faster than it loses TP.
+Already submitted. <span class="no">Do not resubmit.</span></p>
+<h3>GEMSDOE33 — 0.2632 OWNER-REPORTED</h3>
+<p>Best: <code>GEMSDOE33-h33d-analog-tip-stepover-r30-…-cb490425926e</code> · 41,865 dots · B2 + analogue
+tip/stepover additions (+4,211). Additions diluted mean credit → below champion. Direct evidence that
+“more dots” hurts at this operating point. <span class="no">Do not submit.</span></p>
+<h3>GEMSDOE36 — 0.2750 OWNER-REPORTED</h3>
+<p>Best: <code>gemsdoe36-anderson-geothermal-pinn-38854-…-9b9ea4e6-zeros</code> · 38,854 dots · B2 + 1,200 PINN dots
+(96.9% of its dots are champion dots, measured). Closest challenger, still below B2 alone.
+<span class="no">Do not submit.</span></p>
+
+<h2>Ranked hypotheses tried this session (AP lane)</h2>
+<table><tr><th>Rank</th><th>Hypothesis (layers · signature)</th><th>Why off-catalogue?</th><th>Result</th></tr>
+<tr><td>1 AP-1</td><td>Bands 4/7/8 strain × ∇band17 conductivity × ∇band15 basement × ∇band13 gravity; geometric-mean rank coincidence; 2.8 px Poisson, B=2</td><td>Blind extending faults localise strain + fluid/basement juxtaposition without scarp/source</td><td><b>Negative:</b> HOLDOUT-DTI 0.0389 [0.0282,0.0491] vs 0.0992; SGMC-cal 0.0190 vs 0.0641; canaries PASS (AUC ≤0.57); unique PASS</td></tr>
+<tr><td>2 AP-2</td><td>Euler deconvolution depth clusters (bands 2/13/15) — GEMSDOE32 backlog, not run</td><td>Inverts buried contact under fill</td><td>Deferred (1-lane rule); in-band data verified, no external data needed</td></tr>
+<tr><td>3 AP-3</td><td>Seismic-density medial ridge (bands 10/16)</td><td>Microseismic alignment precedes geomorphology</td><td>Deferred; 100 km smoothing ≫ target, low prior</td></tr>
+<tr><td>4 AP-4</td><td>Magnetic worm persistence (bands 2/3/9/14)</td><td>Deep contacts persist on continuation</td><td>Excluded as new: strong fleet prior art (0.0581)</td></tr>
+<tr><td>5 AP-5</td><td>Radiometric Th/K primary (external GeoDAWN)</td><td>Alteration halos on concealed conduits</td><td>Excluded: already GEMSDOE33 THKCOND (negative)</td></tr></table>
+<p class="small">Full text: repo <code>knowledge/preregistration-20261027.md</code> (frozen before surface computation).
+Mimic for AP-1: depocentre edges / pluton contacts / aquifer boundaries. Next viable lane is AP-2 (Euler),
+which needs no new external data; any external-data idea must name a free official source and verify
+obtainability first (e.g. USGS GeoDAWN DOI 10.5066/P93LGLVQ, GDR #1391 — mirrored &amp; SHA-pinned in sibling repos).</p>
+
+<h2>Irregularities flagged (no human inspection used)</h2>
+<ul>
+<li><b>IR-AP-01 Lattice impossibility:</b> spacing-5 calibration lattice covers 99.87% of footprint within 3 px; literal any-raster ≤70% rule is geometrically impossible at 37,654 dots (lower bound ≈82%). Uniqueness judged vs genuine submissions; lattice always disclosed.</li>
+<li><b>IR-AP-02 Double-counted 0.2600:</b> GEMSDOE25 best ≡ GEMSDOE30 best pixel-identical (measured).</li>
+<li><b>IR-AP-03 No receipts:</b> all nine scores OWNER-REPORTED; brief's “current” 0.3195/0.4413 stale vs live #1 0.4544 (fetched 2026-10-27).</li>
+<li><b>IR-AP-04 Sample ≠ absence:</b> sample_submission contains 60,988 ones exactly on labels (measured), despite “total fault absence” wording.</li>
+<li><b>IR-AP-05 Evaluator bias lesson:</b> scoring final B=2 masks with a visible-only gate gives champion 0.0045 vs parent 0.0992 — hide/recover must re-emit per cell (OOF); fixed-mask numbers across protocols are incomparable.</li>
+<li><b>IR-AP-06 Portal vs spec:</b> spec allows NaN outside; portal rejects it (“must be in range [0,1]”). Ship <code>-zeros</code> to the web form.</li>
+</ul>
+<p class="small">Machine evidence: <code>evidence/experiment_exp1.json</code>, <code>evidence/experiment_exp2.json</code>,
+<code>evidence/run_card_final.json</code>, <code>evidence/validator_final.json</code>, <code>evidence/forensic_registry.json</code>.</p>
+</body></html>

@@ -1,0 +1,15 @@
+{
+  "pinned_utc": "2026-10-27",
+  "source": "registry/focus_registry_manifest.json in GEMSDOE32 (generated 2026-10-27T17:30:53Z); SHA-256 re-verified locally at download",
+  "files": [
+    {"site": "GEMSDOE24", "file": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif", "dots_measured": 60069, "reported_score": 0.2477, "score_class": "OWNER-REPORTED, no receipt in repo"},
+    {"site": "GEMSDOE25", "file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif", "dots_measured": 44090, "reported_score": 0.2600, "score_class": "OWNER-REPORTED, no receipt in repo"},
+    {"site": "GEMSDOE27", "file": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif", "dots_measured": 61328, "reported_score": 0.2449, "score_class": "OWNER-REPORTED, no receipt in repo"},
+    {"site": "GEMSDOE28", "file": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif", "dots_measured": 37660, "reported_score": 0.2710, "score_class": "OWNER-REPORTED, no receipt in repo"},
+    {"site": "GEMSDOE30", "file": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif", "dots_measured": 44090, "reported_score": 0.2600, "score_class": "OWNER-REPORTED, no receipt in repo; dot set pixel-identical to GEMSDOE25 best (measured)"},
+    {"site": "GEMSDOE31", "file": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif", "dots_measured": 40199, "reported_score": 0.2708, "score_class": "OWNER-REPORTED, no receipt in repo"},
+    {"site": "GEMSDOE32", "file": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif", "dots_measured": 37654, "reported_score": 0.2778, "score_class": "OWNER-REPORTED, no receipt in repo"},
+    {"site": "GEMSDOE33", "file": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif", "dots_measured": 41865, "reported_score": 0.2632, "score_class": "OWNER-REPORTED, no receipt in repo"},
+    {"site": "GEMSDOE36", "file": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif", "dots_measured": 38854, "reported_score": 0.2750, "score_class": "OWNER-REPORTED, no receipt in repo"}
+  ]
+}
