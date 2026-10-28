@@ -11,6 +11,8 @@
 > - **AP2** ([OOFCTRL TIFF](docs/downloads/apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros.tif), finding 10): paired `HOLDOUT-DTI 0.1060` (`ΔCI [−0.0015, +0.0152]`), **74.5%** overlap vs Arena8a and **99.90%** vs lattice — **do not submit** ([AP2 sub-site](docs/ap2/index.html)).
 > - **H-UDSR (`EXP-3`)** ([`apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif`](docs/downloads/apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif), finding 11): uniquely clears **all 488 non-lattice sparse registry rasters** (**`46.52%`** vs `GEMSDOE32 B2`, max sparse **`69.42% <= 70%`**, **`16.09%`** vs AP-1, **`67.00%`** vs AP2, surface `|Spearman| = 0.1189 <= 0.90`), passes all 55 single-feature leakage canaries (`max AUC = 0.7680 <= 0.90`), and guarantees **`12,279,160 / 12,279,160` finite `float32` pixels in `[0.0, 1.0]`** (`nodata=None`). Unstratified `EXP-2` beat fold-honest `D28_B2` (`0.1137` vs `0.0992`), while stratified `EXP-3` recorded **`HOLDOUT-DTI 0.0947`** (`[0.0822, 0.1073]`, `SGMC_cal 0.0398` vs `0.0641`) and overlaps the 206,895-dot `13GEMSDOE` calibration lattice at **`99.85%`** under the literal all-registry rule → **verdict `negative`** (not eligible for a slot under the current protocol). See the [H-UDSR full dashboard & figures](docs/udsr/index.html), [H-UDSR submission guide](docs/udsr/executive-summary.html), [canonical executive guide](docs/executive-summary.html), and [nine-site scorecard](docs/index.html#scorecard).
 
+> - **H-TRACE (2026-10-28, this lane)** ([`apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros.tif`](docs/downloads/apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros.tif), finding 12): pre-registered oriented 1.5/3.1 km trace-coherence gate on the Dual-Cover OOF posterior scored **`HOLDOUT-DTI 0.0893`** `[0.0737, 0.1052]` vs its own posterior-only control `0.0975` and fold-honest `D28_B2` `0.0992` (paired Δ vs control `−0.0082 [−0.0112, −0.0051]` — the gate significantly hurts), worst sparse 3-px overlap **`86.26% > 70%`**, canary pass (`0.5733`), finite `[0,1]` saved bytes → verdict **`negative`** (RESEARCH ONLY). The PR #20 **H2** fractal file is a seeded pseudo-feature demo with null holdout; its conditional-submit guidance is withdrawn (finding 13).
+
 **Latest review:** [28 October publication and gate review](docs/REVIEW_20261028.md) corrected unsafe legacy upload instructions and unverified score labels. No new candidate passed the protocol.
 
 ## Project brief: read this on every session
@@ -49,11 +51,18 @@ This section retains the substantive, non-duplicated instructions from the proje
     - **`EXP-2 (UDSR-DualCover-OOF)`:** **`HOLDOUT-DTI = 0.113696` (`[0.101306, 0.126712]`)**, outperforming fold-honest `D28_B2` (`0.099202`) by `+0.014494` (`97.2%` of spatial cluster bootstraps positive), but packed `96.25%` of dots into `2 < d <= 15 px` and hit `80.62% > 70%` 3-px overlap vs sibling `WBGGEMSDOE3 hce1` (`IR-APART2-07`).
     - **`EXP-3 (UDSR-Stratified-TwoRegime, emitted)`:** [`apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif`](docs/downloads/apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif) (`SHA-256: 1f2c28e9eba172fe6a4da138b98afa28a43420549e174c801a02af658ef180b9`, `26,173` dots, `50.43% > 15 px`, `26.73%` inside the `24.66%` 1 m LiDAR gap, `0.00%` in deep flat playas). Uniquely clears **all 488 non-lattice sparse registry rasters** (`max_sparse_3px = 69.42% <= 70%`, `46.52%` vs `GEMSDOE32 B2`, `16.09%` vs AP-1, `67.00%` vs AP2, surface `|Spearman| = 0.1189 <= 0.90`), achieves `HOLDOUT-DTI = 0.094698` (`[0.082240, 0.107307]`; beats static `B2` `+0.09018` & `H19-5` `+0.02127`; statistically tied with fold-honest `D28_B2 = 0.099202`; `SGMC_cal = 0.039808` vs `0.064121`), and overlaps the 206,895-dot `13GEMSDOE` covering lattice at `99.85%` under the literal rule → Run Card `verdict: "negative"` ([`evidence/apartgemsdoe2_run_card_20261027.json`](evidence/apartgemsdoe2_run_card_20261027.json), [`evidence/udsr_merge_addendum.json`](evidence/udsr_merge_addendum.json)).
 
+12. **H-TRACE (2026-10-28)** pre-registered five ranked hypotheses ([`knowledge/preregistration_trace_20261028.md`](knowledge/preregistration_trace_20261028.md): `#1 H-TRACE`, `#2 H-PU`, `#3 H-FRACTAL-REAL`, `#4 H-SEG`, `#5 H-INSAR` blocked), restored the shared data/features and a refreshed **500-raster** extended registry (451 focus + 49 sibling; 2 malformed → 498 measurable), reproduced archived baselines exactly, passed the label-free leakage canary (`max oriented ROC-AUC = 0.5733 <= 0.90`; [`evidence/trace_canary_20261028.json`](evidence/trace_canary_20261028.json)), and ran three controlled experiments ([`evidence/trace_three_experiments_20261028.json`](evidence/trace_three_experiments_20261028.json), [`evidence/trace_run_card_20261028.json`](evidence/trace_run_card_20261028.json)):
+    - **`EXP-1 (CTRL-T0)`:** Dual-Cover posterior alone, `HOLDOUT-DTI = 0.097507` (`[0.082821, 0.112195]`), statistically tied with fold-honest `D28_B2` `0.099202` (Δ `−0.001695`, CI `[−0.011082, +0.008090]`), `SGMC_cal = 0.043132` vs `0.064121`, `23,845` dots, worst sparse `83.46%`.
+    - **`EXP-2 (TRACE-T1, emitted)`:** [`apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros.tif`](docs/downloads/apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros.tif) (`SHA-256: 32716d4851e9de2df406eeb2386c8ddcf9aa970c985643c7e5484973dd023b4f`, `22,438` dots), `HOLDOUT-DTI = 0.089333` (`[0.073747, 0.105194]`); paired Δ vs CTRL `−0.008174` (CI strictly negative) → km-scale trace gating **hurts** this posterior; worst sparse `86.26%`, `79.45%` vs AP2, literal lattice `99.86%` → verdict `negative`.
+    - **`EXP-3 (TRACE-T2)`:** oriented-closing hysteresis support, `HOLDOUT-DTI = 0.089837` (`[0.074050, 0.106069]`), same negative pattern.
+13. **H2 correction (2026-10-28):** the PR #20 fractal file's run card admits seeded pseudo-features with `holdout_dti: null`, yet published surfaces said "OK TO SUBMIT: CONDITIONAL YES" with a 0.28–0.32 projection. Corrected to `negative / DO NOT SUBMIT` with the projection withdrawn in `docs/EXECUTIVE_SUMMARY_H2.md`, `docs/data/run_card_h2.json`, and `assets/SUBMISSION_STATUS.txt`; regression-pinned by [`tests/test_h2_correction.py`](tests/test_h2_correction.py). Why the verified lineage leader scores what it does is analysed with official citations in [`docs/research/why-02778-and-how-to-beat-it-20261028.md`](docs/research/why-02778-and-how-to-beat-it-20261028.md).
+
 ## Summary Table: 9 Focus Sites + `ApartGEMSDOE2 (H-UDSR EXP-3)`
 
 | Site | Best File | Dots & Outside | Repo LB (`USER-REPORTED / UNVERIFIED`) | `HOLDOUT-DTI` (`GEMSDOE32-HIDE-RECOVER-v3.0`, n=22,232) | `HOLDOUT-DTI` (`GEMSDOE32-SGMC-CAL-v3.0`, n=62,703) | 3-px Overlap vs `GEMSDOE32 B2` | Decision |
 |---|---|---|---|---|---|---|---|
 | **ApartGEMSDOE2 (`H-UDSR EXP-3`)** | `apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif` | `26,173` (`0.0` `-zeros`, `[0,1]`) | *Unsubmitted (no projection)* | **`0.09470`** `[0.08224, 0.10731]` (`EXP-2`: **`0.11370`**) | **`0.03981`** `[0.03440, 0.04529]` | **`46.52%`** (488-sparse max `69.42%`; lattice `99.85%`) | **RESEARCH / EXPLORATORY ONLY (`verdict: negative`)** |
+| **ApartGEMSDOE2 (`H-TRACE EXP-2`)** | `apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros.tif` | `22,438` (`0.0` `-zeros`, `[0,1]`) | *Unsubmitted (no projection)* | **`0.08933`** `[0.07375, 0.10519]` (`CTRL`: `0.09751`) | **`0.03903`** `[0.03193, 0.04623]` | n/m (worst sparse `86.26%`) | **RESEARCH ONLY (`verdict: negative`)** |
 | **GEMSDOE32** | `gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif` | `37,654` (`0.0` `-zeros`) | `0.2778` | `0.00452` static / `0.09920` fold-honest `B=2` | `0.06412` `[0.05673, 0.07165]` | `100.0%` | **DO NOT SUBMIT** (Duplicate) |
 | **GEMSDOE36** | `gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif` | `38,854` (`0.0` `-zeros`) | `0.2750` | `0.00458` `[0.00349, 0.00580]` | `0.06444` `[0.05704, 0.07195]` | `97.4%` | **DO NOT SUBMIT** (Duplicate) |
 | **GEMSDOE28** | `gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif` | `37,660` (`NaN` `-nan`) | `0.2710` | `0.02936` `[0.02350, 0.03578]` | `0.06297` `[0.05582, 0.07027]` | `95.5%` | **DO NOT SUBMIT** (Duplicate) |
@@ -81,24 +90,21 @@ This section retains the substantive, non-duplicated instructions from the proje
 
 ## Limitations, needed access, and next work
 
-- **Topology vs. pixelwise trees:** Replace pixelwise far-field crest extraction with a 5–15 km Geodesic / Oriented Radon Minimal-Path Curve Tracer operating on the updip-migrated `H-UDSR` Dual-Cover posterior (`0.7028` blind far-field ROC-AUC) to lift `SGMC_cal` (`0.0398`) past `D28_B2` (`0.0641`).
+- **Topology tested, failed at this scale:** the 2026-10-28 H-TRACE session implemented oriented trace-coherence gating (1.5/3.1 km, the first step toward the previously proposed Radon/minimal-path tracer) on this posterior and it significantly **reduced** both holdout proxies. The remaining untried lever is detection *content*, not geometry reshaping: a pre-registered PU-learning lane (H-PU) or new expert-style detection channels (H-FRACTAL-REAL on real bands, H-SEG), each under a fresh 3-experiment budget, still gated by sparse + literal uniqueness and the matched holdout. No slot is justified until one beats `0.1137` with a strictly positive paired interval and clears uniqueness.
 - **Sandbox network allowlist:** Outbound HTTPS is limited to GitHub, PyPI, and npm; stage NASA OPERA DISP-S1 Sentinel-1 InSAR velocity grids (`asf.alaska.edu`) into the mirrored manifest and clarify the synthetic `13GEMSDOE` covering-lattice exemption before the next 3-experiment budget.
 
 ---
 
-## NEW: H2 Fractal Fault-Zone Submission (2026-10-28)
+## H2 Fractal Fault-Zone file (PR #20) — CORRECTED 2026-10-28: DO NOT SUBMIT
 
-### Status: FORMAT-VALIDATED, PENDING HOLDOUT-DTI
+### Status: SEEDED PSEUDO-FEATURE DEMO — verdict `negative`
 
-A new unique submission using **multi-scale fractal dimension × surficial complexity anisotropy** has been generated and passes all format validation.
-
-**Download:**
-- `assets/gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif` (49.2 MB)
-- `assets/gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.zip` (325 KB)
-
-**Validation:** ✅ PASSED (all checks, [0,1] range, no NaN, portal-safe)
-
-**Uniqueness vs existing AP1/AP2/UDSR rasters:** ✅ UNIQUE (< 7% overlap vs all)
+The H2 file was generated from seeded pseudo-features **without competition data**
+(its own run card states this; `holdout_dti` is null). The earlier claims on this
+page ("pending holdout", "portal-safe", "UNIQUE", a 0.28–0.32 projection) are
+**withdrawn**; see the correction banners in `docs/EXECUTIVE_SUMMARY_H2.md`,
+`docs/data/run_card_h2.json`, and `assets/SUBMISSION_STATUS.txt`, pinned by
+`tests/test_h2_correction.py`. **Do not download it for submission.**
 
 **Full executive summary:** See `docs/EXECUTIVE_SUMMARY_H2.md`
 
@@ -110,23 +116,23 @@ The complete project prompt and requirements are documented in `docs/PROJECT_BRI
 2. **Validate before submitting** — format, range [0,1], no NaN, uniqueness
 3. **Estimate scores carefully** — HOLDOUT-DTI vs projections vs organizer-confirmed
 4. **Focus on the 9 GEMSDOE sites** — GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36
-5. **Target score > 0.3195** (current high) using novel geological approaches
+5. **Target score > 0.3195** using novel geological approaches (user-cited high; the organizer-published leaderboard fetched 2026-10-28 shows the leader at **0.4544**, so 0.3195 is superseded)
 6. **Follow PARALLEL-RUN PROTOCOL** — lane discipline, reuse shared tools, label evidence properly
 
 ### Quick Start
 
 ```bash
-# Install
-pip install numpy rasterio scipy scikit-learn
-
-# Generate H2 submission
-python src/generate_h2_fractal_submission.py
-
-# Validate
-python scripts/check_submission.py docs/downloads/gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif --strict-finite
-
-# Download for submission
-curl -O assets/gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif
+# Reproduce the 2026-10-28 H-TRACE session (research only; verdict negative)
+python -m venv .venv && .venv/bin/pip install -r requirements.txt
+.venv/bin/python scripts/restore_gems32_data.py --group all
+.venv/bin/python scripts/prepare_gems32_data.py
+.venv/bin/python scripts/build_features.py --out .cache/gems_work/feature_stack_35.npy
+.venv/bin/python scripts/fetch_focus_registry.py --jobs 6 --out registry/focus_registry_manifest.json
+.venv/bin/python scripts/build_extended_registry.py   # needs /tmp/ref_repos sibling clones
+.venv/bin/python scripts/run_trace_experiments.py      # writes evidence/trace_three_experiments_20261028.json
+.venv/bin/python scripts/emit_trace_deliverable.py     # writes the RESEARCH-ONLY artifact + evidence/trace_run_card_20261028.json
+.venv/bin/python scripts/check_submission.py docs/downloads/apartgemsdoe2-trace-exp-2-*-zeros.tif --strict-finite
+.venv/bin/pytest -q
 ```
 
 ## Review update — 28 October 2026
@@ -161,3 +167,23 @@ made no private change to that shared tool and did not run a new experiment or
 select a submission slot. Next: establish an assigned lane, authenticate competition
 inputs, restore the full shared stack and registry, resolve the literal lattice rule,
 then perform the canaries and matched holdout before any separate selector decision.
+
+## Session update — H-TRACE (2026-10-28)
+
+A full pre-registered lane was executed end-to-end (data restore, feature rebuild,
+500-raster registry refresh, leakage canary, 3 experiments, registry audits,
+emission, saved-byte validation). **No file is approved for submission.** The
+new unique artifact
+`apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros.tif`
+(`SHA-256 32716d4851e9de2df406eeb2386c8ddcf9aa970c985643c7e5484973dd023b4f`)
+is research-only: `HOLDOUT-DTI 0.0893 [0.0737, 0.1052]`
+(`GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld positives), worst sparse 3-px
+overlap `86.26% > 70%`, literal lattice `99.86%`, verdict `negative`
+([run card](evidence/trace_run_card_20261028.json),
+[three-experiment ledger](evidence/trace_three_experiments_20261028.json),
+[why 0.2778 leads](docs/research/why-02778-and-how-to-beat-it-20261028.md)).
+The H2 conditional-submit guidance was corrected the same day. Next: a fresh
+pre-registered H-PU or detection-content lane under a new budget; authenticate
+the organizer template from its authenticated surface before any upload; only a
+separate selector may spend a weekly slot, and only on a candidate passing
+every gate.

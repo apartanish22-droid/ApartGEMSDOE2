@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-10-28",
+  "session": "H-TRACE (arena/7ec4400f-apartgemsdoe2)",
+  "irregularities": [
+    {
+      "id": "IR-TRACE-01",
+      "severity": "note",
+      "finding": "The supplied prompt names prior assistant lanes (PU-learning, geostatistics, multiple-point simulation, association rules, metric-RL) but does not assign this session an explicit lane.",
+      "evidence": "Standing prompt / docs/PROJECT_BRIEF.md read 2026-10-28.",
+      "handling": "This session adopted the remaining user-listed unread assignment (Radon/minimal-path curve tracing from README 'Limitations'), reduced to its oriented trace-coherence core, and pre-registered it before any experiment (knowledge/preregistration_trace_20261028.md)."
+    },
+    {
+      "id": "IR-TRACE-02",
+      "severity": "critical",
+      "finding": "PR #20 H2 fractal surfaces advised 'OK TO SUBMIT: CONDITIONAL YES' with a 0.28-0.32 projection while docs/data/run_card_h2.json admits seeded pseudo-features, no competition data, holdout_dti null, canary not run, uniqueness pending.",
+      "evidence": "docs/EXECUTIVE_SUMMARY_H2.md, docs/data/run_card_h2.json, assets/SUBMISSION_STATUS.txt as of commit e971255.",
+      "handling": "All three surfaces corrected 2026-10-28 to verdict negative / DO NOT SUBMIT with the projection withdrawn; regression-pinned by tests/test_h2_correction.py. Original text remains in git history."
+    },
+    {
+      "id": "IR-TRACE-03",
+      "severity": "minor",
+      "finding": "scripts/check_submission.py labels a local whole-array [0,1] check 'portal_safe_whole_array'; scripts/submission_writer.py claims the writer prevents the portal error. Portal acceptance cannot be established locally, and the official format text requires outside-footprint cells to be null/NaN, which the -zeros variant does not satisfy literally.",
+      "evidence": "scripts/check_submission.py portal_safe_whole_array check; scripts/submission_writer.py docstring; official problem page fetched 2026-10-28.",
+      "handling": "Both -zeros (finite whole array) and -nan (official-text exterior) twins are written and validated on saved bytes; no portal-acceptance claim is made for either. Shared-tool label left unchanged in this session (shared template policy: fix upstream); recorded here."
+    },
+    {
+      "id": "IR-TRACE-04",
+      "severity": "minor",
+      "finding": "2 of 500 extended-registry rasters are not measurable (one -nan raster with NaN inside the footprint, one 32x48 format-test file), so uniqueness audits report audit_complete=false over 498 measurable rasters.",
+      "evidence": "evidence/trace_registry_malformed_20261028.json",
+      "handling": "Disclosed in run card and executive summary; neither malformed entry is a plausible duplicate source, but completeness is not claimed."
+    },
+    {
+      "id": "IR-TRACE-05",
+      "severity": "note",
+      "finding": "The literal <=70% 3-px overlap gate against the registered 13GEMSDOE lattice is geometrically unsatisfiable above 22,163 dots (lattice covers 99.8713% of the footprint within 3 px; only 6,649 cells uncovered).",
+      "evidence": "Measured 2026-10-28 on restored bytes; docs/research/why-02778-and-how-to-beat-it-20261028.md section 4.",
+      "handling": "Reported literally (fail) for every candidate; the sparse-subset result is never relabelled as an all-registry pass."
+    },
+    {
+      "id": "IR-TRACE-06",
+      "severity": "minor",
+      "finding": "The prompt's leaderboard figures (0.4413 high, 0.3195 threshold) are superseded: the organizer-published public leaderboard fetched 2026-10-28 shows rank 1 at 0.4544.",
+      "evidence": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ fetched 2026-10-28.",
+      "handling": "Recorded as an organizer-published snapshot, not a file-bound receipt; targets restated accordingly."
+    }
+  ]
+}

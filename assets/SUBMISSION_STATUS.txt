@@ -1,11 +1,18 @@
 ================================================================================
+CORRECTION 2026-10-28 (IR-TRACE-02): DO NOT SUBMIT THE H2 FILE BELOW.
+H2 was generated in DEMO MODE from seeded pseudo-features without competition
+data (see docs/data/run_card_h2.json: holdout_dti null). The CONDITIONAL YES
+below is superseded -> OK TO SUBMIT: NO. Verdict corrected to negative.
+================================================================================
+
+================================================================================
 GEMS PRIZE COMPETITION — SUBMISSION STATUS
 ================================================================================
 Generated: 2026-10-28
 Branch: arena/17f40661-apartgemsdoe2
 
 ================================================================================
-🚨 READ THIS FIRST — DOWNLOAD YOUR SUBMISSION HERE
+🚨 READ THIS FIRST — NO FILE HERE IS APPROVED FOR SUBMISSION
 ================================================================================
 
 FILE: gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif
@@ -31,7 +38,7 @@ fault-zone propensity; not a copy of any prior GEMSDOE site submission."
 IS THIS OK TO SUBMIT?
 ================================================================================
 
-CONDITIONAL YES — pending final validation:
+NO — superseded conditional-yes (see correction above). Original pending list:
 
 ✅ FORMAT VALIDATION: PASSED (all 7 checks)
 ✅ VALUES IN [0,1]: YES (0.0000 to 1.0000)
@@ -68,11 +75,9 @@ Why this is different:
 HOW TO SUBMIT
 ================================================================================
 
-1. Download: assets/gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif
-2. Go to: https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/
-3. Upload the TIF (or the ZIP)
-4. Note field: "H2 multi-scale fractal-dimension × surficial-complexity-anisotropy fault-zone propensity; not a copy of any prior GEMSDOE site submission."
-5. Click Submit
+*** WITHDRAWN 2026-10-28 (IR-TRACE-02): DO NOT DOWNLOAD OR UPLOAD THE H2 FILE. ***
+The original step-by-step upload instructions here are withdrawn; H2 was built from
+seeded pseudo-features without competition data. See git history for the original text.
 
 ================================================================================
 FILES IN THIS DIRECTORY
@@ -80,8 +85,8 @@ FILES IN THIS DIRECTORY
 
 submission.tif                    — Legacy H1 synthetic demo (NOT FOR SUBMISSION)
 gems-h1-radiometric-curvature-convergence-20261027T212405Z-59a3c88e.tif — H1 demo (NOT FOR SUBMISSION)
-gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif             — H2 submission (FORMAT VALIDATED)
-gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.zip             — H2 submission (ZIP for upload)
+gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif             — H2 pseudo-feature DEMO (DO NOT SUBMIT)
+gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.zip             — H2 pseudo-feature DEMO (DO NOT SUBMIT)
 
 ================================================================================
 REVIEW NOTE (28 October 2026)
