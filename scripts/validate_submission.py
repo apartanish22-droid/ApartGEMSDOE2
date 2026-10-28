@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Standalone local format validator, not scientific or slot authorization.
 
-Checks exactly what the DrivenData portal rejected with
-"Predicted values must be in range [0, 1]", plus CRS/shape/geotransform against the
+Checks a conservative full-array finite [0, 1] condition relevant to the reported
+portal range error, plus CRS/shape/geotransform against the
 sample submission and a re-read of the bytes just written. A PASS is only a local
 format diagnostic: it does not authenticate the reference, prove portal acceptance,
 or authorize submission. Exit code 0 = diagnostic PASS, 1 = FAIL.
@@ -24,6 +24,8 @@ import rasterio
 
 def check(path: Path, sample: Path, labels_path: Path) -> dict:
     with rasterio.open(sample) as tpl:
+        if tpl.count != 1 or tpl.crs is None or tpl.driver != "GTiff":
+            raise ValueError("Reference must be a single-band georeferenced GeoTIFF")
         sample_data = tpl.read(1, masked=True)
         foot = ~np.ma.getmaskarray(sample_data) & np.isfinite(sample_data.data)
         t_crs, t_shape, t_tf = tpl.crs, tpl.shape, tpl.transform
@@ -41,7 +43,8 @@ def check(path: Path, sample: Path, labels_path: Path) -> dict:
         valid_pixels = ds.read_masks(1) != 0 if ds.count >= 1 else np.empty((0, 0), dtype=bool)
         meta = {"driver": ds.driver, "count": ds.count, "dtype": ds.dtypes[0] if ds.count else None,
                 "crs": str(ds.crs), "shape": list(ds.shape),
-                "transform": [float(x) for x in tuple(ds.transform)[:6]], "nodata_repr": str(ds.nodata)}
+                "transform": [float(x) for x in tuple(ds.transform)[:6]], "nodata_repr": str(ds.nodata),
+                "self_contained": all(Path(f).resolve() == path.resolve() for f in ds.files)}
         same_grid = (ds.crs == t_crs and ds.shape == t_shape and ds.transform == t_tf)
     if arr.shape != foot.shape:
         return {"file": str(path), "pass": False, "error": f"shape {arr.shape} != template {foot.shape}", "meta": meta}
@@ -49,6 +52,7 @@ def check(path: Path, sample: Path, labels_path: Path) -> dict:
     checks = {
         "geotiff": meta["driver"] == "GTiff",
         "single_band": meta["count"] == 1,
+        "self_contained_geotiff": meta["self_contained"],
         "in_footprint_unmasked": bool(valid_pixels[foot].all()),
         "dtype_float32": meta["dtype"] == "float32",
         "crs_shape_transform_match_sample": bool(same_grid),
@@ -57,11 +61,12 @@ def check(path: Path, sample: Path, labels_path: Path) -> dict:
         "in_footprint_no_inf": int(np.isinf(in_foot).sum()) == 0,
         "in_footprint_no_sentinel_lt_-1e30": int((in_foot < -1e30).sum()) == 0,
         "in_footprint_all_in_0_1": bool(((in_foot >= 0.0) & (in_foot <= 1.0)).all()),
-        "whole_raster_all_in_0_1_or_nan_outside": bool(
-            ((np.isfinite(arr) & (arr >= 0) & (arr <= 1)) | (np.isnan(arr) & ~foot)).all()),
+        "conservative_whole_raster_finite_in_0_1": bool(
+            (np.isfinite(arr) & (arr >= 0) & (arr <= 1)).all()),
         "zero_positive_pixels_on_catalogue": int(((arr > 0) & labels).sum()) == 0,
         "has_positive_predictions": int(((arr > 0) & foot).sum()) > 0,
     }
+    finite_inside = in_foot[np.isfinite(in_foot)]
     outside = arr[~foot]
     outside_mode = ("no_exterior" if outside.size == 0 else
                     "all_zero" if bool((outside == 0).all()) else
@@ -69,7 +74,8 @@ def check(path: Path, sample: Path, labels_path: Path) -> dict:
     return {"file": str(path), "pass": all(checks.values()), "checks": checks, "meta": meta,
             "positive_pixels_in_footprint": int(((arr > 0) & foot).sum()),
             "footprint_pixels": int(foot.sum()),
-            "in_footprint_min": float(np.min(in_foot)), "in_footprint_max": float(np.max(in_foot)),
+            "in_footprint_min": float(np.min(finite_inside)) if finite_inside.size else None,
+            "in_footprint_max": float(np.max(finite_inside)) if finite_inside.size else None,
             "outside_footprint_mode": outside_mode,
             "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
             "size_bytes": path.stat().st_size}
@@ -85,8 +91,13 @@ def main() -> int:
     ddir = a.data_dir or data_dir()
     ok = True
     for f in a.files:
-        r = check(f, ddir / "sample_submission.tif", ddir / "labels.tif")
-        print(json.dumps(r, indent=1))
+        try:
+            r = check(f, ddir / "sample_submission.tif", ddir / "labels.tif")
+        except (OSError, ValueError, rasterio.errors.RasterioError) as exc:
+            print(f"LOCAL FORMAT FAIL: {f}: {exc}", file=sys.stderr)
+            ok = False
+            continue
+        print(json.dumps(r, indent=1, allow_nan=False))
         print("LOCAL FORMAT PASS (not submission authorization)" if r["pass"] else "FAIL", f.name)
         ok = ok and r["pass"]
     return 0 if ok else 1

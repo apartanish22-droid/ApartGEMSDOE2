@@ -1,0 +1,23 @@
+{
+  "schema": "parallel-run-review-card-v1",
+  "hypothesis": null,
+  "mechanism": "No geological experiment in this review; audited the saved-byte format diagnostic and pinned holdout implementation.",
+  "named_non_fault_mimic": null,
+  "holdout_dti": null,
+  "registry_correlation_overlap": null,
+  "raster_sha256": null,
+  "validator_output": {
+    "candidate": null,
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "synthetic_masked_cell": "Pinned validator falsely passed; the user-facing checker now rejects it.",
+    "organizer_template_authentication": false
+  },
+  "submission_name": null,
+  "note": "No candidate created; do not submit.",
+  "verdict": "negative",
+  "experiments_run_this_review": 0,
+  "weekly_slots_used_this_review": 0,
+  "details": "docs/research/review-mask-and-holdout-20261028.md"
+}
