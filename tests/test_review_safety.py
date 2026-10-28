@@ -30,7 +30,10 @@ def test_site_builds_do_not_restore_unsafe_claims():
     subprocess.run([sys.executable, 'scripts/build_site.py'], cwd=ROOT, check=True)
     subprocess.run([sys.executable, 'scripts/build_ap2_site.py'], cwd=ROOT, check=True)
     assert before == {p: p.read_bytes() for p in pages}
-    assert 'DO NOT SUBMIT without explicit exploratory slot selection' not in (ROOT/'docs/index.html').read_text()
+    homepage = (ROOT/'docs/index.html').read_text()
+    assert 'id="leader-value">—</div>' in homepage  # no unverified value if JS is disabled
+    assert 'prior run, not independently replayed in this review' in homepage
+    assert 'DO NOT SUBMIT without explicit exploratory slot selection' not in homepage
     assert 'error cannot occur here' not in (ROOT/'docs/ap2/how-to-submit.html').read_text()
     assert 'PROJECTION (not a score' not in (ROOT/'docs/ap2/index.html').read_text()
 
