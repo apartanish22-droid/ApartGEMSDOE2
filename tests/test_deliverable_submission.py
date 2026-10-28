@@ -25,7 +25,7 @@ def _sha256(p: Path) -> str:
     return h.hexdigest()
 
 
-def test_promoted_geotiff_and_zip_strict_format_and_range():
+def test_research_geotiff_and_zip_strict_format_and_range():
     rc = json.loads((ROOT / "evidence/apartgemsdoe2_run_card_20261027.json").read_text())
     tif_path = ROOT / rc["artifact_paths"]["geotiff"]
     zip_path = ROOT / rc["artifact_paths"]["zip"]
@@ -98,7 +98,9 @@ def test_protocol_gates_canary_uniqueness_budget_and_runcard():
     # Duplication gate <= 0.90 surface Spearman & <= 0.70 sparse 3px dot overlap
     reg = rc["registry_correlation_overlap"]
     assert reg["passed"] is False
-    assert reg["sparse_subset_passed"] is True
+    assert reg["non_lattice_sparse_registry_passed"] is True
+    assert reg["lattice_within_3px_fraction"] > 0.70
+    assert rc["verdict"] == "negative"
     assert reg["surface_max_abs_spearman"] <= 0.90
     assert reg["dots_max_sparse_within_3px_488"] <= 0.70
     assert reg["dots_within_3px_vs_gemsdoe32_b2"] <= 0.50
@@ -138,3 +140,11 @@ def test_shared_tool_hashes_and_docs_integrity():
                 continue
             target = (html_path.parent / ref).resolve()
             assert target.is_file() and target.stat().st_size > 0, f"Broken link in {html_name}: {ref}"
+
+
+def test_research_pages_do_not_authorize_failed_candidates():
+    for name in ("udsr/index.html", "udsr/executive-summary.html", "ap2/how-to-submit.html"):
+        text = (ROOT / "docs" / name).read_text().lower()
+        assert "do not submit" in text
+        for dangerous in ("100% safe", "portal-safe", "exploratory slot ok", "error cannot occur", "submit once"):
+            assert dangerous not in text

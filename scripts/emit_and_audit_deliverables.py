@@ -435,6 +435,8 @@ def main() -> int:
         "registry_correlation_overlap": {
             "passed": False,  # Sparse subset is not the literal complete registry; lattice fails.
             "sparse_subset_passed": bool(surf_aud["passed"] and dots_aud["passed"]),
+            "non_lattice_sparse_registry_passed": bool(surf_aud["passed"] and dots_aud["passed"]),
+            "lattice_within_3px_fraction": 0.998548,  # recorded in the independent merge addendum for this artifact
             "scope_note": "Literal all-registry gate fails against the lattice witness and registry completeness is not established.",
             "n_focus_rasters_checked": 442,
             "n_extended_rasters_checked": 488,

@@ -1,3 +1,5 @@
+> **Current review (28 October 2026): No TIFF is approved for submission.** See [review and blockers](docs/research/review-20261028.md) and the [standing project prompt](docs/research/standing-prompt-ap2.md).
+
 # ApartGEMS · evidence before the next upload
 
 **Start every session here.** This repository is a research and decision desk for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/). The target is **geological faults**, not confirmed geothermal vents. Our objective is a genuinely new, high-quality, reproducible competition submission—not a copied TIFF, a renamed prior submission, an invented score, or a format-only pass.
@@ -81,3 +83,7 @@ This section retains the substantive, non-duplicated instructions from the proje
 
 - **Topology vs. pixelwise trees:** Replace pixelwise far-field crest extraction with a 5–15 km Geodesic / Oriented Radon Minimal-Path Curve Tracer operating on the updip-migrated `H-UDSR` Dual-Cover posterior (`0.7028` blind far-field ROC-AUC) to lift `SGMC_cal` (`0.0398`) past `D28_B2` (`0.0641`).
 - **Sandbox network allowlist:** Outbound HTTPS is limited to GitHub, PyPI, and npm; stage NASA OPERA DISP-S1 Sentinel-1 InSAR velocity grids (`asf.alaska.edu`) into the mirrored manifest and clarify the synthetic `13GEMSDOE` covering-lattice exemption before the next 3-experiment budget.
+
+## Review update — 28 October 2026
+
+No new experiment or slot was used. The checked-out cache is absent despite the historical restore receipt; that receipt is not evidence that the data exists in a fresh checkout. The H-UDSR pages incorrectly called a lattice-failing candidate safe to submit and treated unverified historical claims as organizer-confirmed. Those pages now state **DO NOT SUBMIT**; the archived run card distinguishes sparse-registry success from the failed all-registry gate. The AP2 guide no longer instructs users to upload a failed candidate or guarantees portal acceptance. Original page versions remain in git history. The reported holdout has not been independently replayed in this review. See [executive review](docs/EXECUTIVE_REVIEW.md) for the missing explicit lane, suspect template and incomplete registry. Official [competition description](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) and [reference code](https://github.com/drivendataorg/gems-prize-reference-solution) are the primary sources, not proof of any particular receipt.

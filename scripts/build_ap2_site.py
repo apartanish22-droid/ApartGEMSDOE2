@@ -134,7 +134,7 @@ spends a fresh slot to re-measure the same H19-5 backbone.</p>
 <td>HOLDOUT-DTI {cand_dti:.4f} vs control {champ_dti:.4f}; PROJECTION {proj['interval'][0]:.3f}–{proj['interval'][1]:.3f} (not a score)</td>
 <td><strong>Yes vs all scored</strong> (worst {worst_scored:.1%} ≤70%, |ρ|≤0.35); <strong>No</strong> under the strict broad-registry rule ({broad.get('worst_frac_candidate_dots_within_3px',0):.1%} vs one unscored Arena8a raster)</td>
 <td><strong>Do not submit</strong> (integrated decision; lattice overlap 99.9% under the literal rule). Session verdict: <code>{verdict}</code>, 0 slots used.</td></tr>
-<tr><td>Any of the nine historical winner files</td><td>OWNER-REPORTED 0.2449–0.2778 (already measured by the organiser)</td>
+<tr><td>Any of the nine historical winner files</td><td>OWNER-REPORTED 0.2449–0.2778 (unverified; no file-bound organizer receipt)</td>
 <td><strong>No</strong> — identical/subset family relations above</td><td><strong>Do not (re)submit.</strong></td></tr></table>
 
 <h2>Why the champion scored 0.2778 — and whether &gt;0.2778 is credible</h2>
@@ -160,19 +160,10 @@ how = page("How to submit", f"""
 <div class="banner"><h2>File: <code>{F}</code></h2>
 <p><a class="btn" href="../downloads/{F}">⬇ Download .tif</a> <a class="btn2" href="../downloads/{Z}">⬇ Download .zip (single GeoTIFF inside)</a></p>
 <p>SHA-256: <code>{sha}</code><br>Tracking name: <code>{name}</code><br>
-Paste into the DrivenData <em>Note</em> field: <code>{note}</code></p></div>
-<ol>
-<li>Download the <code>-zeros.tif</code> above (use the <code>.zip</code> if your browser/downloader is unreliable — it contains the identical single GeoTIFF). Do <strong>not</strong> use the <code>-nan.tif</code> twin: it is for archival comparison with historical files, and the <code>-zeros</code> variant is the one guaranteed finite in [0,1] over the whole raster.</li>
-<li>(Optional local re-check, no human inspection of pixels needed) <code>python scripts/validate_submission.py {F}</code> — it must print <code>PASS</code>. It verifies CRS/shape/geotransform against the sample submission, 0 NaN/Inf/sentinels in the footprint, all values in [0,1], and 0 positive pixels on the known-fault catalogue.</li>
-<li>Open the DrivenData competition → <strong>New submission</strong> → <em>File to submit</em>: choose the downloaded <code>.tif</code> (or the <code>.zip</code>).</li>
-<li>In <em>Note (optional)</em> paste exactly: <code>{note}</code>. Keep <code>{name}</code> in your own submission log so the receipt can be matched to sha256 <code>{sha[:16]}…</code>.</li>
-<li>Submit once. When the score returns, save the submission-page receipt (date, score, file sha256) into this repo as ORGANIZER-CONFIRMED evidence — until then every number for this file is HOLDOUT-DTI or a labelled PROJECTION.</li>
-</ol>
-<h2>Why the earlier “Predicted values must be in range [0, 1]” error cannot occur here</h2>
-<p>The training features encode nodata as −3.4028235e+38, including 3,061 px inside the footprint; any pipeline that propagates a
-feature band unchecked leaks that sentinel into the submission. The canonical writer used here clips to [0,1], writes 0.0 outside the
-footprint (<code>nodata=None</code>), then re-reads the saved bytes and asserts all 12,279,160 cells are finite and inside [0,1]
-before releasing the file. The independent validator repeats the check.</p>
+Archived research note (not an upload instruction): <code>{note}</code></p></div>
+<p>These files are available for research only. Do not upload them. For a future approved candidate, consult the <a href="../executive-summary.html">general submission guide</a>; capture a file-bound organizer receipt after any authorized submission.</p>
+<h2>Range and portal limitation</h2>
+<p>The saved zero-exterior raster was checked for finite values in [0,1]. This does not establish portal acceptance, authenticate the template, or explain the cause of the previous rejection.</p>
 <p><strong>Gate status.</strong> Format: PASS. Scientific auto-promote under the preregistered gates: <code>{verdict}</code>
 (paired-Δ 95% CI [{paired['ci95'][0]:+.4f}, {paired['ci95'][1]:+.4f}]; broad-registry overlap {broad.get('worst_frac_candidate_dots_within_3px',0):.1%} vs one unscored raster).
 Spending a slot on this file is therefore not authorised; only a future selector under a new budget, with the novelty rule adjudicated, could revisit it.</p>
