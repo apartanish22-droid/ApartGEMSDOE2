@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Replay both independent, read-only geometry audits without changing receipts.
+"""Replay independent, read-only geometry audits without changing receipts.
 
 This does not run a model, a holdout experiment, or a submission selector. Public
 pinned comparison files are cached locally and verified by the audit implementations.
@@ -9,12 +9,13 @@ from __future__ import annotations
 import json
 from audit_historical import ROOT, PINS, audit as audit_history
 from audit_parallel_candidate import audit as audit_candidate
+from recheck_trace import inspect_trace
 
 
 def compare_receipt(name: str, actual: dict, recorded: dict) -> None:
     """Compare all receipt fields except the time of this replay."""
-    actual = {k: v for k, v in actual.items() if k != "observed_utc"}
-    recorded = {k: v for k, v in recorded.items() if k != "observed_utc"}
+    actual = {k: v for k, v in actual.items() if k not in {"observed_utc", "checked_utc"}}
+    recorded = {k: v for k, v in recorded.items() if k not in {"observed_utc", "checked_utc"}}
     if actual != recorded:
         missing = object()
         differing = sorted(k for k in actual.keys() | recorded.keys()
@@ -29,6 +30,7 @@ def main() -> None:
     for name, result in (
         ("historical_audit.json", audit_history(pins, cache)),
         ("parallel_candidate_audit.json", audit_candidate(cache)),
+        ("trace_independent_recheck_20261028.json", inspect_trace()),
     ):
         recorded = json.loads((ROOT / "evidence" / name).read_text())
         compare_receipt(name, result, recorded)

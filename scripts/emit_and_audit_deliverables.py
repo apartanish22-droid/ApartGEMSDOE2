@@ -50,11 +50,10 @@ def main() -> int:
     dots_aud = json.loads((ROOT / "evidence/udsr_dots_audit.json").read_text())
     exp3 = next(e for e in exp_led["experiments"] if e["experiment_id"] == "EXP-3")
 
+    # Downloads contains unrelated research artifacts and receipts. Never
+    # perform broad cleanup here, even if a future protocol authorizes a run.
     out_dir = ROOT / "docs" / "downloads"
     out_dir.mkdir(parents=True, exist_ok=True)
-    for stale in out_dir.glob("*"):
-        if stale.is_file():
-            stale.unlink()
 
     meta = {
         "candidate_id": SUBMISSION_NAME,
@@ -80,14 +79,8 @@ def main() -> int:
         out_dir=out_dir,
         timestamp_tag=TS_TAG,
     )
-    # Remove the -nan sibling and rename prefix gemsdoe32- -> apartgemsdoe2- so repo branding is unambiguous
-    nan_path = out_dir / bundle["nan_tif"]["filename"]
-    if nan_path.exists():
-        nan_path.unlink()
-    old_zip = out_dir / bundle["zeros_zip"]["filename"]
-    if old_zip.exists():
-        old_zip.unlink()
-
+    # Preserve the -nan sibling and source ZIP; the downloads directory is a
+    # shared archive, not disposable scratch space.
     raw_zeros = out_dir / bundle["zeros_tif"]["filename"]
     new_zeros_name = raw_zeros.name.replace("gemsdoe32-", "apartgemsdoe2-", 1)
     zeros_tif = out_dir / new_zeros_name
@@ -99,7 +92,7 @@ def main() -> int:
     with zipfile.ZipFile(zeros_zip, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
         zf.write(zeros_tif, arcname=zeros_tif.name)
 
-    old_audit = next(out_dir.glob("gemsdoe32-*-audit.json"), None)
+    # Do not select, delete or overwrite an unrelated audit by a wildcard.
     bundle["zeros_tif"]["filename"] = zeros_tif.name
     bundle["zeros_tif"]["path"] = str(zeros_tif)
     bundle["zeros_zip"] = {
@@ -108,10 +101,6 @@ def main() -> int:
         "size_bytes": zeros_zip.stat().st_size,
         "sha256": hashlib.sha256(zeros_zip.read_bytes()).hexdigest(),
     }
-    if old_audit is not None:
-        new_audit = out_dir / old_audit.name.replace("gemsdoe32-", "apartgemsdoe2-", 1)
-        old_audit.unlink()
-        new_audit.write_text(json.dumps(bundle, indent=2) + "\n")
 
     # Run independent strict-finite CLI validator subprocess (zero human inspection!)
     proc = subprocess.run(

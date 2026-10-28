@@ -1,0 +1,42 @@
+{
+  "candidate_sha256": "32716d4851e9de2df406eeb2386c8ddcf9aa970c985643c7e5484973dd023b4f",
+  "lattice_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+  "mirror_sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "reference_authentication": "owner mirror only; not organizer-authenticated",
+  "comparison_grid_matches_mirror": true,
+  "shape": [
+    3730,
+    3292
+  ],
+  "crs": "EPSG:32611",
+  "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+  ],
+  "driver": "GTiff",
+  "bands": 1,
+  "candidate_positive_pixels_inside_mirror": 22438,
+  "lattice_positive_pixels_inside_mirror": 206895,
+  "candidate_dots_within_3px": 22406,
+  "overlap_fraction": 0.9985738479365363,
+  "literal_overlap_gate_pass": false,
+  "candidate_finite_inside_mirror": true,
+  "candidate_unmasked_inside_mirror": true,
+  "candidate_range_inside_mirror": true,
+  "whole_array_finite_range": true,
+  "outside_null_or_masked": false,
+  "external_mask_sidecar_present": false,
+  "portal_acceptance": null,
+  "verdict": "negative",
+  "scope": "Read-only saved-byte check against the pinned owner mirror and one lattice. No holdout, registry-surface replay, experiment, new TIFF or slot.",
+  "dtype": "float32",
+  "in_footprint_nan_cells": 0,
+  "in_footprint_nonfinite_cells": 0,
+  "in_footprint_masked_cells": 0,
+  "checked_utc": "2026-10-28T22:48:47.234754+00:00",
+  "historical_candidate": "H-TRACE EXP-2"
+}

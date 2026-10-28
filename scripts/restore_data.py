@@ -22,7 +22,9 @@ from audit_historical import fetch_pin
 from github_raw import stream_raw
 
 ROOT = Path(__file__).resolve().parents[1]
-CORE_IDS = {"training_features", "labels", "sample_submission", "ext_derived_sgmc_faults_100m_u8"}
+# Include every core file preflight checks; labels and existing_faults happen to
+# have the same pinned hash, but each must be independently restored/verified.
+CORE_IDS = {"training_features", "labels", "existing_faults", "sample_submission", "ext_derived_sgmc_faults_100m_u8"}
 
 
 def sha256(path: Path) -> str:

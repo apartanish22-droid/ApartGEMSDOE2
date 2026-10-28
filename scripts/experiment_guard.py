@@ -10,15 +10,13 @@ import sys
 
 
 def require_current_protocol() -> bool:
-    from preflight import inspect
-
-    result = inspect()
-    if result.get("status") == "READY" and result.get("new_experiment_authorized") is True:
-        return True
+    # These callers are archived lanes, not a new authorized selector. A future
+    # change to preflight must not accidentally resurrect a spent experiment or
+    # make a caller-supplied READY flag sufficient for raster emission.
     print(
-        "BLOCKED: no new experiment or raster emission is authorized. The parallel "
-        "run reports its three-experiment budget spent; the AP-1 dots fail the "
-        "literal registry lattice rule. See evidence/preflight.json.",
+        "BLOCKED: no new experiment or raster emission is authorized. Archived "
+        "lanes spent their budgets; their candidates fail the literal lattice rule "
+        "and shared-tool issues remain unresolved. Run scripts/preflight.py for current blockers.",
         file=sys.stderr,
     )
     return False

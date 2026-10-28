@@ -1,0 +1,77 @@
+{
+  "schema": "parallel-run-review-card-v2",
+  "date_utc": "2026-10-28",
+  "verdict": "negative",
+  "lane_assignment": null,
+  "experiments_run_this_review": 0,
+  "weekly_slots_used_this_review": 0,
+  "new_candidate": null,
+  "hypothesis": "Archived H-TRACE: kilometer-scale oriented posterior coherence could distinguish continuous fault traces from posterior speckle.",
+  "mechanism": "The prior lane combined 1.5 km and 3.1 km oriented trace-coherence with a dual-cover posterior, then placed axial-crest dots. This review did not train or reproduce it.",
+  "named_non_fault_mimic": "Lake Lahontan shoreline benches, roads/rail embankments, and aeromagnetic flight-line stripes.",
+  "proposed_next_hypothesis": "Cover-aware positive-unlabeled basin-margin learning, ranked in knowledge/preregistration_review_20261028.md; not assigned, tested, or approved.",
+  "holdout_dti": {
+    "current_valid_point": null,
+    "current_valid_ci95": null,
+    "archived_report": {
+      "original_label": "HOLDOUT-DTI; retrospectively invalid for the requested buffered-whole-segment protocol",
+      "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "withheld_positive_occurrences": 22232,
+      "point": 0.08933324397929213,
+      "ci95": [0.07374684357027325, 0.1051943746923761],
+      "control_point": 0.09750733770113192,
+      "status": "Prior-session report, not independently re-evaluated. Our split-geometry audit found that the claimed buffer and whole-segment scoring were not established; it does not prove the numerical calculation wrong."
+    },
+    "split_geometry_receipt": "evidence/shared_split_geometry_20261028.json"
+  },
+  "registry_correlation_overlap": {
+    "surface_correlation": {
+      "max_abs_spearman": 0.12926,
+      "scope": "Prior report only, 498 measurable of 500 listed rasters; not hash-replayed or complete, and checked after dot placement. Not a pre-placement pass.",
+      "preplacement_pass": false
+    },
+    "final_dots_vs_lattice": {
+      "within_3px": 22406,
+      "candidate_dots": 22438,
+      "fraction": 0.9985738479365363,
+      "threshold": 0.70,
+      "literal_pass": false,
+      "receipt": "evidence/trace_independent_recheck_20261028.json"
+    },
+    "complete_registry_verified": false,
+    "unique_under_protocol": false
+  },
+  "raster": "docs/downloads/apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros.tif",
+  "raster_sha256": "32716d4851e9de2df406eeb2386c8ddcf9aa970c985643c7e5484973dd023b4f",
+  "raster_status": "Pre-existing research artifact only; no new TIFF generated or approved in this review.",
+  "validator": {
+    "evidence": "evidence/trace_independent_recheck_20261028.json",
+    "reference": "Hash-verified owner mirror, not authenticated organizer template",
+    "driver": "GTiff",
+    "single_band": true,
+    "dtype": "float32",
+    "in_footprint_nan_cells": 0,
+    "in_footprint_nonfinite_cells": 0,
+    "in_footprint_masked_cells": 0,
+    "crs": "EPSG:32611",
+    "shape": [3730, 3292],
+    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "grid_matches_owner_mirror": true,
+    "in_footprint_unmasked_and_finite": true,
+    "in_footprint_range_0_1": true,
+    "whole_array_finite_range_0_1": true,
+    "outside_null_or_masked": false,
+    "organizer_template_authenticated": false,
+    "portal_acceptance": null
+  },
+  "submission": {
+    "name": "apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros",
+    "note": "ApartGEMSDOE2 H-TRACE EXP-2: oriented 1.5/3.1km trace-coherence gate on DualCover OOF posterior, 22438 dots B2",
+    "note_length": 110,
+    "selector_approved": false,
+    "upload_authorized": false
+  },
+  "organizer_confirmed_score": null,
+  "leaderboard_estimate": null,
+  "reason": "No calibrated mapping to hidden truth or file-bound organizer receipt exists. The literal novelty, authenticated-format and requested holdout gates are not satisfied."
+}
