@@ -32,6 +32,18 @@ The TIFF is one float32 band, EPSG:32611, 3730 × 3292, affine (100, 0, 243350, 
 
 Another session generated [RAD-SCARP](downloads/apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-zeros.tif) while this review was underway. Its SHA-256 is `ce5295029b2f506bed5d49b74432370ba6101d5b810797be78af7502d41828f3`; an [independent saved-byte check](../evidence/rad_scarp_independent_recheck_20261028.json) found **10,421 / 10,457 = 99.66%** of its dots within three pixels of the registered lattice, exceeding the 70% limit. The generator used the full catalogue rather than fold-visible faults; the archived v3 diagnostic lacks a confidence interval and is not valid requested-protocol holdout evidence. The owner-mirrored grid is not organizer-authenticated; exterior zeros do not meet the conservative null/NaN-outside reading and portal acceptance is unknown. **Research only—DO NOT SUBMIT.**
 
+## Three additional concurrent artifacts
+
+A separate session generated three more TIFFs while this review was underway. None is eligible for a slot. Our [independent saved-byte recheck](../evidence/parallel_three_independent_recheck_20261028.json) measures the required directional overlap against the registered lattice; the previous calculation mistakenly counted lattice cells near the candidate rather than candidate cells near the lattice.
+
+| Research-only file | Saved positive cells | Within 3 px of lattice | Decision |
+|---|---:|---:|---|
+| [H-DIL-GRAV TIFF](downloads/gemsdoe32-h-dil-grav-dilate-x-gravlow-top37654-20261028T224631Z-3df650f1-zeros.tif) | 36,975 | 36,692 / 36,975 = **99.23%** | DO NOT SUBMIT |
+| [H-MAG-EDGE×SLOPE TIFF](downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif) | 5,103,418 | 5,098,478 / 5,103,418 = **99.903%** | DO NOT SUBMIT |
+| [H-DEPTH×COND TIFF](downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif) | 5,106,385 | 5,099,871 / 5,106,385 = **99.872%** | DO NOT SUBMIT |
+
+The last two exceeded their intended 37,654-cell budget because of tied threshold values. All three have finite unmasked [0,1] cells inside the owner-mirrored footprint, but exterior zeros and unknown portal acceptance; the historical shared-v3 diagnostics do not establish the requested buffered holdout. Their generators are blocked, and the full registry and authenticated organizer template remain unavailable.
+
 ## Submission guide—future candidates only
 
 1. Establish an explicitly assigned lane and budget; authenticate the organizer input files, sample and footprint; use the pinned shared feature stack and resolve upstream evaluator/writer/registry defects centrally.

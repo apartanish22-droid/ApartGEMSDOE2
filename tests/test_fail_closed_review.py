@@ -87,6 +87,9 @@ def test_archive_guard_remains_blocked_even_if_preflight_changes(monkeypatch):
     ["scripts/run_trace_experiments.py"],
     ["scripts/emit_trace_deliverable.py"],
     ["scripts/build_rad_scarp_submission.py"],
+    ["scripts/run_h_dil_grav_experiment.py"],
+    ["scripts/run_h_mag_edge_slope_experiment.py"],
+    ["scripts/run_h_depth_cond_experiment.py"],
     ["scripts/run_udsr_experiments.py"],
     ["scripts/emit_and_audit_deliverables.py"],
     ["scripts/run_ap2.py"],
@@ -151,7 +154,18 @@ def test_current_card_and_split_receipt_are_consistent():
     assert rad["dtype"] == "float32" and rad["in_footprint_nan_cells"] == rad["in_footprint_masked_cells"] == 0
     assert rad_card["unique_vs_gemsdoe_sites"] is None and not rad_card["validator_output"]["all_pass"]
     assert rad_card["verdict"] == "negative" and "not valid HOLDOUT-DTI" in rad_card["score_label"]
-    for name in ("current_run_card.json", "shared_split_geometry_20261028.json", "trace_independent_recheck_20261028.json", "rad_scarp_independent_recheck_20261028.json"):
+    three = json.loads((ROOT / "evidence/parallel_three_independent_recheck_20261028.json").read_text())
+    assert not card["concurrent_parallel_three"]["registry_complete_verified"]
+    assert [v["candidate_dots_within_3px"] for v in three["candidates"].values()] == [36692, 5098478, 5099871]
+    assert all(not v["literal_overlap_gate_pass"] and not v["outside_null_or_masked"] for v in three["candidates"].values())
+    for path in ("h_dil_grav_exp1_20261028T224631Z.json", "h_mag_edge_slope_exp2_20261028T224750Z.json", "h_depth_cond_exp3_20261028T224836Z.json"):
+        def reject_nonstandard(value):
+            raise ValueError(f"non-standard JSON: {value}")
+        prior = json.loads((ROOT / "evidence" / path).read_text(), parse_constant=reject_nonstandard)
+        assert prior["verdict"] == "negative" and not prior["validator_output"]["all_checks_passed"]
+        assert "not valid HOLDOUT-DTI" in prior["score_label"]
+        assert not prior["registry_correlation_overlap"]["literal_gate_pass"]
+    for name in ("current_run_card.json", "shared_split_geometry_20261028.json", "trace_independent_recheck_20261028.json", "rad_scarp_independent_recheck_20261028.json", "parallel_three_independent_recheck_20261028.json"):
         assert (ROOT / "docs/data" / name).read_bytes() == (ROOT / "evidence" / name).read_bytes()
 
 
@@ -164,6 +178,9 @@ def test_trace_receipt_replays_when_inputs_are_restored():
     from recheck_rad_scarp import inspect_rad_scarp
     recorded_rad = json.loads((ROOT / 'evidence/rad_scarp_independent_recheck_20261028.json').read_text())
     assert inspect_rad_scarp() == {k: v for k, v in recorded_rad.items() if k != 'checked_utc'}
+    from recheck_parallel_three import inspect_parallel_three
+    recorded_three = json.loads((ROOT / 'evidence/parallel_three_independent_recheck_20261028.json').read_text())
+    assert inspect_parallel_three() == {k: v for k, v in recorded_three.items() if k != 'checked_utc'}
 
 
 def test_publication_exposes_the_actual_blockers():
@@ -176,5 +193,6 @@ def test_publication_exposes_the_actual_blockers():
     assert 'not a complete pre-placement pass' in trace
     assert 'data/current_run_card.json' in home
     assert '10,421 / 10,457' in home and 'rad_scarp_independent_recheck_20261028.json' in home
+    assert '99.23%, 99.903% and 99.872%' in home and 'parallel_three_independent_recheck_20261028.json' in home
     for page in (ROOT / 'docs/ap2').glob('*.html'):
         assert 'buffered whole-segment split' in page.read_text()

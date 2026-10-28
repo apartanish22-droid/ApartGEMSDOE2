@@ -37,6 +37,8 @@ This is the durable, consolidated operational request; [PROJECT_BRIEF.md](docs/P
 
 7. **Concurrent RAD-SCARP:** another session added a historical TIFF while this review was underway. An independent recheck found **10,421 / 10,457 = 99.66%** of its dots within three pixels of the registered lattice, so the literal novelty rule fails. Its generator used the full catalogue, the reported v3 diagnostic lacks a CI, and portal acceptance is unknown. Its archived generator is now blocked. [Saved-byte recheck](evidence/rad_scarp_independent_recheck_20261028.json) · [corrected historical run card](evidence/rad_scarp_run_card_20261028.json) — **DO NOT SUBMIT**.
 
+8. **Three more concurrent research artifacts:** H-DIL-GRAV, H-MAG-EDGE×SLOPE and H-DEPTH×COND have respectively **99.23%, 99.903% and 99.872%** of saved dots within three pixels of the lattice. The old check counted lattice pixels near candidates instead of candidates near the lattice, so its uniqueness passes were wrong. Threshold ties produced over five million saved dots in each of the latter two files. The archived runners are blocked; the [independent saved-byte recheck](evidence/parallel_three_independent_recheck_20261028.json) and [historical status](assets/SUBMISSION_STATUS.txt) mark all three **DO NOT SUBMIT**.
+
 ## Reproduce the read-only checks
 
 A fresh checkout does not include ignored caches. Hashes verify owner mirrors, **not** organizer origin. Restoring the core includes a ~419 MB feature raster; do not confuse historical restore receipts with current files.

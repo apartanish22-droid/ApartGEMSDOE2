@@ -99,5 +99,37 @@
     "format": "Owner-mirrored grid and [0,1] only; exterior zeros fail conservative null/NaN-outside wording; portal acceptance unknown.",
     "receipt": "evidence/rad_scarp_independent_recheck_20261028.json",
     "verdict": "negative"
+  },
+  "concurrent_parallel_three": {
+    "origin": "Three artifacts generated in a separate concurrent session; this review generated none.",
+    "receipt": "evidence/parallel_three_independent_recheck_20261028.json",
+    "previous_overlap_error": "Previously counted lattice pixels near candidate, not candidate dots near lattice.",
+    "holdout": "Archived shared-v3 diagnostics do not meet the requested buffered-whole-segment protocol.",
+    "registry_complete_verified": false,
+    "portal_acceptance": null,
+    "verdict": "negative",
+    "candidates": {
+      "H-DIL-GRAV": {
+        "sha256": "a16afeba152e58592b764ad9ddf766c7a256556f03a9fe7d2a52a4b2a3d196f1",
+        "positive_pixels": 36975,
+        "dots_within_3px_of_lattice": 36692,
+        "fraction": 0.9923461798512508,
+        "literal_gate_pass": false
+      },
+      "H-MAG-EDGE-SLOPE": {
+        "sha256": "69a76559ff303c7604b0e35a0cec3af5fe0f7b742b8720e979857b01618a2d35",
+        "positive_pixels": 5103418,
+        "dots_within_3px_of_lattice": 5098478,
+        "fraction": 0.9990320212845587,
+        "literal_gate_pass": false
+      },
+      "H-DEPTH-COND": {
+        "sha256": "621334388274c4a114e5c2a20c26d4e11bc3e3a44efb7ce09fcf483a3e2c49a0",
+        "positive_pixels": 5106385,
+        "dots_within_3px_of_lattice": 5099871,
+        "fraction": 0.9987243421716145,
+        "literal_gate_pass": false
+      }
+    }
   }
 }

@@ -1,4 +1,18 @@
 ================================================================================
+CORRECTION 2026-10-28 — ALL ARTIFACTS IN THIS FILE ARE RESEARCH ONLY.
+An independent saved-byte audit found 36,692/36,975 H-DIL-GRAV dots (99.23%),
+5,098,478/5,103,418 H-MAG-EDGE dots (99.903%), and 5,099,871/5,106,385
+H-DEPTH-COND dots (99.872%) within 3 pixels of a registered lattice. All fail
+the literal uniqueness rule. Previous overlap calculations counted lattice
+pixels near candidate dots instead of candidate dots near the lattice. The
+archived v3 split does not establish a buffered whole-segment holdout, and the
+original organizer template and portal acceptance are unverified. The original
+report below is retained only as historical context; any conflicting uniqueness,
+holdout, format or upload claim is withdrawn. The runners are blocked.
+See evidence/parallel_three_independent_recheck_20261028.json.
+================================================================================
+
+================================================================================
 CORRECTION 2026-10-28 (IR-TRACE-02): DO NOT SUBMIT THE H2 FILE BELOW.
 H2 was generated in DEMO MODE from seeded pseudo-features without competition
 data (see docs/data/run_card_h2.json: holdout_dti null). The CONDITIONAL YES
@@ -9,103 +23,117 @@ below is superseded -> OK TO SUBMIT: NO. Verdict corrected to negative.
 GEMS PRIZE COMPETITION — SUBMISSION STATUS
 ================================================================================
 Generated: 2026-10-28
-Branch: arena/17f40661-apartgemsdoe2
+Branch: arena/59f115dd-apartgemsdoe2
 
 ================================================================================
-🚨 READ THIS FIRST — NO FILE HERE IS APPROVED FOR SUBMISSION
+🚨 READ THIS FIRST — NO FILE HERE IS APPROVED FOR SUBMISSION TO DRIVENDATA
 ================================================================================
 
-FILE: gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif
-LOCATION: ./assets/ (this directory)
-SIZE: 49.2 MB
-SHA-256: 5a6da02c45e8cc96399763c1eba4f95bddd781f0ff2223c9d9a7f1dc3e90a801
+A concurrent session generated these research TIFFs from geological hypotheses.
+The owner-mirrored format checks are not organizer authentication or portal
+approval; every artifact fails the literal lattice uniqueness rule.
 
-ZIP AVAILABLE: gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.zip
-
-VALIDATION: ✅ PASSED
-  - Format: GeoTIFF, single band, float32
-  - Grid: 3730×3292, EPSG:32611, 100m, origin (243350, 4508550)
-  - Values: [0.0000, 1.0000], all finite, no NaN
-  - Portal-safe: YES (whole array in [0,1])
-
-DOTS (non-zero predictions): 61,396
-
-SUBMISSION NOTE (138 chars):
-"H2 multi-scale fractal-dimension × surficial-complexity-anisotropy 
-fault-zone propensity; not a copy of any prior GEMSDOE site submission."
+Verdict for every file below: NOT OK TO SUBMIT. OK to download for research only.
 
 ================================================================================
-IS THIS OK TO SUBMIT?
+ARCHIVED RESEARCH TIFFS — DO NOT UPLOAD
 ================================================================================
 
-NO — superseded conditional-yes (see correction above). Original pending list:
+1. FILE: gemsdoe32-h-dil-grav-dilate-x-gravlow-top37654-20261028T224631Z-3df650f1-zeros.tif
+   LOCATION: ./docs/downloads/ (with .zip and -nan.tif twins)
+   SHA-256: a16afeba152e58592b764ad9ddf766c7a256556f03a9fe7d2a52a4b2a3d196f1
+   SIZE: 60,694 bytes
+   HYPOTHESIS: H-DIL-GRAV (ranked #1, research/hypotheses.md) — geodetic dilatation
+               (training_features band 8) x isostatic gravity low (band 13), top-37,654
+               propensity pixels as a binary mask.
+   FORMAT: local owner-mirror checks only; organizer format/portal unverified
+     - GeoTIFF, single band, float32, EPSG:32611, 3730x3292, 100 m,
+       origin (243350, 4508550) — matches the pinned sample_submission.tif grid.
+     - Values in [0, 1] across the whole array, zero NaNs (zeros exterior; this
+       does not meet the conservative null/NaN-outside reading).
+     - Zero pixels on the known USGS/INGENIOUS catalogue.
+   ARCHIVED DIAGNOSTIC (not valid HOLDOUT-DTI): 0.00572, 95% CI [0.00000, 0.01054]
+     evaluator GEMSDOE32-HOLDOUT-v3-visible-gated, 22,232 withheld positives.
+     Historical control 0.09920 was not established under the requested split.
+   HISTORICAL AUC (not a holdout leakage pass): geod_dilaterate AUC 0.5250, -iso_grav_anom AUC 0.5411
+                   (two-sided max <= 0.90).
+   UNIQUENESS: FAIL — 36,692 / 36,975 saved dots (99.23%) lie within 3 px
+               of the registered lattice. Complete pre-placement test unavailable.
+   HISTORICAL NOTE (119 chars; DO NOT SUBMIT):
+   "Unique H-DIL-GRAV: geodetic dilatation x gravity low, top-37654 pixels,
+    not a copy of any prior GEMSDOE site submission"
+   VERDICT: negative — lattice gate fails; no valid holdout or release approval.
+            NOT OK to submit to DrivenData.
 
-✅ FORMAT VALIDATION: PASSED (all 7 checks)
-✅ VALUES IN [0,1]: YES (0.0000 to 1.0000)
-✅ NO NaN INSIDE FOOTPRINT: YES
-✅ UNIQUE vs existing AP1/AP2/UDSR rasters: YES (< 7% overlap)
-✅ CORRECT GRID: YES (matches template exactly)
+2. FILE: gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif
+   LOCATION: ./docs/downloads/ (with .zip and -nan.tif twins)
+   SHA-256: 69a76559ff303c76... (see -audit.json sidecar)
+   HYPOTHESIS: H-MAG-EDGExSLOPE (ranked #2) — magnetic horizontal gradient (band 3)
+               x detrended elevation slope (band 19), top-37,654 pixels.
+   FORMAT: local owner-mirror checks only; NOTE: emission runaway — 5,103,418 positive
+               pixels (~99% of footprint) because many pixels tie at zero propensity.
+               Not a credible competition emission.
+   ARCHIVED DIAGNOSTIC (not valid HOLDOUT-DTI): 0.01182, 95% CI [0.00979, 0.01396] — below control 0.09920.
+   UNIQUENESS: FAIL — 5,098,478 / 5,103,418 saved dots (99.903%) near the lattice.
+   VERDICT: negative — lattice gate fails and emission ran away. NOT OK to submit.
 
-⚠️  PENDING:
-  - HOLDOUT-DTI evaluation (requires competition data)
-  - Full uniqueness check vs all 9 GEMSDOE focus site rasters
-  - Leakage canary on each feature
+3. FILE: gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif
+   LOCATION: ./docs/downloads/ (with .zip and -nan.tif twins)
+   SHA-256: 621334388274c4a1... (see -audit.json sidecar)
+   HYPOTHESIS: H-DEPTHxCOND (ranked #3) — conductivity (band 17) x (1 - normalized
+               depth-to-basement, band 15), top-37,654 pixels.
+   FORMAT: local owner-mirror checks only; same runaway-emission caveat as #2
+               (5,106,385 positive pixels).
+   ARCHIVED DIAGNOSTIC (not valid HOLDOUT-DTI): 0.01182, 95% CI [0.00979, 0.01396] — below control 0.09920.
+   UNIQUENESS: FAIL — 5,099,871 / 5,106,385 saved dots (99.872%) near the lattice.
+   VERDICT: negative — lattice gate fails and emission ran away. NOT OK to submit.
 
 ================================================================================
-BACKGROUND
+WHY NO FILE IS OK TO SUBMIT THIS WEEK
 ================================================================================
 
-HYPOTHESIS H2: Multi-Scale Fractal Fault-Zone Detection
+The PARALLEL-RUN PROTOCOL requires a candidate to (a) beat the fold-honest holdout
+best with a strictly positive paired interval, (b) pass leakage canaries, (c) pass
+uniqueness vs the full registry, and (d) pass saved-byte format validation, before
+a separate selector may spend a weekly slot.
 
-This submission uses a NEW geological approach different from all prior
-GEMSDOE site submissions:
+All three fail the literal lattice rule. The following numbers are historical
+diagnostics, not valid requested-protocol holdouts or organizer scores:
+  H-DIL-GRAV   0.00572  vs control 0.09920
+  H-MAG-EDGE   0.01182  vs control 0.09920
+  H-DEPTHxCOND 0.01182  vs control 0.09920
 
-- Prior approaches: edge detection, curvature, distance-to-catalogue,
-  dotted-ridge, scarp detection, updip advection
-- H2 approach: fractal box-counting dimension + complexity anisotropy
-  across multiple spatial scales and azimuth sectors
-
-Why this is different:
-- Doesn't require visible surface scarp (detects through texture)
-- Can detect buried/alluvial-covered faults
-- Uses fractal statistics, not gradient magnitude
-- Label-free core features (no catalogue memorization)
-
-================================================================================
-HOW TO SUBMIT
-================================================================================
-
-*** WITHDRAWN 2026-10-28 (IR-TRACE-02): DO NOT DOWNLOAD OR UPLOAD THE H2 FILE. ***
-The original step-by-step upload instructions here are withdrawn; H2 was built from
-seeded pseudo-features without competition data. See git history for the original text.
+The archived split does not establish whole buffered fault segments and a
+complete registry was not verified. The reasons for the numerical diagnostics
+are not established. None of these candidates is promotable; do not rerun the
+three spent archived experiments.
+Run cards: evidence/h_dil_grav_exp1_*.json, evidence/h_mag_edge_slope_exp2_*.json,
+evidence/h_depth_cond_exp3_*.json.
 
 ================================================================================
-FILES IN THIS DIRECTORY
+HOW TO SUBMIT (when a future candidate passes every gate)
 ================================================================================
 
-submission.tif                    — Legacy H1 synthetic demo (NOT FOR SUBMISSION)
-gems-h1-radiometric-curvature-convergence-20261027T212405Z-59a3c88e.tif — H1 demo (NOT FOR SUBMISSION)
-gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif             — H2 pseudo-feature DEMO (DO NOT SUBMIT)
-gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.zip             — H2 pseudo-feature DEMO (DO NOT SUBMIT)
+1. On DrivenData (https://www.drivendata.org/competitions/306/competition-doe-gems/),
+   open "New submission" on the submission page.
+2. File to submit: one single-band GeoTIFF (.tif), or a .zip containing exactly one
+   GeoTIFF. It must match the submission format's CRS (EPSG:32611), shape
+   (3730 x 3292) and geotransform (origin 243350 / 4508550, 100 m cells).
+3. Values must be finite and in [0, 1] inside the footprint. The cause of the
+   reported portal error has not been diagnosed here; use null/NaN outside per
+   the published format and confirm ambiguous portal behavior with organizers.
+4. Give the submission a unique name and a short note (<= 140 characters), e.g. the
+   run-card note above.
+5. Submit only if a separate selector has approved the candidate. Save the organizer
+   submission-page receipt (ORGANIZER-CONFIRMED score) together with the file SHA-256.
+   Until a receipt exists, every score is HOLDOUT-DTI or user-reported — never
+   confirmed.
 
-================================================================================
-REVIEW NOTE (28 October 2026)
-================================================================================
-
-No new experiment or slot was used. The checked-out cache is absent despite 
-the historical restore receipt; that receipt is not evidence that the data 
-exists in a fresh checkout. The H-UDSR pages incorrectly called a lattice-
-failing candidate safe to submit and treated unverified historical claims as 
-organizer-confirmed. Those pages now state DO NOT SUBMIT; the archived run 
-card distinguishes sparse-registry success from the failed all-registry gate. 
-The AP2 guide no longer instructs users to upload a failed candidate or 
-guarantees portal acceptance. Original page versions remain in git history. 
-The reported holdout has not been independently replayed in this review. See 
-[executive review](docs/EXECUTIVE_REVIEW.md) for the missing explicit lane, 
-suspect template and incomplete registry. Official 
-[competition description](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) 
-and [reference code](https://github.com/drivendataorg/gems-prize-reference-solution) 
-are the primary sources, not proof of any particular receipt.
+Historical site bests (user-reported, UNVERIFIED, no organizer receipts): GEMSDOE32
+0.2778 (highest of the nine focus sites), GEMSDOE36 0.2750, GEMSDOE28 0.2710,
+GEMSDOE31 0.2708, GEMSDOE25 0.2600, GEMSDOE30 0.2600, GEMSDOE33 0.2632, GEMSDOE24
+0.2477, GEMSDOE27 0.2449. All nine archival dot sets fail the requested uniqueness
+rule against at least one other focus-site raster — none is a valid new submission.
 
 ================================================================================
 END

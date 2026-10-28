@@ -1,0 +1,141 @@
+{
+  "schema": "parallel-run-protocol-run-card-v1",
+  "generated_at_utc": "20261028T224631Z",
+  "session_branch": "arena/59f115dd-apartgemsdoe2",
+  "hypothesis": "H-DIL-GRAV: concealed geothermal normal faults missing from the USGS/INGENIOUS catalogue co-express as geodetic dilatation (training_features band 8) and an isostatic gravity low (band 13); propensity = normalized dilatation x normalized (-gravity) over the footprint.",
+  "mechanism": "Extensional fault zones localize volumetric strain (dilatation); hydrothermal alteration and fracturing lower bulk density (gravity low). Their product targets concealed faults with no mapped surface scarp.",
+  "mimicking_non_fault_process": "Broad sedimentary basins produce gravity lows without faults; regional tectonic extension produces dilation without a discrete fault.",
+  "holdout_dti": 0.005719746122486299,
+  "holdout_ci95": [
+    0.0,
+    0.010537033874278297
+  ],
+  "holdout_withheld_positives": 22232,
+  "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+  "leakage_canary": {
+    "geod_dilaterate": {
+      "auc": 0.5249547822431588,
+      "two_sided_max": 0.5249547822431588,
+      "leakage_flag_gt_0.90": false
+    },
+    "minus_iso_grav_anom": {
+      "auc": 0.5410951013961582,
+      "two_sided_max": 0.5410951013961582,
+      "leakage_flag_gt_0.90": false
+    }
+  },
+  "surface_spearman_vs_registry": {
+    "GEMSDOE24_best": 0.0041275516602018066,
+    "GEMSDOE25_best": 0.0043096285941367826,
+    "GEMSDOE27_best": 0.004048814966563652,
+    "GEMSDOE28_best": 0.004075812141182486,
+    "GEMSDOE30_best": 0.0043096285941367826,
+    "GEMSDOE31_best": 0.0034477419191399645,
+    "GEMSDOE32_best": 0.002863715693681781,
+    "GEMSDOE33_best": 0.004875364750406309,
+    "GEMSDOE36_best": 0.0012568828398312694,
+    "LATTICE_r13": 0.0005289223274850018
+  },
+  "final_dot_overlap_vs_registry": null,
+  "raster": "gemsdoe32-h-dil-grav-dilate-x-gravlow-top37654-20261028T224631Z-3df650f1-zeros.tif",
+  "raster_sha256": "a16afeba152e58592b764ad9ddf766c7a256556f03a9fe7d2a52a4b2a3d196f1",
+  "raster_path": "/home/user/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-dil-grav-dilate-x-gravlow-top37654-20261028T224631Z-3df650f1-zeros.tif",
+  "validator_output": {
+    "filename": "gemsdoe32-h-dil-grav-dilate-x-gravlow-top37654-20261028T224631Z-3df650f1-zeros.tif",
+    "size_bytes": 60694,
+    "sha256": "a16afeba152e58592b764ad9ddf766c7a256556f03a9fe7d2a52a4b2a3d196f1",
+    "mode": "zeros",
+    "geometry_reference": "/home/user/ApartGEMSDOE2/.cache/gems_data/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "None",
+    "emitted_positive_pixels": 36975,
+    "footprint_fraction": 0.007155,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 12279160,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": false,
+      "zero_on_catalogue_leakage": false,
+      "validator_range_0_1_guaranteed": false,
+      "reference_is_organizer_authenticated": false,
+      "portal_acceptance_verified": false,
+      "literal_lattice_uniqueness_pass": false
+    },
+    "all_checks_passed": false
+  },
+  "submission_name": "gemsdoe32-h-dil-grav-dilate-x-gravlow-top37654-20261028T224631Z-3df650f1-zeros",
+  "note": "Unique H-DIL-GRAV: geodetic dilatation x gravity low, top-37654 pixels, not a copy of any prior GEMSDOE site submission",
+  "note_length_chars": 119,
+  "emitted_pixels": 36975,
+  "verdict": "negative",
+  "original_reported_claims_withdrawn": {
+    "final_dot_overlap_vs_registry": {
+      "GEMSDOE24_best": 0.1677,
+      "GEMSDOE25_best": 0.158,
+      "GEMSDOE27_best": 0.172,
+      "GEMSDOE28_best": 0.1342,
+      "GEMSDOE30_best": 0.158,
+      "GEMSDOE31_best": 0.1372,
+      "GEMSDOE32_best": 0.1235,
+      "GEMSDOE33_best": 0.1465,
+      "GEMSDOE36_best": 0.1261,
+      "LATTICE_r13": 0.0428
+    },
+    "surface_spearman_vs_registry": {
+      "GEMSDOE24_best": 0.0041275516602018066,
+      "GEMSDOE25_best": 0.0043096285941367826,
+      "GEMSDOE27_best": 0.004048814966563652,
+      "GEMSDOE28_best": 0.004075812141182486,
+      "GEMSDOE30_best": 0.0043096285941367826,
+      "GEMSDOE31_best": 0.0034477419191399645,
+      "GEMSDOE32_best": 0.002863715693681781,
+      "GEMSDOE33_best": 0.004875364750406309,
+      "GEMSDOE36_best": 0.0012568828398312694,
+      "LATTICE_r13": 0.0005289223274850018
+    },
+    "all_checks_passed": true,
+    "emitted_pixels_before_writer": 37654,
+    "note": "Historical values are retained for provenance only; they do not establish release, complete-registry uniqueness or valid holdout."
+  },
+  "score_label": "ARCHIVED DIAGNOSTIC ONLY; not valid HOLDOUT-DTI under the requested buffered-whole-segment protocol, and not an organizer score.",
+  "holdout_status": "Original point and CI are retained for provenance. The shared v3 split does not establish the requested truth-to-visible buffer or whole segments; static full-map input and the control were not independently replayed.",
+  "leakage_canary_status": "Historical unverified full-catalogue AUC diagnostic, not proof of leakage-free holdout features.",
+  "surface_correlation_status": "Historical sampled, partial-registry comparison only; undefined correlations are null and must fail closed. No complete-registry pre-placement pass is established.",
+  "registry_correlation_overlap": {
+    "registry_complete_verified": false,
+    "preplacement_pass": false,
+    "candidate_dots_within_3px_of_lattice": 36692,
+    "candidate_positive_pixels": 36975,
+    "fraction": 0.9923461798512508,
+    "literal_gate_pass": false,
+    "reason": "Original lattice calculation dilated the candidate and counted nearby lattice cells divided by candidate cells, not candidate cells within three pixels of the lattice."
+  },
+  "note_warning": "Archived note is provenance only; candidate is not unique under the literal rule and is not authorized for submission.",
+  "independent_recheck": "evidence/parallel_three_independent_recheck_20261028.json"
+}
