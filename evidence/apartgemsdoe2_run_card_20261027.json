@@ -72,7 +72,7 @@
     0.10730672323299381
   ],
   "registry_correlation_overlap": {
-    "passed": true,
+    "passed": false,
     "n_focus_rasters_checked": 442,
     "n_extended_rasters_checked": 488,
     "surface_max_abs_spearman": 0.118932,
@@ -80,7 +80,10 @@
     "dots_max_sparse_within_3px_488": 0.694189,
     "dots_nearest_sparse_raster": "GEMSDOE24:inputs/calibration/8GEMSDOE_Hedge-v2_submission.tif",
     "dots_within_3px_vs_gemsdoe32_b2": 0.46517,
-    "dots_within_3px_vs_gemsdoe25_d28": 0.53154
+    "dots_within_3px_vs_gemsdoe25_d28": 0.53154,
+    "non_lattice_sparse_registry_passed": true,
+    "lattice_within_3px_fraction": 0.998548,
+    "scope_note": "Original pass applied only to sparse registry comparisons; integrated all-registry gate fails on 13GEMSDOE lattice. See evidence/udsr_merge_addendum.json."
   },
   "raster_sha256": "1f2c28e9eba172fe6a4da138b98afa28a43420549e174c801a02af658ef180b9",
   "zip_sha256": "25695c1b285bd7d94f9720c1b9c7a5a473c0f60f4cd91042af1172c3178c4c0d",
