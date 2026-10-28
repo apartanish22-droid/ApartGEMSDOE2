@@ -1,0 +1,37 @@
+{
+  "candidate_sha256": "1f2c28e9eba172fe6a4da138b98afa28a43420549e174c801a02af658ef180b9",
+  "lattice_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+  "mirror_sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "reference_authentication": "owner mirror only; not organizer-authenticated",
+  "comparison_grid_matches_mirror": true,
+  "shape": [
+    3730,
+    3292
+  ],
+  "crs": "EPSG:32611",
+  "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+  ],
+  "driver": "GTiff",
+  "bands": 1,
+  "candidate_positive_pixels_inside_mirror": 26173,
+  "lattice_positive_pixels_inside_mirror": 206895,
+  "candidate_dots_within_3px": 26135,
+  "overlap_fraction": 0.998548122110572,
+  "literal_overlap_gate_pass": false,
+  "candidate_finite_inside_mirror": true,
+  "candidate_unmasked_inside_mirror": true,
+  "candidate_range_inside_mirror": true,
+  "whole_array_finite_range": true,
+  "outside_null_or_masked": false,
+  "external_mask_sidecar_present": false,
+  "portal_acceptance": null,
+  "verdict": "negative",
+  "scope": "Read-only comparison against one pinned raster. No holdout rerun, full-registry pass, authenticated format validation or slot selection.",
+  "checked_utc": "2026-10-28T05:44:26.217954+00:00"
+}

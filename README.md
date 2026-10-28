@@ -79,3 +79,32 @@ This section retains the substantive, non-duplicated instructions from the proje
 
 - **Topology vs. pixelwise trees:** Replace pixelwise far-field crest extraction with a 5–15 km Geodesic / Oriented Radon Minimal-Path Curve Tracer operating on the updip-migrated `H-UDSR` Dual-Cover posterior (`0.7028` blind far-field ROC-AUC) to lift `SGMC_cal` (`0.0398`) past `D28_B2` (`0.0641`).
 - **Sandbox network allowlist:** Outbound HTTPS is limited to GitHub, PyPI, and npm; stage NASA OPERA DISP-S1 Sentinel-1 InSAR velocity grids (`asf.alaska.edu`) into the mirrored manifest and clarify the synthetic `13GEMSDOE` covering-lattice exemption before the next 3-experiment budget.
+
+## Review update · 2026-10-28
+
+**No file is approved for submission.** The H-UDSR subsite and its original run card
+previously contradicted the integrated negative decision with claims of being ready,
+unique and portal-safe. Those claims have been withdrawn; measurements of the
+488-raster *subset* are retained but the literal all-registry gate is a failure.
+The earlier content remains visible in Git history for auditability. AP2's numeric
+leaderboard projection and an unsupported claim about the user's portal error were
+also removed from its rendered site. See the [decision guide](docs/executive-summary.html)
+and [this review's run card](evidence/review_run_card_20261028.json).
+
+This session re-fetched hash-pinned research comparators and independently replayed
+the previous nine-site/AP-1 geometry audit. A separate [saved-byte recheck](evidence/udsr_independent_recheck_20261028.json)
+found 26,135 of 26,173 UDSR dots within three pixels of the lattice; it is not a
+holdout experiment. The candidate is finite in [0,1] against the owner mirror,
+but its unmasked zeros outside the mirror footprint fail the conservative reading
+of the published exterior requirement. The mirror is not organizer-authenticated.
+Neither portal acceptance nor the cause of the earlier error is established.
+Reproduce with `python scripts/fetch_audit_data.py` and `python scripts/recheck_udsr.py`.
+
+The pinned shared writer converts every positive probability into a binary dot; this
+is already reported upstream at [GEMSDOE32 #37](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/37)
+and [#51](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/51). Do not use it
+for continuous probabilities until fixed and version-pinned upstream. This session
+made no private change to that shared tool and did not run a new experiment or
+select a submission slot. Next: establish an assigned lane, authenticate competition
+inputs, restore the full shared stack and registry, resolve the literal lattice rule,
+then perform the canaries and matched holdout before any separate selector decision.

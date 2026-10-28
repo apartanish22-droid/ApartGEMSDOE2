@@ -24,10 +24,10 @@ budget, this is the exact file and note:</strong></p>
 <p>Tracking name: <code>ApartGEMSDOE2-AP2-OOFCTRL-EDF60FD4</code><br>DrivenData “Note” to paste: <code>AP2 OOFCTRL crest+creditbar 44090dots B2 HOLDOUT-DTI 0.1060 vs champ0.0992 uniq-score shaedf60fd4</code> (97 chars)<br>
 SHA-256: <code>edf60fd492cc18b835abee8cb7479825f47cd1077aa8609de37f1d9de5ccf50e</code> · dots: 44,090 · 0 on-catalogue</p>
 <ul>
-<li><span class="pass">Format PASS</span> — re-read bytes are single-band float32, EPSG:32611, 3730×3292, template transform, every one of the 12,279,160 cells finite in [0,1] (the exact property behind the portal error “Predicted values must be in range [0, 1]”).</li>
-<li><span class="pass">Unique vs every scored submission in the brief</span> — worst 3-px dot overlap 56.7% (≤70%), worst surface |ρ| 0.349 (≤0.90), not a subset/superset/identical copy of any of the nine winners. No registry pixel was used as model input.</li>
+<li><span class="pass">Local numeric check only</span> — using an unauthenticated mirrored template, re-read bytes are single-band float32, EPSG:32611, 3730×3292, template transform, every one of the 12,279,160 cells finite in [0,1] (this does not diagnose the earlier error or prove portal acceptance).</li>
+<li><span class="pass">Below thresholds vs the nine audited focus files</span> — worst 3-px dot overlap 56.7% (≤70%), worst surface |ρ| 0.349 (≤0.90), not a subset/superset/identical copy of any of the nine winners. No registry pixel was used as model input.</li>
 <li><span class="fail">Caution 1 (statistics):</span> HOLDOUT-DTI 0.1060 [0.0907, 0.1219] beats the champion-recipe control 0.0992 [0.0860, 0.1127] on point estimate, but the paired 95% CI on the difference is [-0.0015, +0.0152] (P(Δ&gt;0)=93.9%) — it straddles zero.</li>
-<li><span class="fail">Caution 2 (broad uniqueness):</span> 74.5% of its dots lie within 3 px of one <em>unscored</em> research raster (<code>GEMSDOE32/docs/downloads/gemsdoe32-arena8a-mdrc-crestbar-b2-44090-20261026T011955Z-ce1abd39-nan.tif</code>), above the 70% parallel-run line; against all <em>scored</em> submissions it is unique (above).</li>
+<li><span class="fail">Caution 2 (broad uniqueness):</span> 74.5% of its dots lie within 3 px of one <em>unscored</em> research raster (<code>GEMSDOE32/docs/downloads/gemsdoe32-arena8a-mdrc-crestbar-b2-44090-20261026T011955Z-ce1abd39-nan.tif</code>), above the 70% parallel-run line; this alone is sufficient to fail the stated rule.</li>
 </ul>
 <p>Preregistered run-card verdict: <code>negative</code> · weekly slots used by this session: <strong>0</strong>. Procedure, for the record only: <a href="how-to-submit.html">How to submit</a>.</p>
 </div>
@@ -38,7 +38,7 @@ SHA-256: <code>edf60fd492cc18b835abee8cb7479825f47cd1077aa8609de37f1d9de5ccf50e<
 <td><strong>0.1060</strong> [0.0907, 0.1219]</td><td>0.0992 [0.0860, 0.1127]</td></tr>
 <tr><td>HOLDOUT-DTI off-catalogue SGMC, prevalence-calibrated</td><td>0.0583</td><td>0.0641</td></tr>
 <tr><td>Live leaderboard score</td><td>Not submitted — unknown</td><td>0.2778 (OWNER-REPORTED, no receipt)</td></tr>
-<tr><td>PROJECTION (not a score; champion-anchored ratio/delta maps)</td><td colspan="2"><strong>0.2846 – 0.2970</strong>. Unvalidated transfer: every holdout-beating candidate since Oct 2025 was held DO-NOT-SUBMIT, so no holdout->live pair above the champion exists. Holdout truth is catalogue-style segments; live truth is expert-mapped off-catalogue faults. Treat as planning range only.</td></tr></table>
+<tr><td>Leaderboard score estimate</td><td colspan="2">Not estimable: no validated holdout-to-leaderboard transfer.</td></tr></table>
 
 <h2>Release gates</h2><table><tr><th>Gate</th><th>Result</th></tr><tr><td><code>G1_format_strict_saved_bytes</code></td><td class="pass">PASS</td></tr><tr><td><code>G2_holdout_beats_champion_paired_ci_gt_0</code></td><td class="fail">FAIL</td></tr><tr><td><code>G3_unique_vs_9_winners</code></td><td class="pass">PASS</td></tr><tr><td><code>G3b_unique_vs_broad_focus_registry</code></td><td class="fail">FAIL</td></tr><tr><td><code>G4_leakage_canary</code></td><td class="pass">PASS</td></tr><tr><td><code>G5_zero_on_catalogue_and_Bgt2</code></td><td class="pass">PASS</td></tr><tr><td><code>G6_no_exact_subset_or_identical</code></td><td class="pass">PASS</td></tr></table>
 
