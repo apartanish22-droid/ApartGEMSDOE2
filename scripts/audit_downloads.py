@@ -2,7 +2,7 @@
 
 Checks (no human inspection): EPSG:32611, 3292 x 3730, 100 m, origin (243350, 4508550),
 single band, float32, NaN count, whole-array range, nonzero count, sha256.
-Writes a JSON receipt to evidence/download_audit_<date>.json. Verdicts are
+Uses an owner-mirrored grid, not an authenticated template or footprint. Writes a JSON receipt. Verdicts are
 technical only: a PASS here is NOT scientific or weekly-slot authorization.
 
 Usage: .venv/bin/python scripts/audit_downloads.py [--out evidence/download_audit_20261028.json]
@@ -38,23 +38,33 @@ def audit(path: Path) -> dict:
             and (ds.width, ds.height) == (W, H)
             and abs(t.a - RES) < 1e-6 and abs(t.e + RES) < 1e-6
             and abs(t.c - X0) < 1e-3 and abs(t.f - Y0) < 1e-3
+            and t.b == 0 and t.d == 0
         )
         a = ds.read(1).astype("float64") if ds.count == 1 else None
         single = ds.count == 1 and ds.dtypes[0] == "float32"
+        geotiff = ds.driver == "GTiff"
+        self_contained = all(Path(f).resolve() == path.resolve() for f in ds.files)
     if a is None:
         return {"file": str(path.relative_to(ROOT)), "error": "not single-band"}
     finite = np.isfinite(a)
-    nan_n = int((~finite).sum())
+    nan_n = int(np.isnan(a).sum())
+    inf_n = int(np.isinf(a).sum())
     fin_vals = a[finite]
     in_range = bool(fin_vals.size) and float(fin_vals.min()) >= 0.0 and float(fin_vals.max()) <= 1.0
-    whole_portal_safe = nan_n == 0 and in_range
+    whole_array_in_range = bool(finite.all()) and in_range
     reasons = []
     if not grid_ok:
         reasons.append("grid mismatch (CRS/shape/transform)")
     if not single:
         reasons.append("not single-band float32")
+    if not geotiff:
+        reasons.append("not GeoTIFF")
+    if not self_contained:
+        reasons.append("external sidecar dependency; not a self-contained GeoTIFF")
     if nan_n:
-        reasons.append(f"{nan_n} NaN pixels (portal range rule is whole-array [0,1])")
+        reasons.append(f"{nan_n} NaN pixels (conservative whole-array diagnostic)")
+    if inf_n:
+        reasons.append(f"{inf_n} infinite pixels")
     if not in_range:
         reasons.append("values outside [0,1]")
     return {
@@ -64,11 +74,14 @@ def audit(path: Path) -> dict:
         "grid_match": bool(grid_ok),
         "single_band_float32": bool(single),
         "nan_pixels": nan_n,
+        "infinite_pixels": inf_n,
+        "geotiff": geotiff,
+        "self_contained": self_contained,
         "min": float(fin_vals.min()) if fin_vals.size else None,
         "max": float(fin_vals.max()) if fin_vals.size else None,
         "nonzero_pixels": int((fin_vals > 0).sum()),
-        "portal_whole_array_safe": bool(whole_portal_safe),
-        "technical_verdict": "TECHNICAL-PASS" if (grid_ok and single and whole_portal_safe) else "TECHNICAL-FAIL",
+        "conservative_whole_array_finite_in_0_1": bool(whole_array_in_range),
+        "technical_verdict": "TECHNICAL-PASS" if (grid_ok and single and geotiff and self_contained and whole_array_in_range) else "TECHNICAL-FAIL",
         "reasons": reasons,
         "scientific_verdict": "NOT ASSESSED HERE (no holdout receipt; see docs/research/repo-review-20261028.md)",
     }
