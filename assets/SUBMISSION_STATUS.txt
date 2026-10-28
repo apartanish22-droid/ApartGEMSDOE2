@@ -84,5 +84,24 @@ gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif             — H2 submi
 gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.zip             — H2 submission (ZIP for upload)
 
 ================================================================================
+REVIEW NOTE (28 October 2026)
+================================================================================
+
+No new experiment or slot was used. The checked-out cache is absent despite 
+the historical restore receipt; that receipt is not evidence that the data 
+exists in a fresh checkout. The H-UDSR pages incorrectly called a lattice-
+failing candidate safe to submit and treated unverified historical claims as 
+organizer-confirmed. Those pages now state DO NOT SUBMIT; the archived run 
+card distinguishes sparse-registry success from the failed all-registry gate. 
+The AP2 guide no longer instructs users to upload a failed candidate or 
+guarantees portal acceptance. Original page versions remain in git history. 
+The reported holdout has not been independently replayed in this review. See 
+[executive review](docs/EXECUTIVE_REVIEW.md) for the missing explicit lane, 
+suspect template and incomplete registry. Official 
+[competition description](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) 
+and [reference code](https://github.com/drivendataorg/gems-prize-reference-solution) 
+are the primary sources, not proof of any particular receipt.
+
+================================================================================
 END
 ================================================================================

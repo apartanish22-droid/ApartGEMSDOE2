@@ -10,7 +10,29 @@ from datetime import datetime, timezone
 from audit_historical import ROOT, sha256_file
 
 
+def inspect_core_data(manifest: dict, data_root: Path) -> list[dict]:
+    """Check current bytes, not the historical restore receipt.
+
+    Hash agreement verifies the pinned mirror only, not organizer provenance.
+    """
+    results = []
+    for item in manifest["files"]:
+        if item["group"] != "core":
+            continue
+        relative = Path(item["dest"])
+        if relative.is_absolute() or ".." in relative.parts:
+            raise ValueError("Unsafe core-data path")
+        path = data_root / relative
+        present = path.is_file()
+        results.append({"id": item["id"], "path": str(path), "present": present,
+                        "hash_verified": bool(present and sha256_file(path) == item["sha256"])})
+    return results
+
+
 def inspect() -> dict:
+    sys.path.insert(0, str(ROOT / "src"))
+    from gems32.paths import data_dir
+    core = inspect_core_data(json.loads((ROOT / "registry/data_manifest.json").read_text()), data_dir())
     pins = json.loads((ROOT / "registry/shared-template-pins.json").read_text())
     asset_root = ROOT / ".cache/template-assets"
     assets = []
@@ -35,6 +57,8 @@ def inspect() -> dict:
         "At the historical champion's dot count, the literal registry lattice bound exceeds the 70% overlap limit.",
         "This review ran no experiment; the parallel AP-1 research TIFF fails the literal lattice gate and has no selector approval.",
     ]
+    if not core or not all(item["hash_verified"] for item in core):
+        blockers.append("Current core data is missing or differs from the pinned mirror; the historical restore receipt is not proof of current availability.")
     if not all(a["verified"] for a in assets):
         blockers.append("One or more pinned shared-template source assets are missing or changed; run the restore script.")
     return {
@@ -47,6 +71,8 @@ def inspect() -> dict:
         "weekly_slots_used": 0,
         "lane_assigned": False,
         "complete_parallel_registry": False,
+        "current_core_data": core,
+        "core_data_scope": "Hash verification against owner mirrors only, not organizer authentication. Historical restore receipts do not attest current presence.",
         "shared_assets": assets,
         "shared_assets_scope": "Pinned files only. They do not constitute a full runnable checkout or validated feature stack.",
         "feature_stack_present": stack.exists() and meta.exists(),

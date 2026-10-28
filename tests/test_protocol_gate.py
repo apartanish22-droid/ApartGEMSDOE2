@@ -7,7 +7,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_parallel_experiment_entrypoints_fail_before_emission():
-    for script in ('run_experiment.py', 'run_experiment_oof.py', 'build_final.py'):
+    for script in ('run_experiment.py', 'run_experiment_oof.py', 'build_final.py',
+                   'run_udsr_experiments.py', 'run_ap2.py',
+                   'emit_and_audit_deliverables.py', 'finalize_ap2.py'):
         result = subprocess.run([sys.executable, str(ROOT/'scripts'/script)], cwd=ROOT,
                                 capture_output=True, text=True)
         assert result.returncode != 0, script
@@ -38,3 +40,21 @@ def test_pages_workflow_deploys_without_pushing_to_any_branch():
     assert 'scripts/package_pages.py' in workflow
     assert 'scripts/wait_for_legacy_pages.py' in workflow
     assert 'actions: read' in workflow
+
+
+def test_preflight_checks_current_core_bytes_not_old_receipt(tmp_path):
+    import hashlib
+    from preflight import inspect_core_data
+    content = b'input'
+    manifest = {'files': [{'id': 'sample', 'group': 'core', 'dest': 'sample.tif',
+                           'sha256': hashlib.sha256(content).hexdigest()}]}
+    assert not inspect_core_data(manifest, tmp_path)[0]['present']
+    path = tmp_path / 'sample.tif'
+    path.write_bytes(b'changed')
+    assert not inspect_core_data(manifest, tmp_path)[0]['hash_verified']
+    path.write_bytes(content)
+    assert inspect_core_data(manifest, tmp_path)[0]['hash_verified']
+    manifest['files'][0]['dest'] = '../outside'
+    import pytest
+    with pytest.raises(ValueError):
+        inspect_core_data(manifest, tmp_path)

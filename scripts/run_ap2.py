@@ -328,6 +328,9 @@ def clean(d: dict) -> dict:
 
 
 def main():
+    from experiment_guard import require_current_protocol
+    if not require_current_protocol():
+        return 1
     ap = argparse.ArgumentParser()
     ap.add_argument("--refs-dir", default=os.environ.get("AP2_REFS_DIR", "/tmp/refs"))
     ap.add_argument("--champion", default=None, help="path to champion zeros tif (control only)")
@@ -494,4 +497,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
