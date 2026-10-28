@@ -1,3 +1,5 @@
+> **Current independent review:** [No file approved; diagnostic fixes and replay limitations](docs/research/independent-review-20261028.md). The archived focus-site geometry and AP-1 audits were replayed, not the holdout. See [run card](evidence/independent_review_run_card_20261028.json).
+
 > **2026-10-28 review:** No submission is approved. `data/restore_receipt.json` is historical; run `.venv/bin/python scripts/preflight.py` to check current core-file hashes. A fresh checkout does not include the cached inputs. Four legacy experiment/emission entry points now use the fail-closed guard, and the AP2 local format validator checks raster masks and label-grid alignment. See [review and next steps](docs/research/review-gates-20261028.md) and [parallel review](docs/research/review-20261028.md).
 
 # ApartGEMS · evidence before the next upload
