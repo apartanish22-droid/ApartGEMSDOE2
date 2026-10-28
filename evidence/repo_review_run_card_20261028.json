@@ -1,7 +1,7 @@
 {
   "schema": "parallel-run-protocol-run-card-v1",
   "record_type": "repository_review_no_experiment",
-  "reviewed_at_utc": "2026-10-28T22:38:12Z",
+  "reviewed_at_utc": "2026-10-28T22:54:11Z",
   "hypothesis": null,
   "mechanism": null,
   "named_non_fault_mimic": null,
@@ -13,7 +13,7 @@
       null,
       null
     ],
-    "reason": "No method lane was explicitly assigned; the local feature cache and shared template are absent; the current preflight is BLOCKED."
+    "reason": "No method lane was explicitly assigned; local feature cache and shared template are absent. The pinned holdout also does not establish whole-segment buffered truth-to-visible withholding (upstream issue #60). Current preflight is BLOCKED."
   },
   "prior_reported_holdout_best": {
     "label": "HOLDOUT-DTI, historical repo report; not independently replayed in this review",
@@ -81,7 +81,9 @@
     "Historical restore receipt is not proof of current file availability or official provenance.",
     "Complete, current registry not verified.",
     "Previous parallel lane reports its three-experiment budget used; no experiment was authorized or performed in this review.",
-    "No authenticated submission-format template or portal receipt available."
+    "No authenticated submission-format template or portal receipt available.",
+    "Pinned holdout truth-to-visible geometry is not proven to hide whole fault segments with the required buffer (upstream issue #60); fix/verify the shared template, not a private fork.",
+    "Shared registry audit may pass missing files or non-literal overlap (upstream issue #63); do not trust its pass flag until fixed/verified in the shared template."
   ],
   "review_artifact": "docs/REVIEW_20261028_ARENA.md"
 }

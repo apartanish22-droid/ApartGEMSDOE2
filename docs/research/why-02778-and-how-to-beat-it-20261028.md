@@ -1,5 +1,7 @@
 # Why GEMSDOE32's `h33-h33-2-b2` (user-reported 0.2778) leads the nine focus sites — and what beating it requires
 
+> **Correction, 2026-10-28:** The scalar marginal rule below applies only in a special isolated case; it is not generally valid for a dot covering multiple or previously covered truth pixels. Archived holdouts also do not establish the requested whole-segment truth-to-visible buffer; see [upstream issue #60](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/60). Treat their CIs as exploratory, not promotion evidence.
+
 *2026-10-28 · session `arena/7ec4400f-apartgemsdoe2`. Every number below is either
 recomputed this session from SHA-256-pinned bytes, quoted from an official page fetched
 2026-10-28, or clearly marked as user-reported / inference.*
@@ -24,12 +26,9 @@ recomputed this session from SHA-256-pinned bytes, quoted from an official page 
 | D2.8 | GEMSDOE25 = GEMSDOE30 (identical SHA-256 `91eae1ca…`) | 44,090 | exact subset of H19-5 (verified) | 0.2600 |
 | B2 | GEMSDOE32 `h33-h33-2-b2` | 37,654 | `(D2.8 & d_catalogue>2px) XOR B2 = 0` (verified); removes 6,436 dots within 200 m of catalogue faults | 0.2778 |
 
-All nine focus-site best files are members of this single pixel lineage
-(pairwise 3-px overlaps 86.7–100 %, `evidence/history_audit.json`). "Why did B2 win?"
-is therefore not a geology question about nine models — it is a question about how the
-**same** support interacts with the metric as dots are (a) thinned and (b) collar-pruned.
+The archived focus-site files are spatially similar (pairwise 3-px overlaps 86.7–100%, `evidence/history_audit.json`), but proximity alone does not prove common pixel lineage for all nine. "Why did B2 win?" is not established by this evidence; thinning and collar pruning are plausible contributors.
 
-## 3. The metric algebra that makes thinning + collar-pruning profitable
+## 3. Metric algebra and hypotheses about thinning and collar-pruning
 
 Official metric ([problem page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/),
 fetched 2026-10-28): triangular kernel `k(d)=max(1−d/3px,0)`,
@@ -41,35 +40,36 @@ proximity of dots to truth), this is exactly (`src/gems32/metric.py`, brute-forc
 DTI = TP_w / ( 0.2·(TP_w + S − M) + 0.8·K )
 ```
 
-**Marginal rule.** Adding one dot whose isolated kernel credit is `k` changes the
-denominator by exactly `alpha = 0.2`; the dot raises DTI iff `k > 0.2 · DTI`
-(`metric.marginal_inclusion_threshold`). At DTI ≈ 0.26–0.28 the bar is `k > 0.052–0.056`,
-i.e. a dot must newly cover truth pixels within ≈ 2.8 px. A dot with `k = 0` (no hidden
-fault within 300 m) **strictly lowers** the score. Two consequences:
+**Marginal rule (corrected).** For the recorded metric with alpha + beta = 1,
+let `T` be weighted true-positive mass, `D` the DTI denominator, `deltaT`
+the *total* incremental truth credit, and `k_near` the new dot's proximity to
+its nearest truth. Adding one active unit dot gives
+`deltaD = 0.2 * (deltaT + 1 - k_near)`, so the dot improves DTI exactly when
+`deltaT > DTI * 0.2 * (deltaT + 1 - k_near)` (up to the metric's epsilon).
+A dot can improve credit for multiple truth pixels; `deltaT` need not equal
+`k_near`. The simpler threshold `k > 0.2 * DTI` applies only when `deltaT =
+k_near = k`. The hidden truth is unavailable, so neither criterion is a score
+forecast. See [upstream metric issue #50](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/50).
 
-1. **Dotted thinning (121,131 → 44,090).** On a covered trace, dotting at spacing `s`
+Two hypotheses about the historical pattern, not established causes:
+
+1. **Dotted thinning (121,131 → 44,090).** On an ideal straight trace with truth exactly on the line and evenly spaced dots, spacing `s`
    leaves each truth pixel within `s/2` of a dot: worst-case credit `1 − s/6`
    (0.53 at s = 2.8 px), mean ≈ 0.77 — while the dot count `S`, hence the FP mass paid on
    the *uncovered* parts of the support, falls ~2.8× versus the continuous line.
-   TP falls modestly; the 0.2·S denominator term falls a lot. Score rises 0.1922 → 0.2600.
+   Whether TP falls modestly depends on the unknown truth; thinning reduces the `0.2·S` term but other denominator terms also change. The user-reported values rise from 0.1922 to 0.2600; a causal attribution is not established.
 2. **Collar pruning (44,090 → 37,654).** DrivenData staff confirm
    ([forum 11516](https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516),
    chrisk-dd, 2026-09-16): *"Pixels corresponding to known USGS/INGENIOUS faults are
    masked / excluded from evaluation."* Dots exactly on catalogue faults are therefore
    free of penalty but also earn nothing; dots 1–2 px *beside* catalogue faults are not
-   on masked pixels and pay full FP weight unless a distinct hidden trace lies within
-   300 m. H19-5-family detectors concentrate near mapped range fronts, so 14.6 % of D2.8
-   dots sat in this dead zone (verified: 6,436 dots at `d_catalogue ≤ 2 px`). Removing
+   on masked pixels and incur FP weight depending on their proximity to hidden truth. H19-5-family detectors concentrate near mapped range fronts, and 14.6 % of D2.8
+   dots sat in the near-catalogue collar (verified: 6,436 dots at `d_catalogue ≤ 2 px`). Removing
    them cut the denominator by ≈ 0.2 × 6,436 ≈ 1,287 at near-zero TP cost — provided few
    expert-hidden traces run within 200 m of a catalogue trace (inference from the score
-   movement, not independently observable). Score rises 0.2600 → 0.2778.
+   movement, not independently observable). The user-reported values rise from 0.2600 to 0.2778; a causal attribution is not established.
 
-**Why it stops at 0.2778.** The score is capped by the H19-5 support's own
-recall × precision against the expert-hidden faults: after optimal dotting/pruning,
-every remaining dot is on H19-5 lines. Lines the experts mapped that H19-5 missed
-(driver of the 0.8·K denominator floor via FN) and H19-5 lines with no hidden fault
-(0.2·S tax) are both fixed by the support, not by emission. No further thinning can
-recover missing traces. (What fraction is missing cannot be measured without the
+**Why the support may be limiting.** The user-reported value does not establish an optimal dotting or a ceiling. B2 is restricted to the H19-5 support, so its recall and false-positive mass against hidden faults depend on that support. Hidden traces distant from the support receive no kernel credit; traces near it may receive partial credit even without exact pixel overlap. Changing emission can change coverage and FP mass, but thinning cannot add new support outside the existing pixels. (What fraction is missing cannot be measured without the
 private labels; organizers explicitly decline to describe the test faults' data
 sources or fault types — [forum 11527](https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527),
 chrisk-dd, 2026-09-23.)
@@ -78,9 +78,7 @@ chrisk-dd, 2026-09-23.)
 
 1. **A better support, not a better dotting of the same support.** Dotting/B2 are now
    metric-standard (and in the shared emitter). The remaining variance across the
-   prompt's ~200 user-reported results supports this: every value ≥ 0.24 is either the
-   H19-5 lineage or an explicit blend/derivative of a strong support, while novel
-   single-transform supports cluster at 0.02–0.19.
+   prompt's ~200 user-reported results supports this: the user-provided results vary widely, but their lineage and file-to-score associations have not all been independently established.
 2. **Recall on the *hidden* fault population, which is not the catalogue population.**
    Hide-and-recover on catalogue faults measures recovery of mapped-style faults;
    the test set is defined by *disagreement* with the catalogue. Hence this repo's
@@ -99,8 +97,8 @@ chrisk-dd, 2026-09-23.)
    crowd the 2–15 px collar (H-UDSR EXP-2: 96.25 %) may win hide-recover while starving
    the far field the experts actually mapped.
 
-**Can a unique new submission score higher than 0.2778?** Possibly — the 0.4544 leader
-proves a much better support exists — but it cannot be *certified* from any local proxy.
+**Can a unique new submission score higher than 0.2778?** Possibly — the observed 0.4544 public leader
+indicates a higher public leaderboard value exists — but it cannot be *certified* from any local proxy.
 The honest deliverable is a candidate that (i) is generated from features, not copied
 support, (ii) beats the fold-honest control and the repo's holdout best with paired CIs,
 (iii) passes leakage, uniqueness and saved-byte format gates, and (iv) is submitted only

@@ -13,6 +13,7 @@ The prior repo reports a best **HOLDOUT-DTI 0.113696** (95% CI `[0.101306, 0.126
 Read the standing charter in [README](../README.md), project brief, executive pages, experiment/run-card records, data and template pins, validator code, and tests. Checked the actual workspace rather than historical restore receipts:
 
 - `.cache/gems_data/` and `.cache/template-assets/` are absent. The machine-readable preflight reports the core rasters and all pinned shared-template files missing, no assigned lane, an incomplete registry, and no experiment authorization.
+- The latest shared-tool review also flags that the pinned holdout applies a collar to quadrants rather than proving whole fault-segment withholding with the required truth-to-visible buffer (upstream [issue #60](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/60)); the registry audit may accept missing files or non-literal overlap ([issue #63](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/63)). Do not trust a pass until these shared-template defects are repaired and verified **in the template**, not a private fork. See the [shared holdout/registry review](research/review-mask-and-holdout-20261028.md).
 - **8 Python tests are skipped** because the local competition cache, pinned references, or read-only shared template are absent. Historical receipts do not establish that these files are present now.
 - Several public-source timestamps in the checked-in feed are older than the page's 24-hour freshness window. The UI appropriately marks source observations stale; the feed is not a live or current score guarantee.
 - Found a serious H2 publication inconsistency: its top banner said not to submit, but the same page still offered a `curl` download, a positive download decision, and a dot-count-based projection. The H2 run card repeated withdrawn uniqueness/projection claims. The H2 command-line generator automatically fell back to seeded pseudo-features when data were absent, wrote into the public downloads directory, and described the method as fractal/anisotropic even though the production map uses a multi-scale Sobel-gradient proxy and does not call its box-counting or anisotropy functions.
@@ -32,7 +33,7 @@ The stored H2 demo bytes were independently opened in this review. SHA-256 is `5
 
 ## Pass 3 — rerun checks and reconcile
 
-- Python: **133 passed, 8 skipped**, plus 4 unittest subtests. Skips are attributable to missing local competition/cache/reference inputs. The suite is not an independent scientific rerun.
+- Python: **144 passed, 8 skipped**, plus 4 unittest subtests. Skips are attributable to missing local competition/cache/reference inputs. The suite is not an independent scientific rerun.
 - JavaScript source-freshness tests: **2 passed**; feed UI test passed.
 - Python byte-compilation, local Markdown-link checks, and deterministic site/scorecard rebuild completed without errors or generated-file drift.
 - The current preflight exits nonzero by design with status `BLOCKED`; no experiment or raster emission was authorized. The separate review run card is [`evidence/repo_review_run_card_20261028.json`](../evidence/repo_review_run_card_20261028.json).
@@ -49,7 +50,7 @@ The repo already records a four-idea [research slate](../research/hypotheses.md)
 | 4 | **Flight-line-stable magnetic edges** | GeoDAWN magnetic line measurements, locations/altitudes, and gridded magnetics; leave-flight-line-out edge stability at common height. | A real subsurface contact should persist across independent acquisition subsets; this is more than smoothing a finished grid. Mimics: lithologic contacts and residual leveling. | **Low-to-medium expected direct lift; likely value is artifact rejection.** | **High.** Requires actual official line data from [USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and); the files and coverage were not fetched here, so it is not viable yet. |
 | 5 | **Cross-margin fluid-chemistry contrast** | INGENIOUS well/spring chemistry and temperature with DEM/gravity; spatially blocked, uncertainty-weighted compositional contrast. | Tests a fluid-population boundary rather than proximity to known hot springs. Mimics: lithology and groundwater mixing without fault displacement. | **Unknown / potentially low; sparse and confounded observations are a major risk.** | **High.** Requires schema, coverage, dates and licence checks for [DOE GDR submission 1391](https://gdr.openei.org/submissions/1391); no bytes were obtained here, so it is not viable yet. |
 
-These are **qualitative research priorities, not score projections**. No candidate was run or promoted in this review. The requested top-candidate validation is therefore still outstanding: it cannot be performed without the authenticated inputs, cached feature stack and assigned lane. Do not use a weekly slot. Restore only permitted data, verify source provenance, freeze the complete registry, then pre-register one lane and use the shared evaluator/writer with fold-visible catalogue features, whole-segment buffered holdouts, exact visible-fault masking, single-feature canaries, paired uncertainty, and both pre-placement and final-dot checks.
+These are **qualitative research priorities, not score projections**. No candidate was run or promoted in this review. The requested top-candidate validation is therefore still outstanding: it cannot be performed without the authenticated inputs, cached feature stack and assigned lane. Do not use a weekly slot. Restore only permitted data, verify source provenance, repair and verify the shared holdout/registry tools in the template (not a private fork), freeze the complete registry, then pre-register one lane and use the shared evaluator/writer with fold-visible catalogue features, whole-segment buffered holdouts, exact visible-fault masking, single-feature canaries, paired uncertainty, and both pre-placement and final-dot checks.
 
 ## Official-source and access limits
 
@@ -63,7 +64,7 @@ This is the no-experiment review record; the identical machine-readable card is 
 {
   "schema": "parallel-run-protocol-run-card-v1",
   "record_type": "repository_review_no_experiment",
-  "reviewed_at_utc": "2026-10-28T22:38:12Z",
+  "reviewed_at_utc": "2026-10-28T22:54:11Z",
   "hypothesis": null,
   "mechanism": null,
   "named_non_fault_mimic": null,
@@ -75,7 +76,7 @@ This is the no-experiment review record; the identical machine-readable card is 
       null,
       null
     ],
-    "reason": "No method lane was explicitly assigned; the local feature cache and shared template are absent; the current preflight is BLOCKED."
+    "reason": "No method lane was explicitly assigned; local feature cache and shared template are absent. The pinned holdout also does not establish whole-segment buffered truth-to-visible withholding (upstream issue #60). Current preflight is BLOCKED."
   },
   "prior_reported_holdout_best": {
     "label": "HOLDOUT-DTI, historical repo report; not independently replayed in this review",
@@ -143,7 +144,9 @@ This is the no-experiment review record; the identical machine-readable card is 
     "Historical restore receipt is not proof of current file availability or official provenance.",
     "Complete, current registry not verified.",
     "Previous parallel lane reports its three-experiment budget used; no experiment was authorized or performed in this review.",
-    "No authenticated submission-format template or portal receipt available."
+    "No authenticated submission-format template or portal receipt available.",
+    "Pinned holdout truth-to-visible geometry is not proven to hide whole fault segments with the required buffer (upstream issue #60); fix/verify the shared template, not a private fork.",
+    "Shared registry audit may pass missing files or non-literal overlap (upstream issue #63); do not trust its pass flag until fixed/verified in the shared template."
   ],
   "review_artifact": "docs/REVIEW_20261028_ARENA.md"
 }
