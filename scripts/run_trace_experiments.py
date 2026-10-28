@@ -16,10 +16,10 @@ labelled secondary diagnostic), ``gems32.udsr`` Dual-Cover fits, and
 No registry/champion pixel is read as a model input; scored rasters are read only
 as holdout controls and for the uniqueness measurement.
 
-This is a NEW session entry point (2026-10-28, arena/7ec4400f) under the user's
-explicit "work on the next steps from the previous sessions first" instruction;
-the legacy fail-closed guard in ``scripts/experiment_guard.py`` continues to block
-the superseded AP-1/AP2/H-UDSR entry points and is not weakened here.
+ARCHIVED, NON-RUNNABLE: the prior session placed dots before its registry check,
+used a nonliteral lattice calibration, and lacked the assigned lane. This runner
+must never be re-enabled by changing the preflight result. Use a reviewed shared
+upstream template for any future authorized session.
 """
 from __future__ import annotations
 
@@ -123,6 +123,13 @@ def canary_trace_fields(ctx, s_phys: np.ndarray, foot: np.ndarray, d_cat: np.nda
 
 
 def main() -> int:
+    # This archived runner placed dots before its registry check and its prior
+    # three-experiment budget is already spent. Do not replay it as a new run.
+    from experiment_guard import require_current_protocol
+    if not require_current_protocol():
+        return 1
+    print("BLOCKED: archived H-TRACE runner uses obsolete post-placement checks.", file=sys.stderr)
+    return 1
     t0 = time.time()
     ddir = paths.data_dir()
     wdir = paths.work_dir()

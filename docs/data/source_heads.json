@@ -1,51 +1,69 @@
 {
-  "observed_utc": "2026-10-27T21:22:53.444849+00:00",
-  "scope": "Observed GitHub repository HEADs only; not current site scores, file-level audits or submission authorization.",
+  "observed_utc": "2026-10-28T22:44:51.300756+00:00",
+  "scope": "Observed GitHub repository HEADs and pinned archival references only; not current site scores, audits of newer files, or submission authorization.",
   "sites": {
     "GEMSDOE24": {
       "repo": "buffedlizard55-lab/GEMSDOE24",
-      "sha": "a73f9ffba29260cc7708e8e0557c84c5bea7d47b",
-      "commit_utc": "2026-10-27T19:39:46Z"
+      "sha": "9e185929eeaa6244f96c3022cf3462faa8ca4de0",
+      "commit_utc": "2026-10-28T20:01:15Z",
+      "audited_archive_ref": "2521cb676e172c141a4417e4925b73b6a896c1eb",
+      "head_differs_from_archive": true
     },
     "GEMSDOE25": {
       "repo": "buffedlizard55-lab/GEMSDOE25",
-      "sha": "19b219f629440b9975b093f459c74e21a42476ca",
-      "commit_utc": "2026-10-27T21:16:48Z"
+      "sha": "fb1db37274776a29dbc48abe55b2e531f2ba6aad",
+      "commit_utc": "2026-10-28T22:40:57Z",
+      "audited_archive_ref": "5a60fb475b7171af93cfce795abe6d96c4021ea2",
+      "head_differs_from_archive": true
     },
     "GEMSDOE27": {
       "repo": "buffedlizard55-lab/GEMSDOE27",
-      "sha": "4f34228a9f39e99da592aa34fd835c96d1b693f5",
-      "commit_utc": "2026-10-27T19:16:43Z"
+      "sha": "6704fa2a5133e751df2516feb2e32565ad5fc1df",
+      "commit_utc": "2026-10-28T19:19:09Z",
+      "audited_archive_ref": "4d39bbf92edd51fdf47004df5873793a035592e5",
+      "head_differs_from_archive": true
     },
     "GEMSDOE28": {
       "repo": "buffedlizard55-lab/GEMSDOE28",
-      "sha": "4955e29c7b66503ba2178b25d356d713dc1bc534",
-      "commit_utc": "2026-10-27T19:07:29Z"
+      "sha": "9509b73eaf35f66d0b23fce63b2540ceff2a88e0",
+      "commit_utc": "2026-10-28T18:54:34Z",
+      "audited_archive_ref": "67dbdf4da84fc92a98dd9644ab816ed18ae36bcc",
+      "head_differs_from_archive": true
     },
     "GEMSDOE30": {
       "repo": "buffedlizard55-lab/GEMSDOE30",
-      "sha": "d21ddd9502f3c3911e8d77b8f1e6abfaadffc876",
-      "commit_utc": "2026-10-27T18:09:31Z"
+      "sha": "31696c6541cfc54620ff850a748c51625461f27f",
+      "commit_utc": "2026-10-28T18:47:05Z",
+      "audited_archive_ref": "3c3d7255fdbb3a94375eff086522463a8eaca449",
+      "head_differs_from_archive": true
     },
     "GEMSDOE31": {
       "repo": "buffedlizard55-lab/GEMSDOE31",
-      "sha": "88ec212955353f7590e94b8ef2a9763ffa035d45",
-      "commit_utc": "2026-10-27T18:36:28Z"
+      "sha": "06930b9d03473a9313094a4f2312c4fc6efd4fbb",
+      "commit_utc": "2026-10-28T19:19:58Z",
+      "audited_archive_ref": "abd9a45cc7adf046d7d3829eb6e8c980943f462d",
+      "head_differs_from_archive": true
     },
     "GEMSDOE32": {
       "repo": "buffedlizard55-lab/GEMSDOE32",
-      "sha": "73485f27cf230af770167397c2b72cb9ce3b3f25",
-      "commit_utc": "2026-10-27T19:41:26Z"
+      "sha": "97597a066d1c61d2c226fdba349716f41b30c1c6",
+      "commit_utc": "2026-10-28T17:33:36Z",
+      "audited_archive_ref": "1398109a23f04a2ace71c1bd2f527cfba87860b5",
+      "head_differs_from_archive": true
     },
     "GEMSDOE33": {
       "repo": "buffedlizard55-lab/GEMSDOE33",
-      "sha": "844f514819041c7be9efd345a24cf5cd70263f00",
-      "commit_utc": "2026-10-27T17:58:11Z"
+      "sha": "3eaf85efb49f364b84f8be04e8b084b12d0303b9",
+      "commit_utc": "2026-10-28T16:45:06Z",
+      "audited_archive_ref": "122e2240a835c9c84831943ee3489dbb48fd6e85",
+      "head_differs_from_archive": true
     },
     "GEMSDOE36": {
       "repo": "buffedlizard55-lab/GEMSDOE36",
-      "sha": "7edcc9b58e6ad0f88c6e6f5ee9218761a391769d",
-      "commit_utc": "2026-10-27T19:38:42Z"
+      "sha": "e280188adbbe762e6b7ac6f3b8e105e8e7915026",
+      "commit_utc": "2026-10-28T16:44:04Z",
+      "audited_archive_ref": "61783525af4aa6dcf8da0bc68b06fa38b89ed27a",
+      "head_differs_from_archive": true
     }
   }
 }

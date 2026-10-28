@@ -20,7 +20,7 @@ async function run(feed, reject = false) {
 }
 (async () => {
   const now = new Date().toISOString();
-  const x = await run({updated_utc: now, leaderboard: {status:'ok', top_public_value:'0.4544', last_success_utc:now}, site_heads:{GEMSDOE24:{status:'ok', head_sha:'a'.repeat(40), last_success_utc:now, changed_since_previous_check:true}, badkey:{status:'ok', last_success_utc:now}}});
+  const x = await run({updated_utc: now, leaderboard: {status:'ok', top_public_value:'0.4544', last_success_utc:now}, site_heads:{GEMSDOE24:{status:'ok', head_sha:'a'.repeat(40), audited_archive_ref:'b'.repeat(40), last_success_utc:now, changed_since_previous_check:false, differs_from_archive:false}, badkey:{status:'ok', last_success_utc:now}}});
   assert.equal(x['leader-value'].textContent, '0.4544');
   assert.match(x['leader-age'].textContent, /^Observed/);
   assert.match(x['feed-checked'].textContent, /^1\/9/);
@@ -31,6 +31,7 @@ async function run(feed, reject = false) {
   const partial = await run({updated_utc:now, leaderboard:{status:'unavailable'}, site_heads:{GEMSDOE24:{status:'ok', head_sha:'a'.repeat(40), last_success_utc:now}}});
   assert.equal(partial['leader-value'].textContent, '—');
   assert.match(partial['feed-checked'].textContent, /^1\/9/);
+  assert.match(partial['feed-grid'].children[0].children[1].textContent, /archive reference unknown/);
   const offline = await run({}, true);
   assert.match(offline['leader-age'].textContent, /unavailable/);
   console.log('feed UI: success, stale and failure states passed');

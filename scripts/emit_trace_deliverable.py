@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Emit the selected H-TRACE candidate GeoTIFF + ZIP and its JSON run card.
+"""Archived, permanently blocked H-TRACE emitter; historical code follows.
 
 Selection (pre-registered): highest hide-and-recover HOLDOUT-DTI among the three
 experiments that pass the surface-Spearman and sparse final-dot uniqueness gates.
@@ -31,6 +31,13 @@ CURRENT_BEST_HR = 0.113696
 
 
 def main() -> int:
+    # The archived checkpoint failed the literal novelty gate. In particular,
+    # do not let this legacy emitter publish or select from incomplete audits.
+    from experiment_guard import require_current_protocol
+    if not require_current_protocol():
+        return 1
+    print("BLOCKED: archived H-TRACE emitter relied on incomplete and nonliteral audits.", file=sys.stderr)
+    return 1
     ddir = paths.data_dir()
     wdir = paths.work_dir()
     tpl_tif = ddir / "sample_submission.tif"

@@ -1,0 +1,79 @@
+{
+  "observed_utc": "2026-10-28T22:43:00+00:00",
+  "time_scope": "Approximate time of README fetch; repository HEADs may move immediately afterward.",
+  "scope": "Read the nine public README files at the listed immutable commits. This is not an exhaustive audit of all newer TIFFs, a file-bound score receipt, or authorization to submit.",
+  "sites": [
+    {
+      "site": "GEMSDOE24",
+      "repository": "buffedlizard55-lab/GEMSDOE24",
+      "reviewed_commit": "9e185929eeaa6244f96c3022cf3462faa8ca4de0",
+      "readme_sha256": "5acc1d295a6242f241a6683345cf823281530c0b03b8479fc73bb65128f120c3",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/9e185929eeaa6244f96c3022cf3462faa8ca4de0/README.md",
+      "head_differs_from_pinned_archival_tiff_ref": true
+    },
+    {
+      "site": "GEMSDOE25",
+      "repository": "buffedlizard55-lab/GEMSDOE25",
+      "reviewed_commit": "fb1db37274776a29dbc48abe55b2e531f2ba6aad",
+      "readme_sha256": "19443eee829d285597a48a7fb5dd90334ab3c6337deb77d7e85a763081a1ea24",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/fb1db37274776a29dbc48abe55b2e531f2ba6aad/README.md",
+      "head_differs_from_pinned_archival_tiff_ref": true
+    },
+    {
+      "site": "GEMSDOE27",
+      "repository": "buffedlizard55-lab/GEMSDOE27",
+      "reviewed_commit": "6704fa2a5133e751df2516feb2e32565ad5fc1df",
+      "readme_sha256": "5cb16d03615a2e3810fe2338f6f6f5053eb2303b514da9739086da0e57b16dbf",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/6704fa2a5133e751df2516feb2e32565ad5fc1df/README.md",
+      "head_differs_from_pinned_archival_tiff_ref": true
+    },
+    {
+      "site": "GEMSDOE28",
+      "repository": "buffedlizard55-lab/GEMSDOE28",
+      "reviewed_commit": "9509b73eaf35f66d0b23fce63b2540ceff2a88e0",
+      "readme_sha256": "5156aa3355dcc6d4947fa2e24889d169447831d5b08d653a8552a43ff480d34f",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/9509b73eaf35f66d0b23fce63b2540ceff2a88e0/README.md",
+      "head_differs_from_pinned_archival_tiff_ref": true
+    },
+    {
+      "site": "GEMSDOE30",
+      "repository": "buffedlizard55-lab/GEMSDOE30",
+      "reviewed_commit": "31696c6541cfc54620ff850a748c51625461f27f",
+      "readme_sha256": "a9f6a299718858ece96ffecc3f6446204abb3cfb7716313e8d1edbabc97cf140",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/31696c6541cfc54620ff850a748c51625461f27f/README.md",
+      "head_differs_from_pinned_archival_tiff_ref": true
+    },
+    {
+      "site": "GEMSDOE31",
+      "repository": "buffedlizard55-lab/GEMSDOE31",
+      "reviewed_commit": "06930b9d03473a9313094a4f2312c4fc6efd4fbb",
+      "readme_sha256": "27544939f99f528f221899a6c521a1acd3c88cf14aced9fa72296f05f9d21806",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/06930b9d03473a9313094a4f2312c4fc6efd4fbb/README.md",
+      "head_differs_from_pinned_archival_tiff_ref": true
+    },
+    {
+      "site": "GEMSDOE32",
+      "repository": "buffedlizard55-lab/GEMSDOE32",
+      "reviewed_commit": "97597a066d1c61d2c226fdba349716f41b30c1c6",
+      "readme_sha256": "031c0970c824bf24a06f0f1670ffbc956312d7d6cbc3733c4f02ab14f6b90c7f",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/97597a066d1c61d2c226fdba349716f41b30c1c6/README.md",
+      "head_differs_from_pinned_archival_tiff_ref": true
+    },
+    {
+      "site": "GEMSDOE33",
+      "repository": "buffedlizard55-lab/GEMSDOE33",
+      "reviewed_commit": "3eaf85efb49f364b84f8be04e8b084b12d0303b9",
+      "readme_sha256": "96eb809c12f14bd40348d9db91773f3d469df99dc9f12aa03008386f506e57fc",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/3eaf85efb49f364b84f8be04e8b084b12d0303b9/README.md",
+      "head_differs_from_pinned_archival_tiff_ref": true
+    },
+    {
+      "site": "GEMSDOE36",
+      "repository": "buffedlizard55-lab/GEMSDOE36",
+      "reviewed_commit": "e280188adbbe762e6b7ac6f3b8e105e8e7915026",
+      "readme_sha256": "d8e8ac790a5ba5dc7291f5fb7d33006da1ac4e2ea62407e899290cf327217672",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/e280188adbbe762e6b7ac6f3b8e105e8e7915026/README.md",
+      "head_differs_from_pinned_archival_tiff_ref": true
+    }
+  ]
+}

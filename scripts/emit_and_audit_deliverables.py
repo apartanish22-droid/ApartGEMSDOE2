@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-"""Emit the unique ApartGEMSDOE2 H-UDSR GeoTIFF + ZIP, run automated 13-check + strict-finite
-portal validation, compute full 9-focus-site forensic audit table, and produce the Run Card JSON.
-"""
+"""Archived, permanently blocked H-UDSR emitter; not a current validator or selector."""
 from __future__ import annotations
 
 import hashlib
@@ -35,6 +33,8 @@ def main() -> int:
     from experiment_guard import require_current_protocol
     if not require_current_protocol():
         return 1
+    print("BLOCKED: archived H-UDSR emitter is not a current release pipeline.", file=sys.stderr)
+    return 1
     assert len(SUBMISSION_NOTE) <= 140, f"Note too long: {len(SUBMISSION_NOTE)}"
     ddir = paths.data_dir()
     wdir = paths.work_dir()

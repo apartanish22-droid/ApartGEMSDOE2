@@ -26,6 +26,8 @@ def main() -> int:
     from experiment_guard import require_current_protocol
     if not require_current_protocol():
         return 1
+    print("BLOCKED: archived AP-1 OOF runner used an unmatched historical control.", file=sys.stderr)
+    return 1
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--variant", choices=["equal", "strain2"], default="strain2")
     ap.add_argument("--order", choices=["raw", "smooth"], default="smooth")

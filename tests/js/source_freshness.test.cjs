@@ -25,7 +25,7 @@ const tick = () => new Promise(resolve => setImmediate(resolve));
 test('freshness detects changed heads and failures without changing verdict', async () => {
   const sha = 'a'.repeat(40), newer = 'b'.repeat(40);
   const baseline = { sites: Object.fromEntries(['24', '25', '27'].map(n => [
-    `GEMSDOE${n}`, { repo: `buffedlizard55-lab/GEMSDOE${n}`, sha }
+    `GEMSDOE${n}`, { repo: `buffedlizard55-lab/GEMSDOE${n}`, sha: newer, audited_archive_ref: sha }
   ])) };
   const fetch = async (url) => {
     if (url === 'data/source_heads.json') return { ok: true, json: async () => baseline };
@@ -33,11 +33,11 @@ test('freshness detects changed heads and failures without changing verdict', as
     return { ok: true, json: async () => ({ sha: url.includes('GEMSDOE25') ? newer : sha }) };
   };
   const ui = setup(fetch); await tick(); await tick();
-  assert.equal(ui.items[0].el.textContent, 'No commit since snapshot');
-  assert.match(ui.items[1].el.textContent, /Updated since snapshot/);
+  assert.equal(ui.items[0].el.textContent, 'HEAD matches pinned archive commit');
+  assert.match(ui.items[1].el.textContent, /differs from pinned archive/);
   assert.equal(ui.items[2].el.textContent, 'Live source check unavailable');
   assert.match(ui.summary.textContent, /2\/3 HEADs checked/);
-  assert.match(ui.summary.textContent, /1 of checked HEADs changed/);
+  assert.match(ui.summary.textContent, /1 differ from the pinned archive/);
   assert.equal(ui.button.disabled, false);
 });
 

@@ -29,6 +29,8 @@ def main() -> int:
     from experiment_guard import require_current_protocol
     if not require_current_protocol():
         return 1
+    print("BLOCKED: archived AP-1 emitter cannot establish the required all-registry gate.", file=sys.stderr)
+    return 1
     import rasterio
     from gemsdoe32.submission import write_submission_geotiff, validate_submission_geotiff
 

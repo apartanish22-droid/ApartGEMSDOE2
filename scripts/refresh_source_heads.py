@@ -25,14 +25,19 @@ def main() -> int:
             j = json.loads(raw)
             if not re.fullmatch('[0-9a-f]{40}', j['sha']):
                 raise ValueError('GitHub returned an invalid commit ID')
+            archive_ref = entry['ref']
+            if not re.fullmatch('[0-9a-f]{40}', archive_ref):
+                raise ValueError('Historical audit reference is invalid')
             heads[entry['id']] = {
                 'repo': entry['repo'], 'sha': j['sha'],
                 'commit_utc': j['commit']['committer']['date'],
+                'audited_archive_ref': archive_ref,
+                'head_differs_from_archive': j['sha'] != archive_ref,
             }
         if len(heads) != 9:
             raise ValueError('expected exactly nine focus-site HEADs')
         output = {'observed_utc': datetime.now(timezone.utc).isoformat(),
-                  'scope': 'Observed GitHub repository HEADs only; not current site scores, file-level audits or submission authorization.',
+                  'scope': 'Observed GitHub repository HEADs and pinned archival references only; not current site scores, audits of newer files, or submission authorization.',
                   'sites': heads}
         OUTPUT.parent.mkdir(parents=True, exist_ok=True)
         with tempfile.NamedTemporaryFile(mode='w', dir=OUTPUT.parent, delete=False) as tmp:

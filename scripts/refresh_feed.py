@@ -18,6 +18,7 @@ from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 FEED = ROOT / "docs/data/source_feed.json"
+HISTORY = ROOT / "evidence/history_manifest.json"
 LEADERBOARD = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 SITES = (24, 25, 27, 28, 30, 31, 32, 33, 36)
 
@@ -102,7 +103,26 @@ def request_text(url: str, *, api_token: bool = False) -> str:
         return data.decode("utf-8")
 
 
-def refresh(previous: dict, now: str, get=request_text) -> dict:
+def load_archive_refs(path: Path = HISTORY) -> dict:
+    """Map sites to pinned archive commits, never treating a HEAD poll as a re-audit."""
+    try:
+        inputs = json.loads(path.read_text())["inputs"]
+        if not isinstance(inputs, list) or not all(isinstance(row, dict) for row in inputs):
+            raise ValueError("Invalid manifest inputs")
+        rows = [row for row in inputs if row.get("kind") == "historical"]
+        refs = {row["id"]: row["ref"] for row in rows}
+        if (len(rows) != len(SITES) or set(refs) != {f"GEMSDOE{n}" for n in SITES}
+                or any(not isinstance(ref, str) or not re.fullmatch(r"[0-9a-f]{40}", ref)
+                       for ref in refs.values())):
+            raise ValueError("Invalid archival references")
+        return refs
+    except (OSError, ValueError, TypeError, KeyError):
+        return {}  # unknown is not a clean audit
+
+
+def refresh(previous: dict, now: str, get=request_text, archive_refs=None) -> dict:
+    if archive_refs is None:
+        archive_refs = load_archive_refs()
     leader = dict(previous.get("leaderboard", {}))
     leader.update({"source": LEADERBOARD, "last_attempt_utc": now})
     try:
@@ -110,7 +130,9 @@ def refresh(previous: dict, now: str, get=request_text) -> dict:
     except Exception as exc:  # a failure must never become a fresh value
         leader.update({"status": "stale" if leader.get("last_success_utc") else "unavailable", "last_error": f"{type(exc).__name__}: {str(exc)[:200]}"})
     else:
-        leader.update({"status": "ok", "top_public_value": value, "last_success_utc": now, "last_error": None, "evidence_class": "OFFICIAL PUBLIC LEADERBOARD OBSERVATION (not a file-bound submission receipt)"})
+        leader.update({"status": "ok", "top_public_value": value, "last_success_utc": now, "last_error": None,
+                       "observation_method": "automated HTTPS page fetch",
+                       "evidence_class": "OFFICIAL PUBLIC LEADERBOARD OBSERVATION (not a file-bound submission receipt)"})
 
     prev_sites = previous.get("site_heads", {})
     sites = {}
@@ -118,6 +140,14 @@ def refresh(previous: dict, now: str, get=request_text) -> dict:
         name = f"GEMSDOE{n}"
         item = dict(prev_sites.get(name, {}))
         item["last_attempt_utc"] = now
+        reference = archive_refs.get(name)
+        if not isinstance(reference, str) or not re.fullmatch(r"[0-9a-f]{40}", reference):
+            reference = None
+        item["audited_archive_ref"] = reference
+        # Recalculate using the known pinned reference even on a fetch failure;
+        # freshness is represented separately by status and last_success_utc.
+        old_head = item.get("head_sha")
+        item["differs_from_archive"] = (old_head != reference) if reference and isinstance(old_head, str) and re.fullmatch(r"[0-9a-f]{40}", old_head) else None
         api = f"https://api.github.com/repos/buffedlizard55-lab/{name}/commits/main"
         try:
             payload = json.loads(get(api, api_token=True))
@@ -128,7 +158,9 @@ def refresh(previous: dict, now: str, get=request_text) -> dict:
             item.update({"status": "stale" if item.get("last_success_utc") else "unavailable", "last_error": f"{type(exc).__name__}: {str(exc)[:200]}"})
         else:
             old_sha = item.get("head_sha")
-            item.update({"status": "ok", "head_sha": sha, "changed_since_previous_check": old_sha != sha if old_sha else None, "last_success_utc": now, "last_error": None})
+            item.update({"status": "ok", "head_sha": sha, "changed_since_previous_check": old_sha != sha if old_sha else None,
+                         "differs_from_archive": (sha != reference) if reference else None,
+                         "last_success_utc": now, "last_error": None})
         sites[name] = item
     return {"schema": "apartgems-public-feed-v1", "updated_utc": now, "note": "Snapshot only; source movement is not a new audit, score estimate, receipt, or upload approval.", "leaderboard": leader, "site_heads": sites}
 

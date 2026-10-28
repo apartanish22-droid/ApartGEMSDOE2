@@ -75,9 +75,12 @@ def test_identical_binary_registry_fails_both_checks(tmp_path):
     assert result["worst_within_3px_fraction"] == 1.0
 
 
-def test_space_filling_lattice_is_null_calibrated_not_literal(tmp_path):
-    """IR-47-LATTICE-FIX: a 5-px lattice covers ~100% of the map within 3 px, so the literal rule fails
-    every candidate; with space_filling_coverage the null-calibrated excess decides (literal still reported)."""
+def test_legacy_lattice_calibration_must_not_authorize_a_candidate(tmp_path):
+    """Document upstream nonliteral behavior, not a protocol exemption.
+
+    The calibrated flag can disagree with the required literal rule. Archived
+    callers are blocked; a separate future gate must fail if the literal rule fails.
+    """
     shape = (60, 60)
     foot = np.ones(shape, bool)
     template = tmp_path / "template.tif"

@@ -13,6 +13,10 @@
   function siteIsStale(item) {
     return !item || !/^[0-9a-f]{40}$/.test(item.head_sha || '') || isStale(item.status, item.last_success_utc);
   }
+  function archiveDrift(item) {
+    if (!item || !/^[0-9a-f]{40}$/.test(item.head_sha || '') || !/^[0-9a-f]{40}$/.test(item.audited_archive_ref || '')) return null;
+    return item.head_sha !== item.audited_archive_ref;
+  }
   fetch('data/source_feed.json', { cache: 'no-store' })
     .then(response => { if (!response.ok) throw new Error('Feed unavailable'); return response.json(); })
     .then(feed => {
@@ -35,10 +39,12 @@
           grid.replaceChildren();
           entries.sort(([a], [b]) => Number(a.slice(7)) - Number(b.slice(7))).forEach(([name, item]) => {
             const entry = document.createElement('div');
-            entry.className = 'feed-entry' + (item && item.changed_since_previous_check ? ' changed' : '');
+            const drift = archiveDrift(item);
+            entry.className = 'feed-entry' + (drift === true ? ' changed' : '');
             const label = document.createElement('strong');
             label.textContent = name;
-            entry.append(label, document.createTextNode(' · ' + (siteIsStale(item) ? 'stale' : item.changed_since_previous_check ? 'moved; not re-audited' : 'checked')));
+            const state = siteIsStale(item) ? 'stale' : drift === true ? 'differs from pinned archive; not re-audited' : drift === false ? 'at pinned archive commit' : 'archive reference unknown';
+            entry.append(label, document.createTextNode(' · ' + state));
             grid.appendChild(entry);
           });
         }

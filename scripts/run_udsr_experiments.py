@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Execute the 3 pre-registered H-UDSR experiments (EXP-1, EXP-2, EXP-3) under strict budget & gates.
+"""Archived, permanently blocked H-UDSR runner; historical description follows.
 
 Reuses canonical ``gems32.holdout``, ``gems32.emitter``, and ``gems32.registry_audit`` modules:
   - EXP-1 (UDSR-PurePhysics): 100% label-free & 1m-LiDAR-free updip multi-physics crest S_phys.
@@ -180,6 +180,8 @@ def main() -> int:
     from experiment_guard import require_current_protocol
     if not require_current_protocol():
         return 1
+    print("BLOCKED: archived H-UDSR runner uses obsolete post-placement checks.", file=sys.stderr)
+    return 1
     t0 = time.time()
     ddir = paths.data_dir()
     wdir = paths.work_dir()
