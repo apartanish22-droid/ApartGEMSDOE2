@@ -31,6 +31,10 @@ CURRENT_BEST_HR = 0.113696
 
 
 def main() -> int:
+    # An archived checkpoint is not authorization to publish a new TIFF.
+    from experiment_guard import require_current_protocol
+    if not require_current_protocol():
+        return 1
     ddir = paths.data_dir()
     wdir = paths.work_dir()
     tpl_tif = ddir / "sample_submission.tif"

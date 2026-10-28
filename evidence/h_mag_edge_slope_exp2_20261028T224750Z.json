@@ -36,18 +36,7 @@
     "GEMSDOE36_best": -0.0007859156635781761,
     "LATTICE_r13": 0.0027314429070575625
   },
-  "final_dot_overlap_vs_registry": {
-    "GEMSDOE24_best": 0.1688,
-    "GEMSDOE25_best": 0.156,
-    "GEMSDOE27_best": 0.1729,
-    "GEMSDOE28_best": 0.1429,
-    "GEMSDOE30_best": 0.156,
-    "GEMSDOE31_best": 0.1448,
-    "GEMSDOE32_best": 0.1363,
-    "GEMSDOE33_best": 0.1507,
-    "GEMSDOE36_best": 0.1399,
-    "LATTICE_r13": 0.0401
-  },
+  "final_dot_overlap_vs_registry": null,
   "raster": "gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
   "raster_sha256": "69a76559ff303c7604b0e35a0cec3af5fe0f7b742b8720e979857b01618a2d35",
   "raster_path": "/home/user/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
@@ -91,15 +80,62 @@
       "in_footprint_zero_inf": true,
       "in_footprint_zero_sentinel": true,
       "in_footprint_range_0_1": true,
-      "outside_footprint_compliant": true,
-      "zero_on_catalogue_leakage": true,
-      "validator_range_0_1_guaranteed": true
+      "outside_footprint_compliant": false,
+      "zero_on_catalogue_leakage": false,
+      "validator_range_0_1_guaranteed": false,
+      "reference_is_organizer_authenticated": false,
+      "portal_acceptance_verified": false,
+      "literal_lattice_uniqueness_pass": false
     },
-    "all_checks_passed": true
+    "all_checks_passed": false
   },
   "submission_name": "gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros",
   "note": "H-MAG-EDGExSLOPE mag-gradient x slope top-37654px; not a copy of prior GEMSDOE submissions",
   "note_length_chars": 90,
-  "emitted_pixels": 5164312,
-  "verdict": "negative"
+  "emitted_pixels": 5103418,
+  "verdict": "negative",
+  "original_reported_claims_withdrawn": {
+    "final_dot_overlap_vs_registry": {
+      "GEMSDOE24_best": 0.1688,
+      "GEMSDOE25_best": 0.156,
+      "GEMSDOE27_best": 0.1729,
+      "GEMSDOE28_best": 0.1429,
+      "GEMSDOE30_best": 0.156,
+      "GEMSDOE31_best": 0.1448,
+      "GEMSDOE32_best": 0.1363,
+      "GEMSDOE33_best": 0.1507,
+      "GEMSDOE36_best": 0.1399,
+      "LATTICE_r13": 0.0401
+    },
+    "surface_spearman_vs_registry": {
+      "GEMSDOE24_best": 0.00039865132344968525,
+      "GEMSDOE25_best": -0.00045074105055206964,
+      "GEMSDOE27_best": 0.000456947420684907,
+      "GEMSDOE28_best": -0.0008712267534394505,
+      "GEMSDOE30_best": -0.00045074105055206964,
+      "GEMSDOE31_best": -0.0007287254069436668,
+      "GEMSDOE32_best": -0.000878574613645509,
+      "GEMSDOE33_best": -0.0005496355809082648,
+      "GEMSDOE36_best": -0.0007859156635781761,
+      "LATTICE_r13": 0.0027314429070575625
+    },
+    "all_checks_passed": true,
+    "emitted_pixels_before_writer": 5164312,
+    "note": "Historical values are retained for provenance only; they do not establish release, complete-registry uniqueness or valid holdout."
+  },
+  "score_label": "ARCHIVED DIAGNOSTIC ONLY; not valid HOLDOUT-DTI under the requested buffered-whole-segment protocol, and not an organizer score.",
+  "holdout_status": "Original point and CI are retained for provenance. The shared v3 split does not establish the requested truth-to-visible buffer or whole segments; static full-map input and the control were not independently replayed.",
+  "leakage_canary_status": "Historical unverified full-catalogue AUC diagnostic, not proof of leakage-free holdout features.",
+  "surface_correlation_status": "Historical sampled, partial-registry comparison only; undefined correlations are null and must fail closed. No complete-registry pre-placement pass is established.",
+  "registry_correlation_overlap": {
+    "registry_complete_verified": false,
+    "preplacement_pass": false,
+    "candidate_dots_within_3px_of_lattice": 5098478,
+    "candidate_positive_pixels": 5103418,
+    "fraction": 0.9990320212845587,
+    "literal_gate_pass": false,
+    "reason": "Original lattice calculation dilated the candidate and counted nearby lattice cells divided by candidate cells, not candidate cells within three pixels of the lattice."
+  },
+  "note_warning": "Archived note is provenance only; candidate is not unique under the literal rule and is not authorized for submission.",
+  "independent_recheck": "evidence/parallel_three_independent_recheck_20261028.json"
 }

@@ -480,6 +480,9 @@ def build_synthetic_demo() -> tuple[np.ndarray, np.ndarray, dict]:
 
 
 def main() -> int:
+    # This archived demo has no valid holdout or all-registry audit. Its former
+    # entrypoint wrote pseudo-data TIFFs into the public downloads directory.
+    raise SystemExit('STOP: archived H2 demo has no authorized lane, valid holdout or complete uniqueness audit; do not generate or submit it.')
     print(f"=== GEMS H2 Fractal Fault-Zone Submission Generator ===")
     print(f"Hypothesis: {HYPOTHESIS}")
     print(f"Note: {NOTE}")

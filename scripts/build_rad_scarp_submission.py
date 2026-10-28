@@ -1,25 +1,13 @@
 #!/usr/bin/env python3
-"""Build the RAD-SCARP off-catalogue geothermal-fault submission (novel lane).
+"""Archived RAD-SCARP runner. It is blocked; DO NOT generate or submit.
 
-Single method lane (PARALLEL-RUN Protocol #1):
-  Off-catalogue geothermal fault detection using two overlooked, free, official
-  data layers -- USGS GeoDAWN airborne radiometrics (K/Th/U/TC, DOI
-  10.5066/P93LGLVQ) and USGS 3DEP 1 m LiDAR-derived scaper features -- placed
-  in the 2-15 px (200 m - 1.5 km) off-catalogue collar around VISIBLE catalogue
-  faults. Catalogue faults are masked pixel-exactly to 0. Thresholds are
-  unsupervised percentiles (no competition training labels are used), so there
-  is no label leakage. Emits a portal-safe single-band float32 GeoTIFF
-  (0 outside the footprint, all cells in [0, 1], nodata=None) plus a -nan.tif
-  twin and a JSON sidecar, via the shared `gems32.submission` writer.
-
-Geological hypothesis: young, radiometrically altered fault strands that are
-absent from the USGS/INGENIOUS catalogue (hence off-catalogue) but lie adjacent
-to mapped range-front faults host geothermal conduits. Radiometric enrichment
-marks hydrothermal alteration; LiDAR scarps mark young, surface-breaking
-faulting. Neither layer is in the H19-5/GEM32-B2 magnetic-lineament lineage,
-so the raster is expected to be byte-unique and geometrically distinct.
-
-Outputs are written to docs/downloads/ with the prefix apartgemsdoe2.
+The previous parallel run combined owner-mirrored radiometrics and LiDAR scarp
+features with a distance collar computed from the full catalogue. That is not
+fold-visible provenance. No per-feature canaries, complete pre-placement audit,
+valid buffered whole-segment holdout, 95% CI or authenticated organizer
+reference was established. A later read-only check found 10,421 / 10,457 dots
+within three pixels of a registered lattice, so the literal novelty gate fails.
+Whole-array finite values do not prove portal acceptance or official format.
 """
 
 from __future__ import annotations
@@ -61,6 +49,9 @@ def read_band(path: Path, band: int, foot: np.ndarray) -> np.ndarray:
 
 
 def main() -> int:
+    from experiment_guard import require_current_protocol
+    if not require_current_protocol():
+        return 2
     ddir = data_dir()
     sample_tif = ddir / "sample_submission.tif"
     labels_tif = ddir / "labels.tif"

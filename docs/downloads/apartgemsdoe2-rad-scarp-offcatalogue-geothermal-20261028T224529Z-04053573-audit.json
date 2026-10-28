@@ -2,7 +2,7 @@
   "candidate_id": "apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z",
   "slug": "rad-scarp-offcatalogue-geothermal",
   "content_digest8": "04053573",
-  "description": "RAD-SCARP off-catalogue geothermal fault dots (novel lane; no training labels used)",
+  "description": "Archived RAD-SCARP research artifact. The full labels raster was used for the catalogue collar; DO NOT SUBMIT.",
   "submission_note_zeros": "ApartGEMSDOE2 RAD-SCARP off-catalogue geothermal dots, radiometric+LiDAR, 200m-1.5km collar, [0,1]",
   "submission_note_nan": "ApartGEMSDOE2 RAD-SCARP off-catalogue geothermal dots, radiometric+LiDAR, 200m-1.5km collar, [0,1]",
   "zeros_tif": {
@@ -45,11 +45,14 @@
       "in_footprint_zero_inf": true,
       "in_footprint_zero_sentinel": true,
       "in_footprint_range_0_1": true,
-      "outside_footprint_compliant": true,
-      "zero_on_catalogue_leakage": true,
-      "validator_range_0_1_guaranteed": true
+      "outside_footprint_compliant": false,
+      "zero_on_catalogue_leakage": false,
+      "validator_range_0_1_guaranteed": false,
+      "reference_is_organizer_authenticated": false,
+      "portal_acceptance_verified": false,
+      "literal_lattice_uniqueness_pass": false
     },
-    "all_checks_passed": true
+    "all_checks_passed": false
   },
   "nan_tif": {
     "filename": "apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-nan.tif",
@@ -91,20 +94,38 @@
       "in_footprint_zero_inf": true,
       "in_footprint_zero_sentinel": true,
       "in_footprint_range_0_1": true,
-      "outside_footprint_compliant": true,
-      "zero_on_catalogue_leakage": true,
-      "validator_range_0_1_guaranteed": true
+      "outside_footprint_compliant": null,
+      "zero_on_catalogue_leakage": false,
+      "validator_range_0_1_guaranteed": false,
+      "reference_is_organizer_authenticated": false,
+      "portal_acceptance_verified": false,
+      "literal_lattice_uniqueness_pass": false
     },
-    "all_checks_passed": true
+    "all_checks_passed": false
   },
   "holdout_metrics": {
-    "catalogue_hidden_mean": 0.0,
+    "catalogue_hidden_mean": null,
     "catalogue_hidden_per_quadrant": {},
-    "sgmc_prevalence_calibrated_dti": 0.0,
-    "drift_corrected_holdout_mean": 0.0,
+    "sgmc_prevalence_calibrated_dti": null,
+    "drift_corrected_holdout_mean": null,
     "drift_corrected_per_quadrant": {},
     "predicted_leaderboard_dti": null,
     "ei_drift_corrected": null,
-    "slot_decision": "HOLD-PENDING-HOLDOUT"
+    "slot_decision": "NO_RELEASE"
+  },
+  "review_correction": {
+    "verdict": "negative",
+    "message": "Original writer-side checks were not organizer authentication, leakage proof or permission to submit. Literal 3-pixel overlap with the registered lattice is 10,421/10,457. The generator uses the full catalogue and the v3 split is not a valid buffered whole-segment holdout.",
+    "independent_recheck": "../data/rad_scarp_independent_recheck_20261028.json",
+    "original_all_checks_passed_claims": {
+      "zeros": true,
+      "nan": true
+    },
+    "holdout_metrics_note": "The zero-valued fields below are writer placeholders, not evaluated holdout results.",
+    "original_placeholder_values": {
+      "catalogue_hidden_mean": 0.0,
+      "sgmc_prevalence_calibrated_dti": 0.0,
+      "drift_corrected_holdout_mean": 0.0
+    }
   }
 }

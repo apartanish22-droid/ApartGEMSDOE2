@@ -2,15 +2,18 @@
   "schema": "parallel-run-protocol-run-card-v1",
   "generated_at_utc": "2026-10-28T22:45:29Z",
   "session_branch": "arena/00fd98de-apartgemsdoe2",
-  "hypothesis": "H-RAD (RAD-SCARP): young, radiometrically altered fault strands that are absent from the USGS/INGENIOUS catalogue but lie adjacent to mapped range-front faults host geothermal conduits. Off-catalogue dots in the 200 m-1.2 km collar around VISIBLE catalogue faults, selected by high GeoDAWN K/Th/U/TC radiometrics AND a confident 1 m LiDAR scarp, target blind geothermal faults missing from the catalogue.",
-  "mechanism": "hydrothermal alteration elevates airborne radiometrics (K/Th/U/TC); young scarps mark recent surface-breaking faulting. The conjunction (radiometric p99 AND LiDAR scarp p99 within the off-catalogue collar) is a fault propensity not captured by the H19-5/GEM32-B2 magnetic-lineament lineage. Visible catalogue faults are masked pixel-exactly to 0; thresholds are unsupervised percentiles (no competition training labels used).",
+  "hypothesis": "H-RAD (RAD-SCARP): young, radiometrically altered fault strands that are absent from the USGS/INGENIOUS catalogue but lie adjacent to mapped range-front faults host geothermal conduits. Off-catalogue dots in the 200 m-1.2 km collar around catalogue faults (the archived generator uses the full catalogue, not fold-visible faults), selected by high GeoDAWN K/Th/U/TC radiometrics AND a confident 1 m LiDAR scarp, target blind geothermal faults missing from the catalogue.",
+  "mechanism": "Historical generator computed the distance collar and pixel mask from the full labels raster and combined owner-mirrored radiometric and LiDAR features. No fold-local catalogue reconstruction or complete-registry pre-placement check was demonstrated; see scripts/build_rad_scarp_submission.py.",
   "mimicking_non_fault_process": "broad hydrothermal alteration/lithologic radioactivity can produce radiometric anomalies without faults; scarp-like erosion or landslides can produce LiDAR scarp responses without faults. These are the named non-fault mimics.",
   "holdout_dti": 0.0037617228402477667,
   "holdout_withheld_positives": 22232,
-  "holdout_ci95": [null, null],
-  "score_label": "HOLDOUT-DTI (GEMSDOE32-HIDE-RECOVER-v3.0). Not an organizer-confirmed leaderboard score; leaderboard estimate is not estimable from any local proxy.",
+  "holdout_ci95": [
+    null,
+    null
+  ],
+  "score_label": "ARCHIVED DIAGNOSTIC ONLY, not valid HOLDOUT-DTI or organizer score: no CI, full-catalogue distance features and unresolved v3 split defects.",
   "leakage_canary": "not run for RAD-SCARP individual channels. Rule: test each feature alone on the holdout; AUC > 0.90 means leakage until proven otherwise.",
-  "lane_check": "PASS vs repo sibling rasters (AP-1, AP2, H-UDSR EXP-3, H-TRACE EXP-2): max 9.0% of RAD-SCARP dots within 3 px of any one registry raster (limit 70%); raster |Spearman| approx 0.002 (limit 0.90). Full 500-raster extended registry not restored in this sandbox, so the all-registry lane check is partial.",
+  "lane_check": "FAIL literal all-registry rule: independent saved-byte check found 10,421 / 10,457 final dots within 3 px of registered 13GEMSDOE lattice. Historical 9.0% assertion covered only selected sibling rasters, not the complete registry or the required pre-placement surface.",
   "raster": "docs/downloads/apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-zeros.tif",
   "raster_sha256": "ce5295029b2f506bed5d49b74432370ba6101d5b810797be78af7502d41828f3",
   "validator_output": {
@@ -24,24 +27,34 @@
       "no_nan_inside_footprint": "PASS (0 NaN)",
       "values_in_range_0_1": "PASS (min 0.0, max 1.0)",
       "outside_footprint": "zeros (all 12,279,160 cells finite, in [0,1])",
-      "zero_on_catalogue_leakage": "PASS (0 dots on catalogue faults)",
-      "portal_safe_whole_array": "PASS"
+      "zero_on_catalogue_leakage": "0 dots on full catalogue; this does not establish fold-local leakage safety.",
+      "portal_safe_whole_array": "NOT ESTABLISHED: all cells are finite [0,1], but zeros outside do not meet the official null/NaN-outside wording; portal not tested."
     },
-    "all_pass": true,
+    "all_pass": false,
     "ok_to_submit_on_real_grid": false,
-    "reason": "format/range PASS but holdout FAILS (0.0038 vs control 0.0992) and no organizer template authentication / portal receipt"
+    "reason": "Literal lattice uniqueness fails; v3 holdout is not valid under the requested protocol; official template and portal acceptance are unverified."
   },
   "submission_name": "apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-zeros.tif",
   "note": "ApartGEMSDOE2 RAD-SCARP off-catalogue geothermal dots, radiometric+LiDAR, 200m-1.5km collar, [0,1]",
   "note_length_chars": 107,
   "verdict": "negative",
-  "unique_vs_gemsdoe_sites": true,
-  "basis_for_uniqueness": "Byte-unique (digest 04053573); geometrically distinct from repo siblings (max 9.0% within 3 px, |Spearman| approx 0.002). Not measured vs GEMSDOE archival bytes (not restored in sandbox).",
-  "blocker": "Holdout DTI 0.0038 below fold-honest D28_B2 control 0.0992; no organizer-authenticated template or portal receipt; competition training files require DrivenData login and were not restored.",
+  "unique_vs_gemsdoe_sites": null,
+  "basis_for_uniqueness": "Selected siblings were checked historically, not all GEMSDOE archives; byte uniqueness does not establish scientific uniqueness. The literal registered-lattice proximity gate fails.",
+  "blocker": "The literal lattice gate fails, requested holdout is not established, per-feature canaries were not run, and organizer template/portal acceptance are unverified.",
   "next_steps": [
-    "Do not submit RAD-SCARP (failed holdout).",
-    "Restore full shared stack + registry on an unrestricted machine (DrivenData login).",
-    "Run untried hypotheses H-C1 (BLM claims x radiometrics) and H-C2 (INGENIOUS 2 m temperature x radiometrics) under a fresh 3-experiment budget; promote only a candidate that beats 0.0992 with a strictly positive paired CI and clears uniqueness.",
-    "Route any release through a separate automated selector within the weekly cap."
-  ]
+    "Do not submit or regenerate RAD-SCARP.",
+    "Fix canonical shared tooling, authenticate input provenance and resolve the literal registry rule before any authorized research.",
+    "A future assigned lane requires a fresh budget authorization, fold-local features, buffered holdout and a separate selector; no numeric prior diagnostic is a valid current benchmark."
+  ],
+  "original_reported_claims_withdrawn": {
+    "score_label": "HOLDOUT-DTI (GEMSDOE32-HIDE-RECOVER-v3.0). Not an organizer-confirmed leaderboard score; leaderboard estimate is not estimable from any local proxy.",
+    "lane_check": "PASS vs repo sibling rasters (AP-1, AP2, H-UDSR EXP-3, H-TRACE EXP-2): max 9.0% of RAD-SCARP dots within 3 px of any one registry raster (limit 70%); raster |Spearman| approx 0.002 (limit 0.90). Full 500-raster extended registry not restored in this sandbox, so the all-registry lane check is partial.",
+    "unique_vs_gemsdoe_sites": true,
+    "portal_safe_whole_array": "PASS",
+    "all_pass": true,
+    "note": "The original reported claims are retained for provenance only and do not establish holdout, uniqueness, format or portal validity."
+  },
+  "holdout_dti_context": "Original numerical report retained for provenance; neither it nor the control is eligible for the requested buffered holdout comparison.",
+  "note_warning": "Archived note says 200m-1.5km, while generator used 200m-1.2km. Neither it nor this raster is approved for a slot.",
+  "independent_recheck": "evidence/rad_scarp_independent_recheck_20261028.json"
 }

@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 """
+ARCHIVED RUNNER: BLOCKED; the saved TIFF fails literal lattice uniqueness.
+Historical claims below are not authorization: the shared v3 split is not a
+validated whole-segment buffer, the lattice overlap calculation was reversed,
+and the complete registry and organizer template were never verified.
+
 Experiment 3 — H-DEPTH×COND (ranked hypothesis #3, research/hypotheses.md).
 
 Hypothesis: fault-related conductive fractures under thin sediment cover express
@@ -21,18 +26,16 @@ Design notes (line-by-line verifiable):
   * Emission: top-N propensity pixels as a binary mask (N = 37,654, the same dot
     budget as the GEMSDOE32 champion B2), written with the shared writer so
     catalogue pixels are zeroed and values stay in [0,1].
-  * Evaluation: canonical GEMSDOE32-HIDE-RECOVER-v3.0 holdout (whole buffered
-    fault segments withheld; catalogue gate derived from visible faults only;
-    pooled DTI alpha 0.2, beta 0.8, 300 m triangular kernel, spatial-block
-    bootstrap 95% CI) plus off-catalogue SGMC diagnostic.
-  * Uniqueness (lane discipline): Spearman of the propensity surface vs each of
-    the 9 pinned focus rasters BEFORE placement, and final-dot 3-px overlap vs
-    each focus raster plus the 13GEMSDOE lattice AFTER placement. Stop if
-    |rho| > 0.90 or > 70% of dots within 3 px of one registry raster.
+  * Historical evaluation: the shared v3 split did not establish the required
+    buffered whole-segment protocol; its numerical report is a diagnostic, not
+    valid holdout evidence or an organizer score.
+  * Historical uniqueness: sampled surface comparison covered a subset only;
+    the lattice check counted lattice pixels near candidates rather than
+    candidate pixels near the lattice. The saved TIFF fails the literal gate.
 
 Outputs:
   evidence/h_depth_cond_exp3.json   run card (HOLDOUT-DTI + CI, canary, registry)
-  docs/downloads/*-h-depth-cond-*.tif / .zip / -audit.json   validated submission bytes
+  docs/downloads/*-h-depth-cond-*.tif / .zip / -audit.json   archived research bytes, DO NOT SUBMIT
 """
 from __future__ import annotations
 
@@ -99,6 +102,9 @@ def rank_auc(score: np.ndarray, truth: np.ndarray, valid: np.ndarray) -> float:
 
 
 def main() -> int:
+    from experiment_guard import require_current_protocol
+    if not require_current_protocol():
+        return 2
     ddir = data_dir()
     print(f"Data dir: {ddir}")
     with rasterio.open(ddir / "sample_submission.tif") as ds:
@@ -195,7 +201,7 @@ def main() -> int:
         print(f"UNIQUENESS STOP: max overlap {max_overlap*100:.2f}% > 70%.")
         return 4
 
-    # ---- write validated submission bytes ----
+    # ---- write archived research bytes, DO NOT SUBMIT ----
     now = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     slug = f"h-depth-cond-conductive-under-thin-cover-top{N_DOTS}"
     note = ("H-DEPTHxCOND conductive under thin cover top-37654px; not a copy of prior GEMSDOE submissions")

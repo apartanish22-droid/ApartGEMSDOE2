@@ -45,11 +45,14 @@
       "in_footprint_zero_inf": true,
       "in_footprint_zero_sentinel": true,
       "in_footprint_range_0_1": true,
-      "outside_footprint_compliant": true,
-      "zero_on_catalogue_leakage": true,
-      "validator_range_0_1_guaranteed": true
+      "outside_footprint_compliant": false,
+      "zero_on_catalogue_leakage": false,
+      "validator_range_0_1_guaranteed": false,
+      "reference_is_organizer_authenticated": false,
+      "portal_acceptance_verified": false,
+      "literal_lattice_uniqueness_pass": false
     },
-    "all_checks_passed": true
+    "all_checks_passed": false
   },
   "nan_tif": {
     "filename": "gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
@@ -91,20 +94,28 @@
       "in_footprint_zero_inf": true,
       "in_footprint_zero_sentinel": true,
       "in_footprint_range_0_1": true,
-      "outside_footprint_compliant": true,
-      "zero_on_catalogue_leakage": true,
-      "validator_range_0_1_guaranteed": true
+      "outside_footprint_compliant": null,
+      "zero_on_catalogue_leakage": false,
+      "validator_range_0_1_guaranteed": false,
+      "reference_is_organizer_authenticated": false,
+      "portal_acceptance_verified": false,
+      "literal_lattice_uniqueness_pass": false
     },
-    "all_checks_passed": true
+    "all_checks_passed": false
   },
   "holdout_metrics": {
     "catalogue_hidden_mean": null,
     "catalogue_hidden_per_quadrant": {},
-    "sgmc_prevalence_calibrated_dti": 0.012308547654377026,
+    "sgmc_prevalence_calibrated_dti": null,
     "drift_corrected_holdout_mean": null,
     "drift_corrected_per_quadrant": {},
     "predicted_leaderboard_dti": null,
     "ei_drift_corrected": null,
-    "slot_decision": "HOLD-PENDING-SELECTOR"
+    "slot_decision": "NO_RELEASE"
+  },
+  "review_correction": {
+    "verdict": "negative",
+    "message": "Literal lattice uniqueness fails on saved bytes. Prior overlap used the wrong direction. Historical writer checks are not organizer authentication, leakage proof or portal approval. Zero holdout metrics below were placeholders.",
+    "independent_recheck": "../data/parallel_three_independent_recheck_20261028.json"
   }
 }

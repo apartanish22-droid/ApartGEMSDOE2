@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-"""Execute the 3 pre-registered H-TRACE experiments (knowledge/preregistration_trace_20261028.md).
+"""Archived H-TRACE runner; the command is blocked by current preflight.
 
-Lane: reshape the leak-free H-UDSR Dual-Cover OOF posterior by km-scale oriented
+Its former order placed dots before the surface registry audit, and the shared
+holdout did not establish the requested buffered-whole-segment contract.
+Historical lane: reshape the H-UDSR Dual-Cover OOF posterior by km-scale oriented
 trace coherence (``gems32.trace``), then emit with the shared axial-crest exact-gain
 emitter at the historical 37,654-dot budget, B=2 px visible-catalogue collar.
 
@@ -16,10 +18,8 @@ labelled secondary diagnostic), ``gems32.udsr`` Dual-Cover fits, and
 No registry/champion pixel is read as a model input; scored rasters are read only
 as holdout controls and for the uniqueness measurement.
 
-This is a NEW session entry point (2026-10-28, arena/7ec4400f) under the user's
-explicit "work on the next steps from the previous sessions first" instruction;
-the legacy fail-closed guard in ``scripts/experiment_guard.py`` continues to block
-the superseded AP-1/AP2/H-UDSR entry points and is not weakened here.
+The prior lane reported three experiments; its budget is spent. The user's
+prompt did not identify a new assigned method lane. No replay is authorized.
 """
 from __future__ import annotations
 
@@ -123,6 +123,11 @@ def canary_trace_fields(ctx, s_phys: np.ndarray, foot: np.ndarray, d_cat: np.nda
 
 
 def main() -> int:
+    # This archived lane already spent its budget. In particular, its original
+    # surface audit occurred after dot placement; do not replay it as a new run.
+    from experiment_guard import require_current_protocol
+    if not require_current_protocol():
+        return 1
     t0 = time.time()
     ddir = paths.data_dir()
     wdir = paths.work_dir()

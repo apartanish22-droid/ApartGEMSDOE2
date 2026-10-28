@@ -1,4 +1,18 @@
 ================================================================================
+CORRECTION 2026-10-28 — ALL ARTIFACTS IN THIS FILE ARE RESEARCH ONLY.
+An independent saved-byte audit found 36,692/36,975 H-DIL-GRAV dots (99.23%),
+5,098,478/5,103,418 H-MAG-EDGE dots (99.903%), and 5,099,871/5,106,385
+H-DEPTH-COND dots (99.872%) within 3 pixels of a registered lattice. All fail
+the literal uniqueness rule. Previous overlap calculations counted lattice
+pixels near candidate dots instead of candidate dots near the lattice. The
+archived v3 split does not establish a buffered whole-segment holdout, and the
+original organizer template and portal acceptance are unverified. The original
+report below is retained only as historical context; any conflicting uniqueness,
+holdout, format or upload claim is withdrawn. The runners are blocked.
+See evidence/parallel_three_independent_recheck_20261028.json.
+================================================================================
+
+================================================================================
 CORRECTION 2026-10-28 (IR-TRACE-02): DO NOT SUBMIT THE H2 FILE BELOW.
 H2 was generated in DEMO MODE from seeded pseudo-features without competition
 data (see docs/data/run_card_h2.json: holdout_dti null). The CONDITIONAL YES
@@ -15,14 +29,14 @@ Branch: arena/59f115dd-apartgemsdoe2
 🚨 READ THIS FIRST — NO FILE HERE IS APPROVED FOR SUBMISSION TO DRIVENDATA
 ================================================================================
 
-This directory holds UNIQUE research TIFFs generated this session from previously
-untried geological hypotheses. They pass format/range validation, but NONE passed
-the holdout gate, so none is authorized for a competition slot.
+A concurrent session generated these research TIFFs from geological hypotheses.
+The owner-mirrored format checks are not organizer authentication or portal
+approval; every artifact fails the literal lattice uniqueness rule.
 
 Verdict for every file below: NOT OK TO SUBMIT. OK to download for research only.
 
 ================================================================================
-GENERATED UNIQUE SUBMISSION TIFFS (research artifacts — DO NOT UPLOAD)
+ARCHIVED RESEARCH TIFFS — DO NOT UPLOAD
 ================================================================================
 
 1. FILE: gemsdoe32-h-dil-grav-dilate-x-gravlow-top37654-20261028T224631Z-3df650f1-zeros.tif
@@ -32,47 +46,47 @@ GENERATED UNIQUE SUBMISSION TIFFS (research artifacts — DO NOT UPLOAD)
    HYPOTHESIS: H-DIL-GRAV (ranked #1, research/hypotheses.md) — geodetic dilatation
                (training_features band 8) x isostatic gravity low (band 13), top-37,654
                propensity pixels as a binary mask.
-   VALIDATION: PASSED (all 12 format/range gates)
+   FORMAT: local owner-mirror checks only; organizer format/portal unverified
      - GeoTIFF, single band, float32, EPSG:32611, 3730x3292, 100 m,
        origin (243350, 4508550) — matches the pinned sample_submission.tif grid.
-     - Values in [0, 1] across the whole array, zero NaNs (zeros exterior).
+     - Values in [0, 1] across the whole array, zero NaNs (zeros exterior; this
+       does not meet the conservative null/NaN-outside reading).
      - Zero pixels on the known USGS/INGENIOUS catalogue.
-   HOLDOUT-DTI: 0.00572, 95% CI [0.00000, 0.01054]
+   ARCHIVED DIAGNOSTIC (not valid HOLDOUT-DTI): 0.00572, 95% CI [0.00000, 0.01054]
      evaluator GEMSDOE32-HOLDOUT-v3-visible-gated, 22,232 withheld positives.
-     Control (fold-honest D28_B2): 0.09920. Repo best (H-UDSR EXP-2): 0.11370.
-   LEAKAGE CANARY: PASSED — geod_dilaterate AUC 0.5250, -iso_grav_anom AUC 0.5411
+     Historical control 0.09920 was not established under the requested split.
+   HISTORICAL AUC (not a holdout leakage pass): geod_dilaterate AUC 0.5250, -iso_grav_anom AUC 0.5411
                    (two-sided max <= 0.90).
-   UNIQUENESS: PASSED — max final-dot 3-px overlap vs the 9 focus-site registry
-               rasters = 17.20% (GEMSDOE27); vs 13GEMSDOE lattice = 4.28%.
-               Surface rank correlation vs all registry rasters <= 0.005.
-   SUBMISSION NOTE (66 chars):
+   UNIQUENESS: FAIL — 36,692 / 36,975 saved dots (99.23%) lie within 3 px
+               of the registered lattice. Complete pre-placement test unavailable.
+   HISTORICAL NOTE (119 chars; DO NOT SUBMIT):
    "Unique H-DIL-GRAV: geodetic dilatation x gravity low, top-37654 pixels,
     not a copy of any prior GEMSDOE site submission"
-   VERDICT: negative — holdout DTI far below the fold-honest control. NOT OK
-            to submit to DrivenData.
+   VERDICT: negative — lattice gate fails; no valid holdout or release approval.
+            NOT OK to submit to DrivenData.
 
 2. FILE: gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif
    LOCATION: ./docs/downloads/ (with .zip and -nan.tif twins)
    SHA-256: 69a76559ff303c76... (see -audit.json sidecar)
    HYPOTHESIS: H-MAG-EDGExSLOPE (ranked #2) — magnetic horizontal gradient (band 3)
                x detrended elevation slope (band 19), top-37,654 pixels.
-   VALIDATION: PASSED format/range gates; NOTE: emission runaway — 5,103,418 positive
+   FORMAT: local owner-mirror checks only; NOTE: emission runaway — 5,103,418 positive
                pixels (~99% of footprint) because many pixels tie at zero propensity.
                Not a credible competition emission.
-   HOLDOUT-DTI: 0.01182, 95% CI [0.00979, 0.01396] — below control 0.09920.
-   UNIQUENESS: PASSED — max overlap 17.29%.
-   VERDICT: negative — failed holdout gate and runaway emission. NOT OK to submit.
+   ARCHIVED DIAGNOSTIC (not valid HOLDOUT-DTI): 0.01182, 95% CI [0.00979, 0.01396] — below control 0.09920.
+   UNIQUENESS: FAIL — 5,098,478 / 5,103,418 saved dots (99.903%) near the lattice.
+   VERDICT: negative — lattice gate fails and emission ran away. NOT OK to submit.
 
 3. FILE: gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif
    LOCATION: ./docs/downloads/ (with .zip and -nan.tif twins)
    SHA-256: 621334388274c4a1... (see -audit.json sidecar)
    HYPOTHESIS: H-DEPTHxCOND (ranked #3) — conductivity (band 17) x (1 - normalized
                depth-to-basement, band 15), top-37,654 pixels.
-   VALIDATION: PASSED format/range gates; same runaway-emission caveat as #2
+   FORMAT: local owner-mirror checks only; same runaway-emission caveat as #2
                (5,106,385 positive pixels).
-   HOLDOUT-DTI: 0.01182, 95% CI [0.00979, 0.01396] — below control 0.09920.
-   UNIQUENESS: PASSED — max overlap 17.29%.
-   VERDICT: negative — failed holdout gate and runaway emission. NOT OK to submit.
+   ARCHIVED DIAGNOSTIC (not valid HOLDOUT-DTI): 0.01182, 95% CI [0.00979, 0.01396] — below control 0.09920.
+   UNIQUENESS: FAIL — 5,099,871 / 5,106,385 saved dots (99.872%) near the lattice.
+   VERDICT: negative — lattice gate fails and emission ran away. NOT OK to submit.
 
 ================================================================================
 WHY NO FILE IS OK TO SUBMIT THIS WEEK
@@ -83,19 +97,16 @@ best with a strictly positive paired interval, (b) pass leakage canaries, (c) pa
 uniqueness vs the full registry, and (d) pass saved-byte format validation, before
 a separate selector may spend a weekly slot.
 
-All three generated candidates pass (b), (c) and (d) but fail (a):
+All three fail the literal lattice rule. The following numbers are historical
+diagnostics, not valid requested-protocol holdouts or organizer scores:
   H-DIL-GRAV   0.00572  vs control 0.09920
   H-MAG-EDGE   0.01182  vs control 0.09920
   H-DEPTHxCOND 0.01182  vs control 0.09920
 
-Interpretation: the hide-and-recover holdout withholds whole catalogue fault
-segments, so it measures recovery of MAPPED faults. The three new hypotheses
-target CONCEALED faults absent from the catalogue; by design they do not recover
-mapped segments, so they score near zero on this holdout. A holdout win is a
-necessary gate under the protocol, not a leaderboard estimate. No candidate is
-promotable within the 3-experiment / 2-hour budget; negative results are
-deliverables.
-
+The archived split does not establish whole buffered fault segments and a
+complete registry was not verified. The reasons for the numerical diagnostics
+are not established. None of these candidates is promotable; do not rerun the
+three spent archived experiments.
 Run cards: evidence/h_dil_grav_exp1_*.json, evidence/h_mag_edge_slope_exp2_*.json,
 evidence/h_depth_cond_exp3_*.json.
 
@@ -108,9 +119,9 @@ HOW TO SUBMIT (when a future candidate passes every gate)
 2. File to submit: one single-band GeoTIFF (.tif), or a .zip containing exactly one
    GeoTIFF. It must match the submission format's CRS (EPSG:32611), shape
    (3730 x 3292) and geotransform (origin 243350 / 4508550, 100 m cells).
-3. Values must be finite and in [0, 1] inside the footprint (this fixes the portal
-   error "Predicted values must be in range [0, 1]"); use null/NaN outside the
-   footprint per the organizer format text (or zeros, as emitted here).
+3. Values must be finite and in [0, 1] inside the footprint. The cause of the
+   reported portal error has not been diagnosed here; use null/NaN outside per
+   the published format and confirm ambiguous portal behavior with organizers.
 4. Give the submission a unique name and a short note (<= 140 characters), e.g. the
    run-card note above.
 5. Submit only if a separate selector has approved the candidate. Save the organizer
