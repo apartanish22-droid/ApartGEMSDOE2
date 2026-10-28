@@ -3,7 +3,9 @@
 
 Checks exactly what the DrivenData portal rejected with
 "Predicted values must be in range [0, 1]", plus CRS/shape/geotransform against the
-sample submission and a re-read of the bytes just written. Exit code 0 = PASS, 1 = FAIL.
+sample submission and a re-read of the bytes just written. A PASS is only a local
+format diagnostic: it does not authenticate the reference, prove portal acceptance,
+or authorize submission. Exit code 0 = diagnostic PASS, 1 = FAIL.
 
 Usage:  python scripts/validate_submission.py docs/downloads/<file>-zeros.tif [more files...]
 Data dir via $GEMS_DATA_DIR or --data-dir (needs sample_submission.tif + labels.tif).
@@ -26,13 +28,13 @@ def check(path: Path, sample: Path, labels_path: Path) -> dict:
         foot = ~np.ma.getmaskarray(sample_data) & np.isfinite(sample_data.data)
         t_crs, t_shape, t_tf = tpl.crs, tpl.shape, tpl.transform
     if not foot.any():
-        return {"file": str(path), "pass": False, "error": "template footprint is empty"}
+        raise ValueError("Reference footprint is empty; cannot validate a submission")
     with rasterio.open(labels_path) as ds:
         if ds.count != 1 or (ds.crs, ds.shape, ds.transform) != (t_crs, t_shape, t_tf):
-            return {"file": str(path), "pass": False, "error": "labels grid does not match template"}
+            raise ValueError("Catalogue grid does not match the reference grid")
         label_data = ds.read(1, masked=True)
         if (np.ma.getmaskarray(label_data) | ~np.isfinite(label_data.data))[foot].any():
-            return {"file": str(path), "pass": False, "error": "labels invalid inside template footprint"}
+            raise ValueError("Catalogue has invalid cells inside the reference footprint")
         labels = (label_data.data > 0) & foot
     with rasterio.open(path) as ds:
         arr = ds.read(1) if ds.count >= 1 else np.empty((0, 0))
@@ -47,7 +49,7 @@ def check(path: Path, sample: Path, labels_path: Path) -> dict:
     checks = {
         "geotiff": meta["driver"] == "GTiff",
         "single_band": meta["count"] == 1,
-        "in_footprint_all_unmasked": bool(valid_pixels[foot].all()),
+        "in_footprint_unmasked": bool(valid_pixels[foot].all()),
         "dtype_float32": meta["dtype"] == "float32",
         "crs_shape_transform_match_sample": bool(same_grid),
         "in_footprint_all_finite": bool(np.isfinite(in_foot).all()),
@@ -61,7 +63,8 @@ def check(path: Path, sample: Path, labels_path: Path) -> dict:
         "has_positive_predictions": int(((arr > 0) & foot).sum()) > 0,
     }
     outside = arr[~foot]
-    outside_mode = ("all_zero" if bool((outside == 0).all()) else
+    outside_mode = ("no_exterior" if outside.size == 0 else
+                    "all_zero" if bool((outside == 0).all()) else
                     "all_nan" if bool(np.isnan(outside).all()) else "mixed")
     return {"file": str(path), "pass": all(checks.values()), "checks": checks, "meta": meta,
             "positive_pixels_in_footprint": int(((arr > 0) & foot).sum()),
