@@ -1,0 +1,120 @@
+{
+  "candidate_id": "apartgemsdoe2-trace-exp-2-trace-t1-22438dots",
+  "slug": "trace-exp-2-trace-t1-22438dots",
+  "content_digest8": "71a21036",
+  "description": "H-TRACE oriented line-integral trace-coherence (1.5 km + 3.1 km, 8 orientations) applied to the leak-free H-UDSR Dual-Cover OOF posterior; shared exact-gain axial-crest emission at 37,654-dot budget outside a 2 px catalogue collar.",
+  "submission_note_zeros": "ApartGEMSDOE2 H-TRACE EXP-2: oriented 1.5/3.1km trace-coherence gate on DualCover OOF posterior, 22438 dots B2",
+  "submission_note_nan": "ApartGEMSDOE2 H-TRACE EXP-2: oriented 1.5/3.1km trace-coherence gate on DualCover OOF posterior, 22438 dots B2",
+  "zeros_tif": {
+    "filename": "apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros.tif",
+    "size_bytes": 143162,
+    "sha256": "32716d4851e9de2df406eeb2386c8ddcf9aa970c985643c7e5484973dd023b4f",
+    "mode": "zeros",
+    "geometry_reference": "/home/user/ApartGEMSDOE2/.cache/gems_data/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "None",
+    "emitted_positive_pixels": 22438,
+    "footprint_fraction": 0.004342,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 12279160,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true
+  },
+  "nan_tif": {
+    "filename": "apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-nan.tif",
+    "size_bytes": 278528,
+    "sha256": "252d12f5d2c1f52167f9e015a66d117b5a3fb69dbf3306f6f0527871b9418164",
+    "mode": "nan",
+    "geometry_reference": "/home/user/ApartGEMSDOE2/.cache/gems_data/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "nan",
+    "emitted_positive_pixels": 22438,
+    "footprint_fraction": 0.004342,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 5167373,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true
+  },
+  "holdout_metrics": {
+    "catalogue_hidden_mean": 0.08933324397929213,
+    "catalogue_hidden_per_quadrant": {
+      "NW": 0.10649218910591765,
+      "NE": 0.11301533302375563,
+      "SW": 0.040656825714935924,
+      "SE": 0.11198975433066874
+    },
+    "sgmc_prevalence_calibrated_dti": 0.03903134397870686,
+    "drift_corrected_holdout_mean": 0.08933324397929213,
+    "drift_corrected_per_quadrant": {
+      "NW": 0.10649218910591765,
+      "NE": 0.11301533302375563,
+      "SW": 0.040656825714935924,
+      "SE": 0.11198975433066874
+    },
+    "predicted_leaderboard_dti": null,
+    "ei_drift_corrected": null,
+    "slot_decision": "RESEARCH-ONLY-PENDING-SELECTOR"
+  }
+}

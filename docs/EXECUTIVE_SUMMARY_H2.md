@@ -1,3 +1,13 @@
+> **⚠️ CORRECTION (2026-10-28, session `arena/7ec4400f-apartgemsdoe2`, IR-TRACE-02): DO NOT SUBMIT THE H2 FILE.**
+> H2's own run card (`docs/data/run_card_h2.json`) records that it was generated in **DEMO MODE
+> from seeded pseudo-features without competition data** (`holdout_dti: null`). A format-valid
+> raster built from synthetic pseudo-features carries no geological information. The
+> "CONDITIONALLY YES" guidance and the dot-count-based score projection range (0.15–0.35)
+> below are **withdrawn**; dot count does not estimate DTI. H2 verdict is corrected to
+> `negative`. The fractal hypothesis itself remains listed for future real-data testing as
+> H-FRACTAL-REAL in `knowledge/preregistration_trace_20261028.md`. The original text is
+> retained below for audit history only.
+
 # Executive Summary: GEMSDOE Competition Submission Strategy
 
 **Generated:** 2026-10-28  
@@ -8,7 +18,7 @@
 
 ## 🚨 DOWNLOAD SUBMISSION
 
-**OK TO SUBMIT: CONDITIONALLY YES** — pending final HOLDOUT-DTI validation and complete registry uniqueness check.
+**OK TO SUBMIT: NO** — see correction above (superseded "CONDITIONALLY YES").
 
 ### Your Submission File
 
@@ -143,13 +153,13 @@ All nine focus sites share a common limitation: their reported scores are **owne
 
 ---
 
-## How to Submit
+## How to Submit — ⛔ WITHDRAWN (2026-10-28, IR-TRACE-02)
 
-1. **Download** the file from `assets/gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif`
-2. **Go to:** https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/
-3. **Upload** the TIF file (or the ZIP)
-4. **Note field:** `H2 multi-scale fractal-dimension × surficial-complexity-anisotropy fault-zone propensity; not a copy of any prior GEMSDOE site submission.`
-5. **Submit**
+**Do not follow these steps. Do not upload the H2 file.** The original instructions
+(download `assets/gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif`, upload
+to DrivenData with an H2 fractal note) are withdrawn because the file was built from
+seeded pseudo-features without competition data. They remain visible in git history
+(commit `e971255`) for audit only.
 
 ---
 

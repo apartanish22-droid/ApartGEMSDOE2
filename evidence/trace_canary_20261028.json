@@ -1,0 +1,28 @@
+{
+  "n_pos_withheld_union": 20321,
+  "n_neg_sampled": 64000,
+  "tau": 0.830925464630127,
+  "channels": {
+    "trace_t_short_from_sphys": {
+      "auc_raw": 0.57325,
+      "auc_oriented": 0.57325
+    },
+    "trace_t_long_from_sphys": {
+      "auc_raw": 0.57064,
+      "auc_oriented": 0.57064
+    },
+    "trace_t_geo_from_sphys": {
+      "auc_raw": 0.57273,
+      "auc_oriented": 0.57273
+    },
+    "sphys_ch14_reference": {
+      "auc_raw": 0.56441,
+      "auc_oriented": 0.56441
+    }
+  },
+  "worst_channel": "trace_t_short_from_sphys",
+  "worst_auc_oriented": 0.57325,
+  "threshold_auc": 0.9,
+  "passed": true,
+  "note": "Positives = union of withheld hide-and-recover pixels; negatives >3px from catalogue. Fields are label-free transforms of S_phys (UDSR channel 14)."
+}

@@ -1,0 +1,15 @@
+{
+  "malformed_or_missing": 2,
+  "entries": [
+    {
+      "repo": "GEMSDOE31",
+      "path": "docs/downloads/gemsdoe31-csdu-stepover-8cf9dc27-nan.tif",
+      "reason": "nonfinite_in_footprint"
+    },
+    {
+      "repo": "GEMSDOE36",
+      "path": "docs/downloads/GEMS36_FORMAT_TEST_NOT_SUBMISSION.tif",
+      "reason": "grid 1 (32, 48) EPSG:32611"
+    }
+  ]
+}
