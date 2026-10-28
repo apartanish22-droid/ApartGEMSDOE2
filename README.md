@@ -1,3 +1,5 @@
+> **Current review (28 October 2026): No TIFF is approved for submission.** See [review and blockers](docs/research/review-20261028.md) and the [standing project prompt](docs/research/standing-prompt-ap2.md).
+
 # ApartGEMS · evidence before the next upload
 
 **Start every session here.** This repository is a research and decision desk for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/). The target is **geological faults**, not confirmed geothermal vents. Our objective is a genuinely new, high-quality, reproducible competition submission—not a copied TIFF, a renamed prior submission, an invented score, or a format-only pass.
