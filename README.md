@@ -1,3 +1,5 @@
+> **2026-10-28 review:** No submission is approved. `data/restore_receipt.json` is historical; run `.venv/bin/python scripts/preflight.py` to check current core-file hashes. A fresh checkout does not include the cached inputs. Four legacy experiment/emission entry points now use the fail-closed guard, and the AP2 local format validator checks raster masks and label-grid alignment. See [review and next steps](docs/research/review-20261028.md).
+
 # ApartGEMS · evidence before the next upload
 
 **Start every session here.** This repository is a research and decision desk for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/). The target is **geological faults**, not confirmed geothermal vents. Our objective is a genuinely new, high-quality, reproducible competition submission—not a copied TIFF, a renamed prior submission, an invented score, or a format-only pass.

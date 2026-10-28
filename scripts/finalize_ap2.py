@@ -37,6 +37,9 @@ def log(m):
 
 
 def main():
+    from experiment_guard import require_current_protocol
+    if not require_current_protocol():
+        return 1
     ap = argparse.ArgumentParser()
     ap.add_argument("--refs-dir", default="/tmp/refs")
     ap.add_argument("--broad-registry", action="store_true", help="also check every downloads tif in the 9 focus clones")
@@ -253,4 +256,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

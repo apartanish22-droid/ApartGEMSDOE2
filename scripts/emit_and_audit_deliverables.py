@@ -32,6 +32,9 @@ SUBMISSION_NOTE = (
 
 
 def main() -> int:
+    from experiment_guard import require_current_protocol
+    if not require_current_protocol():
+        return 1
     assert len(SUBMISSION_NOTE) <= 140, f"Note too long: {len(SUBMISSION_NOTE)}"
     ddir = paths.data_dir()
     wdir = paths.work_dir()
