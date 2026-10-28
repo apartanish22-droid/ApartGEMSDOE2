@@ -1,0 +1,48 @@
+{
+  "schema": "parallel-run-protocol-run-card-v1",
+  "generated_at_utc": "2026-10-28T054632Z",
+  "session_branch": "arena/17f40661-apartgemsdoe2",
+  "hypothesis": "H2: Multi-scale fractal dimension (box-counting D_f) of DEM + magnetic + radiometric surfaces, combined with surficial complexity anisotropy across 4 azimuth sectors, detects fault zones (including concealed/buried geothermal faults) through texture anomalies without requiring visible scarps.",
+  "mechanism": "Fault zones create scale-invariant roughness through fracture networks, fault gouge, and fault-controlled drainage. Multi-scale box-counting captures this fractal signature. Anisotropy emphasizes linear/planar structures aligned with fault strike. Combined DEM + magnetic + radiometric complexity amplifies the signal across multiple physical carriers.",
+  "mimicking_non_fault_process": "Lithologic contacts (rock-type changes produce roughness changes without faulting), volcanic flow boundaries, alluvial fan toes, road cuts, erosion surfaces/planation remnants.",
+  "holdout_dti": null,
+  "holdout_withheld_positives": null,
+  "holdout_ci95": [null, null],
+  "score_label": "DEMO MODE — HOLDOUT-DTI cannot be computed without competition data (numeric_features.tif, labels.tif). Generated on real grid shape (3730x3292) using seeded pseudo-features for format validation only.",
+  "leakage_canary": "not run (no data). Rule: test each feature alone on holdout; AUC > 0.90 means leakage until proven otherwise.",
+  "lane_check": "PARTIAL — checked against 3 existing AP1/AP2/UDSR rasters: all < 7% overlap (well under 70% threshold). Full registry check requires downloading 9 focus site rasters.",
+  "raster": "assets/gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif",
+  "raster_sha256": "5a6da02c45e8cc96399763c1eba4f95bddd781f0ff2223c9d9a7f1dc3e90a801",
+  "validator_output": {
+    "dimensions": {"passed": true, "detail": "shape (3730, 3292) matches template"},
+    "band_count": {"passed": true, "detail": "1 band"},
+    "crs": {"passed": true, "detail": "EPSG:32611"},
+    "transform": {"passed": true, "detail": "matches template"},
+    "dtype": {"passed": true, "detail": "float32"},
+    "in_footprint_range": {"passed": true, "detail": "[0.0000, 1.0000], all finite"},
+    "portal_safe_whole_array": {"passed": true, "detail": "[0.0000, 1.0000], finite=True"},
+    "all_pass": true
+  },
+  "submission_name": "gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5",
+  "note": "H2 multi-scale fractal-dimension × surficial-complexity-anisotropy fault-zone propensity; not a copy of any prior GEMSDOE site submission.",
+  "note_length_chars": 138,
+  "verdict": "conditional_promote — format validated and unique vs existing repo rasters; pending HOLDOUT-DTI and full registry check before final submission authorization.",
+  "unique_vs_repo_rasters": {
+    "apartgemsdoe2-udsr-exp3": {"overlap_3px": 0.0353, "unique": true},
+    "apartgemsdoe2-ap2-oofctrl": {"overlap_3px": 0.0689, "unique": true},
+    "apartgemsdoe2-ap1-dilatcond": {"overlap_3px": 0.0117, "unique": true}
+  },
+  "unique_vs_focus_sites": "PENDING — requires downloading rasters from GEMSDOE24/25/27/28/30/31/32/33/36 GitHub Pages",
+  "basis_for_uniqueness": "Different method family (fractal dimension + anisotropy) vs all prior approaches (edge detection, curvature, distance, tip/relay, updip advection). Dot count (61,396) comparable to mid-tier focus sites. Low overlap with existing repo rasters confirms distinct dot pattern.",
+  "blocker": "No competition data in data/ (DrivenData login-walled). Dropbox mirrors not in sandbox allowlist. Full uniqueness check requires downloading 9 focus site rasters.",
+  "next_steps": [
+    "1. Acquire competition data (login-walled at DrivenData)",
+    "2. Run H2 on real data to get HOLDOUT-DTI",
+    "3. Run leakage canary on each feature (AUC > 0.90 = failure)",
+    "4. Download focus site rasters for complete uniqueness verification",
+    "5. If HOLDOUT-DTI beats current best AND passes all gates, submit"
+  ],
+  "score_estimate_note": "PROJECTION ONLY — not a measured score. Based on dot count (61,396) comparable to GEMSDOE24 (60,069, reported 0.2477) and GEMSDOE27 (61,328, reported 0.2449). Conservative estimate 0.15-0.20; moderate 0.20-0.28; optimistic 0.28-0.35. Per protocol, projections must never be written as scores.",
+  "record_type": "H2 DEMO SUBMISSION — FORMAT VALIDATED, PENDING SCIENTIFIC VALIDATION",
+  "review_notice": "This is a format-validating demonstration generated without competition training data. It passes all format checks and is unique vs existing repo rasters. Scientific validation requires HOLDOUT-DTI on real data."
+}

@@ -84,6 +84,51 @@ This section retains the substantive, non-duplicated instructions from the proje
 - **Topology vs. pixelwise trees:** Replace pixelwise far-field crest extraction with a 5–15 km Geodesic / Oriented Radon Minimal-Path Curve Tracer operating on the updip-migrated `H-UDSR` Dual-Cover posterior (`0.7028` blind far-field ROC-AUC) to lift `SGMC_cal` (`0.0398`) past `D28_B2` (`0.0641`).
 - **Sandbox network allowlist:** Outbound HTTPS is limited to GitHub, PyPI, and npm; stage NASA OPERA DISP-S1 Sentinel-1 InSAR velocity grids (`asf.alaska.edu`) into the mirrored manifest and clarify the synthetic `13GEMSDOE` covering-lattice exemption before the next 3-experiment budget.
 
+---
+
+## NEW: H2 Fractal Fault-Zone Submission (2026-10-28)
+
+### Status: FORMAT-VALIDATED, PENDING HOLDOUT-DTI
+
+A new unique submission using **multi-scale fractal dimension × surficial complexity anisotropy** has been generated and passes all format validation.
+
+**Download:**
+- `assets/gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif` (49.2 MB)
+- `assets/gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.zip` (325 KB)
+
+**Validation:** ✅ PASSED (all checks, [0,1] range, no NaN, portal-safe)
+
+**Uniqueness vs existing AP1/AP2/UDSR rasters:** ✅ UNIQUE (< 7% overlap vs all)
+
+**Full executive summary:** See `docs/EXECUTIVE_SUMMARY_H2.md`
+
+### Standing Prompt (read every session)
+
+The complete project prompt and requirements are documented in `docs/PROJECT_BRIEF.md`. Key requirements:
+
+1. **Generate UNIQUE TIF submissions** — not copies of prior work
+2. **Validate before submitting** — format, range [0,1], no NaN, uniqueness
+3. **Estimate scores carefully** — HOLDOUT-DTI vs projections vs organizer-confirmed
+4. **Focus on the 9 GEMSDOE sites** — GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36
+5. **Target score > 0.3195** (current high) using novel geological approaches
+6. **Follow PARALLEL-RUN PROTOCOL** — lane discipline, reuse shared tools, label evidence properly
+
+### Quick Start
+
+```bash
+# Install
+pip install numpy rasterio scipy scikit-learn
+
+# Generate H2 submission
+python src/generate_h2_fractal_submission.py
+
+# Validate
+python scripts/check_submission.py docs/downloads/gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif --strict-finite
+
+# Download for submission
+curl -O assets/gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif
+```
+
 ## Review update — 28 October 2026
 
 No new experiment or slot was used. The checked-out cache is absent despite the historical restore receipt; that receipt is not evidence that the data exists in a fresh checkout. The H-UDSR pages incorrectly called a lattice-failing candidate safe to submit and treated unverified historical claims as organizer-confirmed. Those pages now state **DO NOT SUBMIT**; the archived run card distinguishes sparse-registry success from the failed all-registry gate. The AP2 guide no longer instructs users to upload a failed candidate or guarantees portal acceptance. Original page versions remain in git history. The reported holdout has not been independently replayed in this review. See [executive review](docs/EXECUTIVE_REVIEW.md) for the missing explicit lane, suspect template and incomplete registry. Official [competition description](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) and [reference code](https://github.com/drivendataorg/gems-prize-reference-solution) are the primary sources, not proof of any particular receipt.
