@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Standalone local format validator, not scientific or slot authorization.
 
-Checks exactly what the DrivenData portal rejected with
-"Predicted values must be in range [0, 1]", plus CRS/shape/geotransform against the
-sample submission and a re-read of the bytes just written. A PASS is only a local
-format diagnostic: it does not authenticate the reference, prove portal acceptance,
-or authorize submission. Exit code 0 = diagnostic PASS, 1 = FAIL.
+Checks value ranges and CRS/shape/geotransform against a supplied sample and
+re-reads the saved bytes. The rejected portal file was not available, so this
+cannot identify the cause of its range error. A PASS is only a local diagnostic:
+it does not authenticate the reference, prove portal acceptance, or authorize
+submission. Exit code 0 = diagnostic PASS, 1 = FAIL.
 
 Usage:  python scripts/validate_submission.py docs/downloads/<file>-zeros.tif [more files...]
 Data dir via $GEMS_DATA_DIR or --data-dir (needs sample_submission.tif + labels.tif).
@@ -44,7 +44,8 @@ def check(path: Path, sample: Path, labels_path: Path) -> dict:
                 "transform": [float(x) for x in tuple(ds.transform)[:6]], "nodata_repr": str(ds.nodata)}
         same_grid = (ds.crs == t_crs and ds.shape == t_shape and ds.transform == t_tf)
     if arr.shape != foot.shape:
-        return {"file": str(path), "pass": False, "error": f"shape {arr.shape} != template {foot.shape}", "meta": meta}
+        return {"file": str(path), "pass": False, "submission_authorized": False,
+                "error": f"shape {arr.shape} != template {foot.shape}", "meta": meta}
     in_foot = arr[foot]
     checks = {
         "geotiff": meta["driver"] == "GTiff",
@@ -66,7 +67,8 @@ def check(path: Path, sample: Path, labels_path: Path) -> dict:
     outside_mode = ("no_exterior" if outside.size == 0 else
                     "all_zero" if bool((outside == 0).all()) else
                     "all_nan" if bool(np.isnan(outside).all()) else "mixed")
-    return {"file": str(path), "pass": all(checks.values()), "checks": checks, "meta": meta,
+    return {"file": str(path), "pass": all(checks.values()), "submission_authorized": False,
+            "checks": checks, "meta": meta,
             "positive_pixels_in_footprint": int(((arr > 0) & foot).sum()),
             "footprint_pixels": int(foot.sum()),
             "in_footprint_min": float(np.min(in_foot)), "in_footprint_max": float(np.max(in_foot)),

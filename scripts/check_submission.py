@@ -1,5 +1,11 @@
-"""Validate a submission GeoTIFF against the competition template."""
+#!/usr/bin/env python3
+"""Read saved bytes against a reference; a local format check never authorizes a slot.
 
+The supplied template may be an owner mirror, not an authenticated organizer
+sample. The diagnostic requires both the published outside-null/mask reading
+and a stricter whole-array finite [0,1] condition; a failure is not proof of a
+portal rejection, and a pass is not proof of acceptance.
+"""
 from __future__ import annotations
 
 import argparse
@@ -8,44 +14,29 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT / "src") not in sys.path:
-    sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / 'src'))
 
 from gems32.paths import data_dir  # noqa: E402
-from gemsdoe32.submission import validate_submission_geotiff  # noqa: E402
+from validate_raster import validate  # noqa: E402
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("geotiff", type=Path, help="Path to submission GeoTIFF to validate")
-    parser.add_argument("--template", type=Path, default=data_dir() / "sample_submission.tif", help="Path to reference template")
-    parser.add_argument("--strict-finite", action="store_true", help="Check whole-array finite range [0, 1] for portal safety")
+    parser.add_argument('geotiff', type=Path, help='GeoTIFF whose saved bytes are checked')
+    parser.add_argument('--template', type=Path, default=data_dir() / 'sample_submission.tif')
+    parser.add_argument('--template-provenance', default='unspecified; not authenticated by this diagnostic')
+    parser.add_argument('--strict-finite', action='store_true',
+                        help='legacy flag; strict whole-array finite range is always checked')
     args = parser.parse_args()
-
-    if not args.geotiff.is_file():
-        print(f"Error: {args.geotiff} does not exist", file=sys.stderr)
-        return 1
-    if not args.template.is_file():
-        print(f"Error: {args.template} does not exist", file=sys.stderr)
-        return 1
-
-    report = validate_submission_geotiff(
-        args.geotiff,
-        args.template,
-        strict_whole_array_finite=args.strict_finite,
-    )
-
-    print(json.dumps(report.to_dict(), indent=2))
-    if report.passed:
-        print(
-            f"\n[PASSED] {args.geotiff.name} passes automated format/range validation. "
-            "This is not scientific or weekly-slot authorization."
-        )
-        return 0
-    else:
-        print(f"\n[FAILED] {args.geotiff.name} failed one or more validation checks.", file=sys.stderr)
+    try:
+        report = validate(args.geotiff, args.template, args.template_provenance)
+    except (OSError, ValueError) as exc:
+        print(json.dumps({'format_checks_pass': False, 'ok_to_submit': False,
+                          'error': f'{type(exc).__name__}: {exc}'}, indent=2))
         return 2
+    print(json.dumps(report, indent=2, allow_nan=False))
+    return 0 if report['format_checks_pass'] else 1
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     raise SystemExit(main())

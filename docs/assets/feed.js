@@ -18,7 +18,10 @@
     .then(feed => {
       const l = feed.leaderboard || {};
       const observed = new Date(l.last_success_utc);
-      if (!/^(?:0(?:\.\d+)?|1(?:\.0+)?)$/.test(String(l.top_public_value || '')) || !l.last_success_utc || Number.isNaN(observed.getTime())) {
+      if (l.status === 'disabled') {
+        value.textContent = '—';
+        age.textContent = 'Automatic monitoring disabled · see official page';
+      } else if (!/^(?:0(?:\.\d+)?|1(?:\.0+)?)$/.test(String(l.top_public_value || '')) || !l.last_success_utc || Number.isNaN(observed.getTime())) {
         value.textContent = '—';
         age.textContent = 'Leaderboard unavailable · check official page';
       } else {

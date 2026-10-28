@@ -1,15 +1,14 @@
 {
   "schema": "apartgems-public-feed-v1",
   "updated_utc": "2026-10-27T21:22:26.460933+00:00",
-  "note": "Initial observation retrieved through the page reader, not an authenticated submission receipt. A scheduled feed refresh is only as current as its last successful check.",
+  "note": "GitHub HEAD movement is not a new science audit or submission approval. Automatic leaderboard monitoring is disabled.",
   "leaderboard": {
-    "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
-    "last_attempt_utc": "2026-10-27T21:20:59Z",
-    "last_success_utc": "2026-10-27T21:20:59Z",
-    "status": "ok",
-    "top_public_value": "0.4544",
-    "evidence_class": "OFFICIAL PUBLIC LEADERBOARD OBSERVATION (not a file-bound submission receipt)",
-    "last_error": null
+    "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "terms_url": "https://www.drivendata.org/termsofuse/",
+    "top_public_value": null,
+    "last_success_utc": null,
+    "status": "disabled",
+    "reason": "Automatic DrivenData website monitoring is disabled under the published terms; consult the official page directly."
   },
   "site_heads": {
     "GEMSDOE24": {

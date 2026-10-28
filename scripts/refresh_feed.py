@@ -1,171 +1,115 @@
 #!/usr/bin/env python3
-"""Refresh a timestamped public-source snapshot; never submit or infer a score.
+"""Refresh GitHub source HEADs only; never automatically access DrivenData.
 
-A failed fetch preserves the last successful value with an explicit stale state.
-This can run on GitHub Actions, whose egress differs from the Arena sandbox.
+DrivenData's terms prohibit automatic website access, including monitoring.
+The leaderboard is therefore a link, not a scheduled feed. Last successful
+GitHub checks remain dated when an API request fails. No feed entry authorizes
+an experiment or a competition submission.
 """
 from __future__ import annotations
 
 import argparse
 from datetime import datetime, timezone
-from decimal import Decimal, InvalidOperation
-from html.parser import HTMLParser
 import json
 import os
 from pathlib import Path
 import re
-from urllib.request import Request, urlopen
+from urllib.parse import urlsplit
+from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 ROOT = Path(__file__).resolve().parents[1]
-FEED = ROOT / "docs/data/source_feed.json"
-LEADERBOARD = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
-SITES = (24, 25, 27, 28, 30, 31, 32, 33, 36)
+LEADERBOARD = 'https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/'
+TERMS = 'https://www.drivendata.org/termsofuse/'
+SITES = {f'GEMSDOE{n}': f'buffedlizard55-lab/GEMSDOE{n}' for n in (24, 25, 27, 28, 30, 31, 32, 33, 36)}
+# The optional seed is our own deployed JSON, not the DrivenData website.
+_ALLOWED_HOSTS = {'api.github.com', 'apartanish22-droid.github.io'}
 
 
-class TableParser(HTMLParser):
-    """Collect text cells of top-level HTML tables, tolerating nested markup."""
-    def __init__(self):
-        super().__init__(convert_charrefs=True)
-        self.depth = 0
-        self.tables = []
-        self.table = None
-        self.row = None
-        self.cell = None
-        self.hidden = 0
-
-    def handle_starttag(self, tag, attrs):
-        if tag in ("script", "style"):
-            self.hidden += 1
-        if tag == "table":
-            self.depth += 1
-            if self.depth == 1:
-                self.table = []
-        elif self.depth == 1 and tag == "tr":
-            self.row = []
-        elif self.depth == 1 and self.row is not None and tag in ("td", "th"):
-            self.cell = []
-
-    def handle_data(self, data):
-        if self.cell is not None and not self.hidden:
-            self.cell.append(data)
-
-    def handle_endtag(self, tag):
-        if tag in ("script", "style") and self.hidden:
-            self.hidden -= 1
-        if self.depth == 1 and tag in ("td", "th") and self.cell is not None:
-            self.row.append(" ".join(" ".join(self.cell).split()))
-            self.cell = None
-        elif self.depth == 1 and tag == "tr" and self.row is not None:
-            self.table.append(self.row)
-            self.row = None
-        elif tag == "table" and self.depth:
-            if self.depth == 1:
-                self.tables.append(self.table)
-                self.table = None
-            self.depth -= 1
+class SameHostRedirect(HTTPRedirectHandler):
+    """Do not redirect a scheduled request or GitHub token to another host."""
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        old, new = urlsplit(req.full_url), urlsplit(newurl)
+        if (new.scheme != 'https' or new.hostname != old.hostname
+                or new.hostname not in _ALLOWED_HOSTS or new.username or new.password
+                or new.port not in (None, 443)):
+            raise ValueError('Cross-host or unsafe redirects are not allowed')
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
 
 
-def parse_top_score(html: str) -> str:
-    parser = TableParser()
-    parser.feed(html)
-    for table in parser.tables:
-        header = " ".join(table[0]).lower() if table else ""
-        if "rank" not in header or "tversky" not in header:
-            continue
-        for row in table[1:]:
-            if row and re.fullmatch(r"\s*#?\s*1\s*", row[0]):
-                values = [c for c in row[1:] if re.fullmatch(r"(?:0(?:\.\d+)?|1(?:\.0+)?)", c)]
-                if len(values) != 1:
-                    raise ValueError("Rank-one score missing or ambiguous")
-                try:
-                    score = Decimal(values[0])
-                except InvalidOperation as exc:
-                    raise ValueError("Invalid score") from exc
-                if not score.is_finite() or not Decimal(0) <= score <= Decimal(1):
-                    raise ValueError("Score is outside [0, 1]")
-                return values[0]
-    raise ValueError("Expected public leaderboard table or rank-one row not found")
+def request_text(url, *, api_token=False):
+    parsed = urlsplit(url)
+    if parsed.scheme != 'https' or parsed.hostname not in _ALLOWED_HOSTS or parsed.username or parsed.password or parsed.port not in (None, 443):
+        raise ValueError('Only the GitHub API and this project\'s Pages host may be fetched')
+    if api_token and parsed.hostname != 'api.github.com':
+        raise ValueError('GitHub token may only be sent to api.github.com')
+    headers = {'User-Agent': 'ApartGEMSDOE2-source-heads/2'}
+    if api_token:
+        token = os.environ.get('GH_TOKEN') or os.environ.get('GITHUB_TOKEN')
+        if token:
+            headers['Authorization'] = f'Bearer {token}'
+            headers['Accept'] = 'application/vnd.github+json'
+    with build_opener(SameHostRedirect()).open(Request(url, headers=headers), timeout=20) as response:
+        return response.read().decode('utf-8')
 
 
-def request_text(url: str, *, api_token: bool = False) -> str:
-    headers = {"User-Agent": "ApartGEMSDOE2-public-source-monitor/1.0", "Accept": "application/vnd.github+json" if api_token else "text/html"}
-    token = os.environ.get("GITHUB_TOKEN") if api_token else None
-    if token:
-        headers["Authorization"] = f"Bearer {token}"
-    with urlopen(Request(url, headers=headers), timeout=30) as response:
-        # Avoid treating redirects to a login page as leaderboard success.
-        if not api_token and "/accounts/login" in response.geturl():
-            raise ValueError("Redirected to login")
-        data = response.read(2_000_001)
-        if len(data) > 2_000_000:
-            raise ValueError("Response exceeded size limit")
-        return data.decode("utf-8")
-
-
-def refresh(previous: dict, now: str, get=request_text) -> dict:
-    leader = dict(previous.get("leaderboard", {}))
-    leader.update({"source": LEADERBOARD, "last_attempt_utc": now})
-    try:
-        value = parse_top_score(get(LEADERBOARD))
-    except Exception as exc:  # a failure must never become a fresh value
-        leader.update({"status": "stale" if leader.get("last_success_utc") else "unavailable", "last_error": f"{type(exc).__name__}: {str(exc)[:200]}"})
-    else:
-        leader.update({"status": "ok", "top_public_value": value, "last_success_utc": now, "last_error": None, "evidence_class": "OFFICIAL PUBLIC LEADERBOARD OBSERVATION (not a file-bound submission receipt)"})
-
-    prev_sites = previous.get("site_heads", {})
-    sites = {}
-    for n in SITES:
-        name = f"GEMSDOE{n}"
-        item = dict(prev_sites.get(name, {}))
-        item["last_attempt_utc"] = now
-        api = f"https://api.github.com/repos/buffedlizard55-lab/{name}/commits/main"
-        try:
-            payload = json.loads(get(api, api_token=True))
-            sha = payload["sha"]
-            if not re.fullmatch(r"[0-9a-f]{40}", sha):
-                raise ValueError("Invalid commit SHA")
-        except Exception as exc:
-            item.update({"status": "stale" if item.get("last_success_utc") else "unavailable", "last_error": f"{type(exc).__name__}: {str(exc)[:200]}"})
-        else:
-            old_sha = item.get("head_sha")
-            item.update({"status": "ok", "head_sha": sha, "changed_since_previous_check": old_sha != sha if old_sha else None, "last_success_utc": now, "last_error": None})
-        sites[name] = item
-    return {"schema": "apartgems-public-feed-v1", "updated_utc": now, "note": "Snapshot only; source movement is not a new audit, score estimate, receipt, or upload approval.", "leaderboard": leader, "site_heads": sites}
-
-
-def published_previous(seed: dict, url: str | None, get=request_text) -> dict:
-    """Use the last deployed snapshot when available; never make failure fresh."""
+def published_previous(previous, url, get=request_text):
+    """Use our published GitHub-only source-head snapshot if available."""
     if not url:
-        return seed
-    try:
-        previous = json.loads(get(url))
-        if (not isinstance(previous, dict)
-                or previous.get("schema") != "apartgems-public-feed-v1"
-                or not isinstance(previous.get("leaderboard"), dict)
-                or not isinstance(previous.get("site_heads"), dict)):
-            raise ValueError("Invalid previous feed")
         return previous
-    except Exception as exc:
-        print(f"Last published snapshot unavailable; using committed seed ({type(exc).__name__}).")
-        return seed
+    try:
+        saved = json.loads(get(url))
+        if saved.get('schema') == 'apartgems-public-feed-v1' and isinstance(saved.get('site_heads'), dict):
+            return saved
+    except Exception:
+        pass
+    return previous
 
 
-def main() -> int:
+def refresh(previous, now, get=request_text):
+    # Never call `get` for DrivenData, even when previous data says status=ok.
+    # Discard any formerly automated value rather than implying it is current.
+    leader = {
+        'source_url': LEADERBOARD,
+        'terms_url': TERMS,
+        'top_public_value': None,
+        'last_success_utc': None,
+        'status': 'disabled',
+        'reason': 'Automatic DrivenData website monitoring is disabled under the published terms; consult the official page directly.',
+    }
+    sites = {}
+    for name, repo in SITES.items():
+        url = f'https://api.github.com/repos/{repo}/commits/main'
+        old = previous.get('site_heads', {}).get(name, {})
+        entry = dict(old, repo=repo, source_url=f'https://github.com/{repo}', last_attempt_utc=now)
+        try:
+            sha = json.loads(get(url, api_token=True))['sha']
+            if not re.fullmatch(r'[0-9a-f]{40}', sha):
+                raise ValueError('invalid HEAD SHA')
+            entry.update(head_sha=sha, last_success_utc=now, status='ok',
+                         changed_since_previous_check=(old.get('head_sha') != sha) if old.get('head_sha') else None)
+            entry.pop('error', None)
+        except Exception as exc:
+            entry.update(status='stale' if old.get('head_sha') else 'unavailable',
+                         error=f'{type(exc).__name__}: {exc}', changed_since_previous_check=None)
+        sites[name] = entry
+    return {'schema': 'apartgems-public-feed-v1', 'updated_utc': now,
+            'leaderboard': leader, 'site_heads': sites,
+            'note': 'GitHub HEAD movement is not a new science audit or submission approval. Automatic leaderboard monitoring is disabled.'}
+
+
+def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--previous-url", help="optional last deployed snapshot for stale-value fallback")
+    parser.add_argument('--out', type=Path, default=ROOT/'docs/data/source_feed.json')
+    parser.add_argument('--previous-url', help='optional published GitHub Pages feed from the prior deployment')
     args = parser.parse_args()
-    seed = json.loads(FEED.read_text()) if FEED.exists() else {}
-    previous = published_previous(seed, args.previous_url)
-    now = datetime.now(timezone.utc).isoformat()
-    output = refresh(previous, now)
-    FEED.parent.mkdir(parents=True, exist_ok=True)
-    # Atomic write prevents partially published JSON.
-    tmp = FEED.with_suffix(".tmp")
-    tmp.write_text(json.dumps(output, indent=2, allow_nan=False) + "\n")
-    tmp.replace(FEED)
-    print(f"Leaderboard: {output['leaderboard']['status']}; site heads: {sum(s['status'] == 'ok' for s in output['site_heads'].values())}/{len(SITES)}")
-    return 0  # stale/unavailable is represented in the published data
+    previous = json.loads(args.out.read_text()) if args.out.exists() else {}
+    previous = published_previous(previous, args.previous_url)
+    now = datetime.now(timezone.utc).isoformat(timespec='seconds').replace('+00:00', 'Z')
+    result = refresh(previous, now)
+    args.out.parent.mkdir(parents=True, exist_ok=True)
+    args.out.write_text(json.dumps(result, indent=2) + '\n')
+    print('leaderboard monitoring disabled; site HEADs:', sum(x['status'] == 'ok' for x in result['site_heads'].values()), '/', len(SITES))
 
 
-if __name__ == "__main__":
-    raise SystemExit(main())
+if __name__ == '__main__':
+    main()

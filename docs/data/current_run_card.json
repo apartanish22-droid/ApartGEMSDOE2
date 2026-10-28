@@ -1,0 +1,49 @@
+{
+  "schema": "parallel-run-current-review-v1",
+  "date_utc": "2026-10-28",
+  "hypothesis": "Proposed paired drainage displacement across a geomorphic break, corroborated by gravity; not an assigned lane and not tested.",
+  "mechanism": "Compare opposite-side channel or terrace profiles in a 3DEP DEM and check whether a persistent break coincides with an isostatic-gravity gradient.",
+  "named_non_fault_mimic": "Fluvial terrace erosion and alluvial-fan avulsion can create similar offsets without faulting.",
+  "holdout_dti": null,
+  "holdout_ci95": null,
+  "holdout_status": "No new experiment or comparable holdout was run in this review.",
+  "correlation_and_overlap_vs_registry": {
+    "candidate_surface_spearman": null,
+    "candidate_final_dot_overlap": null,
+    "status": "No candidate surface or dots were generated; complete parallel registry unavailable.",
+    "lattice_witness": {
+      "uncovered_mirror_footprint_cells": 6649,
+      "example_dot_count": 37654,
+      "minimum_overlap_at_example_count": 0.8234184947150369,
+      "qualification": "Conditional counting bound against one pinned lattice, not a bound for every smaller candidate."
+    }
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "not run: no new candidate raster exists",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "organizer_template_authenticated": false,
+    "portal_acceptance": null
+  },
+  "submission_name": "gems-paired-drainage-pending",
+  "submission_name_status": "proposed name only; no such submission file exists",
+  "note": "Proposed drainage-displacement research; not evaluated or approved. Do not submit.",
+  "verdict": "negative",
+  "slot_approved": false,
+  "experiments_run_this_review": 0,
+  "weekly_slots_used_this_review": 0,
+  "blockers": [
+    "No explicit assigned method lane",
+    "Complete parallel registry and validated feature stack unavailable",
+    "Owner-mirrored sample is not organizer-authenticated and is inconsistent with the described sample",
+    "No independently comparable holdout best or final-dot audit",
+    "Literal overlap failure against the pinned lattice for existing research artifacts"
+  ],
+  "independent_read_only_evidence": [
+    "evidence/historical_audit.json",
+    "evidence/parallel_candidate_audit.json",
+    "evidence/h2_saved_byte_recheck_20261028.json"
+  ]
+}

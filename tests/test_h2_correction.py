@@ -7,6 +7,8 @@ score projection.  These tests pin the corrected fail-closed state.
 import json
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -25,3 +27,32 @@ def test_h2_pages_do_not_offer_conditional_submit():
     status = (ROOT / "assets/SUBMISSION_STATUS.txt").read_text()
     assert "DO NOT SUBMIT THE H2 FILE" in status
     assert "CONDITIONAL YES — pending final validation" not in status
+    assert "Portal-safe: YES" not in status
+    assert "✅ YES (format validated)" not in summary
+
+
+def test_h2_saved_byte_audit_is_negative_and_cannot_be_mislabeled():
+    audit = json.loads((ROOT / 'evidence/h2_saved_byte_recheck_20261028.json').read_text())
+    assert audit['pixel_counts'] == {
+        'mirror_footprint_pixels': 5167373,
+        'masked_inside_mirror_footprint': 5140874,
+        'positive_inside_mirror_footprint': 26499,
+        'positive_outside_mirror_footprint': 34897,
+        'positive_whole_raster': 61396,
+    }
+    comp = audit['single_lattice_comparison']
+    assert comp['candidate_dots_within_3px'] == 26478
+    assert comp['overlap_fraction'] == pytest.approx(26478 / 26499)
+    assert not comp['literal_overlap_gate_pass']
+    assert not audit['saved_byte_validator']['checks']['no_masked_inside']
+    assert audit['saved_byte_validator']['properties']['nodata'] == '0.0'
+    assert not audit['saved_byte_validator']['ok_to_submit']
+    assert audit['holdout_dti'] is None and audit['verdict'] == 'negative'
+
+
+def test_h2_read_only_replay_if_pinned_inputs_exist():
+    if not (ROOT / 'data/audit/lattice.tif').is_file():
+        pytest.skip('fetch pinned audit data to replay saved-byte H2 check')
+    from recheck_h2 import recheck
+    recorded = json.loads((ROOT / 'evidence/h2_saved_byte_recheck_20261028.json').read_text())
+    assert recheck() == recorded
