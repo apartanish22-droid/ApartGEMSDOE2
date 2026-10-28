@@ -31,6 +31,7 @@ old raster or a synthetic demo as a new geological model.
   (`GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld positive instances); its
   saved dots independently overlap the pinned lattice by 99.85%. The holdout
   was **not** independently rerun here.
+- A concurrent branch produced [RAD-SCARP](docs/downloads/apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-zeros.tif) for research. Its earlier uniqueness-pass and portal-safe claims are withdrawn: **10,421 of 10,457 dots (99.66%)** overlap the pinned lattice, and no comparable visible-only holdout with CI is established. **DO NOT SUBMIT.** [Independent saved-byte recheck](evidence/rad_scarp_saved_byte_recheck_20261028.json).
 - H2 is a seeded pseudo-feature demo, not a real fault detector. Saved-byte
   checks found `nodata=0` masks 5,140,874 cells inside the owner-mirrored
   footprint; 26,478 of its 26,499 inside dots overlap the lattice within 3 px.
@@ -72,7 +73,9 @@ experiments or two hours.
 The known upstream shared-tool issues remain open: probability binarization
 [GEMSDOE32 #37](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/37),
 zero-truth FP accounting [#41](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/41),
+whole-segment truth-to-visible buffering [#60](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/60),
 static holdout evidence labeling [#61](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/61),
+masked in-footprint validation [#66](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/66),
 incomplete and non-literal registry results [#63](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/63),
 release-selector evidence gaps [#67](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/67),
 template-origin terminology [GEMSDOE24 #74](https://github.com/buffedlizard55-lab/GEMSDOE24/issues/74),

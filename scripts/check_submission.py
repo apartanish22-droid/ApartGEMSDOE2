@@ -13,6 +13,8 @@ import json
 import sys
 from pathlib import Path
 
+import rasterio
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src'))
 
@@ -30,7 +32,7 @@ def main() -> int:
     args = parser.parse_args()
     try:
         report = validate(args.geotiff, args.template, args.template_provenance)
-    except (OSError, ValueError) as exc:
+    except (OSError, ValueError, rasterio.errors.RasterioError) as exc:
         print(json.dumps({'format_checks_pass': False, 'ok_to_submit': False,
                           'error': f'{type(exc).__name__}: {exc}'}, indent=2))
         return 2

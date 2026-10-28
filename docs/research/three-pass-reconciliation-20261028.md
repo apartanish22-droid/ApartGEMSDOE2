@@ -3,15 +3,18 @@
 **Decision:** `negative`. This review ran zero geological experiments, created
 no new prediction TIFF, and used zero weekly slots. The requested unique,
 higher-scoring submission remains unfulfilled. The current
-[machine-readable run card](../../evidence/current_run_card.json) contains nulls
-rather than invented candidate measurements.
+[machine-readable run card](../../evidence/current_run_card.json) now records
+the independently measured lattice failure of the concurrent RAD-SCARP TIFF
+and nulls for unsupported holdout or portal results.
 
 ## Pass 1 — implementation and evidence
 
 - Re-read the standing [project brief](../PROJECT_BRIEF.md) and nine-site
   historical claims. Re-fetched the pinned public comparators, a partial
   read-only shared-tool set, and core owner mirrors; verified their SHA-256
-  values. Mirror consistency is not organizer authentication.
+  values. The 400 MB feature mirror was then staged in ignored scratch storage
+  rather than included in the delivered patch. Mirror consistency is not
+  organizer authentication.
 - Replayed the nine-site and AP-1 raster audits. The archived GEMSDOE32 result
   remains a user-reported 0.2778, not a file-bound organizer receipt. The
   measured geometry is consistent with pruning redundant dots, but does not
@@ -20,13 +23,21 @@ rather than invented candidate measurements.
   lattice. It is synthetic; `nodata=0` masks 5,140,874 inside cells, and
   26,478/26,499 in-footprint dots are within three pixels of the lattice.
   [Deterministic receipt](../../evidence/h2_saved_byte_recheck_20261028.json).
+- A concurrent branch merged a self-selected RAD-SCARP research TIFF during
+  this review. We did not generate it. Its stored bytes show 10,421 of 10,457
+  dots (99.66%) within 3 px of the pinned lattice, above the 70% limit. The
+  earlier uniqueness-pass claim is withdrawn; the full-catalogue distance
+  field and absent CI also prevent treating its prior number as a valid
+  comparable holdout. [Read-only receipt](../../evidence/rad_scarp_saved_byte_recheck_20261028.json).
 
 ## Pass 2 — bugs and edge cases
 
 - DrivenData's [published terms](https://www.drivendata.org/termsofuse/)
-  prohibit automatic website access for monitoring. Removed scheduled
+  prohibit automatic website access for monitoring. The proposed code removes
   leaderboard fetching; the Pages feed checks GitHub source heads only. Added
-  direct-host and redirect safeguards plus stale/disabled UI tests.
+  direct-host and redirect safeguards plus stale/disabled UI tests. Disabling
+  the existing remote workflow returned GitHub 403 (integration lacks Actions
+  write permission); it remains active until compliant code is deployed.
 - Retired old experiment and emission entry points: a future READY preflight
   alone cannot fix their missing pre-placement stop, final literal check and
   two-hour enforcement. The H2 CLI no longer writes another pseudo-feature demo.
@@ -38,8 +49,10 @@ rather than invented candidate measurements.
   automated preflight. This is **not** a shared-tool patch.
 - Upstream pinned-tool issues remain open: GEMSDOE32 [#37](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/37),
   [#41](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/41),
+  [#60](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/60),
   [#61](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/61),
   [#63](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/63),
+  [#66](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/66),
   [#67](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/67), and
   GEMSDOE24 [#74](https://github.com/buffedlizard55-lab/GEMSDOE24/issues/74)/
   [#77](https://github.com/buffedlizard55-lab/GEMSDOE24/issues/77). This account
@@ -56,6 +69,9 @@ rather than invented candidate measurements.
   product bytes, licenses where noted, target coverage and uniqueness remain
   unverified in this environment. A publication listing is not a successful
   download or model evaluation.
+- Viewed the generated landing page at 1440×1050 and 390×844 and checked the
+  guide and GEMSDOE32 brief in headless Chromium; no horizontal overflow,
+  local 4xx responses or JavaScript errors were observed in those views.
 - Preflight remains blocked: no explicit assigned lane, complete parallel
   registry, verified shared feature cache, authenticated organizer template,
   independent comparable best or `existing_faults.tif`. The lattice counting

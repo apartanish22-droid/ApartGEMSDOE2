@@ -22,7 +22,15 @@ from audit_historical import fetch_pin
 from github_raw import stream_raw
 
 ROOT = Path(__file__).resolve().parents[1]
-CORE_IDS = {"training_features", "labels", "sample_submission", "ext_derived_sgmc_faults_100m_u8"}
+CORE_IDS = {"training_features", "labels", "existing_faults", "sample_submission", "ext_derived_sgmc_faults_100m_u8"}
+
+
+def select_core_entries(manifest: dict) -> list[dict]:
+    """Fail closed on absent or duplicated required pins before downloading."""
+    entries = [entry for entry in manifest["files"] if entry["id"] in CORE_IDS]
+    if len(entries) != len(CORE_IDS) or {entry["id"] for entry in entries} != CORE_IDS:
+        raise ValueError("The pinned core-data manifest is incomplete or has duplicate IDs")
+    return entries
 
 
 def sha256(path: Path) -> str:
@@ -104,15 +112,13 @@ def main() -> int:
     root.mkdir(parents=True, exist_ok=True)
     manifest = json.loads((ROOT / "registry/data_manifest.json").read_text())
     if not args.references_only:
-        entries = [e for e in manifest["files"] if e["id"] in CORE_IDS]
-        if {e["id"] for e in entries} != CORE_IDS:
-            raise ValueError("The pinned core-data manifest is incomplete")
-        for entry in entries:
+        for entry in select_core_entries(manifest):
             dest = restore_core_entry(entry, root)
             print(f"verified {dest.relative_to(root)} sha256={entry['sha256'][:12]}…")
     pins = json.loads((ROOT / "registry/historical-pins.json").read_text())
     refs = restore_reference_pins(root, pins, ROOT / ".cache/audit")
     print(f"Verified {len(refs)} selected references in {root / 'registry_focus'}.")
+    print(f"For preflight, set GEMS_DATA_DIR to {root.resolve()}.")
     print("These owner mirrors are not organizer-authenticated and are not the complete registry. "
           "No experiment or submission is authorized; see evidence/preflight.json.")
     return 0

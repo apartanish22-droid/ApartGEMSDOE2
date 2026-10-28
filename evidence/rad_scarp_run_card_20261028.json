@@ -1,0 +1,60 @@
+{
+  "schema": "parallel-run-protocol-run-card-v1",
+  "generated_at_utc": "2026-10-28T22:45:29Z",
+  "session_branch": "arena/00fd98de-apartgemsdoe2",
+  "hypothesis": "H-RAD (RAD-SCARP): young, radiometrically altered fault strands that are absent from the USGS/INGENIOUS catalogue but lie adjacent to mapped range-front faults host geothermal conduits. Off-catalogue dots in the 200 m-1.2 km collar around VISIBLE catalogue faults, selected by high GeoDAWN K/Th/U/TC radiometrics AND a confident 1 m LiDAR scarp, target blind geothermal faults missing from the catalogue.",
+  "mechanism": "The proposed conjunction uses radiometric anomalies and LiDAR scarp features in a 200 m to 1.2 km catalogue collar. The generator used a full-catalogue distance field; fold-local visible-only reconstruction is not established.",
+  "mimicking_non_fault_process": "broad hydrothermal alteration/lithologic radioactivity can produce radiometric anomalies without faults; scarp-like erosion or landslides can produce LiDAR scarp responses without faults. These are the named non-fault mimics.",
+  "holdout_dti": null,
+  "holdout_withheld_positives": 22232,
+  "holdout_ci95": null,
+  "score_label": "No protocol-valid comparable HOLDOUT-DTI or organizer-confirmed score is established.",
+  "leakage_canary": "not run for RAD-SCARP individual channels. Rule: test each feature alone on the holdout; AUC > 0.90 means leakage until proven otherwise.",
+  "lane_check": "FAIL: 10,421/10,457 candidate dots (99.6557%) lie within 3 px of the pinned lattice, exceeding 70%. Earlier sibling-only result was not an all-registry pass.",
+  "raster": "docs/downloads/apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-zeros.tif",
+  "raster_sha256": "ce5295029b2f506bed5d49b74432370ba6101d5b810797be78af7502d41828f3",
+  "validator_output": {
+    "scope": "Unauthenticated owner mirror; no organizer or portal decision",
+    "zeros": {
+      "no_nan_inside_footprint": true,
+      "values_inside_0_1": true,
+      "crs_shape_transform_match_mirror": true,
+      "conservative_whole_array_finite_0_1": true,
+      "outside_null_or_masked": false,
+      "format_checks_pass": false
+    },
+    "nan": {
+      "no_nan_inside_footprint": true,
+      "values_inside_0_1": true,
+      "crs_shape_transform_match_mirror": true,
+      "conservative_whole_array_finite_0_1": false,
+      "outside_null_or_masked": true,
+      "format_checks_pass": false
+    },
+    "portal_acceptance": null,
+    "ok_to_submit_on_real_grid": false,
+    "readback": "evidence/rad_scarp_saved_byte_recheck_20261028.json"
+  },
+  "submission_name": "rad-scarp-negative-research-only",
+  "note": "RAD-SCARP research only: radiometric and scarp features; literal registry overlap failed. Do not submit.",
+  "note_length_chars": 104,
+  "verdict": "negative",
+  "unique_vs_gemsdoe_sites": null,
+  "basis_for_uniqueness": "The prior sibling-only and byte-hash comparisons did not establish uniqueness. The pinned lattice is a counterexample; pre-placement surface audit and complete registry remain unavailable.",
+  "blocker": "Literal uniqueness fails; the assigned lane, valid fold-local holdout and leakage canaries are missing, and the organizer template and portal acceptance are unverified.",
+  "next_steps": [
+    "Do not submit or regenerate RAD-SCARP.",
+    "Resolve the lane, shared evaluator, complete registry and template authentication before any new experiment.",
+    "Use a separate automated selector before considering any weekly slot."
+  ],
+  "correction_20261028": "The earlier all-registry uniqueness and portal-safe claims are withdrawn; see rad_scarp_saved_byte_recheck_20261028.json. This record is not a slot authorization.",
+  "hypothesis_status": "Self-selected prior lane; no explicit assigned method identified in this review.",
+  "prior_unreproduced_diagnostic": {
+    "reported_value": 0.0037617228402477667,
+    "reported_evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "reported_withheld_positive_instances": 22232,
+    "ci95": null,
+    "qualification": "No fold-local regeneration is established; the generator uses a full-catalogue distance field. Not a protocol-valid comparable holdout score."
+  },
+  "literal_registry_uniqueness_pass": false
+}

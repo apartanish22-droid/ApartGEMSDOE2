@@ -4,9 +4,13 @@
 geological experiment, original competition TIFF, holdout score or portal
 submission was produced in this review. The requested unique, better-scoring
 file remains unfulfilled. Do not substitute a renamed old file or a demo.
-The [current machine-readable run card](../evidence/current_run_card.json)
-records nulls for measurements that do not exist; its proposed name is not an
-actual file.
+A concurrent branch generated a RAD-SCARP research TIFF, but an independent
+saved-byte recheck shows **10,421/10,457 dots (99.66%)** overlap a pinned
+lattice within three pixels; it fails the literal 70% limit. Its earlier
+uniqueness-pass and portal-safe claims are withdrawn. A valid comparable
+holdout with CI is not established. [Research-only TIFF](downloads/apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-zeros.tif) ·
+[saved-byte audit](../evidence/rad_scarp_saved_byte_recheck_20261028.json) ·
+[current negative JSON card](../evidence/current_run_card.json).
 
 ## Nine priority sites
 
