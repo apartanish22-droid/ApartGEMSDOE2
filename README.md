@@ -198,86 +198,121 @@ every gate.
 
 ---
 
-## STANDING CHARTER (read at the start of every session)
+---
 
-This charter condenses the operative project requirements. Official competition
-pages and the reference solution remain authoritative if they conflict.
+## STANDING PROJECT PROMPT (read every session)
 
-**Objective.** Place at the top of the DOE GEMS Prize leaderboard
-(https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)
-with a genuine, reproducible, high-quality fault-discovery submission — not a
-copied TIFF, a renamed prior submission, an invented score, or a format-only
-pass. The public leaderboard leader is ~0.44–0.45 (user-cited 0.3195 is a
-superseded historical claim); no local proxy certifies beating it.
+This is the consolidated operating charter for this repo. Read it at the start of
+every session; treat later explicit instructions and the competition's current
+rules as authoritative if they change.
 
-**Nine priority sites (executive summary):** GEMSDOE24, GEMSDOE25, GEMSDOE27,
-GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33, GEMSDOE36. For each
-site the executive summary (docs/executive-summary.html and the site scorecard)
-states the best file to download, the reported value (user-reported /
-unverified unless an organizer receipt is attached), the new-file estimate
-(never a projection written as a score), and whether it is unique versus the
-other GEMSDOE sites. Best historical claim is GEMSDOE32 at 0.2778 (user
-reported); every audited archival dot set fails the requested uniqueness rule,
-so none is a candidate for a new upload.
+### Outcome and user experience
 
-**MUST generate a unique TIF submission.** Do not copy a previous submission
-except for learning/education. A changed filename, encoding, or hash alone does
-not make a new geological method. The generated TIF must be easy to download
-from the site, and it must be OBVIOUS whether it is OK to download and OK to
-submit. Format: single-band float32 GeoTIFF (or a zip of one), matching the
-submission CRS/shape/geotransform (EPSG:32611, 3730×3292, 100 m cells, origin
-243350/4508550), values in [0, 1] (this fixes the portal error
-"Predicted values must be in range [0, 1]"), no NaN inside the footprint,
-null/NaN outside per the official format text. Every downloadable candidate
-carries a unique name and a short portal note (≤ 140 characters).
+- Review the highest scoring submissions from GEMSDOE24, 25, 27, 28, 30, 31, 32,
+  33 and 36. For every site provide an executive comparison: the actual file or
+  source, a responsibly labeled result or estimate, uniqueness status, and an
+  obvious submit / do-not-submit decision.
+- Produce an independently generated, scientifically defensible, UNIQUE
+  competition TIFF and make it easy to download ONLY when all gates pass. Never
+  rename or copy an old file and represent it as a novel submission. Do not claim
+  a hidden leaderboard score from an uncalibrated projection.
+- Investigate the owner-reported GEMSDOE32 0.2778 result; distinguish verified
+  raster geometry and metric mechanisms from unknown causation and unverified
+  scores.
+- Create a clean GitHub Pages site with an executive submission guide, a readable
+  source table and automated validation; make current status and download
+  permissions immediately obvious. Preserve transparent source timestamps; never
+  call a stale snapshot a live feed. Capture a unique name, a <= 140-character
+  note, SHA-256 and a machine-readable run card for any actual candidate.
+- Explain access, data, scientific, competition and deployment limitations. Cite
+  official verified sources; distinguish public owner claims, official public
+  leaderboard snapshots, submission-page receipts, holdout metrics, geometry
+  diagnostics and projections. No fabricated facts, scores, receipts or
+  validations.
 
-**Evidence labeling.** Label every number as HOLDOUT-DTI (evaluator version,
-withheld-positive count, 95% CI) or ORGANIZER-CONFIRMED (submission-page
-receipt). A projection is never written as a score. Historical user claims
-without receipts remain explicitly unverified.
+### Submission format (from the DrivenData submission page)
 
-**PARALLEL-RUN PROTOCOL.** (1) Lane: stay inside one assigned method paragraph;
-if raster rank-correlation with any registry raster exceeds 0.90, or > 70% of
-final dots fall within 3 px of one registry raster, log it as a duplicate and
-stop. Check before placement AND on final dots. (2) Reuse: the shared template
-feature stack, evaluate_holdout.py, and submission_writer.py; hide whole fault
-segments with a buffer, derive catalogue features only from visible faults,
-mask visible faults pixel-exactly, score pooled DTI (alpha 0.2, beta 0.8,
-300 m triangular kernel). Fix shared tools in the template, never in a private
-fork. (3) Leakage canary: test each feature alone; AUC > 0.90 is leakage until
-proven otherwise. (4) Run card: one JSON card per experiment — hypothesis,
-mechanism, named non-fault mimic, holdout DTI + CI, registry correlation /
-overlap, raster SHA-256, validator output, submission name + ≤ 140-char note,
-verdict promote / negative. Negative results are deliverables. (5) Budget:
-stop after 3 experiments or 2 hours; promotion to a real slot is a separate
-selector step within the weekly cap. No auto-submit.
+Single-band GeoTIFF (.tif), or a .zip containing exactly one GeoTIFF. It must
+match the submission format's CRS (EPSG:32611), shape (3730 x 3292) and
+geotransform (origin 243350 / 4508550, 100 m cells). Predicted values must be in
+[0, 1] (this is the portal error "Predicted values must be in range [0, 1]").
+Outside the footprint use null/NaN per the organizer format text. Give the
+submission a unique name and a short note (<= 140 characters). DrivenData allows
+three submissions per week; the authenticated submission page is the authoritative
+current allowance.
 
-**Untried hypotheses (ranked):** see docs/research/hypotheses_untried.md
-(H–C1 BLM claims × radiometrics; H–C2 INGENIOUS 2 m temperature × radiometrics;
-H–C3 OPERA DISP-S1 InSAR; H–C4 USGS cross-depth conductance). H–RAD RAD-SCARP
-was tested this session: unique, format-valid, but HOLDOUT-DTI 0.0038 vs
-control 0.0992 → verdict negative / DO NOT SUBMIT.
+### Official sources
 
-**Submission process (only after every gate clears).** A separate automated
-selector verifies evidence and the current authenticated weekly allowance, then
-the site exposes one clearly named download with a ≤ 140-char note. On
-DrivenData, select that exact file, paste its note, submit only if approved,
-and save the organizer receipt + file SHA-256. This project does not
-automatically spend a slot. Current decision: NO file approved.
+- Competition problem, metric and format:
+  https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
+- About: https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/
+- Data (login required): https://www.drivendata.org/competitions/306/competition-doe-gems/data/
+- Leaderboard: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
+- Official rules: https://docs.nlr.gov/docs/fy26osti/96647.pdf
+- Reference solution: https://github.com/drivendataorg/gems-prize-reference-solution
+- USGS GeoDAWN survey:
+  https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and
+- DOE INGENIOUS / GDR: https://gbcge.org/current-projects/ingenious/ and
+  https://gdr.openei.org/submissions/1391
+- USGS 3DEP: https://www.usgs.gov/3d-elevation-program
+- Tversky index: https://en.wikipedia.org/wiki/Tversky_index
 
-**Git workflow.** All work is on the tracking branch `arena/...`; open a pull
-request from it. Do not switch to, create, or push to any other branch.
+### PARALLEL-RUN PROTOCOL
 
-**Limitations.** Hidden test labels are expert-drawn and undisclosed;
-organizers decline to describe their sources/types/coverage. The grid template
-here comes from a hash-pinned owner mirror, not an authenticated organizer
-download (never call the mirror the original without verification).
-Competition training files require DrivenData login and were not restored in
-this sandbox (restore via scripts/restore_gems32_data.sh on an unrestricted
-machine). Outbound sandbox network is limited to GitHub, PyPI, and npm; direct
-USGS/ASF/GDR access is not available here.
+1. LANE — stay inside the single assigned method paragraph. If raster rank
+   correlation with any registry raster exceeds 0.90, or more than 70% of dots
+   fall within 3 px of one registry raster's dots, log a duplicate and stop.
+   Check before placement AND on final dots.
+2. REUSE, DON'T REBUILD — use the template's cached feature stack,
+   evaluate_holdout.py and submission_writer.py. Holdout = hide-and-recover:
+   withhold whole fault segments with a buffer; derive catalogue-based features
+   only from visible faults; mask visible faults pixel-exactly; score pooled DTI
+   (alpha 0.2, beta 0.8, 300 m triangular kernel). Fix shared tools once in the
+   template, never in a private fork.
+3. LABEL EVERY NUMBER as HOLDOUT-DTI (evaluator version, withheld positives,
+   95% CI) or ORGANIZER-CONFIRMED (submission-page receipt). A projection is
+   never a score.
+4. LEAKAGE CANARY — test each feature alone on the holdout; AUC above 0.90 is
+   leakage until proven otherwise.
+5. RUN CARD — one JSON card: hypothesis, mechanism, named non-fault mimic,
+   holdout DTI + CI, correlation/overlap vs registry, raster sha256, validator
+   output (no NaN inside footprint, values in [0,1], CRS/shape/transform match),
+   submission name + note (<= 140 chars), verdict promote / negative.
+6. BUDGET — stop after 3 experiments or 2 hours. Promotion to a real slot is a
+   separate selector step within the weekly cap.
 
-**Core values.** Maximize P(Win); Own the Outcome. Work line by line, verify
-from official sources, provide links for manual review, flag irregularities, no
-hallucinations.
+### Core values
+
+Maximize P(Win) · Own the Outcome.
+
+### Parallel-session context (merged from main, arena/00fd98de RAD-SCARP)
+
+A parallel RAD-SCARP lane was also tested: a novel lane from USGS GeoDAWN
+airborne radiometrics (K/Th/U/TC) and USGS 3DEP 1 m LiDAR scarp features,
+placing 10,457 binary dots 200 m–1.2 km off the visible catalogue with catalogue
+faults masked pixel-exactly. Format/range and uniqueness passed (max 9.0% of dots
+within 3 px of any one registry raster; |Spearman| ≈ 0.002), but holdout failed
+(HOLDEOUT-DTI 0.0038 vs fold-honest D28_B2 control 0.0992) → verdict negative /
+RESEARCH ONLY / DO NOT SUBMIT. Its file is
+`apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-zeros.tif`
+(and NaN-outside twin) on main. Untried ranked hypotheses (H–C1 BLM claims ×
+radiometrics; H–C2 INGENIOUS 2 m temperature × radiometrics; H–C3 OPERA DISP-S1
+InSAR; H–C4 USGS cross-depth conductance) are tracked on main's
+docs/research/hypotheses_untried.md.
+
+### Git workflow
+
+All work is on the tracking branch `arena/...`; open a pull request from it.
+Do not switch to, create, or push to any other branch.
+
+### Limitations
+
+Hidden test labels are expert-drawn and undisclosed; organizers decline to
+describe their sources/types/coverage. The grid template here comes from a
+hash-pinned owner mirror, not an authenticated organizer download. Competition
+training files require DrivenData login; in this sandbox they were restored from
+hash-pinned owner mirrors on GitHub via scripts/restore_data.py
+(registry/data_manifest.json) — not organizer-authenticated. Outbound sandbox
+network is limited to GitHub, PyPI, and npm; direct USGS/ASF/GDR access is not
+available here.
 

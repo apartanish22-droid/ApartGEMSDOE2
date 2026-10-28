@@ -26,14 +26,24 @@ expert-hidden test set, and writing a projection as a score is prohibited. The
 only numeric columns below are labelled **HOLDOUT-DTI** (local evaluator,
 22,232 withheld positives) or **user-reported** claims (not organizer receipts).
 
-| File (research download) | HOLDOUT-DTI / claim | Hidden-board estimate | Unique vs the 500-raster registry? | OK to submit |
+### Unique TIFs generated this session (experiments 1–3, pre-registered hypotheses #1–#3)
+
+| File (research download) | HOLDOUT-DTI [95% CI] | Hidden-board estimate | Unique vs the 9 focus-site registry rasters? | OK to submit |
 |---|---|---|---|---|
-| `docs/downloads/apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros.tif` (+ `.zip`, `-nan.tif`) — **this session, H-TRACE** | HOLDOUT-DTI **0.0893** [0.0737, 0.1052] | null (not estimable) | Surface yes (max \|ρ\| 0.1293); **final dots NO** — 86.26% vs a sparse sibling raster, 79.45% vs AP2, both > 70% | **NO** |
+| `docs/downloads/gemsdoe32-h-dil-grav-dilate-x-gravlow-top37654-20261028T224631Z-3df650f1-zeros.tif` (+ `.zip`, `-nan.tif`) | **0.00572** [0.00000, 0.01054] | null (not estimable) | **YES** — max final-dot 3-px overlap 17.20% (GEMSDOE27); lattice 4.28%; surface \|ρ\| ≤ 0.005 vs all 9 | **NO** — holdout far below control 0.0992 |
+| `docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif` (+ `.zip`, `-nan.tif`) | **0.01182** [0.00979, 0.01396] | null | **YES** — max overlap 17.29%; surface \|ρ\| ≤ 0.005 | **NO** — failed holdout; emission runaway (5.1M positive pixels) |
+| `docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif` (+ `.zip`, `-nan.tif`) | **0.01182** [0.00979, 0.01396] | null | **YES** — max overlap 17.29%; surface \|ρ\| ≤ 0.005 | **NO** — failed holdout; emission runaway (5.1M positive pixels) |
+
+### Previously generated research artifacts (all negative)
+
+| File (research download) | HOLDOUT-DTI / claim | Hidden-board estimate | Unique vs registry? | OK to submit |
+|---|---|---|---|---|
+| `docs/downloads/apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros.tif` (H-TRACE) | HOLDOUT-DTI 0.0893 [0.0737, 0.1052] | null | Surface yes; **final dots NO** — 86.26% vs sparse sibling, 79.45% vs AP2 | **NO** |
 | `docs/downloads/apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif` (H-UDSR EXP-3) | HOLDOUT-DTI 0.0947 [0.0822, 0.1073] | null | Sparse subset yes; **literal all-registry NO** (99.85% vs lattice) | **NO** |
 | AP2 OOFCTRL (bytes identical to GEMSDOE28 D2.8) | HOLDOUT-DTI 0.1060 | null | **NO** (deduplicated champion bytes) | **NO** |
 | AP-1 `apartgemsdoe2-ap1-*-37654dots-*` | HOLDOUT-DTI 0.0389 | null | **NO** (99.72% lattice) | **NO** |
 | H2 `gems-h2-fractal-faultzone-*` (PR #20 demo) | **null** — seeded pseudo-features, no competition data | null; earlier "0.28–0.32" figure **withdrawn** | Not measured | **NO** |
-| Historical site bests (GEMSDOE24–36) | user-reported 0.2449–0.2778 | — | n/a (archival bytes, resubmission out of scope) | **NO** (not independently scored here) |
+| Historical site bests (GEMSDOE24–36) | user-reported 0.2449–0.2778 | — | n/a (archival bytes) | **NO** (not independently scored here) |
 
 ## What this session ran (3 experiments, pre-registered)
 
@@ -54,6 +64,34 @@ emitter outside a 2 px catalogue collar. Measured on the shared
 onto the same near-catalogue dot attractor as siblings (79–86% overlap). Gates:
 G1 format PASS · G2 holdout FAIL · G3 leakage canary PASS (max AUC 0.5733) ·
 G4 uniqueness FAIL (sparse + literal). Verdict: **negative**.
+
+### This session's new concealed-fault lane (hypotheses #1–#3 from research/hypotheses.md)
+
+Budget used: 3 experiments / ~1 minute. Each candidate was built from real
+competition bands (training_features.tif), tested with the single-feature leakage
+canary, evaluated on the shared GEMSDOE32-HOLDOUT-v3-visible-gated hide-and-recover
+evaluator (22,232 withheld positives), and checked for uniqueness against all 9
+pinned focus-site rasters plus the 13GEMSDOE lattice. All three are unique and
+format-valid; all three fail the holdout gate versus the fold-honest D28_B2
+control (0.0992) and the repo best (H-UDSR EXP-2, 0.1137).
+
+| Experiment | Hypothesis / layers | HOLDEOUT-DTI [95% CI] | Canary max AUC | Uniqueness (max overlap) | Verdict |
+|---|---|---|---|---|---|
+| Exp 1 | H-DIL-GRAV: geod_dilaterate (band 8) × (−iso_grav_anom, band 13), top-37,654 | **0.00572** [0.00000, 0.01054] | 0.5411 | 17.20% vs GEMSDOE27; lattice 4.28% | **negative** |
+| Exp 2 | H-MAG-EDGExSLOPE: tmi_hg (band 3) × det_elev_slope (band 19), top-37,654 | **0.01182** [0.00979, 0.01396] | 0.5250* | 17.29% | **negative** |
+| Exp 3 | H-DEPTHxCOND: cond_surf (band 17) × (1 − depth_to_base_surf norm, band 15), top-37,654 | **0.01182** [0.00979, 0.01396] | 0.5250* | 17.29% | **negative** |
+
+\* Canary shown for the stronger of the two single features in each pair; both
+features in every pair were ≤ 0.55 (two-sided), so no leakage flag.
+
+Interpretation: the holdout withholds whole *catalogue* fault segments, so it
+measures recovery of mapped faults. All three new hypotheses target *concealed*
+faults absent from the catalogue; by design they do not recover mapped segments
+and score near zero on this holdout. A holdout win is a necessary protocol gate,
+not a leaderboard estimate. No candidate is promotable within the budget;
+negative results are deliverables. Run cards:
+evidence/h_dil_grav_exp1_*.json, evidence/h_mag_edge_slope_exp2_*.json,
+evidence/h_depth_cond_exp3_*.json.
 
 ## Why 0.2778 leads, and what beating it requires
 

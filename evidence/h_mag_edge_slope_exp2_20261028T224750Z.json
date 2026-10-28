@@ -1,0 +1,105 @@
+{
+  "schema": "parallel-run-protocol-run-card-v1",
+  "generated_at_utc": "20261028T224750Z",
+  "session_branch": "arena/59f115dd-apartgemsdoe2",
+  "hypothesis": "H-MAG-EDGE\u00d7SLOPE: faults displacing magnetic basement missing from the USGS/INGENIOUS catalogue co-express as a magnetic horizontal-gradient edge (training_features band 3 tmi_hg) and steep detrended topographic slope (band 19); propensity = normalized gradient x normalized slope.",
+  "mechanism": "Fault offset of magnetic basement produces a gradient edge; the associated scarp appears as steep residual topography. Their product targets faults with magnetic and topographic expression but no mapped catalogue trace.",
+  "mimicking_non_fault_process": "Lithologic contacts and volcanic boundaries produce magnetic gradient edges without faults; erosion and deposition produce steep slopes without faults.",
+  "holdout_dti": 0.011819093855821737,
+  "holdout_ci95": [
+    0.009789813956621339,
+    0.013958814547581544
+  ],
+  "holdout_withheld_positives": 22232,
+  "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+  "leakage_canary": {
+    "tmi_hg": {
+      "auc": 0.5263067203694132,
+      "two_sided_max": 0.5263067203694132,
+      "leakage_flag_gt_0.90": false
+    },
+    "det_elev_slope": {
+      "auc": 0.5570854245958592,
+      "two_sided_max": 0.5570854245958592,
+      "leakage_flag_gt_0.90": false
+    }
+  },
+  "surface_spearman_vs_registry": {
+    "GEMSDOE24_best": 0.00039865132344968525,
+    "GEMSDOE25_best": -0.00045074105055206964,
+    "GEMSDOE27_best": 0.000456947420684907,
+    "GEMSDOE28_best": -0.0008712267534394505,
+    "GEMSDOE30_best": -0.00045074105055206964,
+    "GEMSDOE31_best": -0.0007287254069436668,
+    "GEMSDOE32_best": -0.000878574613645509,
+    "GEMSDOE33_best": -0.0005496355809082648,
+    "GEMSDOE36_best": -0.0007859156635781761,
+    "LATTICE_r13": 0.0027314429070575625
+  },
+  "final_dot_overlap_vs_registry": {
+    "GEMSDOE24_best": 0.1688,
+    "GEMSDOE25_best": 0.156,
+    "GEMSDOE27_best": 0.1729,
+    "GEMSDOE28_best": 0.1429,
+    "GEMSDOE30_best": 0.156,
+    "GEMSDOE31_best": 0.1448,
+    "GEMSDOE32_best": 0.1363,
+    "GEMSDOE33_best": 0.1507,
+    "GEMSDOE36_best": 0.1399,
+    "LATTICE_r13": 0.0401
+  },
+  "raster": "gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+  "raster_sha256": "69a76559ff303c7604b0e35a0cec3af5fe0f7b742b8720e979857b01618a2d35",
+  "raster_path": "/home/user/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+  "validator_output": {
+    "filename": "gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+    "size_bytes": 323955,
+    "sha256": "69a76559ff303c7604b0e35a0cec3af5fe0f7b742b8720e979857b01618a2d35",
+    "mode": "zeros",
+    "geometry_reference": "/home/user/ApartGEMSDOE2/.cache/gems_data/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "None",
+    "emitted_positive_pixels": 5103418,
+    "footprint_fraction": 0.987623,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 12279160,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true
+  },
+  "submission_name": "gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros",
+  "note": "H-MAG-EDGExSLOPE mag-gradient x slope top-37654px; not a copy of prior GEMSDOE submissions",
+  "note_length_chars": 90,
+  "emitted_pixels": 5164312,
+  "verdict": "negative"
+}
