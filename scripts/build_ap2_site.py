@@ -155,16 +155,10 @@ how = page("How to submit", f"""
 <div class="banner"><h2>File: <code>{F}</code></h2>
 <p><a class="btn" href="../downloads/{F}">⬇ Download .tif</a> <a class="btn2" href="../downloads/{Z}">⬇ Download .zip (single GeoTIFF inside)</a></p>
 <p>SHA-256: <code>{sha}</code><br>Tracking name: <code>{name}</code><br>
-Paste into the DrivenData <em>Note</em> field: <code>{note}</code></p></div>
-<ol>
-<li>Download the <code>-zeros.tif</code> above (use the <code>.zip</code> if your browser/downloader is unreliable — it contains the identical single GeoTIFF). Do <strong>not</strong> use the <code>-nan.tif</code> twin: it is for archival comparison with historical files, and the <code>-zeros</code> variant is the one guaranteed finite in [0,1] over the whole raster.</li>
-<li>(Optional local re-check, no human inspection of pixels needed) <code>python scripts/validate_submission.py {F}</code> — it must print <code>PASS</code>. It verifies CRS/shape/geotransform against the sample submission, 0 NaN/Inf/sentinels in the footprint, all values in [0,1], and 0 positive pixels on the known-fault catalogue.</li>
-<li>Open the DrivenData competition → <strong>New submission</strong> → <em>File to submit</em>: choose the downloaded <code>.tif</code> (or the <code>.zip</code>).</li>
-<li>In <em>Note (optional)</em> paste exactly: <code>{note}</code>. Keep <code>{name}</code> in your own submission log so the receipt can be matched to sha256 <code>{sha[:16]}…</code>.</li>
-<li>Submit once. When the score returns, save the submission-page receipt (date, score, file sha256) into this repo as ORGANIZER-CONFIRMED evidence — until then every number for this file is HOLDOUT-DTI or a labelled PROJECTION.</li>
-</ol>
-<h2>Why the earlier range error is not diagnosed</h2>
-<p>The rejected bytes and the portal implementation were not available, so the cause is unknown. The saved candidate is finite in [0,1] throughout, but zeros outside the footprint may conflict with the published specification and portal acceptance is unverified. A local format check is not submission authorization.</p>
+Archived research note (not an upload instruction): <code>{note}</code></p></div>
+<p>These files are available for research only. Do not upload them. For a future approved candidate, consult the <a href="../executive-summary.html">general submission guide</a>; capture a file-bound organizer receipt after any authorized submission.</p>
+<h2>Range and portal limitation</h2>
+<p>The saved zero-exterior raster was checked for finite values in [0,1]. This does not establish portal acceptance, authenticate the template, or explain the cause of the previous rejection.</p>
 <p><strong>Gate status.</strong> Local numeric check: PASS against the owner mirror; organizer format compliance: unknown. Scientific auto-promote under the preregistered gates: <code>{verdict}</code>
 (paired-Δ 95% CI [{paired['ci95'][0]:+.4f}, {paired['ci95'][1]:+.4f}]; broad-registry overlap {broad.get('worst_frac_candidate_dots_within_3px',0):.1%} vs one unscored raster).
 Spending a slot on this file is therefore not authorised; only a future selector under a new budget, with the novelty rule adjudicated, could revisit it.</p>
