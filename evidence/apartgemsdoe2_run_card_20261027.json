@@ -83,7 +83,8 @@
     "dots_within_3px_vs_gemsdoe25_d28": 0.53154,
     "non_lattice_sparse_registry_passed": true,
     "lattice_within_3px_fraction": 0.998548,
-    "scope_note": "Original pass applied only to sparse registry comparisons; integrated all-registry gate fails on 13GEMSDOE lattice. See evidence/udsr_merge_addendum.json."
+    "scope_note": "Original pass applied only to sparse registry comparisons; integrated all-registry gate fails on 13GEMSDOE lattice. See evidence/udsr_merge_addendum.json.",
+    "sparse_subset_passed": true
   },
   "raster_sha256": "1f2c28e9eba172fe6a4da138b98afa28a43420549e174c801a02af658ef180b9",
   "zip_sha256": "25695c1b285bd7d94f9720c1b9c7a5a473c0f60f4cd91042af1172c3178c4c0d",
