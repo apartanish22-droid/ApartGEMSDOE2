@@ -1,58 +1,32 @@
 #!/usr/bin/env python3
 """
-H2: Multi-Scale Fractal Fault-Zone Detection via Surficial Complexity Anisotropy.
+ARCHIVED H2 DEMONSTRATOR — DISABLED; NOT A SUBMISSION GENERATOR.
 
-Unique submission generator for the GEMS Prize Challenge — Hypothesis H2.
+This legacy file remains for auditability only. Its command-line entry point
+exits before doing any work or writing a raster. The old default path automatically
+fell back to seeded pseudo-features when inputs were absent and wrote a TIFF
+into the public downloads tree. The implementation also did not match its fractal /
+azimuthal-anisotropy description: the map builder uses a Gaussian/Sobel-gradient
+proxy and does not call its box-counting or anisotropy functions. The artifact
+and its claims are withdrawn; see docs/EXECUTIVE_SUMMARY_H2.md and
+docs/data/run_card_h2.json.
 
-HYPOTHESIS H2 (new, distinct from H1 and all prior GEMSDOE site submissions):
-  Layers: DEM + magnetic RTP + radiometric (eTh/eU/K) from competition numeric_features.tif.
-  Physical signature: multi-scale box-counting fractal dimension D_f of surface
-          textures, combined with complexity anisotropy across 4 azimuth sectors.
-          Fault zones (including concealed/buried geothermal faults) express as
-          strips of anomalously high surficial complexity oriented along strike.
-  Why it catches catalogue-missing faults: buried/alluvial-covered faults still
-          control surficial fractal statistics via fracture networks, fault-gouge
-          roughness, and fault-controlled drainage — without requiring a visible scarp.
-  How it differs: uses fractal box-counting D_f and anisotropy, NOT gradient/curvature/
-          distance/edge-detection/catalogue-proximity. See research/hypotheses_h2_fractal.md.
-
-Output: single-band float32 GeoTIFF in [0,1], matching the reference grid
-        (3730x3292, EPSG:32611, 100m, origin 243350/4508550), 0 outside footprint.
-
-NOTE: This script can run in two modes:
-  - REAL: when data/numeric_features.tif + data/sample_submission.tif are present
-  - DEMO: when data is absent, generates a demonstration on the real grid shape
-          using seeded pseudo-features (for format validation only).
+Do not use these legacy functions as a model or submission pipeline. Any future
+H2 experiment requires an assigned lane, authenticated competition inputs, the
+shared feature/evaluation/writing tools, leakage and registry gates, and an
+independent selector decision.
 """
 
 from __future__ import annotations
 
-import hashlib
-import json
-import os
 import sys
-from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
 import rasterio
 from rasterio.transform import Affine
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from submission_writer import load_grid_spec, write_submission  # noqa: E402
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
-DATA_DIR = REPO_ROOT / "data"
-GRID_REF = DATA_DIR / "grid_reference.json"
-FEATURES = DATA_DIR / "numeric_features.tif"
-TEMPLATE = DATA_DIR / "sample_submission.tif"
-
-HYPOTHESIS = "H2"
-NOTE = (
-    "H2 multi-scale fractal-dimension × surficial-complexity-anisotropy "
-    "fault-zone propensity; not a copy of any prior GEMSDOE site submission."
-)
-assert len(NOTE) <= 140, f"note too long ({len(NOTE)} chars)"
 
 
 def box_count_dimension(binary_image: np.ndarray) -> float:
@@ -480,89 +454,15 @@ def build_synthetic_demo() -> tuple[np.ndarray, np.ndarray, dict]:
 
 
 def main() -> int:
-    print(f"=== GEMS H2 Fractal Fault-Zone Submission Generator ===")
-    print(f"Hypothesis: {HYPOTHESIS}")
-    print(f"Note: {NOTE}")
-
-    real_data = FEATURES.exists() and TEMPLATE.exists()
-
-    if real_data:
-        print(f"Real data detected: {FEATURES}, {TEMPLATE}")
-        if GRID_REF.exists():
-            grid = load_grid_spec(GRID_REF)
-            propensity, footprint = build_h2_map(FEATURES, grid, TEMPLATE)
-            mode = "real"
-        else:
-            print("Grid reference missing, using template-derived grid")
-            with rasterio.open(TEMPLATE) as tpl:
-                transform = tpl.transform
-                grid = {
-                    "crs": str(tpl.crs),
-                    "transform": list(transform)[:6],
-                    "width": tpl.width,
-                    "height": tpl.height,
-                    "dtype": "float32",
-                }
-            propensity, footprint = build_h2_map(FEATURES, grid, TEMPLATE)
-            mode = "real"
-    else:
-        print("DEMO MODE: generating on real-grid shape (3730x3292) for format validation")
-        propensity, footprint, grid = build_synthetic_demo()
-        mode = "demo"
-
-    # Write submission
-    now = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    sha8 = hashlib.sha256(propensity.tobytes()).hexdigest()[:8]
-    out_name = f"gems-h2-fractal-faultzone-{now}-{sha8}.tif"
-    out_path = REPO_ROOT / "docs" / "downloads" / out_name
-
-    grid_spec = load_grid_spec(grid)
-    report = write_submission(propensity, grid_spec, out_path, footprint=footprint)
-
-    # Also write ZIP for submission
-    import zipfile
-    zip_path = out_path.with_suffix(".zip")
-    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
-        z.write(out_path, arcname=out_name)
-
-    # Status
-    dots = int(((propensity > 0) & footprint).sum())
-    finite_px = int(footprint.sum())
-    print(f"\n--- Submission Summary ---")
-    print(f"File: {out_name}")
-    print(f"Mode: {mode}")
-    print(f"Grid: {grid_spec.height}x{grid_spec.width} ({finite_px} footprint pixels)")
-    print(f"Dots (non-zero): {dots}")
-    print(f"SHA-256: {report['sha256'][:16]}...")
-    print(f"Note ({len(NOTE)} chars): {NOTE}")
-    print(f"Validation: {'PASS' if report['all_gates_pass'] else 'FAIL'}")
-    print(f"Values range: [{report['min']:.4f}, {report['max']:.4f}]")
-    print(f"NaN inside footprint: {report['has_nan_inside_footprint']}")
-    print(f"OK to submit: NOT YET — requires HOLDOUT-DTI validation and uniqueness check")
-
-    # Write status file
-    status = {
-        "file": out_name,
-        "mode": mode,
-        "hypothesis": HYPOTHESIS,
-        "note": NOTE,
-        "sha256": report["sha256"],
-        "dots": dots,
-        "footprint_px": finite_px,
-        "validation_passed": report["all_gates_pass"],
-        "values_range": [report["min"], report["max"]],
-        "nan_inside": report["has_nan_inside_footprint"],
-        "ok_to_submit": False,
-        "reason": "Requires HOLDOUT-DTI evaluation, leakage canary, and uniqueness check vs registry before submission authorization.",
-    }
-    status_path = out_path.with_suffix(".json")
-    status_path.write_text(json.dumps(status, indent=2))
-
-    print(f"\nWrote: {out_path}")
-    print(f"ZIP: {zip_path}")
-    print(f"Status: {status_path}")
-
-    return 0
+    """Refuse to run the retired generator; do not write or expose a TIFF."""
+    print(
+        "BLOCKED: this legacy H2 demo is withdrawn and disabled. It used seeded "
+        "pseudo-features, does not implement its advertised fractal/anisotropy "
+        "method, and has no holdout or registry approval. See "
+        "docs/EXECUTIVE_SUMMARY_H2.md.",
+        file=sys.stderr,
+    )
+    return 2
 
 
 if __name__ == "__main__":

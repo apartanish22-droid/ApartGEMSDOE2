@@ -1,88 +1,77 @@
 {
   "schema": "parallel-run-protocol-run-card-v1",
-  "generated_at_utc": "2026-10-28T054632Z",
-  "session_branch": "arena/17f40661-apartgemsdoe2",
-  "hypothesis": "H2: Multi-scale fractal dimension (box-counting D_f) of DEM + magnetic + radiometric surfaces, combined with surficial complexity anisotropy across 4 azimuth sectors, detects fault zones (including concealed/buried geothermal faults) through texture anomalies without requiring visible scarps.",
-  "mechanism": "Fault zones create scale-invariant roughness through fracture networks, fault gouge, and fault-controlled drainage. Multi-scale box-counting captures this fractal signature. Anisotropy emphasizes linear/planar structures aligned with fault strike. Combined DEM + magnetic + radiometric complexity amplifies the signal across multiple physical carriers.",
-  "mimicking_non_fault_process": "Lithologic contacts (rock-type changes produce roughness changes without faulting), volcanic flow boundaries, alluvial fan toes, road cuts, erosion surfaces/planation remnants.",
+  "record_status": "withdrawn_synthetic_demo",
+  "reviewed_at_utc": "2026-10-28T22:38:12Z",
+  "hypothesis": "H2 proposed multi-scale fractal complexity and directional anisotropy as a concealed-fault signal; this artifact did not validate that hypothesis.",
+  "mechanism": null,
+  "named_non_fault_mimic": "Not evaluated. Potential mimics named in the proposal include lithologic contacts, volcanic flow margins, alluvial-fan toes, roads, and erosional surfaces; none was tested.",
   "holdout_dti": null,
-  "holdout_withheld_positives": null,
-  "holdout_ci95": [
+  "evaluator_version": null,
+  "withheld_positive_instances": null,
+  "ci95": [
     null,
     null
   ],
-  "score_label": "DEMO MODE \u2014 HOLDOUT-DTI cannot be computed without competition data (numeric_features.tif, labels.tif). Generated on real grid shape (3730x3292) using seeded pseudo-features for format validation only.",
-  "leakage_canary": "not run (no data). Rule: test each feature alone on holdout; AUC > 0.90 means leakage until proven otherwise.",
-  "lane_check": "PARTIAL \u2014 checked against 3 existing AP1/AP2/UDSR rasters: all < 7% overlap (well under 70% threshold). Full registry check requires downloading 9 focus site rasters.",
-  "raster": "assets/gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif",
-  "raster_sha256": "5a6da02c45e8cc96399763c1eba4f95bddd781f0ff2223c9d9a7f1dc3e90a801",
+  "score_label": "No HOLDOUT-DTI or organizer score was obtained; no leaderboard estimate is available.",
+  "leakage_canary": {
+    "status": "not_run",
+    "reason": "The artifact was made from seeded pseudo-features without competition training data."
+  },
+  "registry_uniqueness": {
+    "surface_rank_correlation": null,
+    "final_dot_overlap_max": null,
+    "complete_registry_checked": false,
+    "status": "not_established",
+    "reason": "No complete-registry uniqueness audit supports a submission claim."
+  },
+  "artifact": {
+    "file": "gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif",
+    "paths": [
+      "assets/gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif",
+      "docs/downloads/gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif"
+    ],
+    "mode": "seeded synthetic DEMO; not competition data",
+    "sha256": "5a6da02c45e8cc96399763c1eba4f95bddd781f0ff2223c9d9a7f1dc3e90a801",
+    "size_bytes": 49162268,
+    "nonzero_pixels": 61396
+  },
   "validator_output": {
-    "dimensions": {
-      "passed": true,
-      "detail": "shape (3730, 3292) matches template"
-    },
-    "band_count": {
-      "passed": true,
-      "detail": "1 band"
-    },
-    "crs": {
-      "passed": true,
-      "detail": "EPSG:32611"
-    },
-    "transform": {
-      "passed": true,
-      "detail": "matches template"
-    },
-    "dtype": {
-      "passed": true,
-      "detail": "float32"
-    },
-    "in_footprint_range": {
-      "passed": true,
-      "detail": "[0.0000, 1.0000], all finite"
-    },
-    "portal_safe_whole_array": {
-      "passed": true,
-      "detail": "[0.0000, 1.0000], finite=True"
-    },
-    "all_pass": true
+    "scope": "Read-only check of saved demo bytes on 2026-10-28; comparisons are to an owner-mirror manifest, not an organizer-authenticated template.",
+    "driver": "GTiff",
+    "bands": 1,
+    "dtype": "float32",
+    "shape": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "whole_array_finite": true,
+    "whole_array_range_0_1": true,
+    "whole_array_no_nan": true,
+    "whole_array_pixel_count": 12279160,
+    "generator_declared_footprint_pixel_count": 12279160,
+    "owner_mirror_manifest_footprint_pixel_count": 5167373,
+    "official_template_authenticated": false,
+    "official_footprint_compliance": null,
+    "portal_acceptance": null
   },
-  "submission_name": "gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5",
-  "note": "H2 multi-scale fractal-dimension \u00d7 surficial-complexity-anisotropy fault-zone propensity; not a copy of any prior GEMSDOE site submission.",
-  "note_length_chars": 138,
+  "submission_name": null,
+  "submission_note": null,
+  "submission_note_length_chars": null,
+  "submission_authorized": false,
   "verdict": "negative",
-  "unique_vs_repo_rasters": {
-    "apartgemsdoe2-udsr-exp3": {
-      "overlap_3px": 0.0353,
-      "unique": true
-    },
-    "apartgemsdoe2-ap2-oofctrl": {
-      "overlap_3px": 0.0689,
-      "unique": true
-    },
-    "apartgemsdoe2-ap1-dilatcond": {
-      "overlap_3px": 0.0117,
-      "unique": true
-    }
-  },
-  "unique_vs_focus_sites": "PENDING \u2014 requires downloading rasters from GEMSDOE24/25/27/28/30/31/32/33/36 GitHub Pages",
-  "basis_for_uniqueness": "Different method family (fractal dimension + anisotropy) vs all prior approaches (edge detection, curvature, distance, tip/relay, updip advection). Dot count (61,396) comparable to mid-tier focus sites. Low overlap with existing repo rasters confirms distinct dot pattern.",
-  "blocker": "No competition data in data/ (DrivenData login-walled). Dropbox mirrors not in sandbox allowlist. Full uniqueness check requires downloading 9 focus site rasters.",
-  "next_steps": [
-    "1. Acquire competition data (login-walled at DrivenData)",
-    "2. Run H2 on real data to get HOLDOUT-DTI",
-    "3. Run leakage canary on each feature (AUC > 0.90 = failure)",
-    "4. Download focus site rasters for complete uniqueness verification",
-    "5. If HOLDOUT-DTI beats current best AND passes all gates, submit"
-  ],
-  "score_estimate_note": "PROJECTION ONLY \u2014 not a measured score. Based on dot count (61,396) comparable to GEMSDOE24 (60,069, reported 0.2477) and GEMSDOE27 (61,328, reported 0.2449). Conservative estimate 0.15-0.20; moderate 0.20-0.28; optimistic 0.28-0.35. Per protocol, projections must never be written as scores.",
-  "record_type": "H2 DEMO SUBMISSION \u2014 FORMAT VALIDATED, PENDING SCIENTIFIC VALIDATION",
-  "review_notice": "This is a format-validating demonstration generated without competition training data. It passes all format checks and is unique vs existing repo rasters. Scientific validation requires HOLDOUT-DTI on real data.",
-  "original_verdict_superseded_20261028": "conditional_promote \u2014 format validated and unique vs existing repo rasters; pending HOLDOUT-DTI and full registry check before final submission authorization.",
-  "correction_20261028": {
-    "by_session": "arena/7ec4400f-apartgemsdoe2",
-    "irregularity_id": "IR-TRACE-02",
-    "reason": "Raster was generated in DEMO MODE from seeded pseudo-features without competition data (holdout_dti null, canary not run). The earlier conditional-promote verdict and dot-count score projection in docs/EXECUTIVE_SUMMARY_H2.md are withdrawn. Format validity alone is not submission evidence.",
-    "ok_to_submit": false
-  }
+  "reason": "Synthetic pseudo-features, no holdout, no leakage canary, no complete uniqueness result, and no authenticated submission template. Format statistics do not authorize submission.",
+  "historical_claims_withdrawn": [
+    "Score range inferred from dot count",
+    "Uniqueness or conditional upload approval based only on comparisons with three local research rasters",
+    "Claim that the built feature map implemented box-counting fractal dimension and azimuthal anisotropy"
+  ]
 }
