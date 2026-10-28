@@ -1,112 +1,41 @@
-================================================================================
-CORRECTION 2026-10-28 (IR-TRACE-02): DO NOT SUBMIT THE H2 FILE BELOW.
-H2 was generated in DEMO MODE from seeded pseudo-features without competition
-data (see docs/data/run_card_h2.json: holdout_dti null). The CONDITIONAL YES
-below is superseded -> OK TO SUBMIT: NO. Verdict corrected to negative.
-================================================================================
+CURRENT STATUS — 2026-10-28
+===========================
 
-================================================================================
-GEMS PRIZE COMPETITION — SUBMISSION STATUS
-================================================================================
-Generated: 2026-10-28
-Branch: arena/17f40661-apartgemsdoe2
+DO NOT SUBMIT any file in this repository. No candidate passed the required
+scientific, leakage, registry-uniqueness, and authenticated-format gates. No new
+submission TIFF was generated or selected in this repository review; no weekly
+competition slot was used.
 
-================================================================================
-🚨 READ THIS FIRST — NO FILE HERE IS APPROVED FOR SUBMISSION
-================================================================================
+LEGACY FILES — AUDIT / LEARNING ONLY
+------------------------------------
 
-FILE: gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif
-LOCATION: ./assets/ (this directory)
-SIZE: 49.2 MB
-SHA-256: 5a6da02c45e8cc96399763c1eba4f95bddd781f0ff2223c9d9a7f1dc3e90a801
+* assets/submission.tif and
+  assets/gems-h1-radiometric-curvature-convergence-20261027T212405Z-59a3c88e.tif
+  are the same 1200 x 1200 synthetic H1 demonstration, not the competition grid.
+  DO NOT SUBMIT.
+* assets/gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif and its ZIP
+  are seeded pseudo-feature H2 demonstration files, not geological predictions.
+  SHA-256 of the TIFF:
+  5a6da02c45e8cc96399763c1eba4f95bddd781f0ff2223c9d9a7f1dc3e90a801
+  The bytes are one-band float32 EPSG:32611 and range [0,1], but every grid cell
+  is finite and the generator's full-grid footprint differs from the footprint
+  count in the owner-mirror manifest. These format statistics do not prove
+  official template/mask compliance, scientific value, uniqueness, or portal
+  acceptance. DO NOT DOWNLOAD OR SUBMIT.
+* The H2 generator is disabled. Its saved run card has no HOLDOUT-DTI, leakage
+  canary, complete registry comparison, or leaderboard estimate.
 
-ZIP AVAILABLE: gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.zip
+CURRENT BLOCKERS
+----------------
 
-VALIDATION: ✅ PASSED
-  - Format: GeoTIFF, single band, float32
-  - Grid: 3730×3292, EPSG:32611, 100m, origin (243350, 4508550)
-  - Values: [0.0000, 1.0000], all finite, no NaN
-  - Portal-safe: YES (whole array in [0,1])
+The checked-out data cache and pinned shared-template assets are absent. The
+machine-readable preflight returns BLOCKED; its historical restore receipt is
+not evidence that current files exist or are organizer-authenticated. No
+single user-assigned method lane was identified in this review, the prior
+parallel lane reports its three-experiment budget used, and the complete
+registry is not verified. See docs/REVIEW_20261028_ARENA.md and
+evidence/repo_review_run_card_20261028.json.
 
-DOTS (non-zero predictions): 61,396
-
-SUBMISSION NOTE (138 chars):
-"H2 multi-scale fractal-dimension × surficial-complexity-anisotropy 
-fault-zone propensity; not a copy of any prior GEMSDOE site submission."
-
-================================================================================
-IS THIS OK TO SUBMIT?
-================================================================================
-
-NO — superseded conditional-yes (see correction above). Original pending list:
-
-✅ FORMAT VALIDATION: PASSED (all 7 checks)
-✅ VALUES IN [0,1]: YES (0.0000 to 1.0000)
-✅ NO NaN INSIDE FOOTPRINT: YES
-✅ UNIQUE vs existing AP1/AP2/UDSR rasters: YES (< 7% overlap)
-✅ CORRECT GRID: YES (matches template exactly)
-
-⚠️  PENDING:
-  - HOLDOUT-DTI evaluation (requires competition data)
-  - Full uniqueness check vs all 9 GEMSDOE focus site rasters
-  - Leakage canary on each feature
-
-================================================================================
-BACKGROUND
-================================================================================
-
-HYPOTHESIS H2: Multi-Scale Fractal Fault-Zone Detection
-
-This submission uses a NEW geological approach different from all prior
-GEMSDOE site submissions:
-
-- Prior approaches: edge detection, curvature, distance-to-catalogue,
-  dotted-ridge, scarp detection, updip advection
-- H2 approach: fractal box-counting dimension + complexity anisotropy
-  across multiple spatial scales and azimuth sectors
-
-Why this is different:
-- Doesn't require visible surface scarp (detects through texture)
-- Can detect buried/alluvial-covered faults
-- Uses fractal statistics, not gradient magnitude
-- Label-free core features (no catalogue memorization)
-
-================================================================================
-HOW TO SUBMIT
-================================================================================
-
-*** WITHDRAWN 2026-10-28 (IR-TRACE-02): DO NOT DOWNLOAD OR UPLOAD THE H2 FILE. ***
-The original step-by-step upload instructions here are withdrawn; H2 was built from
-seeded pseudo-features without competition data. See git history for the original text.
-
-================================================================================
-FILES IN THIS DIRECTORY
-================================================================================
-
-submission.tif                    — Legacy H1 synthetic demo (NOT FOR SUBMISSION)
-gems-h1-radiometric-curvature-convergence-20261027T212405Z-59a3c88e.tif — H1 demo (NOT FOR SUBMISSION)
-gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif             — H2 pseudo-feature DEMO (DO NOT SUBMIT)
-gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.zip             — H2 pseudo-feature DEMO (DO NOT SUBMIT)
-
-================================================================================
-REVIEW NOTE (28 October 2026)
-================================================================================
-
-No new experiment or slot was used. The checked-out cache is absent despite 
-the historical restore receipt; that receipt is not evidence that the data 
-exists in a fresh checkout. The H-UDSR pages incorrectly called a lattice-
-failing candidate safe to submit and treated unverified historical claims as 
-organizer-confirmed. Those pages now state DO NOT SUBMIT; the archived run 
-card distinguishes sparse-registry success from the failed all-registry gate. 
-The AP2 guide no longer instructs users to upload a failed candidate or 
-guarantees portal acceptance. Original page versions remain in git history. 
-The reported holdout has not been independently replayed in this review. See 
-[executive review](docs/EXECUTIVE_REVIEW.md) for the missing explicit lane, 
-suspect template and incomplete registry. Official 
-[competition description](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) 
-and [reference code](https://github.com/drivendataorg/gems-prize-reference-solution) 
-are the primary sources, not proof of any particular receipt.
-
-================================================================================
-END
-================================================================================
+The historical H-TRACE, H-UDSR, AP2, AP-1 and H2 TIFFs remain research records
+only. A changed filename or a local [0,1] check is not evidence of novelty or
+permission to use a submission slot.

@@ -12,11 +12,12 @@ pages corrected the same day (`docs/EXECUTIVE_SUMMARY_H2.md`,
 > No candidate has passed the pre-registered holdout **and** uniqueness gates.
 > A format/range pass is never submission authorization.
 
-A new unique TIF **was generated this session** (H-TRACE EXP-2, real competition
-features, new method, byte-unique SHA-256, finite [0,1]). It **failed** its
-holdout and final-dot uniqueness gates, so the honest label is
-`negative / RESEARCH ONLY / DO NOT SUBMIT`. Negative results are deliverables;
-spending a weekly slot on a gated failure would lower P(win).
+A research TIFF was emitted in the previous H-TRACE run from mirrored
+competition features. Its hash distinguishes those exact bytes; that is not proof
+of method novelty. It **failed** its reported holdout and final-dot overlap
+gates, so the honest label is `negative / RESEARCH ONLY / DO NOT SUBMIT`.
+Negative results are deliverables; spending a weekly slot on a gated failure
+would lower P(win).
 
 ## Exactly what file to download, estimated score, and uniqueness
 

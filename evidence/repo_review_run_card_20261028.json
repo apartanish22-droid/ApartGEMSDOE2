@@ -1,0 +1,87 @@
+{
+  "schema": "parallel-run-protocol-run-card-v1",
+  "record_type": "repository_review_no_experiment",
+  "reviewed_at_utc": "2026-10-28T22:38:12Z",
+  "hypothesis": null,
+  "mechanism": null,
+  "named_non_fault_mimic": null,
+  "holdout_dti": {
+    "label": "NOT RUN",
+    "evaluator_version": null,
+    "withheld_positive_instances": null,
+    "ci95": [
+      null,
+      null
+    ],
+    "reason": "No method lane was explicitly assigned; the local feature cache and shared template are absent; the current preflight is BLOCKED."
+  },
+  "prior_reported_holdout_best": {
+    "label": "HOLDOUT-DTI, historical repo report; not independently replayed in this review",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "withheld_positive_instances": 22232,
+    "point": 0.113696,
+    "ci95": [
+      0.101306,
+      0.126712
+    ],
+    "candidate": "H-UDSR EXP-2",
+    "note": "Not a leaderboard estimate. Current missing inputs prevent independent reproduction."
+  },
+  "registry_comparison": {
+    "surface_rank_correlation": null,
+    "final_dot_overlap_max": null,
+    "candidate_raster_generated": false,
+    "status": "not_run",
+    "reason": "No new candidate surface or final dots were produced. The current complete registry is not verified."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_candidate": null,
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "status": "No candidate raster was generated or validated in this review.",
+    "legacy_h2_artifact": {
+      "sha256": "5a6da02c45e8cc96399763c1eba4f95bddd781f0ff2223c9d9a7f1dc3e90a801",
+      "single_band_float32_gtiff": true,
+      "shape": [
+        3730,
+        3292
+      ],
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "all_array_pixels_finite": true,
+      "all_array_values_in_0_1": true,
+      "all_array_pixel_count": 12279160,
+      "nonzero_pixel_count": 61396,
+      "footprint_match_to_owner_mirror_manifest": false,
+      "official_template_authenticated": false,
+      "portal_acceptance": null,
+      "scope": "Seeded synthetic DEMO bytes only; format statistics are not scientific or submission authorization."
+    }
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "submission_note_length_chars": null,
+  "verdict": "negative",
+  "experiments_run_this_review": 0,
+  "prior_parallel_budget_reported_used": 3,
+  "weekly_slots_used": 0,
+  "preflight_status": "BLOCKED",
+  "blockers": [
+    "No explicitly user-assigned method paragraph/lane identified.",
+    "Competition data cache, prepared feature stack, and pinned shared-template assets absent in current workspace.",
+    "Historical restore receipt is not proof of current file availability or official provenance.",
+    "Complete, current registry not verified.",
+    "Previous parallel lane reports its three-experiment budget used; no experiment was authorized or performed in this review.",
+    "No authenticated submission-format template or portal receipt available."
+  ],
+  "review_artifact": "docs/REVIEW_20261028_ARENA.md"
+}

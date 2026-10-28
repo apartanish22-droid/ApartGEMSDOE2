@@ -1,4 +1,4 @@
-> **2026-10-28 review:** No submission is approved. `data/restore_receipt.json` is historical; run `.venv/bin/python scripts/preflight.py` to check current core-file hashes. A fresh checkout does not include the cached inputs. Four legacy experiment/emission entry points now use the fail-closed guard, and the AP2 local format validator checks raster masks and label-grid alignment. See [review and next steps](docs/research/review-gates-20261028.md) and [parallel review](docs/research/review-20261028.md).
+> **2026-10-28 review:** No submission is approved. `data/restore_receipt.json` is historical; install `requirements.txt`, then run `.venv/bin/python scripts/preflight.py` to check current core-file hashes. A fresh checkout does not include the cached inputs. The H2 synthetic generator is disabled; its stale affirmative download/projection text was removed. See the [current repository review](docs/REVIEW_20261028_ARENA.md), [review run card](evidence/repo_review_run_card_20261028.json), [review gates](docs/research/review-gates-20261028.md), and [parallel review](docs/research/review-20261028.md).
 
 # ApartGEMS · evidence before the next upload
 
@@ -55,7 +55,7 @@ This section retains the substantive, non-duplicated instructions from the proje
     - **`EXP-1 (CTRL-T0)`:** Dual-Cover posterior alone, `HOLDOUT-DTI = 0.097507` (`[0.082821, 0.112195]`), statistically tied with fold-honest `D28_B2` `0.099202` (Δ `−0.001695`, CI `[−0.011082, +0.008090]`), `SGMC_cal = 0.043132` vs `0.064121`, `23,845` dots, worst sparse `83.46%`.
     - **`EXP-2 (TRACE-T1, emitted)`:** [`apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros.tif`](docs/downloads/apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros.tif) (`SHA-256: 32716d4851e9de2df406eeb2386c8ddcf9aa970c985643c7e5484973dd023b4f`, `22,438` dots), `HOLDOUT-DTI = 0.089333` (`[0.073747, 0.105194]`); paired Δ vs CTRL `−0.008174` (CI strictly negative) → km-scale trace gating **hurts** this posterior; worst sparse `86.26%`, `79.45%` vs AP2, literal lattice `99.86%` → verdict `negative`.
     - **`EXP-3 (TRACE-T2)`:** oriented-closing hysteresis support, `HOLDOUT-DTI = 0.089837` (`[0.074050, 0.106069]`), same negative pattern.
-13. **H2 correction (2026-10-28):** the PR #20 fractal file's run card admits seeded pseudo-features with `holdout_dti: null`, yet published surfaces said "OK TO SUBMIT: CONDITIONAL YES" with a 0.28–0.32 projection. Corrected to `negative / DO NOT SUBMIT` with the projection withdrawn in `docs/EXECUTIVE_SUMMARY_H2.md`, `docs/data/run_card_h2.json`, and `assets/SUBMISSION_STATUS.txt`; regression-pinned by [`tests/test_h2_correction.py`](tests/test_h2_correction.py). Why the verified lineage leader scores what it does is analysed with official citations in [`docs/research/why-02778-and-how-to-beat-it-20261028.md`](docs/research/why-02778-and-how-to-beat-it-20261028.md).
+13. **H2 correction (2026-10-28):** the PR #20 fractal file's run card admits seeded pseudo-features with `holdout_dti: null`, yet published surfaces said "OK TO SUBMIT: CONDITIONAL YES" with a 0.28–0.32 projection. Corrected to `negative / DO NOT SUBMIT` with the projection withdrawn in `docs/EXECUTIVE_SUMMARY_H2.md`, `docs/data/run_card_h2.json`, and `assets/SUBMISSION_STATUS.txt`; regression-pinned by [`tests/test_h2_correction.py`](tests/test_h2_correction.py). Why the byte-audited GEMSDOE32 lineage may have performed well is analysed with official citations in [`docs/research/why-02778-and-how-to-beat-it-20261028.md`](docs/research/why-02778-and-how-to-beat-it-20261028.md).
 
 ## Summary Table: 9 Focus Sites + `ApartGEMSDOE2 (H-UDSR EXP-3)`
 
@@ -80,13 +80,22 @@ This section retains the substantive, non-duplicated instructions from the proje
 - `AP2` session artifacts: `scripts/run_ap2.py`, `scripts/finalize_ap2.py`, `scripts/audit_focus9.py`, `scripts/build_ap2_site.py`, and `docs/ap2/`.
 
 ```bash
+python -m venv .venv
+.venv/bin/pip install -r requirements.txt
+.venv/bin/python -m pytest -q
+node tests/feed_ui.cjs
+node --test tests/js/source_freshness.test.cjs
 .venv/bin/python scripts/build_site.py
 .venv/bin/python scripts/build_scorecard.py
-.venv/bin/pytest -q
-.venv/bin/python scripts/check_submission.py \
-  docs/downloads/apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif \
-  --strict-finite
+.venv/bin/python scripts/preflight.py
 ```
+
+On a fresh checkout, the last command is expected to report `BLOCKED` and exit
+nonzero until all required current inputs and shared assets are present and
+verified. Do not treat the historical restore receipt as current data. The
+checked-in TIFFs are research artifacts; format-only validators do not approve
+a submission. `scripts/check_submission.py` requires an explicitly supplied,
+authenticated template before any local format diagnostic.
 
 ## Limitations, needed access, and next work
 
@@ -104,7 +113,7 @@ The H2 file was generated from seeded pseudo-features **without competition data
 page ("pending holdout", "portal-safe", "UNIQUE", a 0.28–0.32 projection) are
 **withdrawn**; see the correction banners in `docs/EXECUTIVE_SUMMARY_H2.md`,
 `docs/data/run_card_h2.json`, and `assets/SUBMISSION_STATUS.txt`, pinned by
-`tests/test_h2_correction.py`. **Do not download it for submission.**
+`tests/test_h2_correction.py`. The legacy generator entry point is disabled and no longer writes a public artifact. **Do not download it for submission.** See the [28 October repository review](docs/REVIEW_20261028_ARENA.md).
 
 **Full executive summary:** See `docs/EXECUTIVE_SUMMARY_H2.md`
 
@@ -119,21 +128,17 @@ The complete project prompt and requirements are documented in `docs/PROJECT_BRI
 5. **Target score > 0.3195** using novel geological approaches (user-cited high; the organizer-published leaderboard fetched 2026-10-28 shows the leader at **0.4544**, so 0.3195 is superseded)
 6. **Follow PARALLEL-RUN PROTOCOL** — lane discipline, reuse shared tools, label evidence properly
 
-### Quick Start
+### Safe local review (no training or submission)
 
-```bash
-# Reproduce the 2026-10-28 H-TRACE session (research only; verdict negative)
-python -m venv .venv && .venv/bin/pip install -r requirements.txt
-.venv/bin/python scripts/restore_gems32_data.py --group all
-.venv/bin/python scripts/prepare_gems32_data.py
-.venv/bin/python scripts/build_features.py --out .cache/gems_work/feature_stack_35.npy
-.venv/bin/python scripts/fetch_focus_registry.py --jobs 6 --out registry/focus_registry_manifest.json
-.venv/bin/python scripts/build_extended_registry.py   # needs /tmp/ref_repos sibling clones
-.venv/bin/python scripts/run_trace_experiments.py      # writes evidence/trace_three_experiments_20261028.json
-.venv/bin/python scripts/emit_trace_deliverable.py     # writes the RESEARCH-ONLY artifact + evidence/trace_run_card_20261028.json
-.venv/bin/python scripts/check_submission.py docs/downloads/apartgemsdoe2-trace-exp-2-*-zeros.tif --strict-finite
-.venv/bin/pytest -q
-```
+The H-TRACE and H-UDSR sessions are historical and their reported experiment
+budgets are spent. Do not rerun their restoration/build/emission commands as a
+new experiment. The old entry points fail closed; owner-mirror restoration is
+not organizer authentication and does not authorize use of competition data.
+
+For a fresh checkout, use the read-only checks above. The current preflight is
+expected to block because the cache and shared-template assets are absent. Do
+not expose a download button or choose a weekly slot unless a future, separately
+assigned lane passes every gate and an automated selector records approval.
 
 ## Review update — 28 October 2026
 
@@ -173,7 +178,7 @@ then perform the canaries and matched holdout before any separate selector decis
 A full pre-registered lane was executed end-to-end (data restore, feature rebuild,
 500-raster registry refresh, leakage canary, 3 experiments, registry audits,
 emission, saved-byte validation). **No file is approved for submission.** The
-new unique artifact
+H-TRACE research artifact
 `apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros.tif`
 (`SHA-256 32716d4851e9de2df406eeb2386c8ddcf9aa970c985643c7e5484973dd023b4f`)
 is research-only: `HOLDOUT-DTI 0.0893 [0.0737, 0.1052]`
