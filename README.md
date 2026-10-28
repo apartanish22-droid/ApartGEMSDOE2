@@ -32,6 +32,7 @@ old raster or a synthetic demo as a new geological model.
   saved dots independently overlap the pinned lattice by 99.85%. The holdout
   was **not** independently rerun here.
 - A concurrent branch produced [RAD-SCARP](docs/downloads/apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-zeros.tif) for research. Its earlier uniqueness-pass and portal-safe claims are withdrawn: **10,421 of 10,457 dots (99.66%)** overlap the pinned lattice, and no comparable visible-only holdout with CI is established. **DO NOT SUBMIT.** [Independent saved-byte recheck](evidence/rad_scarp_saved_byte_recheck_20261028.json).
+- Three more concurrently generated research TIFFs also fail literal lattice uniqueness: H-DIL-GRAV **99.23%**, H-MAG-EDGE-SLOPE **99.90%**, and H-DEPTH-COND **99.87%**. The last two have over 5 million positive cells each, with the magnetic set a strict subset of the depth set. Their earlier uniqueness claims used the wrong lattice comparison. [Independent audit and research links](docs/index.html#concurrent-three). **DO NOT SUBMIT.**
 - H2 is a seeded pseudo-feature demo, not a real fault detector. Saved-byte
   checks found `nodata=0` masks 5,140,874 cells inside the owner-mirrored
   footprint; 26,478 of its 26,499 inside dots overlap the lattice within 3 px.

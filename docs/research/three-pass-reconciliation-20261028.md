@@ -29,6 +29,12 @@ and nulls for unsupported holdout or portal results.
   earlier uniqueness-pass claim is withdrawn; the full-catalogue distance
   field and absent CI also prevent treating its prior number as a valid
   comparable holdout. [Read-only receipt](../../evidence/rad_scarp_saved_byte_recheck_20261028.json).
+- A second concurrent branch merged three research TIFFs. Saved-byte overlap
+  against the same lattice is 99.23%, 99.90% and 99.87%, respectively; all
+  fail literally. The last two each contain over 5 million positives, and the
+  magnetic mask is a strict subset of the depth mask. The earlier code used
+  the last focus-raster dilation, rather than the lattice neighborhood, in its
+  lattice numerator. [Independent receipt](../../evidence/concurrent_three_saved_byte_recheck_20261028.json).
 
 ## Pass 2 — bugs and edge cases
 
@@ -69,7 +75,10 @@ and nulls for unsupported holdout or portal results.
   product bytes, licenses where noted, target coverage and uniqueness remain
   unverified in this environment. A publication listing is not a successful
   download or model evaluation.
-- Viewed the generated landing page at 1440×1050 and 390×844 and checked the
+- Final local checks after reconciliation: **196 pytest passed, 3 skipped,
+  4 subtests passed**; Node feed and freshness tests passed; all five read-only
+  audit replays matched; shared-tool SHA pins matched; preflight stayed BLOCKED.
+  Viewed the generated landing page at 1440×1050 and 390×844 and checked the
   guide and GEMSDOE32 brief in headless Chromium; no horizontal overflow,
   local 4xx responses or JavaScript errors were observed in those views.
 - Preflight remains blocked: no explicit assigned lane, complete parallel

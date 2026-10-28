@@ -45,5 +45,15 @@
   "experiments_run_this_review": 0,
   "weekly_slots_used_this_review": 0,
   "parallel_candidate": "docs/downloads/apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-zeros.tif",
-  "historical_session": "A concurrent run created this TIFF; this review only reread its existing bytes."
+  "historical_session": "A concurrent run created this TIFF; this review only reread its existing bytes.",
+  "additional_negative_concurrent_files": {
+    "count": 3,
+    "saved_byte_audit": "evidence/concurrent_three_saved_byte_recheck_20261028.json",
+    "lattice_overlap_fractions": [
+      0.9923461798512508,
+      0.9990320212845587,
+      0.9987243421716145
+    ],
+    "slot_approved": false
+  }
 }

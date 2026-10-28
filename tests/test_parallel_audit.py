@@ -38,6 +38,8 @@ def test_parallel_raster_readback_if_inputs_available():
     'scripts/run_udsr_experiments.py', 'scripts/emit_and_audit_deliverables.py',
     'scripts/run_ap2.py', 'scripts/finalize_ap2.py',
     'scripts/build_rad_scarp_submission.py',
+    'scripts/run_h_dil_grav_experiment.py', 'scripts/run_h_mag_edge_slope_experiment.py',
+    'scripts/run_h_depth_cond_experiment.py',
     'src/generate_h2_fractal_submission.py',
 ])
 def test_archived_lane_entry_points_stop_before_running(script):

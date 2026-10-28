@@ -11,6 +11,11 @@ uniqueness-pass and portal-safe claims are withdrawn. A valid comparable
 holdout with CI is not established. [Research-only TIFF](downloads/apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-zeros.tif) ·
 [saved-byte audit](../evidence/rad_scarp_saved_byte_recheck_20261028.json) ·
 [current negative JSON card](../evidence/current_run_card.json).
+Three additional concurrent research TIFFs fail the same literal rule:
+H-DIL-GRAV **99.23%**, H-MAG-EDGE-SLOPE **99.90%**, and H-DEPTH-COND
+**99.87%** within three pixels of the lattice. The latter two contain over
+5 million positives each, and the magnetic dot set is a strict subset of the
+depth dot set. [Audit and research-only links](index.html#concurrent-three).
 
 ## Nine priority sites
 

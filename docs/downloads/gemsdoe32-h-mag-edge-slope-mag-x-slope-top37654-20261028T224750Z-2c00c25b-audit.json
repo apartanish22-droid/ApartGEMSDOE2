@@ -1,0 +1,111 @@
+{
+  "candidate_id": "h-dil-grav-exp1-20261028T224750Z",
+  "slug": "h-mag-edge-slope-mag-x-slope-top37654",
+  "content_digest8": "2c00c25b",
+  "description": "Experiment 1: H-DIL-GRAV geodetic dilatation x isostatic gravity low propensity.",
+  "submission_note_zeros": "Research only: literal registry overlap failed; do not submit.",
+  "submission_note_nan": "Research only: literal registry overlap failed; do not submit.",
+  "zeros_tif": {
+    "filename": "gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+    "size_bytes": 323955,
+    "sha256": "69a76559ff303c7604b0e35a0cec3af5fe0f7b742b8720e979857b01618a2d35",
+    "mode": "zeros",
+    "geometry_reference": "/home/user/ApartGEMSDOE2/.cache/gems_data/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "None",
+    "emitted_positive_pixels": 5103418,
+    "footprint_fraction": 0.987623,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 12279160,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": false,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": null
+    },
+    "all_checks_passed": false
+  },
+  "nan_tif": {
+    "filename": "gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+    "size_bytes": 420056,
+    "sha256": "8757ceba7e677f27cf8d31f5e6af2ce7971dadae89cf74ba4301cc8d80230856",
+    "mode": "nan",
+    "geometry_reference": "/home/user/ApartGEMSDOE2/.cache/gems_data/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "nan",
+    "emitted_positive_pixels": 5103418,
+    "footprint_fraction": 0.987623,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 5167373,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": null,
+      "conservative_whole_array_finite_in_0_1": false
+    },
+    "all_checks_passed": false
+  },
+  "holdout_metrics": {
+    "catalogue_hidden_mean": null,
+    "sgmc_prevalence_calibrated_dti": null,
+    "predicted_leaderboard_dti": null,
+    "slot_decision": "negative",
+    "explanation": "Prior placeholders and static diagnostics are not an established protocol holdout."
+  },
+  "correction_20261028": "Historical writer receipt only; saved-byte lattice overlap exceeds 70%. Earlier uniqueness, outside-compliance, and portal-guarantee claims are withdrawn. See ../data/concurrent_three_saved_byte_recheck_20261028.json.",
+  "verdict": "negative",
+  "submission_authorized": false
+}
