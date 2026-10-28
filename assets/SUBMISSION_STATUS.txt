@@ -9,7 +9,7 @@ File: gems-h1-radiometric-curvature-convergence-20261027T212405Z-59a3c88e.tif
 Mode: demo
 Hypothesis: H1 — radiometric anomaly x DEM curvature convergence
 SHA-256: 250d2a554fd0c54c58437c9b724d80aef83173527a3b3bed5b6347b8e76b2d6e
-Note (118 chars): Unique H1 radiometric anomaly x DEM curvature-convergence propensity; not a copy of any prior GEMSDOE site submission.
+Note: Synthetic demonstration only; uniqueness was not checked. Do not submit.
 
 VALIDATION REPORT:
 {

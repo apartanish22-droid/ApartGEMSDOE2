@@ -16,7 +16,7 @@
       "outside_footprint_encoding": "0.0 (-zeros)",
       "nodata": "None",
       "repo_reported_lb_dti": 0.2778,
-      "repo_lb_score_label": "ORGANIZER-CONFIRMED (repo ledger; portal screenshot unarchived)",
+      "repo_lb_score_label": "USER-REPORTED / UNVERIFIED (no organizer receipt archived)",
       "holdout_dti_static": 0.004515,
       "holdout_ci95_static": [
         0.003816,
@@ -43,7 +43,7 @@
       "outside_footprint_encoding": "0.0 (-zeros)",
       "nodata": "None",
       "repo_reported_lb_dti": 0.275,
-      "repo_lb_score_label": "ORGANIZER-CONFIRMED (repo ledger; portal screenshot unarchived)",
+      "repo_lb_score_label": "USER-REPORTED / UNVERIFIED (no organizer receipt archived)",
       "holdout_dti_static": 0.004577,
       "holdout_ci95_static": [
         0.003892,
@@ -70,7 +70,7 @@
       "outside_footprint_encoding": "NaN (-nan)",
       "nodata": "nan",
       "repo_reported_lb_dti": 0.271,
-      "repo_lb_score_label": "ORGANIZER-CONFIRMED (repo ledger; portal screenshot unarchived)",
+      "repo_lb_score_label": "USER-REPORTED / UNVERIFIED (no organizer receipt archived)",
       "holdout_dti_static": 0.02936,
       "holdout_ci95_static": [
         0.024959,
@@ -97,7 +97,7 @@
       "outside_footprint_encoding": "NaN (-nan)",
       "nodata": "nan",
       "repo_reported_lb_dti": 0.2708,
-      "repo_lb_score_label": "ORGANIZER-CONFIRMED (repo ledger; portal screenshot unarchived)",
+      "repo_lb_score_label": "USER-REPORTED / UNVERIFIED (no organizer receipt archived)",
       "holdout_dti_static": 0.030516,
       "holdout_ci95_static": [
         0.02568,
@@ -124,7 +124,7 @@
       "outside_footprint_encoding": "0.0 (-zeros)",
       "nodata": "None",
       "repo_reported_lb_dti": 0.2632,
-      "repo_lb_score_label": "ORGANIZER-CONFIRMED (repo ledger; portal screenshot unarchived)",
+      "repo_lb_score_label": "USER-REPORTED / UNVERIFIED (no organizer receipt archived)",
       "holdout_dti_static": 0.051969,
       "holdout_ci95_static": [
         0.045773,
@@ -151,7 +151,7 @@
       "outside_footprint_encoding": "NaN (-nan)",
       "nodata": "nan",
       "repo_reported_lb_dti": 0.26,
-      "repo_lb_score_label": "ORGANIZER-CONFIRMED (repo ledger; portal screenshot unarchived)",
+      "repo_lb_score_label": "USER-REPORTED / UNVERIFIED (no organizer receipt archived)",
       "holdout_dti_static": 0.096743,
       "holdout_ci95_static": [
         0.084162,
@@ -178,7 +178,7 @@
       "outside_footprint_encoding": "0.0 (-zeros)",
       "nodata": "None",
       "repo_reported_lb_dti": 0.26,
-      "repo_lb_score_label": "ORGANIZER-CONFIRMED (repo ledger; portal screenshot unarchived)",
+      "repo_lb_score_label": "USER-REPORTED / UNVERIFIED (no organizer receipt archived)",
       "holdout_dti_static": 0.096743,
       "holdout_ci95_static": [
         0.084162,
@@ -205,7 +205,7 @@
       "outside_footprint_encoding": "NaN (-nan)",
       "nodata": "nan",
       "repo_reported_lb_dti": 0.2477,
-      "repo_lb_score_label": "ORGANIZER-CONFIRMED (repo ledger; portal screenshot unarchived)",
+      "repo_lb_score_label": "USER-REPORTED / UNVERIFIED (no organizer receipt archived)",
       "holdout_dti_static": 0.093151,
       "holdout_ci95_static": [
         0.081279,
@@ -232,7 +232,7 @@
       "outside_footprint_encoding": "NaN (-nan)",
       "nodata": "nan",
       "repo_reported_lb_dti": 0.2449,
-      "repo_lb_score_label": "ORGANIZER-CONFIRMED (repo ledger; portal screenshot unarchived)",
+      "repo_lb_score_label": "USER-REPORTED / UNVERIFIED (no organizer receipt archived)",
       "holdout_dti_static": 0.092748,
       "holdout_ci95_static": [
         0.080856,
@@ -273,8 +273,8 @@
       "frac_gt_15px": 0.5043,
       "within_3px_vs_b2": 0.46517,
       "within_3px_vs_d28": 0.53154,
-      "unique_vs_all_sites": true,
-      "submit_recommendation": "UNIQUE & FORMAT-VALIDATED [0,1] \u2014 OK TO SUBMIT FOR ORTHOGONAL NON-H19-5 SLOT; PROTOCOL VERDICT: NEGATIVE VS FOLD-HONEST B2 (0.0992) / SGMC (0.0641)",
+      "unique_vs_all_sites": false,
+      "submit_recommendation": "RESEARCH ONLY \u2014 DO NOT SUBMIT: literal all-registry gate fails against lattice; no selector approval.",
       "mechanism_summary": "H-UDSR EXP-3: Footwall updip-advected gravity/RTP/MT + Dual-Cover OOF + 2-stage 300m submodular"
     }
   ]

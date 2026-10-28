@@ -247,7 +247,7 @@ def main() -> int:
                 "outside_footprint_encoding": "NaN (-nan)" if has_nan else "0.0 (-zeros)",
                 "nodata": str(nodata_s),
                 "repo_reported_lb_dti": rep_lb,
-                "repo_lb_score_label": "ORGANIZER-CONFIRMED (repo ledger; portal screenshot unarchived)",
+                "repo_lb_score_label": "USER-REPORTED / UNVERIFIED (no organizer receipt archived)",
                 "holdout_dti_static": round(hr_s["pooled_dti"], 6),
                 "holdout_ci95_static": [round(x, 6) for x in hr_s["ci95_cluster_bootstrap"]],
                 "sgmc_cal_dti": round(sg_s["sgmc_prevalence_calibrated_dti"], 6),
@@ -282,9 +282,9 @@ def main() -> int:
             "frac_gt_15px": round(exp3["spatial_profile"]["frac_d_gt_15px"], 4),
             "within_3px_vs_b2": round(ov_cand_b2, 5),
             "within_3px_vs_d28": round(ov_cand_d28, 5),
-            "unique_vs_all_sites": True,
+            "unique_vs_all_sites": False,
             "submit_recommendation": (
-                "UNIQUE & FORMAT-VALIDATED [0,1] — OK TO SUBMIT FOR ORTHOGONAL NON-H19-5 SLOT; "
+                "RESEARCH ONLY — DO NOT SUBMIT: literal all-registry gate fails or is incomplete; "
                 "PROTOCOL VERDICT: NEGATIVE VS FOLD-HONEST B2 (0.0992) / SGMC (0.0641)"
             ),
             "mechanism_summary": (
@@ -433,7 +433,9 @@ def main() -> int:
         },
         "ci": exp3["holdout_hide_and_recover"]["ci95_cluster_bootstrap"],
         "registry_correlation_overlap": {
-            "passed": bool(surf_aud["passed"] and dots_aud["passed"]),
+            "passed": False,  # Sparse subset is not the literal complete registry; lattice fails.
+            "sparse_subset_passed": bool(surf_aud["passed"] and dots_aud["passed"]),
+            "scope_note": "Literal all-registry gate fails against the lattice witness and registry completeness is not established.",
             "n_focus_rasters_checked": 442,
             "n_extended_rasters_checked": 488,
             "surface_max_abs_spearman": exp3["registry_surface_audit_extended_488"]["worst_abs_spearman"],
