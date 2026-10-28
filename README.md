@@ -6,6 +6,8 @@
 
 **Arena AI Core Values:** **Maximize P(Win)** · **Own the Outcome**
 
+> **Latest review (2026-10-28): [`docs/research/repo-review-20261028.md`](docs/research/repo-review-20261028.md)** — no file approved; competition data and official sources were unreachable from the sandbox (measured); the `-nan` downloads fail the `[0, 1]` rule; two `assets/` TIFFs are on the wrong grid; a validator crash on shape mismatch is fixed. Re-run `.venv/bin/python scripts/audit_downloads.py` for the technical audit.
+
 > **CURRENT DECISION: DO NOT SUBMIT (Verdict `negative` under strict solo-promotion & literal all-registry rules; `H-UDSR EXP-3` available in `docs/downloads/` as a `[0, 1]`-validated, sparse-unique research artifact).**
 > - **AP-1** ([research TIFF](docs/downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif)): **99.72% overlap** with the registered 13GEMSDOE lattice (`HOLDOUT-DTI 0.0389` vs `0.0992` control) — **do not submit**.
 > - **AP2** ([OOFCTRL TIFF](docs/downloads/apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros.tif), finding 10): paired `HOLDOUT-DTI 0.1060` (`ΔCI [−0.0015, +0.0152]`), **74.5%** overlap vs Arena8a and **99.90%** vs lattice — **do not submit** ([AP2 sub-site](docs/ap2/index.html)).
