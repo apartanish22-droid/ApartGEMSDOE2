@@ -10,6 +10,7 @@ import json
 from audit_historical import ROOT, PINS, audit as audit_history
 from audit_parallel_candidate import audit as audit_candidate
 from recheck_trace import inspect_trace
+from recheck_rad_scarp import inspect_rad_scarp
 
 
 def compare_receipt(name: str, actual: dict, recorded: dict) -> None:
@@ -31,6 +32,7 @@ def main() -> None:
         ("historical_audit.json", audit_history(pins, cache)),
         ("parallel_candidate_audit.json", audit_candidate(cache)),
         ("trace_independent_recheck_20261028.json", inspect_trace()),
+        ("rad_scarp_independent_recheck_20261028.json", inspect_rad_scarp()),
     ):
         recorded = json.loads((ROOT / "evidence" / name).read_text())
         compare_receipt(name, result, recorded)

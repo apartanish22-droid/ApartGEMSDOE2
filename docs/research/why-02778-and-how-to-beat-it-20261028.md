@@ -17,7 +17,7 @@ For binary predictions with fixed truth count `K = T + N`, let old components be
 
 `0.2 T φ > τ [0.2 F + 0.8 K]`.
 
-The actual `τ` and `φ` depend on unknown hidden truth. The number of deleted dots is **not** automatically the reduction in FP mass; dots may be within the kernel of truth and may jointly contribute maximum credit to multiple truth cells. A single-dot rule with a constant denominator cost is therefore not generally valid. Neither the B2 collar geometry nor the reported score ranking proves score causation.
+The actual `τ` and `φ` depend on unknown hidden truth. The number of deleted dots is **not** automatically the reduction in FP mass; dots may be within the kernel of truth and may jointly contribute maximum credit to multiple truth cells. For one newly added binary dot, let `ΔT` be its total increase in truth credit and `k` its proximity to the nearest truth. The denominator changes by `0.2(ΔT + 1 − k)`, so improvement requires `ΔT > DTI × 0.2(ΔT + 1 − k)` (apart from the metric's epsilon). One dot can credit multiple truth pixels; `ΔT` need not equal `k`. A shortcut based only on nearest-truth distance is not generally valid; see [metric issue #50](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/50). Neither the B2 collar geometry nor the reported score ranking proves score causation.
 
 ## Can a new method beat it?
 

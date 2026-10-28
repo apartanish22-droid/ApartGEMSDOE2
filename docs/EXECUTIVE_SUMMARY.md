@@ -28,6 +28,10 @@ The prior session reported **HOLDOUT-DTI 0.0893 [0.0737, 0.1052]**, evaluator `G
 
 The TIFF is one float32 band, EPSG:32611, 3730 × 3292, affine (100, 0, 243350, 0, −100, 4508550), finite [0,1] and unmasked within the owner-mirrored footprint. Its unmasked exterior zeros do **not** satisfy the conservative null/NaN-outside reading. The mirror is not authenticated and portal acceptance is unknown. Its archived name and 110-character note are in the run card for provenance only; **do not use them to upload**.
 
+## Concurrent RAD-SCARP research artifact
+
+Another session generated [RAD-SCARP](downloads/apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-zeros.tif) while this review was underway. Its SHA-256 is `ce5295029b2f506bed5d49b74432370ba6101d5b810797be78af7502d41828f3`; an [independent saved-byte check](../evidence/rad_scarp_independent_recheck_20261028.json) found **10,421 / 10,457 = 99.66%** of its dots within three pixels of the registered lattice, exceeding the 70% limit. The generator used the full catalogue rather than fold-visible faults; the archived v3 diagnostic lacks a confidence interval and is not valid requested-protocol holdout evidence. The owner-mirrored grid is not organizer-authenticated; exterior zeros do not meet the conservative null/NaN-outside reading and portal acceptance is unknown. **Research only—DO NOT SUBMIT.**
+
 ## Submission guide—future candidates only
 
 1. Establish an explicitly assigned lane and budget; authenticate the organizer input files, sample and footprint; use the pinned shared feature stack and resolve upstream evaluator/writer/registry defects centrally.

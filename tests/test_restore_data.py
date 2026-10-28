@@ -13,6 +13,16 @@ def digest(b):
     return hashlib.sha256(b).hexdigest()
 
 
+def test_required_core_pins_include_faults_and_reject_missing_or_duplicates():
+    assert 'existing_faults' in restore_data.CORE_IDS
+    entries = [{'id': value} for value in sorted(restore_data.CORE_IDS)]
+    assert len(restore_data.select_core_entries({'files': entries})) == len(entries)
+    with pytest.raises(ValueError, match='incomplete'):
+        restore_data.select_core_entries({'files': entries[:-1]})
+    with pytest.raises(ValueError, match='duplicate'):
+        restore_data.select_core_entries({'files': entries + [entries[0]]})
+
+
 def test_streamed_core_is_atomic_and_hash_checked(tmp_path):
     root = tmp_path/'data'; root.mkdir()
     content = b'part-one' + b'part-two'

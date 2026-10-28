@@ -86,6 +86,7 @@ def test_archive_guard_remains_blocked_even_if_preflight_changes(monkeypatch):
 @pytest.mark.parametrize("command", [
     ["scripts/run_trace_experiments.py"],
     ["scripts/emit_trace_deliverable.py"],
+    ["scripts/build_rad_scarp_submission.py"],
     ["scripts/run_udsr_experiments.py"],
     ["scripts/emit_and_audit_deliverables.py"],
     ["scripts/run_ap2.py"],
@@ -142,7 +143,15 @@ def test_current_card_and_split_receipt_are_consistent():
     assert len(card["submission"]["note"]) == card["submission"]["note_length"] <= 140
     assert not card["submission"]["upload_authorized"]
     assert card["organizer_confirmed_score"] is None and card["leaderboard_estimate"] is None
-    for name in ("current_run_card.json", "shared_split_geometry_20261028.json", "trace_independent_recheck_20261028.json"):
+    rad = json.loads((ROOT / "evidence/rad_scarp_independent_recheck_20261028.json").read_text())
+    rad_card = json.loads((ROOT / "evidence/rad_scarp_run_card_20261028.json").read_text())
+    assert rad["candidate_dots_within_3px"] == card["concurrent_research_artifact"]["dots_near_lattice"] == 10421
+    assert rad["candidate_positive_pixels_inside_mirror"] == 10457
+    assert not rad["literal_overlap_gate_pass"] and not rad["outside_null_or_masked"]
+    assert rad["dtype"] == "float32" and rad["in_footprint_nan_cells"] == rad["in_footprint_masked_cells"] == 0
+    assert rad_card["unique_vs_gemsdoe_sites"] is None and not rad_card["validator_output"]["all_pass"]
+    assert rad_card["verdict"] == "negative" and "not valid HOLDOUT-DTI" in rad_card["score_label"]
+    for name in ("current_run_card.json", "shared_split_geometry_20261028.json", "trace_independent_recheck_20261028.json", "rad_scarp_independent_recheck_20261028.json"):
         assert (ROOT / "docs/data" / name).read_bytes() == (ROOT / "evidence" / name).read_bytes()
 
 
@@ -152,6 +161,9 @@ def test_trace_receipt_replays_when_inputs_are_restored():
     from recheck_trace import inspect_trace
     recorded = json.loads((ROOT / 'evidence/trace_independent_recheck_20261028.json').read_text())
     assert inspect_trace() == {k: v for k, v in recorded.items() if k != 'checked_utc'}
+    from recheck_rad_scarp import inspect_rad_scarp
+    recorded_rad = json.loads((ROOT / 'evidence/rad_scarp_independent_recheck_20261028.json').read_text())
+    assert inspect_rad_scarp() == {k: v for k, v in recorded_rad.items() if k != 'checked_utc'}
 
 
 def test_publication_exposes_the_actual_blockers():
@@ -163,5 +175,6 @@ def test_publication_exposes_the_actual_blockers():
     assert 'not valid under the requested buffered-whole-segment protocol' in home
     assert 'not a complete pre-placement pass' in trace
     assert 'data/current_run_card.json' in home
+    assert '10,421 / 10,457' in home and 'rad_scarp_independent_recheck_20261028.json' in home
     for page in (ROOT / 'docs/ap2').glob('*.html'):
         assert 'buffered whole-segment split' in page.read_text()

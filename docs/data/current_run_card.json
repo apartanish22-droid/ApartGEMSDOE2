@@ -18,7 +18,10 @@
       "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
       "withheld_positive_occurrences": 22232,
       "point": 0.08933324397929213,
-      "ci95": [0.07374684357027325, 0.1051943746923761],
+      "ci95": [
+        0.07374684357027325,
+        0.1051943746923761
+      ],
       "control_point": 0.09750733770113192,
       "status": "Prior-session report, not independently re-evaluated. Our split-geometry audit found that the claimed buffer and whole-segment scoring were not established; it does not prove the numerical calculation wrong."
     },
@@ -34,7 +37,7 @@
       "within_3px": 22406,
       "candidate_dots": 22438,
       "fraction": 0.9985738479365363,
-      "threshold": 0.70,
+      "threshold": 0.7,
       "literal_pass": false,
       "receipt": "evidence/trace_independent_recheck_20261028.json"
     },
@@ -54,8 +57,18 @@
     "in_footprint_nonfinite_cells": 0,
     "in_footprint_masked_cells": 0,
     "crs": "EPSG:32611",
-    "shape": [3730, 3292],
-    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
     "grid_matches_owner_mirror": true,
     "in_footprint_unmasked_and_finite": true,
     "in_footprint_range_0_1": true,
@@ -73,5 +86,18 @@
   },
   "organizer_confirmed_score": null,
   "leaderboard_estimate": null,
-  "reason": "No calibrated mapping to hidden truth or file-bound organizer receipt exists. The literal novelty, authenticated-format and requested holdout gates are not satisfied."
+  "reason": "No calibrated mapping to hidden truth or file-bound organizer receipt exists. The literal novelty, authenticated-format and requested holdout gates are not satisfied.",
+  "concurrent_research_artifact": {
+    "name": "RAD-SCARP, generated in a separate concurrent session",
+    "raster": "docs/downloads/apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-zeros.tif",
+    "sha256": "ce5295029b2f506bed5d49b74432370ba6101d5b810797be78af7502d41828f3",
+    "dots_near_lattice": 10421,
+    "candidate_dots": 10457,
+    "overlap_fraction": 0.9965573300181696,
+    "registry_verdict": "FAIL literal final-dot stop; full registry and pre-placement surface not established",
+    "holdout": "Archived v3 diagnostic lacks CI and uses a full-catalogue distance; not valid requested-protocol holdout.",
+    "format": "Owner-mirrored grid and [0,1] only; exterior zeros fail conservative null/NaN-outside wording; portal acceptance unknown.",
+    "receipt": "evidence/rad_scarp_independent_recheck_20261028.json",
+    "verdict": "negative"
+  }
 }
