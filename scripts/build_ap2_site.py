@@ -84,10 +84,10 @@ budget, this is the exact file and note:</strong></p>
 <p>Tracking name: <code>{name}</code><br>DrivenData “Note” to paste: <code>{note}</code> ({len(note)} chars)<br>
 SHA-256: <code>{sha}</code> · dots: {card['validator_output']['canonical_13check']['emitted_positive_pixels']:,} · 0 on-catalogue</p>
 <ul>
-<li><span class="pass">Format PASS</span> — re-read bytes are single-band float32, EPSG:32611, 3730×3292, template transform, every one of the 12,279,160 cells finite in [0,1] (the exact property behind the portal error “Predicted values must be in range [0, 1]”).</li>
-<li><span class="pass">Unique vs every scored submission in the brief</span> — worst 3-px dot overlap {worst_scored:.1%} (≤70%), worst surface |ρ| {card['correlation_overlap_vs_registry']['worst_abs_surface_spearman']:.3f} (≤0.90), not a subset/superset/identical copy of any of the nine winners. No registry pixel was used as model input.</li>
+<li><span class="pass">Local numeric check only</span> — using an unauthenticated mirrored template, re-read bytes are single-band float32, EPSG:32611, 3730×3292, template transform, every one of the 12,279,160 cells finite in [0,1] (this does not diagnose the earlier error or prove portal acceptance).</li>
+<li><span class="pass">Below thresholds vs the nine audited focus files</span> — worst 3-px dot overlap {worst_scored:.1%} (≤70%), worst surface |ρ| {card['correlation_overlap_vs_registry']['worst_abs_surface_spearman']:.3f} (≤0.90), not a subset/superset/identical copy of any of the nine winners. No registry pixel was used as model input.</li>
 <li><span class="fail">Caution 1 (statistics):</span> HOLDOUT-DTI {cand_dti:.4f} [{cand_ci[0]:.4f}, {cand_ci[1]:.4f}] beats the champion-recipe control {champ_dti:.4f} [{champ_ci[0]:.4f}, {champ_ci[1]:.4f}] on point estimate, but the paired 95% CI on the difference is [{paired['ci95'][0]:+.4f}, {paired['ci95'][1]:+.4f}] (P(Δ&gt;0)={paired['prob_positive']:.1%}) — it straddles zero.</li>
-<li><span class="fail">Caution 2 (broad uniqueness):</span> {broad.get('worst_frac_candidate_dots_within_3px',0):.1%} of its dots lie within 3 px of one <em>unscored</em> research raster (<code>{broad.get('worst_peer','—')}</code>), above the 70% parallel-run line; against all <em>scored</em> submissions it is unique (above).</li>
+<li><span class="fail">Caution 2 (broad uniqueness):</span> {broad.get('worst_frac_candidate_dots_within_3px',0):.1%} of its dots lie within 3 px of one <em>unscored</em> research raster (<code>{broad.get('worst_peer','—')}</code>), above the 70% parallel-run line; this alone is sufficient to fail the stated rule.</li>
 </ul>
 <p>Preregistered run-card verdict: <code>{verdict}</code> · weekly slots used by this session: <strong>0</strong>. Procedure, for the record only: <a href="how-to-submit.html">How to submit</a>.</p>
 </div>
@@ -98,7 +98,7 @@ SHA-256: <code>{sha}</code> · dots: {card['validator_output']['canonical_13chec
 <td><strong>{cand_dti:.4f}</strong> [{cand_ci[0]:.4f}, {cand_ci[1]:.4f}]</td><td>{champ_dti:.4f} [{champ_ci[0]:.4f}, {champ_ci[1]:.4f}]</td></tr>
 <tr><td>HOLDOUT-DTI off-catalogue SGMC, prevalence-calibrated</td><td>{card['sgmc_off_catalogue']['candidate_calibrated']:.4f}</td><td>{card['sgmc_off_catalogue']['champion_calibrated']:.4f}</td></tr>
 <tr><td>Live leaderboard score</td><td>Not submitted — unknown</td><td>0.2778 (OWNER-REPORTED, no receipt)</td></tr>
-<tr><td>PROJECTION (not a score; champion-anchored ratio/delta maps)</td><td colspan="2"><strong>{proj['interval'][0]:.4f} – {proj['interval'][1]:.4f}</strong>. {proj['caveat']}</td></tr></table>
+<tr><td>Leaderboard score estimate</td><td colspan="2">Not estimable: no validated holdout-to-leaderboard transfer.</td></tr></table>
 
 <h2>Release gates</h2><table><tr><th>Gate</th><th>Result</th></tr>{gate_rows}</table>
 
@@ -131,22 +131,17 @@ spends a fresh slot to re-measure the same H19-5 backbone.</p>
 
 <table><tr><th>What to download</th><th>Estimated score</th><th>Unique vs the other listed sites?</th><th>Submit?</th></tr>
 <tr><td><a href="../downloads/{F}"><code>{F}</code></a> (this repo; AP2 lane, EXP1 OOFCTRL final field — chain arm rejected)</td>
-<td>HOLDOUT-DTI {cand_dti:.4f} vs control {champ_dti:.4f}; PROJECTION {proj['interval'][0]:.3f}–{proj['interval'][1]:.3f} (not a score)</td>
-<td><strong>Yes vs all scored</strong> (worst {worst_scored:.1%} ≤70%, |ρ|≤0.35); <strong>No</strong> under the strict broad-registry rule ({broad.get('worst_frac_candidate_dots_within_3px',0):.1%} vs one unscored Arena8a raster)</td>
+<td>HOLDOUT-DTI {cand_dti:.4f} vs control {champ_dti:.4f}; leaderboard estimate not available</td>
+<td><strong>Passes the audited focus-file subset</strong> (worst {worst_scored:.1%} ≤70%, |ρ|≤0.35); <strong>No</strong> under the strict broad-registry rule ({broad.get('worst_frac_candidate_dots_within_3px',0):.1%} vs one unscored Arena8a raster)</td>
 <td><strong>Do not submit</strong> (integrated decision; lattice overlap 99.9% under the literal rule). Session verdict: <code>{verdict}</code>, 0 slots used.</td></tr>
-<tr><td>Any of the nine historical winner files</td><td>OWNER-REPORTED 0.2449–0.2778 (unverified; no file-bound organizer receipt)</td>
+<tr><td>Any of the nine historical winner files</td><td>OWNER-REPORTED 0.2449–0.2778 (unverified; no organizer receipt)</td>
 <td><strong>No</strong> — identical/subset family relations above</td><td><strong>Do not (re)submit.</strong></td></tr></table>
 
 <h2>Why the champion scored 0.2778 — and whether &gt;0.2778 is credible</h2>
-<p>The champion is not a new detector; it is four deletions on the H19-5 backbone (121,131 → 60,069 → 44,090 → 40,199 → 37,654 dots;
-0.1922 → 0.2477 → 0.2600 → 0.2708 → 0.2778, all OWNER-REPORTED). Under DTI = TPw/(TPw+0.2·FPw+0.8·FNw) with a 300 m triangular kernel,
-thinning kept 75.9% of kernel credit while cutting false-positive mass 63.6%, and the B=2 step deleted 2,545 dots within 200 m of known
-faults whose measured credit (≈0.002–0.016/dot) is far below the break-even α·DTI ≈ 0.0556. Full derivation:
-<a href="../research/ap2-preregistration-20261027.md">preregistration §0</a> (in the GitHub repo).</p>
+<p>The archived champion dot set is a subset of the archived D2.8 raster, and the listed values are user-reported rather than receipt-verified. A thinning or collar rule could reduce prediction penalties under distance-weighted Tversky, but private truth and a file-bound receipt are unavailable; the cause of the reported ranking is unknown. See the <a href="../index.html#analysis">main analysis</a>.</p>
 <p><strong>Can we beat it?</strong> Possibly, but unproven. AP2's point estimate is higher on hide-and-recover (+6.9% relative, P(Δ&gt;0)={paired['prob_positive']:.0%})
 and lower on off-catalogue SGMC ({card['sgmc_off_catalogue']['candidate_calibrated']:.4f} vs {card['sgmc_off_catalogue']['champion_calibrated']:.4f}).
-The public leaderboard now stands at 0.4544 (OFFICIAL-SNAPSHOT, read directly this session) — the gap is a modelling gap
-(likely full-footprint learned segmentation with GPU), not an emission-geometry gap that dot post-processing can close. Only an organiser receipt can settle &gt;0.2778.</p>
+The public leaderboard snapshot was 0.4544 on 27 October 2026 (not a file-bound receipt) — the reasons for the gap are unknown; neither the leading method nor its private labels are available here. Only an organiser receipt can settle &gt;0.2778.</p>
 
 <h2>Nine-site measured table</h2>
 <table><tr><th>Site</th><th>Best-listed file (measured bytes)</th><th>Score</th><th>Dots</th><th>Distance to catalogue (px)</th><th>Family relation (measured)</th><th>AP2 within 3 px</th></tr>{fam_rows}</table>
@@ -164,7 +159,7 @@ Archived research note (not an upload instruction): <code>{note}</code></p></div
 <p>These files are available for research only. Do not upload them. For a future approved candidate, consult the <a href="../executive-summary.html">general submission guide</a>; capture a file-bound organizer receipt after any authorized submission.</p>
 <h2>Range and portal limitation</h2>
 <p>The saved zero-exterior raster was checked for finite values in [0,1]. This does not establish portal acceptance, authenticate the template, or explain the cause of the previous rejection.</p>
-<p><strong>Gate status.</strong> Format: PASS. Scientific auto-promote under the preregistered gates: <code>{verdict}</code>
+<p><strong>Gate status.</strong> Local numeric check: PASS against the owner mirror; organizer format compliance: unknown. Scientific auto-promote under the preregistered gates: <code>{verdict}</code>
 (paired-Δ 95% CI [{paired['ci95'][0]:+.4f}, {paired['ci95'][1]:+.4f}]; broad-registry overlap {broad.get('worst_frac_candidate_dots_within_3px',0):.1%} vs one unscored raster).
 Spending a slot on this file is therefore not authorised; only a future selector under a new budget, with the novelty rule adjudicated, could revisit it.</p>
 """)

@@ -1,0 +1,42 @@
+{
+  "schema": "parallel-run-review-card-v1",
+  "date_utc": "2026-10-28",
+  "hypothesis": "No new lane assigned or evaluated; H-UDSR EXP-3 from the prior session is examined as a research artifact only.",
+  "mechanism": "Prior-session updip-migrated geophysical and hydrothermal signals with dual-cover modeling and spatial dot allocation; not independently rerun here.",
+  "named_non_fault_mimic": "Lake Lahontan wave-cut paleoshoreline benches can produce linear topographic features unrelated to faults.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI, prior-session reported, not independently replayed",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "withheld_positive_instances": 22232,
+    "point": 0.09469803767149196,
+    "ci95": [0.08223995862117602, 0.10730672323299381],
+    "control_point": 0.09920232315251679,
+    "caveat": "Reported instances may include repeated draws. Fold-honest paired difference CI includes zero; this is not a leaderboard estimate."
+  },
+  "registry": {
+    "surface_correlation_all_registry": null,
+    "surface_status": "Not independently reproduced; full registry unavailable.",
+    "single_lattice_candidate_dot_overlap": 0.998548122110572,
+    "overlap_counts": [26135, 26173],
+    "literal_gate": "FAIL",
+    "evidence": "evidence/udsr_independent_recheck_20261028.json"
+  },
+  "raster_sha256": "1f2c28e9eba172fe6a4da138b98afa28a43420549e174c801a02af658ef180b9",
+  "validator_output": {
+    "scope": "Read-only recheck against owner-mirrored sample, not an authenticated organizer template.",
+    "no_nan_inside_mirror_footprint": true,
+    "values_in_0_1_inside_mirror": true,
+    "whole_array_finite_in_0_1": true,
+    "crs_shape_transform_match_mirror": true,
+    "outside_null_or_masked": false,
+    "organizer_template_match": null,
+    "portal_acceptance": null
+  },
+  "submission_name": "apartgemsdoe2-udsr-exp3-strat2reg-26173-zeros",
+  "note": "Research only; failed literal lattice gate and holdout comparison. Do not submit.",
+  "verdict": "negative",
+  "experiments_run_this_review": 0,
+  "weekly_slots_used_this_review": 0,
+  "artifact": "docs/downloads/apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif",
+  "artifact_status": "Pre-existing, research only; no new TIFF generated or approved."
+}

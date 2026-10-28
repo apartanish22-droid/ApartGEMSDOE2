@@ -87,3 +87,32 @@ This section retains the substantive, non-duplicated instructions from the proje
 ## Review update — 28 October 2026
 
 No new experiment or slot was used. The checked-out cache is absent despite the historical restore receipt; that receipt is not evidence that the data exists in a fresh checkout. The H-UDSR pages incorrectly called a lattice-failing candidate safe to submit and treated unverified historical claims as organizer-confirmed. Those pages now state **DO NOT SUBMIT**; the archived run card distinguishes sparse-registry success from the failed all-registry gate. The AP2 guide no longer instructs users to upload a failed candidate or guarantees portal acceptance. Original page versions remain in git history. The reported holdout has not been independently replayed in this review. See [executive review](docs/EXECUTIVE_REVIEW.md) for the missing explicit lane, suspect template and incomplete registry. Official [competition description](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) and [reference code](https://github.com/drivendataorg/gems-prize-reference-solution) are the primary sources, not proof of any particular receipt.
+
+## Review update · 2026-10-28
+
+**No file is approved for submission.** The H-UDSR subsite and its original run card
+previously contradicted the integrated negative decision with claims of being ready,
+unique and portal-safe. Those claims have been withdrawn; measurements of the
+488-raster *subset* are retained but the literal all-registry gate is a failure.
+The earlier content remains visible in Git history for auditability. AP2's numeric
+leaderboard projection and an unsupported claim about the user's portal error were
+also removed from its rendered site. See the [decision guide](docs/executive-summary.html)
+and [this review's run card](evidence/review_run_card_20261028.json).
+
+This session re-fetched hash-pinned research comparators and independently replayed
+the previous nine-site/AP-1 geometry audit. A separate [saved-byte recheck](evidence/udsr_independent_recheck_20261028.json)
+found 26,135 of 26,173 UDSR dots within three pixels of the lattice; it is not a
+holdout experiment. The candidate is finite in [0,1] against the owner mirror,
+but its unmasked zeros outside the mirror footprint fail the conservative reading
+of the published exterior requirement. The mirror is not organizer-authenticated.
+Neither portal acceptance nor the cause of the earlier error is established.
+Reproduce with `python scripts/fetch_audit_data.py` and `python scripts/recheck_udsr.py`.
+
+The pinned shared writer converts every positive probability into a binary dot; this
+is already reported upstream at [GEMSDOE32 #37](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/37)
+and [#51](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/51). Do not use it
+for continuous probabilities until fixed and version-pinned upstream. This session
+made no private change to that shared tool and did not run a new experiment or
+select a submission slot. Next: establish an assigned lane, authenticate competition
+inputs, restore the full shared stack and registry, resolve the literal lattice rule,
+then perform the canaries and matched holdout before any separate selector decision.

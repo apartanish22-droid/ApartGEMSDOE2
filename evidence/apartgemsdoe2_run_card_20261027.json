@@ -81,10 +81,10 @@
     "dots_nearest_sparse_raster": "GEMSDOE24:inputs/calibration/8GEMSDOE_Hedge-v2_submission.tif",
     "dots_within_3px_vs_gemsdoe32_b2": 0.46517,
     "dots_within_3px_vs_gemsdoe25_d28": 0.53154,
+    "sparse_subset_passed": true,
+    "scope_amendment": "Integrated all-registry verdict is FAIL: 99.8548% near the 13GEMSDOE lattice; the original pass covered only 488 non-lattice rasters. See evidence/udsr_merge_addendum.json.",
     "non_lattice_sparse_registry_passed": true,
-    "lattice_within_3px_fraction": 0.998548,
-    "scope_note": "Original pass applied only to sparse registry comparisons; integrated all-registry gate fails on 13GEMSDOE lattice. See evidence/udsr_merge_addendum.json.",
-    "sparse_subset_passed": true
+    "lattice_within_3px_fraction": 0.998548
   },
   "raster_sha256": "1f2c28e9eba172fe6a4da138b98afa28a43420549e174c801a02af658ef180b9",
   "zip_sha256": "25695c1b285bd7d94f9720c1b9c7a5a473c0f60f4cd91042af1172c3178c4c0d",
@@ -120,7 +120,8 @@
       "transform_match": true,
       "nodata_none_zeros_outside": true,
       "zero_on_public_catalogue": true
-    }
+    },
+    "scope_amendment": "The reported grid match is against an owner-mirrored template, not an authenticated organizer template; finite zeros outside may conflict with the published format. Portal acceptance is unknown."
   },
   "release_gate_decisions": {
     "vs_gemsdoe32_b2_static_00045": "promote",
@@ -130,5 +131,6 @@
   "submission_name": "apartgemsdoe2-udsr-exp3-strat2reg-26173-zeros",
   "note": "ApartGEMSDOE2 H-UDSR EXP-3: updip grav/RTP/MT + DualCover OOF + 2-stage 300m submod (26173d, [0,1] zeros)",
   "verdict": "negative",
-  "submission_guidance": "100% VALIDATED & GENUINELY UNIQUE [0,1] GEOTIFF (46.52% 3px overlap vs GEMSDOE32 B2; 0 NaNs; EPSG:32611). Download & submit ONLY if allocating an orthogonal non-H19-5 exploration slot; hold weekly slot if strictly requiring paired superiority over fold-honest D28_B2 (0.0992 vs 0.0947) and SGMC (0.0641 vs 0.0398)."
+  "submission_guidance": "DO NOT SUBMIT. Research only: lattice novelty rule fails, holdout did not beat the fold-honest control, and the organizer template and portal acceptance are unverified.",
+  "amendment_20261028": "Integrated decision correction; sparse-only measurements and original holdout values retained. See evidence/udsr_merge_addendum.json."
 }
