@@ -187,3 +187,90 @@ pre-registered H-PU or detection-content lane under a new budget; authenticate
 the organizer template from its authenticated surface before any upload; only a
 separate selector may spend a weekly slot, and only on a candidate passing
 every gate.
+
+---
+
+## STANDING PROJECT PROMPT (read every session)
+
+This is the consolidated operating charter for this repo. Read it at the start of
+every session; treat later explicit instructions and the competition's current
+rules as authoritative if they change.
+
+### Outcome and user experience
+
+- Review the highest scoring submissions from GEMSDOE24, 25, 27, 28, 30, 31, 32,
+  33 and 36. For every site provide an executive comparison: the actual file or
+  source, a responsibly labeled result or estimate, uniqueness status, and an
+  obvious submit / do-not-submit decision.
+- Produce an independently generated, scientifically defensible, UNIQUE
+  competition TIFF and make it easy to download ONLY when all gates pass. Never
+  rename or copy an old file and represent it as a novel submission. Do not claim
+  a hidden leaderboard score from an uncalibrated projection.
+- Investigate the owner-reported GEMSDOE32 0.2778 result; distinguish verified
+  raster geometry and metric mechanisms from unknown causation and unverified
+  scores.
+- Create a clean GitHub Pages site with an executive submission guide, a readable
+  source table and automated validation; make current status and download
+  permissions immediately obvious. Preserve transparent source timestamps; never
+  call a stale snapshot a live feed. Capture a unique name, a <= 140-character
+  note, SHA-256 and a machine-readable run card for any actual candidate.
+- Explain access, data, scientific, competition and deployment limitations. Cite
+  official verified sources; distinguish public owner claims, official public
+  leaderboard snapshots, submission-page receipts, holdout metrics, geometry
+  diagnostics and projections. No fabricated facts, scores, receipts or
+  validations.
+
+### Submission format (from the DrivenData submission page)
+
+Single-band GeoTIFF (.tif), or a .zip containing exactly one GeoTIFF. It must
+match the submission format's CRS (EPSG:32611), shape (3730 x 3292) and
+geotransform (origin 243350 / 4508550, 100 m cells). Predicted values must be in
+[0, 1] (this is the portal error "Predicted values must be in range [0, 1]").
+Outside the footprint use null/NaN per the organizer format text. Give the
+submission a unique name and a short note (<= 140 characters). DrivenData allows
+three submissions per week; the authenticated submission page is the authoritative
+current allowance.
+
+### Official sources
+
+- Competition problem, metric and format:
+  https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
+- About: https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/
+- Data (login required): https://www.drivendata.org/competitions/306/competition-doe-gems/data/
+- Leaderboard: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
+- Official rules: https://docs.nlr.gov/docs/fy26osti/96647.pdf
+- Reference solution: https://github.com/drivendataorg/gems-prize-reference-solution
+- USGS GeoDAWN survey:
+  https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and
+- DOE INGENIOUS / GDR: https://gbcge.org/current-projects/ingenious/ and
+  https://gdr.openei.org/submissions/1391
+- USGS 3DEP: https://www.usgs.gov/3d-elevation-program
+- Tversky index: https://en.wikipedia.org/wiki/Tversky_index
+
+### PARALLEL-RUN PROTOCOL
+
+1. LANE — stay inside the single assigned method paragraph. If raster rank
+   correlation with any registry raster exceeds 0.90, or more than 70% of dots
+   fall within 3 px of one registry raster's dots, log a duplicate and stop.
+   Check before placement AND on final dots.
+2. REUSE, DON'T REBUILD — use the template's cached feature stack,
+   evaluate_holdout.py and submission_writer.py. Holdout = hide-and-recover:
+   withhold whole fault segments with a buffer; derive catalogue-based features
+   only from visible faults; mask visible faults pixel-exactly; score pooled DTI
+   (alpha 0.2, beta 0.8, 300 m triangular kernel). Fix shared tools once in the
+   template, never in a private fork.
+3. LABEL EVERY NUMBER as HOLDOUT-DTI (evaluator version, withheld positives,
+   95% CI) or ORGANIZER-CONFIRMED (submission-page receipt). A projection is
+   never a score.
+4. LEAKAGE CANARY — test each feature alone on the holdout; AUC above 0.90 is
+   leakage until proven otherwise.
+5. RUN CARD — one JSON card: hypothesis, mechanism, named non-fault mimic,
+   holdout DTI + CI, correlation/overlap vs registry, raster sha256, validator
+   output (no NaN inside footprint, values in [0,1], CRS/shape/transform match),
+   submission name + note (<= 140 chars), verdict promote / negative.
+6. BUDGET — stop after 3 experiments or 2 hours. Promotion to a real slot is a
+   separate selector step within the weekly cap.
+
+### Core values
+
+Maximize P(Win) · Own the Outcome.
