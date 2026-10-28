@@ -177,6 +177,9 @@ def summarize_surface_audit(aud: dict) -> dict:
 
 
 def main() -> int:
+    from experiment_guard import require_current_protocol
+    if not require_current_protocol():
+        return 1
     t0 = time.time()
     ddir = paths.data_dir()
     wdir = paths.work_dir()

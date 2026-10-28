@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Standalone no-human-intervention validator for a submission GeoTIFF.
+"""Standalone local format validator, not scientific or slot authorization.
 
 Checks exactly what the DrivenData portal rejected with
 "Predicted values must be in range [0, 1]", plus CRS/shape/geotransform against the
@@ -24,19 +24,21 @@ import rasterio
 
 def check(path: Path, sample: Path, labels_path: Path) -> dict:
     with rasterio.open(sample) as tpl:
-        foot = np.isfinite(tpl.read(1)) & (tpl.read_masks(1) != 0)
+        sample_data = tpl.read(1, masked=True)
+        foot = ~np.ma.getmaskarray(sample_data) & np.isfinite(sample_data.data)
         t_crs, t_shape, t_tf = tpl.crs, tpl.shape, tpl.transform
     if not foot.any():
         raise ValueError("Reference footprint is empty; cannot validate a submission")
     with rasterio.open(labels_path) as ds:
-        if (ds.crs, ds.shape, ds.transform) != (t_crs, t_shape, t_tf):
+        if ds.count != 1 or (ds.crs, ds.shape, ds.transform) != (t_crs, t_shape, t_tf):
             raise ValueError("Catalogue grid does not match the reference grid")
-        if not (ds.read_masks(1)[foot] != 0).all():
-            raise ValueError("Catalogue has masked cells inside the reference footprint")
-        labels = (ds.read(1) > 0) & foot
+        label_data = ds.read(1, masked=True)
+        if (np.ma.getmaskarray(label_data) | ~np.isfinite(label_data.data))[foot].any():
+            raise ValueError("Catalogue has invalid cells inside the reference footprint")
+        labels = (label_data.data > 0) & foot
     with rasterio.open(path) as ds:
         arr = ds.read(1) if ds.count >= 1 else np.empty((0, 0))
-        valid_mask = ds.read_masks(1) != 0 if ds.count >= 1 else np.zeros((0, 0), dtype=bool)
+        valid_pixels = ds.read_masks(1) != 0 if ds.count >= 1 else np.empty((0, 0), dtype=bool)
         meta = {"driver": ds.driver, "count": ds.count, "dtype": ds.dtypes[0] if ds.count else None,
                 "crs": str(ds.crs), "shape": list(ds.shape),
                 "transform": [float(x) for x in tuple(ds.transform)[:6]], "nodata_repr": str(ds.nodata)}
@@ -46,8 +48,8 @@ def check(path: Path, sample: Path, labels_path: Path) -> dict:
     in_foot = arr[foot]
     checks = {
         "geotiff": meta["driver"] == "GTiff",
-        "in_footprint_unmasked": bool(valid_mask[foot].all()),
         "single_band": meta["count"] == 1,
+        "in_footprint_unmasked": bool(valid_pixels[foot].all()),
         "dtype_float32": meta["dtype"] == "float32",
         "crs_shape_transform_match_sample": bool(same_grid),
         "in_footprint_all_finite": bool(np.isfinite(in_foot).all()),
@@ -56,7 +58,7 @@ def check(path: Path, sample: Path, labels_path: Path) -> dict:
         "in_footprint_no_sentinel_lt_-1e30": int((in_foot < -1e30).sum()) == 0,
         "in_footprint_all_in_0_1": bool(((in_foot >= 0.0) & (in_foot <= 1.0)).all()),
         "whole_raster_all_in_0_1_or_nan_outside": bool(
-            (np.nan_to_num(arr, nan=0.0) >= 0.0).all() and (np.nan_to_num(arr, nan=0.0) <= 1.0).all()),
+            ((np.isfinite(arr) & (arr >= 0) & (arr <= 1)) | (np.isnan(arr) & ~foot)).all()),
         "zero_positive_pixels_on_catalogue": int(((arr > 0) & labels).sum()) == 0,
         "has_positive_predictions": int(((arr > 0) & foot).sum()) > 0,
     }
@@ -78,13 +80,14 @@ def main() -> int:
     ap.add_argument("files", nargs="+", type=Path)
     ap.add_argument("--data-dir", type=Path, default=None)
     a = ap.parse_args()
-    import os
-    ddir = a.data_dir or Path(os.environ.get("GEMS_DATA_DIR", "/tmp/gems_data"))
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+    from gems32.paths import data_dir
+    ddir = a.data_dir or data_dir()
     ok = True
     for f in a.files:
         r = check(f, ddir / "sample_submission.tif", ddir / "labels.tif")
         print(json.dumps(r, indent=1))
-        print("PASS" if r["pass"] else "FAIL", f.name)
+        print("LOCAL FORMAT PASS (not submission authorization)" if r["pass"] else "FAIL", f.name)
         ok = ok and r["pass"]
     return 0 if ok else 1
 
