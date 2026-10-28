@@ -1,0 +1,32 @@
+{
+  "candidate_id": "apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z",
+  "slug": "rad-scarp-offcatalogue-geothermal",
+  "prefix": "apartgemsdoe2",
+  "method": "RAD-SCARP off-catalogue geothermal fault dots",
+  "timestamp_utc": "20261028T224529Z",
+  "grid": {
+    "epsg": 32611,
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ]
+  },
+  "emitted_dots": 10457,
+  "collar_lo_px": 2.0,
+  "collar_hi_px": 12.0,
+  "rad_pct": 99.0,
+  "scarp_pct": 99.0,
+  "zeros_tif": "apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-zeros.tif",
+  "nan_tif": "apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-nan.tif",
+  "zeros_sha256": "ce5295029b2f506bed5d49b74432370ba6101d5b810797be78af7502d41828f3",
+  "nan_sha256": "87ca7f2c430250fa6eab20a8e9ab179e947f6f74c84f13647d19d976be08b954",
+  "note": "ApartGEMSDOE2 RAD-SCARP off-catalogue geothermal dots, radiometric+LiDAR, 200m-1.5km collar, [0,1]"
+}
