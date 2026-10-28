@@ -1,0 +1,22 @@
+{
+  "schema": "parallel-run-protocol-run-card-v1",
+  "branch": "arena/047dc878-apartgemsdoe2",
+  "hypothesis": null,
+  "mechanism": null,
+  "named_non_fault_mimic": null,
+  "reason": "No uniquely assigned method lane; review only, no experiment or new raster.",
+  "experiments_this_session": 0,
+  "weekly_slots_used": 0,
+  "holdout_dti": null,
+  "holdout_evaluator_version": null,
+  "withheld_positive_count": null,
+  "holdout_ci95": null,
+  "organizer_confirmed_score": null,
+  "correlation_overlap_vs_registry": null,
+  "registry_note": "Historical focus-site and AP-1 geometry replayed; full registry unavailable; no candidate this session.",
+  "raster_sha256": null,
+  "validator_output": {"no_nan_inside_footprint": null, "values_in_0_1": null, "crs_shape_transform_match": null, "reason": "No candidate or organizer-authenticated footprint/template."},
+  "submission_name": null,
+  "note": "No file approved; no slot used.",
+  "verdict": "negative"
+}

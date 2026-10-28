@@ -1,3 +1,9 @@
+> **2026-10-28 latest review: DO NOT SUBMIT.** No new TIFF or experiment: the assigned lane and complete registry are missing. Pinned owner mirrors and shared source assets were restored and the historical geometry receipts replayed, but organizer provenance and portal acceptance remain unverified. Fixed the restore script to include `existing_faults.tif`. See the [review](docs/research/review-restoration-20261028.md) and [current run card](evidence/current_review_run_card.json). Inputs are ignored scratch data; a fresh checkout must restore them again. `data/restore_receipt.json` is historical, not proof of current data.
+
+> **Current independent review:** [No file approved; diagnostic fixes and replay limitations](docs/research/independent-review-20261028.md). The archived focus-site geometry and AP-1 audits were replayed, not the holdout. See [run card](evidence/independent_review_run_card_20261028.json).
+
+> **Latest audit (2026-10-28): DO NOT SUBMIT.** The user-facing `check_submission.py` now performs a conservative, mask-aware saved-byte diagnostic. The pinned upstream validator accepts a masked in-footprint pixel; [issue #66](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/66) reports it. Prior holdout results are exploratory: the pinned evaluator does not establish the requested truth-to-visible buffer ([issue #60](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/60)). The shared registry gate also needs repair ([issue #63](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/63)). See [this review](docs/research/review-mask-and-holdout-20261028.md). No new experiment, submission, or approved TIFF was produced.
+
 > **2026-10-28 review:** No submission is approved. `data/restore_receipt.json` is historical; run `.venv/bin/python scripts/preflight.py` to check current core-file hashes. A fresh checkout does not include the cached inputs. Four legacy experiment/emission entry points now use the fail-closed guard, and the AP2 local format validator checks raster masks and label-grid alignment. See [review and next steps](docs/research/review-gates-20261028.md) and [parallel review](docs/research/review-20261028.md).
 
 # ApartGEMS · evidence before the next upload
@@ -6,12 +12,14 @@
 
 **Arena AI Core Values:** **Maximize P(Win)** · **Own the Outcome**
 
+> **Latest review (2026-10-28): [`docs/research/repo-review-20261028.md`](docs/research/repo-review-20261028.md)** — no file approved; competition data and official sources were unreachable from the sandbox (measured); the `-nan` downloads fail the `[0, 1]` rule; two `assets/` TIFFs are on the wrong grid; a validator crash on shape mismatch is fixed. Re-run `.venv/bin/python scripts/audit_downloads.py` for the technical audit.
+
 > **CURRENT DECISION: DO NOT SUBMIT (Verdict `negative` under strict solo-promotion & literal all-registry rules; `H-UDSR EXP-3` available in `docs/downloads/` as a `[0, 1]`-validated, sparse-unique research artifact).**
 > - **AP-1** ([research TIFF](docs/downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif)): **99.72% overlap** with the registered 13GEMSDOE lattice (`HOLDOUT-DTI 0.0389` vs `0.0992` control) — **do not submit**.
 > - **AP2** ([OOFCTRL TIFF](docs/downloads/apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros.tif), finding 10): paired `HOLDOUT-DTI 0.1060` (`ΔCI [−0.0015, +0.0152]`), **74.5%** overlap vs Arena8a and **99.90%** vs lattice — **do not submit** ([AP2 sub-site](docs/ap2/index.html)).
 > - **H-UDSR (`EXP-3`)** ([`apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif`](docs/downloads/apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif), finding 11): uniquely clears **all 488 non-lattice sparse registry rasters** (**`46.52%`** vs `GEMSDOE32 B2`, max sparse **`69.42% <= 70%`**, **`16.09%`** vs AP-1, **`67.00%`** vs AP2, surface `|Spearman| = 0.1189 <= 0.90`), passes all 55 single-feature leakage canaries (`max AUC = 0.7680 <= 0.90`), and guarantees **`12,279,160 / 12,279,160` finite `float32` pixels in `[0.0, 1.0]`** (`nodata=None`). Unstratified `EXP-2` beat fold-honest `D28_B2` (`0.1137` vs `0.0992`), while stratified `EXP-3` recorded **`HOLDOUT-DTI 0.0947`** (`[0.0822, 0.1073]`, `SGMC_cal 0.0398` vs `0.0641`) and overlaps the 206,895-dot `13GEMSDOE` calibration lattice at **`99.85%`** under the literal all-registry rule → **verdict `negative`** (not eligible for a slot under the current protocol). See the [H-UDSR full dashboard & figures](docs/udsr/index.html), [H-UDSR submission guide](docs/udsr/executive-summary.html), [canonical executive guide](docs/executive-summary.html), and [nine-site scorecard](docs/index.html#scorecard).
 
-> - **H-TRACE (2026-10-28, this lane)** ([`apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros.tif`](docs/downloads/apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros.tif), finding 12): pre-registered oriented 1.5/3.1 km trace-coherence gate on the Dual-Cover OOF posterior scored **`HOLDOUT-DTI 0.0893`** `[0.0737, 0.1052]` vs its own posterior-only control `0.0975` and fold-honest `D28_B2` `0.0992` (paired Δ vs control `−0.0082 [−0.0112, −0.0051]` — the gate significantly hurts), worst sparse 3-px overlap **`86.26% > 70%`**, canary pass (`0.5733`), finite `[0,1]` saved bytes → verdict **`negative`** (RESEARCH ONLY). The PR #20 **H2** fractal file is a seeded pseudo-feature demo with null holdout; its conditional-submit guidance is withdrawn (finding 13).
+> - **H-TRACE (2026-10-28, prior run; not replayed in this review)** ([`apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros.tif`](docs/downloads/apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros.tif), finding 12): pre-registered oriented 1.5/3.1 km trace-coherence gate on the Dual-Cover OOF posterior scored **`HOLDOUT-DTI 0.0893`** `[0.0737, 0.1052]` vs its own posterior-only control `0.0975` and fold-honest `D28_B2` `0.0992` (paired Δ vs control `−0.0082 [−0.0112, −0.0051]` — the gate significantly hurts), worst sparse 3-px overlap **`86.26% > 70%`**, canary pass (`0.5733`), finite `[0,1]` saved bytes → verdict **`negative`** (RESEARCH ONLY). The PR #20 **H2** fractal file is a seeded pseudo-feature demo with null holdout; its conditional-submit guidance is withdrawn (finding 13).
 
 **Latest review:** [28 October publication and gate review](docs/REVIEW_20261028.md) corrected unsafe legacy upload instructions and unverified score labels. No new candidate passed the protocol.
 
@@ -190,6 +198,8 @@ every gate.
 
 ---
 
+---
+
 ## STANDING PROJECT PROMPT (read every session)
 
 This is the consolidated operating charter for this repo. Read it at the start of
@@ -274,3 +284,35 @@ current allowance.
 ### Core values
 
 Maximize P(Win) · Own the Outcome.
+
+### Parallel-session context (merged from main, arena/00fd98de RAD-SCARP)
+
+A parallel RAD-SCARP lane was also tested: a novel lane from USGS GeoDAWN
+airborne radiometrics (K/Th/U/TC) and USGS 3DEP 1 m LiDAR scarp features,
+placing 10,457 binary dots 200 m–1.2 km off the visible catalogue with catalogue
+faults masked pixel-exactly. Format/range and uniqueness passed (max 9.0% of dots
+within 3 px of any one registry raster; |Spearman| ≈ 0.002), but holdout failed
+(HOLDEOUT-DTI 0.0038 vs fold-honest D28_B2 control 0.0992) → verdict negative /
+RESEARCH ONLY / DO NOT SUBMIT. Its file is
+`apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-zeros.tif`
+(and NaN-outside twin) on main. Untried ranked hypotheses (H–C1 BLM claims ×
+radiometrics; H–C2 INGENIOUS 2 m temperature × radiometrics; H–C3 OPERA DISP-S1
+InSAR; H–C4 USGS cross-depth conductance) are tracked on main's
+docs/research/hypotheses_untried.md.
+
+### Git workflow
+
+All work is on the tracking branch `arena/...`; open a pull request from it.
+Do not switch to, create, or push to any other branch.
+
+### Limitations
+
+Hidden test labels are expert-drawn and undisclosed; organizers decline to
+describe their sources/types/coverage. The grid template here comes from a
+hash-pinned owner mirror, not an authenticated organizer download. Competition
+training files require DrivenData login; in this sandbox they were restored from
+hash-pinned owner mirrors on GitHub via scripts/restore_data.py
+(registry/data_manifest.json) — not organizer-authenticated. Outbound sandbox
+network is limited to GitHub, PyPI, and npm; direct USGS/ASF/GDR access is not
+available here.
+

@@ -73,3 +73,29 @@ def test_valid_range_mask_matches_the_competition_rule():
     ok = grid.valid_range_mask(a)
     assert ok[0, 0] and ok[0, 1] and ok[1, 0]
     assert not ok[0, 2] and not ok[1, 1] and not ok[1, 2]
+
+
+def test_shape_mismatch_fails_cleanly_instead_of_raising(tmp_path):
+    """Regression: a 1200x1200 file on the 3292x3730 grid crashed with IndexError.
+
+    Found 2026-10-28 in assets/submission.tif. It must return a FAILED report.
+    """
+    import numpy as np
+    import rasterio
+    from rasterio.transform import from_origin
+
+    from gemsdoe32.submission import validate_submission_geotiff
+
+    tpl = tmp_path / "tpl.tif"
+    sub = tmp_path / "sub.tif"
+    with rasterio.open(tpl, "w", driver="GTiff", width=4, height=3, count=1, dtype="float32",
+                       crs="EPSG:32611", transform=from_origin(0, 300, 100, 100), nodata=np.nan) as d:
+        d.write(np.ones((3, 4), dtype="float32"), 1)
+    with rasterio.open(sub, "w", driver="GTiff", width=2, height=2, count=1, dtype="float32",
+                       crs="EPSG:32611", transform=from_origin(0, 300, 100, 100), nodata=np.nan) as d:
+        d.write(np.zeros((2, 2), dtype="float32"), 1)
+    report = validate_submission_geotiff(sub, tpl, strict_whole_array_finite=True)
+    assert report.passed is False
+    names = {c.name: c.passed for c in report.checks}
+    assert names["dimensions"] is False
+    assert names["in_footprint_range"] is False
