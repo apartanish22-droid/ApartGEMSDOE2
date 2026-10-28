@@ -34,12 +34,29 @@ def test_parallel_raster_readback_if_inputs_available():
 @pytest.mark.parametrize('script', [
     'scripts/run_experiment.py', 'scripts/run_experiment_oof.py',
     'scripts/build_final.py', 'src/generate_submission.py',
+    'scripts/run_trace_experiments.py', 'scripts/emit_trace_deliverable.py',
+    'scripts/run_udsr_experiments.py', 'scripts/emit_and_audit_deliverables.py',
+    'scripts/run_ap2.py', 'scripts/finalize_ap2.py',
+    'scripts/build_rad_scarp_submission.py',
+    'scripts/run_h_dil_grav_experiment.py', 'scripts/run_h_mag_edge_slope_experiment.py',
+    'scripts/run_h_depth_cond_experiment.py',
+    'src/generate_h2_fractal_submission.py',
 ])
 def test_archived_lane_entry_points_stop_before_running(script):
     result = subprocess.run([sys.executable, str(ROOT/script)], cwd=ROOT, capture_output=True, text=True)
     assert result.returncode != 0
     assert ('BLOCKED' in result.stderr or 'STOP: archived parallel lane' in result.stderr)
     assert 'lattice' in result.stderr.lower()
+
+
+def test_ready_preflight_cannot_unretire_an_unsafe_legacy_runner(monkeypatch):
+    import experiment_guard
+    import preflight
+    monkeypatch.setattr(preflight, 'inspect', lambda: {
+        'status': 'READY', 'new_experiment_authorized': True, 'assigned_lane': 'H-TRACE'
+    })
+    assert not experiment_guard.require_current_protocol(expected_lane='H-TRACE')
+    assert not experiment_guard.require_current_protocol()
 
 
 def test_legacy_format_check_never_authorizes(tmp_path):

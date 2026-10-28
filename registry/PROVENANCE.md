@@ -1,5 +1,15 @@
 # Provenance of vendored shared tools
 
+> **Current correction (28 October 2026):** The AP2-era density exemption in
+> IR-AP2-02 below is a historical deviation, not the current protocol. The
+> requested rule has **no lattice exemption**, and the corresponding candidates
+> fail literally. The lattice witness gives a conditional counting bound at
+> specified dot counts; it does not prove every smaller candidate fails. The
+> current review made no change to the pinned shared evaluator, registry audit,
+> writer or release gate; upstream issues #37, #41, #61, #63, #67 and
+> GEMSDOE24 #74/#77 remain open. The separate local evidence selector is not a
+> shared-tool fix and does not authorize a slot.
+
 Protocol rule 2 says reuse, don't rebuild, and never keep a private fork. This repo has no
 write access to the upstream template (different GitHub owner), so the canonical tools are
 **vendored as pinned copies** with logic unchanged, from:

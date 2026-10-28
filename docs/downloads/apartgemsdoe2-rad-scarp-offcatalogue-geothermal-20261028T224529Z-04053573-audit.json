@@ -2,9 +2,9 @@
   "candidate_id": "apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z",
   "slug": "rad-scarp-offcatalogue-geothermal",
   "content_digest8": "04053573",
-  "description": "RAD-SCARP off-catalogue geothermal fault dots (novel lane; no training labels used)",
-  "submission_note_zeros": "ApartGEMSDOE2 RAD-SCARP off-catalogue geothermal dots, radiometric+LiDAR, 200m-1.5km collar, [0,1]",
-  "submission_note_nan": "ApartGEMSDOE2 RAD-SCARP off-catalogue geothermal dots, radiometric+LiDAR, 200m-1.5km collar, [0,1]",
+  "description": "Historical RAD-SCARP research artifact; generator used a full-catalogue distance field and literal novelty fails.",
+  "submission_note_zeros": "Research only: literal registry overlap failed; do not submit.",
+  "submission_note_nan": "Research only: literal registry overlap failed; do not submit.",
   "zeros_tif": {
     "filename": "apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-zeros.tif",
     "size_bytes": 67390,
@@ -45,11 +45,11 @@
       "in_footprint_zero_inf": true,
       "in_footprint_zero_sentinel": true,
       "in_footprint_range_0_1": true,
-      "outside_footprint_compliant": true,
+      "outside_footprint_compliant": false,
       "zero_on_catalogue_leakage": true,
-      "validator_range_0_1_guaranteed": true
+      "validator_range_0_1_guaranteed": null
     },
-    "all_checks_passed": true
+    "all_checks_passed": false
   },
   "nan_tif": {
     "filename": "apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-nan.tif",
@@ -93,18 +93,19 @@
       "in_footprint_range_0_1": true,
       "outside_footprint_compliant": true,
       "zero_on_catalogue_leakage": true,
-      "validator_range_0_1_guaranteed": true
+      "validator_range_0_1_guaranteed": null,
+      "conservative_whole_array_finite_in_0_1": false
     },
-    "all_checks_passed": true
+    "all_checks_passed": false
   },
   "holdout_metrics": {
-    "catalogue_hidden_mean": 0.0,
-    "catalogue_hidden_per_quadrant": {},
-    "sgmc_prevalence_calibrated_dti": 0.0,
-    "drift_corrected_holdout_mean": 0.0,
-    "drift_corrected_per_quadrant": {},
+    "catalogue_hidden_mean": null,
+    "sgmc_prevalence_calibrated_dti": null,
     "predicted_leaderboard_dti": null,
-    "ei_drift_corrected": null,
-    "slot_decision": "HOLD-PENDING-HOLDOUT"
-  }
+    "slot_decision": "negative",
+    "explanation": "Prior numeric zeros were placeholders, not computed holdout evidence."
+  },
+  "correction_20261028": "Historical writer receipt, not organizer acceptance. Literal lattice overlap fails at 99.6557%; see ../data/rad_scarp_saved_byte_recheck_20261028.json. Earlier outside/compliance and portal guarantee claims are withdrawn.",
+  "verdict": "negative",
+  "submission_authorized": false
 }

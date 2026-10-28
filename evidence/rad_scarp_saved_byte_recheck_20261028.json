@@ -1,0 +1,178 @@
+{
+  "schema": "rad-scarp-saved-byte-recheck-v1",
+  "artifact_type": "pre-existing concurrent RAD-SCARP research raster",
+  "single_lattice_comparison": {
+    "candidate_sha256": "ce5295029b2f506bed5d49b74432370ba6101d5b810797be78af7502d41828f3",
+    "lattice_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "mirror_sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "reference_authentication": "owner mirror only; not organizer-authenticated",
+    "comparison_grid_matches_mirror": true,
+    "shape": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "driver": "GTiff",
+    "bands": 1,
+    "candidate_positive_pixels_inside_mirror": 10457,
+    "lattice_positive_pixels_inside_mirror": 206895,
+    "candidate_dots_within_3px": 10421,
+    "overlap_fraction": 0.9965573300181696,
+    "literal_overlap_gate_pass": false,
+    "candidate_finite_inside_mirror": true,
+    "candidate_unmasked_inside_mirror": true,
+    "candidate_range_inside_mirror": true,
+    "whole_array_finite_range": true,
+    "outside_null_or_masked": false,
+    "external_mask_sidecar_present": false,
+    "portal_acceptance": null,
+    "verdict": "negative",
+    "scope": "Read-only comparison against one pinned raster. No holdout rerun, full-registry pass, authenticated format validation or slot selection."
+  },
+  "saved_byte_validator": {
+    "zeros": {
+      "validator_version": "apartgemsdoe2-readback-v1",
+      "file": "apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-zeros.tif",
+      "sha256": "ce5295029b2f506bed5d49b74432370ba6101d5b810797be78af7502d41828f3",
+      "reference": {
+        "file": "mirror_sample.tif",
+        "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "provenance_claim": "pinned owner mirror; not organizer-authenticated",
+        "authentication_verified": false
+      },
+      "checks": {
+        "reference_is_geotiff": true,
+        "reference_epsg_32611": true,
+        "reference_resolution_100m": true,
+        "reference_float32": true,
+        "reference_self_contained": true,
+        "reference_zeros_on_its_valid_footprint": false,
+        "candidate_is_geotiff": true,
+        "candidate_self_contained": true,
+        "single_band": true,
+        "float32": true,
+        "shape_matches_reference": true,
+        "crs_matches_reference": true,
+        "transform_matches_reference": true,
+        "no_nonfinite_inside": true,
+        "inside_values_in_0_1": true,
+        "no_masked_inside": true,
+        "outside_null_or_masked": false,
+        "conservative_strict_whole_array_0_1": true,
+        "candidate_bytes_unchanged_during_audit": true,
+        "reference_bytes_unchanged_during_audit": true
+      },
+      "statistics": {
+        "nonfinite_inside": 0,
+        "out_of_range_inside": 0,
+        "masked_inside": 0,
+        "outside_not_null_or_masked": 7111787,
+        "whole_array_nonfinite": 0,
+        "whole_array_out_of_range_finite": 0
+      },
+      "properties": {
+        "width": 3292,
+        "height": 3730,
+        "count": 1,
+        "dtype": [
+          "float32"
+        ],
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": "None",
+        "reference_footprint_cells": 5167373
+      },
+      "format_checks_pass": false,
+      "strict_whole_array_range_diagnostic": true,
+      "strict_diagnostic_note": "The conservative project gate requires all stored cells finite in [0,1], stricter than the published null/NaN-outside allowance. Portal acceptance is unverified.",
+      "ok_to_submit": false,
+      "decision": "NOT AUTHORIZED: format checks cannot authenticate the template, establish scientific performance or uniqueness, or approve a weekly slot."
+    },
+    "nan": {
+      "validator_version": "apartgemsdoe2-readback-v1",
+      "file": "apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-nan.tif",
+      "sha256": "87ca7f2c430250fa6eab20a8e9ab179e947f6f74c84f13647d19d976be08b954",
+      "reference": {
+        "file": "mirror_sample.tif",
+        "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "provenance_claim": "pinned owner mirror; not organizer-authenticated",
+        "authentication_verified": false
+      },
+      "checks": {
+        "reference_is_geotiff": true,
+        "reference_epsg_32611": true,
+        "reference_resolution_100m": true,
+        "reference_float32": true,
+        "reference_self_contained": true,
+        "reference_zeros_on_its_valid_footprint": false,
+        "candidate_is_geotiff": true,
+        "candidate_self_contained": true,
+        "single_band": true,
+        "float32": true,
+        "shape_matches_reference": true,
+        "crs_matches_reference": true,
+        "transform_matches_reference": true,
+        "no_nonfinite_inside": true,
+        "inside_values_in_0_1": true,
+        "no_masked_inside": true,
+        "outside_null_or_masked": true,
+        "conservative_strict_whole_array_0_1": false,
+        "candidate_bytes_unchanged_during_audit": true,
+        "reference_bytes_unchanged_during_audit": true
+      },
+      "statistics": {
+        "nonfinite_inside": 0,
+        "out_of_range_inside": 0,
+        "masked_inside": 0,
+        "outside_not_null_or_masked": 0,
+        "whole_array_nonfinite": 7111787,
+        "whole_array_out_of_range_finite": 0
+      },
+      "properties": {
+        "width": 3292,
+        "height": 3730,
+        "count": 1,
+        "dtype": [
+          "float32"
+        ],
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": "nan",
+        "reference_footprint_cells": 5167373
+      },
+      "format_checks_pass": false,
+      "strict_whole_array_range_diagnostic": false,
+      "strict_diagnostic_note": "The conservative project gate requires all stored cells finite in [0,1], stricter than the published null/NaN-outside allowance. Portal acceptance is unverified.",
+      "ok_to_submit": false,
+      "decision": "NOT AUTHORIZED: format checks cannot authenticate the template, establish scientific performance or uniqueness, or approve a weekly slot."
+    }
+  },
+  "holdout_dti": null,
+  "full_registry_audit": null,
+  "organizer_template_authenticated": false,
+  "portal_acceptance": null,
+  "verdict": "negative",
+  "scope": "Read-only audit, not a holdout experiment, score, portal receipt, or complete registry assessment."
+}

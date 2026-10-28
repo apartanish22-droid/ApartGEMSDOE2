@@ -47,8 +47,9 @@ jobs:
         run: |
           pytest -q
           node --test tests/js/source_freshness.test.cjs
+          node tests/feed_ui.cjs
       - name: Verify generated site briefs are current
         run: |
           python scripts/build_site.py
           python scripts/build_scorecard.py
-          git diff --exit-code -- docs/index.html docs/executive-summary.html docs/research.html docs/sites docs/forensics docs/data/run_card.json
+          git diff --exit-code -- docs/index.html docs/executive-summary.html docs/research.html docs/sites docs/forensics docs/data/run_card.json docs/data/current_run_card.json docs/data/h2_saved_byte_recheck_20261028.json

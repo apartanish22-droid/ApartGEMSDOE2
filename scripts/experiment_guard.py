@@ -9,16 +9,21 @@ from __future__ import annotations
 import sys
 
 
-def require_current_protocol() -> bool:
+def require_current_protocol(expected_lane: str | None = None) -> bool:
+    # These historical entry points predate the mandatory pre-placement stop,
+    # final literal audit and two-hour runtime enforcement. A future READY
+    # preflight alone cannot make those runners safe. Keep them retired until
+    # they are redesigned around the canonical shared tools and current selector.
     from preflight import inspect
 
     result = inspect()
-    if result.get("status") == "READY" and result.get("new_experiment_authorized") is True:
-        return True
+    lane = f" ({expected_lane})" if expected_lane else ""
     print(
-        "BLOCKED: no new experiment or raster emission is authorized. The parallel "
-        "run reports its three-experiment budget spent; the AP-1 dots fail the "
-        "literal registry lattice rule. See evidence/preflight.json.",
+        f"BLOCKED: no new experiment or raster emission is authorized via archived "
+        f"runner{lane} (current preflight: {result.get('status', 'unknown')}). "
+        "Its prior budget was spent, and "
+        "the AP-1 dots fail the literal registry lattice rule. A new pipeline "
+        "must enforce the pre-placement, final-dot and time-budget gates.",
         file=sys.stderr,
     )
     return False

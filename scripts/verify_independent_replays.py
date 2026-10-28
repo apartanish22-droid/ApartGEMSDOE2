@@ -9,6 +9,9 @@ from __future__ import annotations
 import json
 from audit_historical import ROOT, PINS, audit as audit_history
 from audit_parallel_candidate import audit as audit_candidate
+from recheck_h2 import recheck as audit_h2
+from recheck_rad_scarp import recheck as audit_rad_scarp
+from recheck_concurrent_three import recheck as audit_concurrent_three
 
 
 def compare_receipt(name: str, actual: dict, recorded: dict) -> None:
@@ -32,6 +35,12 @@ def main() -> None:
     ):
         recorded = json.loads((ROOT / "evidence" / name).read_text())
         compare_receipt(name, result, recorded)
+    h2_recorded = json.loads((ROOT / "evidence/h2_saved_byte_recheck_20261028.json").read_text())
+    compare_receipt("h2_saved_byte_recheck_20261028.json", audit_h2(), h2_recorded)
+    rad_recorded = json.loads((ROOT / "evidence/rad_scarp_saved_byte_recheck_20261028.json").read_text())
+    compare_receipt("rad_scarp_saved_byte_recheck_20261028.json", audit_rad_scarp(), rad_recorded)
+    trio_recorded = json.loads((ROOT / "evidence/concurrent_three_saved_byte_recheck_20261028.json").read_text())
+    compare_receipt("concurrent_three_saved_byte_recheck_20261028.json", audit_concurrent_three(), trio_recorded)
     print("Read-only audit replays passed; no holdout, model or submission was run.")
 
 

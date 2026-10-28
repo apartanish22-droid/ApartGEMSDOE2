@@ -1,4 +1,7 @@
 from pathlib import Path
+import json
+import subprocess
+import sys
 
 import numpy as np
 import rasterio
@@ -78,6 +81,20 @@ def test_nonfinite_out_of_range_inside_and_masked(tmp_path):
     assert result['statistics']['out_of_range_inside'] == 2
     assert result['statistics']['masked_inside'] == 1
     assert not result['format_checks_pass']
+
+
+def test_public_cli_reads_masked_saved_bytes_and_never_authorizes(tmp_path):
+    valid, arr, t = fixtures(tmp_path)
+    arr[1, 1] = 1
+    candidate = make(tmp_path/'candidate.tif', arr, nodata=0)
+    script = Path(__file__).resolve().parents[1] / 'scripts/check_submission.py'
+    result = subprocess.run([sys.executable, str(script), str(candidate), '--template', str(t),
+                             '--strict-finite'], capture_output=True, text=True)
+    assert result.returncode == 1
+    report = json.loads(result.stdout)
+    assert not report['checks']['no_masked_inside']
+    assert report['reference']['authentication_verified'] is False
+    assert report['ok_to_submit'] is False
 
 
 def test_grid_and_band_mismatch_fails_without_crashing(tmp_path):

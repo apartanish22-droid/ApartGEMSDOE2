@@ -28,6 +28,9 @@ async function run(feed, reject = false) {
   assert.match(x['feed-grid'].children[0].children[1].textContent, /not re-audited/);
   const stale = await run({updated_utc:now, leaderboard:{status:'stale',top_public_value:'0.4544',last_success_utc:now},site_heads:{}});
   assert.match(stale['leader-age'].textContent, /^STALE/);
+  const disabled = await run({updated_utc:now, leaderboard:{status:'disabled', top_public_value:'0.4544',last_success_utc:now},site_heads:{}});
+  assert.equal(disabled['leader-value'].textContent, '—');
+  assert.match(disabled['leader-age'].textContent, /monitoring disabled/i);
   const partial = await run({updated_utc:now, leaderboard:{status:'unavailable'}, site_heads:{GEMSDOE24:{status:'ok', head_sha:'a'.repeat(40), last_success_utc:now}}});
   assert.equal(partial['leader-value'].textContent, '—');
   assert.match(partial['feed-checked'].textContent, /^1\/9/);

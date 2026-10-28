@@ -1,0 +1,59 @@
+{
+  "schema": "parallel-run-current-review-v2",
+  "date_utc": "2026-10-28",
+  "hypothesis": "RAD-SCARP: radiometric anomalies and LiDAR scarp features near visible mapped faults might identify unmapped fault strands; self-selected by a concurrent prior run, not an assigned lane.",
+  "mechanism": "Potential alteration-related radiometric highs and young scarps are intersected in a 200 m to 1.2 km off-catalogue collar; the prior implementation used a full-catalogue distance field.",
+  "named_non_fault_mimic": "Lithologic radioactivity and non-fault hydrothermal alteration; erosional scarps and landslides can mimic the proposed conjunction.",
+  "holdout_dti": null,
+  "holdout_ci95": null,
+  "holdout_status": "No valid comparable whole-segment, visible-only holdout was established or independently replayed in this review.",
+  "prior_unreproduced_diagnostic": {
+    "reported_value": 0.0037617228402477667,
+    "reported_evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "reported_withheld_positive_instances": 22232,
+    "ci95": null,
+    "qualification": "The prior card labels this HOLDOUT-DTI but supplies no CI or fold-local regeneration evidence; the generator uses the full catalogue. Treat as an unreproduced diagnostic, not a protocol-valid holdout score."
+  },
+  "correlation_and_overlap_vs_registry": {
+    "candidate_surface_spearman": null,
+    "candidate_final_dot_overlap": 0.9965573300181696,
+    "reference": "pinned 13GEMSDOE lattice; directional fraction of candidate dots within 3 pixels",
+    "candidate_dots": 10457,
+    "candidate_dots_within_3px": 10421,
+    "literal_uniqueness_pass": false,
+    "status": "One hash-verified witness is sufficient to fail; the complete registry and pre-placement surface audit remain unavailable."
+  },
+  "raster_sha256": "ce5295029b2f506bed5d49b74432370ba6101d5b810797be78af7502d41828f3",
+  "validator_output": {
+    "status": "read-only saved-byte audit against an unauthenticated owner mirror",
+    "no_nan_inside_footprint": true,
+    "values_in_0_1_inside": true,
+    "crs_shape_transform_match_mirror": true,
+    "zero_exterior_null_or_masked": false,
+    "zero_variant_strict_whole_array_finite_in_0_1": true,
+    "nan_variant_exterior_null_or_masked": true,
+    "nan_variant_strict_whole_array_finite_in_0_1": false,
+    "organizer_template_authenticated": false,
+    "portal_acceptance": null,
+    "audit": "evidence/rad_scarp_saved_byte_recheck_20261028.json"
+  },
+  "submission_name": "rad-scarp-negative-research-only",
+  "submission_name_status": "research identifier only; not an approved upload name",
+  "note": "RAD-SCARP research only: radiometric and scarp features; literal registry overlap failed. Do not submit.",
+  "verdict": "negative",
+  "slot_approved": false,
+  "experiments_run_this_review": 0,
+  "weekly_slots_used_this_review": 0,
+  "parallel_candidate": "docs/downloads/apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-zeros.tif",
+  "historical_session": "A concurrent run created this TIFF; this review only reread its existing bytes.",
+  "additional_negative_concurrent_files": {
+    "count": 3,
+    "saved_byte_audit": "evidence/concurrent_three_saved_byte_recheck_20261028.json",
+    "lattice_overlap_fractions": [
+      0.9923461798512508,
+      0.9990320212845587,
+      0.9987243421716145
+    ],
+    "slot_approved": false
+  }
+}

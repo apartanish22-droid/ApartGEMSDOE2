@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """
+RETIRED: historical research only; the final saved raster fails literal
+registry uniqueness. Preflight readiness cannot authorize this legacy runner.
+The historical whole-segment and format claims below were not established.
+
 Experiment 3 — H-DEPTH×COND (ranked hypothesis #3, research/hypotheses.md).
 
 Hypothesis: fault-related conductive fractures under thin sediment cover express
@@ -21,10 +25,8 @@ Design notes (line-by-line verifiable):
   * Emission: top-N propensity pixels as a binary mask (N = 37,654, the same dot
     budget as the GEMSDOE32 champion B2), written with the shared writer so
     catalogue pixels are zeroed and values stay in [0,1].
-  * Evaluation: canonical GEMSDOE32-HIDE-RECOVER-v3.0 holdout (whole buffered
-    fault segments withheld; catalogue gate derived from visible faults only;
-    pooled DTI alpha 0.2, beta 0.8, 300 m triangular kernel, spatial-block
-    bootstrap 95% CI) plus off-catalogue SGMC diagnostic.
+  * Evaluation: the prior v3 local evaluator has unresolved whole-segment and
+    false-positive accounting issues; results were not independently replayed.
   * Uniqueness (lane discipline): Spearman of the propensity surface vs each of
     the 9 pinned focus rasters BEFORE placement, and final-dot 3-px overlap vs
     each focus raster plus the 13GEMSDOE lattice AFTER placement. Stop if
@@ -32,7 +34,7 @@ Design notes (line-by-line verifiable):
 
 Outputs:
   evidence/h_depth_cond_exp3.json   run card (HOLDOUT-DTI + CI, canary, registry)
-  docs/downloads/*-h-depth-cond-*.tif / .zip / -audit.json   validated submission bytes
+  docs/downloads/*-h-depth-cond-*.tif / .zip / -audit.json   research-only bytes; not authorized for upload
 """
 from __future__ import annotations
 
@@ -99,6 +101,9 @@ def rank_auc(score: np.ndarray, truth: np.ndarray, valid: np.ndarray) -> float:
 
 
 def main() -> int:
+    from experiment_guard import require_current_protocol
+    if not require_current_protocol(expected_lane='H-DEPTH-COND'):
+        return 1
     ddir = data_dir()
     print(f"Data dir: {ddir}")
     with rasterio.open(ddir / "sample_submission.tif") as ds:

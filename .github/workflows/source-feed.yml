@@ -1,4 +1,4 @@
-name: Publish Pages and refresh public sources
+name: Publish Pages and refresh GitHub source heads
 on:
   push:
     branches: [main]
@@ -30,7 +30,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/wait_for_legacy_pages.py
-      - name: Refresh the deploy copy; record failures as stale
+      # GitHub HEADs only: DrivenData's terms prohibit automated website monitoring.
+      - name: Refresh GitHub HEADs; record failures as stale
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/refresh_feed.py --previous-url https://apartanish22-droid.github.io/ApartGEMSDOE2/docs/data/source_feed.json

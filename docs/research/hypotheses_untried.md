@@ -1,18 +1,29 @@
-# Untried geological hypotheses — ranked slate (2026-10-28)
+# Parallel research ideas — historical proposal list
 
-**Status: proposals only. None of H–C1 through H–C4 has been run in this repository.**  
-H–RAD (RAD-SCARP) was run this session and returned a negative result (see below). Ranking reflects qualitative expected DTI improvement versus implementation cost and data viability in this sandbox, not measured improvement. No idea is labeled viable until its exact data, coverage, and licence are verified and it clears the leakage canary (single-feature AUC ≤ 0.90) and the holdout/uniqueness gates.
+**Proposal list only, not assigned lanes or validated input products.** The
+competition target is fault traces, not confirmed geothermal vents. The
+[main ranked research slate](../../research/hypotheses.md) contains the current
+four proposals, source listings and limitations. This historical parallel list
+retains additional ideas without claiming global novelty or forecast scores.
+Exact source bytes, study-area coverage and reuse rights need verification.
 
-Lanes already run in this repo (all verdict `negative`, none approved): AP-1 dilatation, AP2 OOFCTRL, H-UDSR EXP-1/2/3 (best holdout 0.1137 vs D28_B2 control 0.0992 but fails literal uniqueness), H-TRACE (trace gate hurts holdout), H2 fractal (seeded pseudo-features, withdrawn), and H–RAD RAD-SCARP (this session). None beats the fold-honest D28_B2 control 0.0992 AND passes uniqueness.
+| Historical proposal | Physical idea and layers | Non-fault mimic / limitation | Qualitative cost |
+|---|---|---|---|
+| H-C1 · claim proximity + radiometrics | Test whether mineral-claim locations from BLM and GeoDAWN radiometric gradients spatially corroborate geological structures. | Claim locations reflect access, land rights, commodity markets and speculation, not necessarily faults; verify legal rights and both products' coverage. | Medium |
+| H-C2 · shallow temperature + radiometrics | Test spatially blocked 2 m temperature anomalies from [INGENIOUS GDR #1391](https://gdr.openei.org/submissions/1391) with GeoDAWN radiometrics. | Irrigation, measurement conditions and cultural heat; heat alone does not identify a fault. The GDR listing is public under CC BY 4.0; bytes and coverage were not checked here. | Medium |
+| H-C3 · InSAR deformation | Test NASA OPERA DISP-S1 displacement gradients near independent geological breaks. | Groundwater withdrawal, aquifer compaction and seasonal signals can mimic deformation; availability and licensing are unverified here. | High |
+| H-C4 · cross-depth conductance | Test shallow/deep USGS conductance ratios with gravity gradients. | Clay, salinity, lithology and inversion artifacts; coarse data resolution. See [USGS release](https://doi.org/10.5066/P9TWT2LU); bytes and target coverage not checked here. | Medium–high |
 
-| Rank | Hypothesis | Layers involved | Physical signature targeted | Why it could catch a fault missing from USGS/INGENIOUS | Named non-fault mimic | How it differs from anything in this repo | Data source (official, free) | Viable in sandbox | Est. cost |
-|---|---|---|---|---|---|---|---|---|---|
-| 1 | **H–C1: BLM closed geothermal/lode claim proximity × radiometric anomaly** | BLM closed lode/hydrothermal claim distance (m), GeoDAWN K/Th/U/TC radiometrics | Claim staking over blind/young geothermal systems + high radiometrics (alteration) | Claims are staked over geothermal systems; claims off the USGS/INGENIOUS fault catalogue are direct discovery targets for blind faults | Claim staking by speculation without fault control; claim density near towns/access | Not run. Uses a legal/mineral-rights proximity layer, not magnetic lineaments or ridge detectors | `external/blm_closed_claim_distance_m.tif` restored (mirror pin verified); official BLM MLRS/LR2000 public domain + USGS GeoDAWN DOI 10.5066/P93LGLVQ (CC0 per USGS page) | Yes (layers restored) | Low–Medium |
-| 2 | **H–C2: INGENIOUS 2 m shallow-temperature anomaly × radiometric anomaly** | GDR #1391 wells/springs (F2mDAB / T2m), GeoDAWN K/Th/U/TC radiometrics | Direct shallow geothermal heat anomaly corroborated by alteration radiometrics | Measures near-surface heat directly, independent of any fault map; blind vents absent from the fault catalogue are the target | Local lithologic heat, measurement artifact, irrigation, cultural heat | Not run. Uses point temperature observations, not structural lineaments or DEM curvature | `external/gdr_wellspring_in_footprint.csv` restored (CC BY 4.0, DOI 10.15121/1881483); official GDR #1391 | Yes (CSV restored) | Low |
-| 3 | **H–C3: NASA OPERA DISP-S1 InSAR line-of-sight velocity** | Sentinel-1 InSAR deformation velocity (OPERA DISP-S1) | Coherent subsidence/uplift over geothermal reservoirs | Reservoir-scale deformation can reveal blind fault control absent from every fault catalogue | Groundwater withdrawal, aquifer compaction, seasonal hydrologic signal | Not run. Deformation time-series are not in the 35-channel feature stack | Not obtainable in this sandbox (ASF not on the network allowlist); official source: https://asf.alaska.edu (NASA OPERA DISP-S1); verify coverage/licence before proposing as viable | No (needs ASF) | High |
-| 4 | **H–C4: USGS Great Basin cross-depth conductance ratio** | USGS gb_conductance_surface_tp (2–12 km) + gb_conductance_middle_crust_tp (12–20 km), gravity gradient | Stable lateral conductance-ratio contrast at a basin margin | A deep structural transition can affect conductivity without any mapped surface trace — blind to catalogue-based methods | Conductive clay/salinity contrasts, lithological transitions, inversion artifacts | Proposed in research/hypotheses.md (#3) but never run; depth-ratio contrast is distinct from a single conductivity feature | USGS ScienceBase DOI 10.5066/P9TWT2LU; bytes, alignment, and reuse rights not yet checked | No (bytes not retrieved) | Medium–High |
-| 5 | **H–RAD: GeoDAWN radiometrics × 1 m LiDAR scarp, off-catalogue collar** *(TESTED this session)* | GeoDAWN radiometrics + USGS 3DEP LiDAR scarp features | Alteration + young scarp 200 m–1.2 km off the visible catalogue | Targets young, altered fault strands adjacent to (but not on) mapped faults | Broad hydrothermal alteration; scarp-like erosion/landslides | **Run this session.** Built `apartgemsdoe2-rad-scarp-offcatalogue-geothermal-...-zeros.tif`, 10,457 dots, format/range and uniqueness PASS vs repo siblings (max 9.0% within 3 px, |Spearman| ≈ 0.002), but HOLDOUT-DTI 0.0038 [22,232 withheld] vs fold-honest control 0.0992 → **verdict negative / DO NOT SUBMIT**. All layers restored. | Yes (layers restored) | Done (negative) |
+A concurrent prior run generated the RAD-SCARP research TIFF using a
+full-catalogue distance field. Its earlier **uniqueness-pass** and
+**portal-safe** claims are withdrawn: [10,421/10,457 dots (99.66%) overlap the
+pinned lattice](../../evidence/rad_scarp_saved_byte_recheck_20261028.json).
+No valid comparable visible-only holdout with a confidence interval has been
+established. **Verdict negative; do not submit or regenerate it.**
 
-**Holdout reference (fold-honest control):** D28_B2 `HOLDOUT-DTI 0.0992` (GEMSDOE32-HIDE-RECOVER-v3.0, 22,232 withheld positives). A promoted candidate must beat this with a strictly positive paired 95% CI and clear the literal ≤70% / ≤0.90 uniqueness gates before any slot is spent.
-
-**Mandatory validation before any budget is spent:** pre-register the mechanism, confirm no catalogue leakage, build all label-dependent features from fold-visible faults only, mask visible catalogue pixels exactly, run standalone single-feature leakage canaries (AUC ≤ 0.90), compare pooled HOLDOUT-DTI + spatial-block 95% CI against the frozen best, check the complete registry before placement AND on final dots, validate saved bytes against an authenticated competition template, and route any release through a separate automated selector. A holdout win is a necessary gate, not a leaderboard score.
+Before any new experiment, obtain an explicitly assigned method lane, complete
+registry and authenticated template; resolve the shared evaluator defects;
+rebuild catalogue-derived features from visible faults per buffered holdout;
+run individual leakage canaries; audit uniqueness before placement and on saved
+dots; and use a separate automated selector. A local holdout or a geophysical
+proxy is not an organizer-confirmed score.

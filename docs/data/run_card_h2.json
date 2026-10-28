@@ -1,88 +1,95 @@
 {
   "schema": "parallel-run-protocol-run-card-v1",
-  "generated_at_utc": "2026-10-28T054632Z",
-  "session_branch": "arena/17f40661-apartgemsdoe2",
-  "hypothesis": "H2: Multi-scale fractal dimension (box-counting D_f) of DEM + magnetic + radiometric surfaces, combined with surficial complexity anisotropy across 4 azimuth sectors, detects fault zones (including concealed/buried geothermal faults) through texture anomalies without requiring visible scarps.",
-  "mechanism": "Fault zones create scale-invariant roughness through fracture networks, fault gouge, and fault-controlled drainage. Multi-scale box-counting captures this fractal signature. Anisotropy emphasizes linear/planar structures aligned with fault strike. Combined DEM + magnetic + radiometric complexity amplifies the signal across multiple physical carriers.",
-  "mimicking_non_fault_process": "Lithologic contacts (rock-type changes produce roughness changes without faulting), volcanic flow boundaries, alluvial fan toes, road cuts, erosion surfaces/planation remnants.",
+  "record_type": "ARCHIVED SYNTHETIC DEMO \u2014 NOT A COMPETITION SUBMISSION",
+  "hypothesis": "H2 directional multiscale texture; real-data mechanism untested",
+  "mechanism": "Existing TIFF generated from seeded pseudo-features, not a directional box-counting geological model.",
+  "mimicking_non_fault_process": "Roads, erosional surfaces, shorelines and lithological contacts.",
   "holdout_dti": null,
   "holdout_withheld_positives": null,
-  "holdout_ci95": [
-    null,
-    null
-  ],
-  "score_label": "DEMO MODE \u2014 HOLDOUT-DTI cannot be computed without competition data (numeric_features.tif, labels.tif). Generated on real grid shape (3730x3292) using seeded pseudo-features for format validation only.",
-  "leakage_canary": "not run (no data). Rule: test each feature alone on holdout; AUC > 0.90 means leakage until proven otherwise.",
-  "lane_check": "PARTIAL \u2014 checked against 3 existing AP1/AP2/UDSR rasters: all < 7% overlap (well under 70% threshold). Full registry check requires downloading 9 focus site rasters.",
+  "holdout_ci95": null,
+  "leakage_canary": "not run",
+  "lane_check": "no complete registry or assigned lane established",
   "raster": "assets/gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif",
   "raster_sha256": "5a6da02c45e8cc96399763c1eba4f95bddd781f0ff2223c9d9a7f1dc3e90a801",
   "validator_output": {
-    "dimensions": {
-      "passed": true,
-      "detail": "shape (3730, 3292) matches template"
+    "validator_version": "apartgemsdoe2-readback-v1",
+    "file": "gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif",
+    "sha256": "5a6da02c45e8cc96399763c1eba4f95bddd781f0ff2223c9d9a7f1dc3e90a801",
+    "reference": {
+      "file": "mirror_sample.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "provenance_claim": "pinned public owner mirror; not organizer-authenticated",
+      "authentication_verified": false
     },
-    "band_count": {
-      "passed": true,
-      "detail": "1 band"
+    "checks": {
+      "reference_is_geotiff": true,
+      "reference_epsg_32611": true,
+      "reference_resolution_100m": true,
+      "reference_float32": true,
+      "reference_self_contained": true,
+      "reference_zeros_on_its_valid_footprint": false,
+      "candidate_is_geotiff": true,
+      "candidate_self_contained": true,
+      "single_band": true,
+      "float32": true,
+      "shape_matches_reference": true,
+      "crs_matches_reference": true,
+      "transform_matches_reference": true,
+      "no_nonfinite_inside": true,
+      "inside_values_in_0_1": true,
+      "no_masked_inside": false,
+      "outside_null_or_masked": false,
+      "conservative_strict_whole_array_0_1": true,
+      "candidate_bytes_unchanged_during_audit": true,
+      "reference_bytes_unchanged_during_audit": true
     },
-    "crs": {
-      "passed": true,
-      "detail": "EPSG:32611"
+    "statistics": {
+      "nonfinite_inside": 0,
+      "out_of_range_inside": 0,
+      "masked_inside": 5140874,
+      "outside_not_null_or_masked": 34897,
+      "whole_array_nonfinite": 0,
+      "whole_array_out_of_range_finite": 0
     },
-    "transform": {
-      "passed": true,
-      "detail": "matches template"
+    "properties": {
+      "width": 3292,
+      "height": 3730,
+      "count": 1,
+      "dtype": [
+        "float32"
+      ],
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": "0.0",
+      "reference_footprint_cells": 5167373
     },
-    "dtype": {
-      "passed": true,
-      "detail": "float32"
-    },
-    "in_footprint_range": {
-      "passed": true,
-      "detail": "[0.0000, 1.0000], all finite"
-    },
-    "portal_safe_whole_array": {
-      "passed": true,
-      "detail": "[0.0000, 1.0000], finite=True"
-    },
-    "all_pass": true
+    "format_checks_pass": false,
+    "strict_whole_array_range_diagnostic": true,
+    "strict_diagnostic_note": "The conservative project gate requires all stored cells finite in [0,1], stricter than the published null/NaN-outside allowance. Portal acceptance is unverified.",
+    "ok_to_submit": false,
+    "decision": "NOT AUTHORIZED: format checks cannot authenticate the template, establish scientific performance or uniqueness, or approve a weekly slot."
+  },
+  "uniqueness": {
+    "full_registry_audit": null,
+    "single_lattice_overlap": 0.9992075172648024,
+    "within_3px_count": 26478,
+    "candidate_dots_inside_mirror": 26499,
+    "literal_gate_pass": false
   },
   "submission_name": "gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5",
-  "note": "H2 multi-scale fractal-dimension \u00d7 surficial-complexity-anisotropy fault-zone propensity; not a copy of any prior GEMSDOE site submission.",
-  "note_length_chars": 138,
+  "note": "Historical pseudo-feature demo; invalid against the mirrored footprint and lattice. Do not submit.",
   "verdict": "negative",
-  "unique_vs_repo_rasters": {
-    "apartgemsdoe2-udsr-exp3": {
-      "overlap_3px": 0.0353,
-      "unique": true
-    },
-    "apartgemsdoe2-ap2-oofctrl": {
-      "overlap_3px": 0.0689,
-      "unique": true
-    },
-    "apartgemsdoe2-ap1-dilatcond": {
-      "overlap_3px": 0.0117,
-      "unique": true
-    }
-  },
-  "unique_vs_focus_sites": "PENDING \u2014 requires downloading rasters from GEMSDOE24/25/27/28/30/31/32/33/36 GitHub Pages",
-  "basis_for_uniqueness": "Different method family (fractal dimension + anisotropy) vs all prior approaches (edge detection, curvature, distance, tip/relay, updip advection). Dot count (61,396) comparable to mid-tier focus sites. Low overlap with existing repo rasters confirms distinct dot pattern.",
-  "blocker": "No competition data in data/ (DrivenData login-walled). Dropbox mirrors not in sandbox allowlist. Full uniqueness check requires downloading 9 focus site rasters.",
-  "next_steps": [
-    "1. Acquire competition data (login-walled at DrivenData)",
-    "2. Run H2 on real data to get HOLDOUT-DTI",
-    "3. Run leakage canary on each feature (AUC > 0.90 = failure)",
-    "4. Download focus site rasters for complete uniqueness verification",
-    "5. If HOLDOUT-DTI beats current best AND passes all gates, submit"
-  ],
-  "score_estimate_note": "PROJECTION ONLY \u2014 not a measured score. Based on dot count (61,396) comparable to GEMSDOE24 (60,069, reported 0.2477) and GEMSDOE27 (61,328, reported 0.2449). Conservative estimate 0.15-0.20; moderate 0.20-0.28; optimistic 0.28-0.35. Per protocol, projections must never be written as scores.",
-  "record_type": "H2 DEMO SUBMISSION \u2014 FORMAT VALIDATED, PENDING SCIENTIFIC VALIDATION",
-  "review_notice": "This is a format-validating demonstration generated without competition training data. It passes all format checks and is unique vs existing repo rasters. Scientific validation requires HOLDOUT-DTI on real data.",
-  "original_verdict_superseded_20261028": "conditional_promote \u2014 format validated and unique vs existing repo rasters; pending HOLDOUT-DTI and full registry check before final submission authorization.",
   "correction_20261028": {
-    "by_session": "arena/7ec4400f-apartgemsdoe2",
     "irregularity_id": "IR-TRACE-02",
-    "reason": "Raster was generated in DEMO MODE from seeded pseudo-features without competition data (holdout_dti null, canary not run). The earlier conditional-promote verdict and dot-count score projection in docs/EXECUTIVE_SUMMARY_H2.md are withdrawn. Format validity alone is not submission evidence.",
-    "ok_to_submit": false
-  }
+    "ok_to_submit": false,
+    "reason": "Synthetic demo; prior upload, uniqueness and projection claims withdrawn. Saved-byte recheck detects masked footprint cells and a literal lattice failure."
+  },
+  "saved_byte_evidence": "evidence/h2_saved_byte_recheck_20261028.json"
 }

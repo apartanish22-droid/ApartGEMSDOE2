@@ -1,129 +1,25 @@
-================================================================================
-CORRECTION 2026-10-28 (IR-TRACE-02): DO NOT SUBMIT THE H2 FILE BELOW.
-H2 was generated in DEMO MODE from seeded pseudo-features without competition
-data (see docs/data/run_card_h2.json: holdout_dti null). The CONDITIONAL YES
-below is superseded -> OK TO SUBMIT: NO. Verdict corrected to negative.
-================================================================================
+GEMS SUBMISSION STATUS — 28 OCTOBER 2026
 
-================================================================================
-GEMS PRIZE COMPETITION — SUBMISSION STATUS
-================================================================================
-Generated: 2026-10-28
-Branch: arena/59f115dd-apartgemsdoe2
+DO NOT SUBMIT THE H2 FILE. OK TO SUBMIT: NO. Verdict: negative.
+No file in this directory is approved for a weekly competition slot.
 
-================================================================================
-🚨 READ THIS FIRST — NO FILE HERE IS APPROVED FOR SUBMISSION TO DRIVENDATA
-================================================================================
+H2 was generated with seeded pseudo-features, not competition data. No holdout
+or leakage canary was run. Its previously reported score projections and
+conditional upload advice are withdrawn.
 
-This directory holds UNIQUE research TIFFs generated this session from previously
-untried geological hypotheses. They pass format/range validation, but NONE passed
-the holdout gate, so none is authorized for a competition slot.
+Independent read-back against the pinned owner-mirrored sample found nodata=0,
+which masks 5,140,874 of 5,167,373 cells inside that footprint. Of 61,396 total
+positive pixels, 26,499 lie inside and 34,897 outside the mirrored footprint.
+26,478 of the 26,499 inside dots (99.92%) fall within three pixels of the
+registered lattice; this exceeds the literal 70% stop threshold. The reference
+is not authenticated by the organizer. These findings are not a portal receipt.
 
-Verdict for every file below: NOT OK TO SUBMIT. OK to download for research only.
+Archived H2 SHA-256:
+5a6da02c45e8cc96399763c1eba4f95bddd781f0ff2223c9d9a7f1dc3e90a801
 
-================================================================================
-GENERATED UNIQUE SUBMISSION TIFFS (research artifacts — DO NOT UPLOAD)
-================================================================================
+Evidence: evidence/h2_saved_byte_recheck_20261028.json
+Correction: docs/EXECUTIVE_SUMMARY_H2.md
+Current decision: docs/executive-summary.html
 
-1. FILE: gemsdoe32-h-dil-grav-dilate-x-gravlow-top37654-20261028T224631Z-3df650f1-zeros.tif
-   LOCATION: ./docs/downloads/ (with .zip and -nan.tif twins)
-   SHA-256: a16afeba152e58592b764ad9ddf766c7a256556f03a9fe7d2a52a4b2a3d196f1
-   SIZE: 60,694 bytes
-   HYPOTHESIS: H-DIL-GRAV (ranked #1, research/hypotheses.md) — geodetic dilatation
-               (training_features band 8) x isostatic gravity low (band 13), top-37,654
-               propensity pixels as a binary mask.
-   VALIDATION: PASSED (all 12 format/range gates)
-     - GeoTIFF, single band, float32, EPSG:32611, 3730x3292, 100 m,
-       origin (243350, 4508550) — matches the pinned sample_submission.tif grid.
-     - Values in [0, 1] across the whole array, zero NaNs (zeros exterior).
-     - Zero pixels on the known USGS/INGENIOUS catalogue.
-   HOLDOUT-DTI: 0.00572, 95% CI [0.00000, 0.01054]
-     evaluator GEMSDOE32-HOLDOUT-v3-visible-gated, 22,232 withheld positives.
-     Control (fold-honest D28_B2): 0.09920. Repo best (H-UDSR EXP-2): 0.11370.
-   LEAKAGE CANARY: PASSED — geod_dilaterate AUC 0.5250, -iso_grav_anom AUC 0.5411
-                   (two-sided max <= 0.90).
-   UNIQUENESS: PASSED — max final-dot 3-px overlap vs the 9 focus-site registry
-               rasters = 17.20% (GEMSDOE27); vs 13GEMSDOE lattice = 4.28%.
-               Surface rank correlation vs all registry rasters <= 0.005.
-   SUBMISSION NOTE (66 chars):
-   "Unique H-DIL-GRAV: geodetic dilatation x gravity low, top-37654 pixels,
-    not a copy of any prior GEMSDOE site submission"
-   VERDICT: negative — holdout DTI far below the fold-honest control. NOT OK
-            to submit to DrivenData.
-
-2. FILE: gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif
-   LOCATION: ./docs/downloads/ (with .zip and -nan.tif twins)
-   SHA-256: 69a76559ff303c76... (see -audit.json sidecar)
-   HYPOTHESIS: H-MAG-EDGExSLOPE (ranked #2) — magnetic horizontal gradient (band 3)
-               x detrended elevation slope (band 19), top-37,654 pixels.
-   VALIDATION: PASSED format/range gates; NOTE: emission runaway — 5,103,418 positive
-               pixels (~99% of footprint) because many pixels tie at zero propensity.
-               Not a credible competition emission.
-   HOLDOUT-DTI: 0.01182, 95% CI [0.00979, 0.01396] — below control 0.09920.
-   UNIQUENESS: PASSED — max overlap 17.29%.
-   VERDICT: negative — failed holdout gate and runaway emission. NOT OK to submit.
-
-3. FILE: gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif
-   LOCATION: ./docs/downloads/ (with .zip and -nan.tif twins)
-   SHA-256: 621334388274c4a1... (see -audit.json sidecar)
-   HYPOTHESIS: H-DEPTHxCOND (ranked #3) — conductivity (band 17) x (1 - normalized
-               depth-to-basement, band 15), top-37,654 pixels.
-   VALIDATION: PASSED format/range gates; same runaway-emission caveat as #2
-               (5,106,385 positive pixels).
-   HOLDOUT-DTI: 0.01182, 95% CI [0.00979, 0.01396] — below control 0.09920.
-   UNIQUENESS: PASSED — max overlap 17.29%.
-   VERDICT: negative — failed holdout gate and runaway emission. NOT OK to submit.
-
-================================================================================
-WHY NO FILE IS OK TO SUBMIT THIS WEEK
-================================================================================
-
-The PARALLEL-RUN PROTOCOL requires a candidate to (a) beat the fold-honest holdout
-best with a strictly positive paired interval, (b) pass leakage canaries, (c) pass
-uniqueness vs the full registry, and (d) pass saved-byte format validation, before
-a separate selector may spend a weekly slot.
-
-All three generated candidates pass (b), (c) and (d) but fail (a):
-  H-DIL-GRAV   0.00572  vs control 0.09920
-  H-MAG-EDGE   0.01182  vs control 0.09920
-  H-DEPTHxCOND 0.01182  vs control 0.09920
-
-Interpretation: the hide-and-recover holdout withholds whole catalogue fault
-segments, so it measures recovery of MAPPED faults. The three new hypotheses
-target CONCEALED faults absent from the catalogue; by design they do not recover
-mapped segments, so they score near zero on this holdout. A holdout win is a
-necessary gate under the protocol, not a leaderboard estimate. No candidate is
-promotable within the 3-experiment / 2-hour budget; negative results are
-deliverables.
-
-Run cards: evidence/h_dil_grav_exp1_*.json, evidence/h_mag_edge_slope_exp2_*.json,
-evidence/h_depth_cond_exp3_*.json.
-
-================================================================================
-HOW TO SUBMIT (when a future candidate passes every gate)
-================================================================================
-
-1. On DrivenData (https://www.drivendata.org/competitions/306/competition-doe-gems/),
-   open "New submission" on the submission page.
-2. File to submit: one single-band GeoTIFF (.tif), or a .zip containing exactly one
-   GeoTIFF. It must match the submission format's CRS (EPSG:32611), shape
-   (3730 x 3292) and geotransform (origin 243350 / 4508550, 100 m cells).
-3. Values must be finite and in [0, 1] inside the footprint (this fixes the portal
-   error "Predicted values must be in range [0, 1]"); use null/NaN outside the
-   footprint per the organizer format text (or zeros, as emitted here).
-4. Give the submission a unique name and a short note (<= 140 characters), e.g. the
-   run-card note above.
-5. Submit only if a separate selector has approved the candidate. Save the organizer
-   submission-page receipt (ORGANIZER-CONFIRMED score) together with the file SHA-256.
-   Until a receipt exists, every score is HOLDOUT-DTI or user-reported — never
-   confirmed.
-
-Historical site bests (user-reported, UNVERIFIED, no organizer receipts): GEMSDOE32
-0.2778 (highest of the nine focus sites), GEMSDOE36 0.2750, GEMSDOE28 0.2710,
-GEMSDOE31 0.2708, GEMSDOE25 0.2600, GEMSDOE30 0.2600, GEMSDOE33 0.2632, GEMSDOE24
-0.2477, GEMSDOE27 0.2449. All nine archival dot sets fail the requested uniqueness
-rule against at least one other focus-site raster — none is a valid new submission.
-
-================================================================================
-END
-================================================================================
+Other TIFFs here include synthetic demonstrations; do not upload them. No new
+geological experiment, candidate TIFF or weekly submission was made in this review.

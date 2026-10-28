@@ -16,10 +16,8 @@ labelled secondary diagnostic), ``gems32.udsr`` Dual-Cover fits, and
 No registry/champion pixel is read as a model input; scored rasters are read only
 as holdout controls and for the uniqueness measurement.
 
-This is a NEW session entry point (2026-10-28, arena/7ec4400f) under the user's
-explicit "work on the next steps from the previous sessions first" instruction;
-the legacy fail-closed guard in ``scripts/experiment_guard.py`` continues to block
-the superseded AP-1/AP2/H-UDSR entry points and is not weakened here.
+Historical H-TRACE lane from an earlier session. The current preflight must
+explicitly authorize any new run before this entry point can execute.
 """
 from __future__ import annotations
 
@@ -123,6 +121,9 @@ def canary_trace_fields(ctx, s_phys: np.ndarray, foot: np.ndarray, d_cat: np.nda
 
 
 def main() -> int:
+    from experiment_guard import require_current_protocol
+    if not require_current_protocol(expected_lane="H-TRACE"):
+        return 1
     t0 = time.time()
     ddir = paths.data_dir()
     wdir = paths.work_dir()

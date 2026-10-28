@@ -1,17 +1,12 @@
 {
   "file": "gems-h2-fractal-faultzone-20261028T054632Z-8c5870c5.tif",
-  "mode": "demo",
-  "hypothesis": "H2",
-  "note": "H2 multi-scale fractal-dimension \u00d7 surficial-complexity-anisotropy fault-zone propensity; not a copy of any prior GEMSDOE site submission.",
+  "mode": "synthetic_demo",
   "sha256": "5a6da02c45e8cc96399763c1eba4f95bddd781f0ff2223c9d9a7f1dc3e90a801",
-  "dots": 61396,
-  "footprint_px": 12279160,
-  "validation_passed": true,
-  "values_range": [
-    0.0,
-    1.0
-  ],
-  "nan_inside": false,
+  "positive_whole_raster": 61396,
+  "positive_inside_mirror": 26499,
+  "masked_inside_mirror": 5140874,
+  "validation_passed": false,
   "ok_to_submit": false,
-  "reason": "Requires HOLDOUT-DTI evaluation, leakage canary, and uniqueness check vs registry before submission authorization."
+  "reason": "Seeded pseudo-features; saved-byte mask/footprint and literal lattice tests fail against pinned owner mirrors. Portal acceptance not tested.",
+  "audit": "../data/h2_saved_byte_recheck_20261028.json"
 }

@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""Build the RAD-SCARP off-catalogue geothermal-fault submission (novel lane).
+"""Retired RAD-SCARP research runner; it cannot authorize another experiment.
 
-Single method lane (PARALLEL-RUN Protocol #1):
+The prior self-selected method (not an explicitly assigned lane) was:
   Off-catalogue geothermal fault detection using two overlooked, free, official
   data layers -- USGS GeoDAWN airborne radiometrics (K/Th/U/TC, DOI
   10.5066/P93LGLVQ) and USGS 3DEP 1 m LiDAR-derived scaper features -- placed
   in the 2-15 px (200 m - 1.5 km) off-catalogue collar around VISIBLE catalogue
-  faults. Catalogue faults are masked pixel-exactly to 0. Thresholds are
-  unsupervised percentiles (no competition training labels are used), so there
-  is no label leakage. Emits a portal-safe single-band float32 GeoTIFF
-  (0 outside the footprint, all cells in [0, 1], nodata=None) plus a -nan.tif
-  twin and a JSON sidecar, via the shared `gems32.submission` writer.
+  faults. The code below uses the full catalogue for its distance field. An
+  unsupervised threshold does not establish leakage-free fold evaluation.
+  The old whole-array [0,1] diagnostic did not establish portal acceptance.
+  A read-only recheck finds 99.66% overlap with the pinned lattice, so the
+  literal uniqueness rule fails. Do not generate or submit these artifacts.
 
 Geological hypothesis: young, radiometrically altered fault strands that are
 absent from the USGS/INGENIOUS catalogue (hence off-catalogue) but lie adjacent
@@ -19,7 +19,8 @@ marks hydrothermal alteration; LiDAR scarps mark young, surface-breaking
 faulting. Neither layer is in the H19-5/GEM32-B2 magnetic-lineament lineage,
 so the raster is expected to be byte-unique and geometrically distinct.
 
-Outputs are written to docs/downloads/ with the prefix apartgemsdoe2.
+The prior run wrote research artifacts to docs/downloads/. This entry point is
+retired because it lacks required pre-placement, fold-local and time gates.
 """
 
 from __future__ import annotations
@@ -49,7 +50,7 @@ COLLAR_LO_PX = 2.0              # 200 m: just outside masked catalogue line
 COLLAR_HI_PX = 12.0             # 1.2 km: within kernel reach of hidden parallel strands
 SLUG = "rad-scarp-offcatalogue-geothermal"
 PREFIX = "apartgemsdoe2"
-NOTE = "ApartGEMSDOE2 RAD-SCARP off-catalogue geothermal dots, radiometric+LiDAR, 200m-1.5km collar, [0,1]"
+NOTE = "RAD-SCARP research only: radiometric+LiDAR, 200m-1.2km collar; failed literal novelty gate."
 assert len(NOTE) <= 140, f"note {len(NOTE)} chars > 140"
 
 
@@ -61,6 +62,9 @@ def read_band(path: Path, band: int, foot: np.ndarray) -> np.ndarray:
 
 
 def main() -> int:
+    from experiment_guard import require_current_protocol
+    if not require_current_protocol(expected_lane='RAD-SCARP'):
+        return 1
     ddir = data_dir()
     sample_tif = ddir / "sample_submission.tif"
     labels_tif = ddir / "labels.tif"
@@ -100,7 +104,7 @@ def main() -> int:
     ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     candidate_meta = {
         "candidate_id": f"{PREFIX}-{SLUG}-{ts}",
-        "description": "RAD-SCARP off-catalogue geothermal fault dots (novel lane; no training labels used)",
+        "description": "RAD-SCARP research dots; full-catalogue-derived collar, not a validated fold-local holdout",
         "submission_note_zeros": NOTE,
         "submission_note_nan": NOTE,
         "catalogue_hidden_mean": 0.0,

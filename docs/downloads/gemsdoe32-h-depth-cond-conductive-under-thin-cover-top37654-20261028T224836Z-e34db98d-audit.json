@@ -3,8 +3,8 @@
   "slug": "h-depth-cond-conductive-under-thin-cover-top37654",
   "content_digest8": "e34db98d",
   "description": "Experiment 1: H-DIL-GRAV geodetic dilatation x isostatic gravity low propensity.",
-  "submission_note_zeros": "H-DEPTHxCOND conductive under thin cover top-37654px; not a copy of prior GEMSDOE submissions",
-  "submission_note_nan": "H-DEPTHxCOND conductive under thin cover top-37654px; not a copy of prior GEMSDOE submissions",
+  "submission_note_zeros": "Research only: literal registry overlap failed; do not submit.",
+  "submission_note_nan": "Research only: literal registry overlap failed; do not submit.",
   "zeros_tif": {
     "filename": "gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
     "size_bytes": 323939,
@@ -45,11 +45,11 @@
       "in_footprint_zero_inf": true,
       "in_footprint_zero_sentinel": true,
       "in_footprint_range_0_1": true,
-      "outside_footprint_compliant": true,
+      "outside_footprint_compliant": false,
       "zero_on_catalogue_leakage": true,
-      "validator_range_0_1_guaranteed": true
+      "validator_range_0_1_guaranteed": null
     },
-    "all_checks_passed": true
+    "all_checks_passed": false
   },
   "nan_tif": {
     "filename": "gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
@@ -93,18 +93,19 @@
       "in_footprint_range_0_1": true,
       "outside_footprint_compliant": true,
       "zero_on_catalogue_leakage": true,
-      "validator_range_0_1_guaranteed": true
+      "validator_range_0_1_guaranteed": null,
+      "conservative_whole_array_finite_in_0_1": false
     },
-    "all_checks_passed": true
+    "all_checks_passed": false
   },
   "holdout_metrics": {
     "catalogue_hidden_mean": null,
-    "catalogue_hidden_per_quadrant": {},
-    "sgmc_prevalence_calibrated_dti": 0.012304278972742498,
-    "drift_corrected_holdout_mean": null,
-    "drift_corrected_per_quadrant": {},
+    "sgmc_prevalence_calibrated_dti": null,
     "predicted_leaderboard_dti": null,
-    "ei_drift_corrected": null,
-    "slot_decision": "HOLD-PENDING-SELECTOR"
-  }
+    "slot_decision": "negative",
+    "explanation": "Prior placeholders and static diagnostics are not an established protocol holdout."
+  },
+  "correction_20261028": "Historical writer receipt only; saved-byte lattice overlap exceeds 70%. Earlier uniqueness, outside-compliance, and portal-guarantee claims are withdrawn. See ../data/concurrent_three_saved_byte_recheck_20261028.json.",
+  "verdict": "negative",
+  "submission_authorized": false
 }
