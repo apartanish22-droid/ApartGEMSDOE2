@@ -53,6 +53,8 @@ def inspect() -> dict:
         "No explicitly user-assigned method lane or assignment source was identified; the parallel AP-1 lane was self-selected.",
         "The shared parallel-run registry is not complete; no all-registry surface/final-dot pass is possible.",
         "The parallel holdout/control comparison was not independently replayed and uses different refill rules.",
+        "The pinned holdout applies the collar to quadrants, not a truth-to-visible-fault buffer; whole segments are not established (upstream GEMSDOE32 issue #60).",
+        "The shared registry audit may pass missing files or non-literal overlap (upstream GEMSDOE32 issue #63); do not rely on its pass flag.",
         "The cached prepared feature stack and metadata are absent or not verified here.",
         "At the historical champion's dot count, the literal registry lattice bound exceeds the 70% overlap limit.",
         "This review ran no experiment; the parallel AP-1 research TIFF fails the literal lattice gate and has no selector approval.",
