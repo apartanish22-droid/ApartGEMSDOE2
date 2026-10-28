@@ -83,9 +83,24 @@ def validate_submission_geotiff(
         checks.append(CheckResult("dtype", dtype_ok, f"dtype: {sub.dtypes[0]} (expected float32)"))
 
         # Check 6: In-footprint values in [0, 1]
+        # Shape is checked above; if it differs, the footprint mask cannot index the
+        # submission. Fail cleanly instead of raising IndexError (regression-tested).
+        sub_data = sub.read(1)
+        if sub_data.shape != (tpl.height, tpl.width):
+            checks.append(
+                CheckResult(
+                    "in_footprint_range",
+                    False,
+                    f"skipped: submission shape {sub_data.shape} != template {(tpl.height, tpl.width)}",
+                )
+            )
+            if strict_whole_array_finite:
+                checks.append(CheckResult("portal_safe_whole_array", False, "skipped: shape mismatch"))
+            all_passed = all(c.passed for c in checks)
+            return ValidationReport(file_path=str(geotiff_path), sha256=sha256_hash, passed=all_passed, checks=checks)
+
         tpl_data = tpl.read(1)
         valid_footprint = np.isfinite(tpl_data)
-        sub_data = sub.read(1)
 
         inside_vals = sub_data[valid_footprint]
         finite_inside = np.all(np.isfinite(inside_vals))
