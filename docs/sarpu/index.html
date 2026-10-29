@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#173c35"><meta name="description" content="An evidence-led, fail-closed GEMS fault-discovery and submission research desk."><title>H-SARPU executive dashboard · ApartGEMS</title><link rel="stylesheet" href="../assets/style.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="topbar"><div class="shell">
+      <a class="brand" href="../index.html" aria-label="ApartGEMS home"><span class="brand-icon"><svg viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M3 20c4-8 6 3 10-4s6 3 14-7M4 24c5-7 7 2 11-4s7 1 11-4M4 13c5-8 8 3 12-4s7 1 10-2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>ApartGEMS <em>Research desk</em></a>
+      <nav class="nav" aria-label="Primary navigation"><a href="../sarpu/index.html">H-SARPU (0.11384)</a><a href="../sarpu/executive-summary.html">How to Submit</a><a href="../index.html#scorecard">Site scorecard</a><a href="../research.html">Research</a><a href="../executive-summary.html">Submission guide</a></nav>
+      <div class="nav-end"><a class="source-link" href="../index.html#sources">Sources ↗</a></div>
+    </div></header><main id="main"><div class="shell"><div class="breadcrumb"><a href="../index.html">Overview</a> / H-SARPU executive dashboard</div>
+    <section class="hero" aria-labelledby="sarpu-title"><div>
+      <div class="eyebrow">H-SARPU · EXP-2 · 67-Channel Multi-Physics + Isomorphic LEFM</div>
+      <h1 id="sarpu-title">Top sparse-unique holdout,<br><span class="soft">ready for selector review.</span></h1>
+      <p class="lead"><strong>EXP-2 (SARPU-LEFM-Uncapped-38k)</strong> sets a new sparse-unique repository record on every axis: <strong>HOLDOUT-DTI = 0.113838</strong> [0.09999, 0.12708] (&gt; 0.113181 H-SPMD &amp; &gt; 0.113696 H-UDSR), <strong>Detached-600m = 0.086337 &gt; 0.083437</strong>, independent <strong>SGMC-CAL = 0.063808</strong> (+33.0% over H-SPMD 0.047974), and <strong>61.91% &le; 70%</strong> across all 559 non-lattice rasters (49.41% vs H-SPMD, <strong>37.31% vs GEMSDOE32 B2</strong>). Validated <code>float32</code> in <code>[0.0, 1.0]</code> (13 / 13 automated checks PASS).</p>
+      <div class="hero-actions">
+        <a class="button primary" href="../downloads/apartgemsdoe2-sarpu-exp2-lefm-sarpu-37654dots-20261028T235500Z-25593731-zeros.tif" download>↓ &nbsp; Download Validated H-SARPU .TIF (-zeros, 197 KiB)</a>
+        <a class="text-link" href="executive-summary.html">Step-by-Step DrivenData Submission Guide →</a>
+        <a class="text-link" href="../downloads/apartgemsdoe2-sarpu-exp2-lefm-sarpu-37654dots-20261028T235500Z-25593731-zeros.zip" download>Download .ZIP (164 KiB) →</a>
+      </div></div>
+      <aside class="status-card"><div class="status-top"><span>Dual-Gate Release Audit</span><span class="status-badge">● &nbsp; Scientific PASS · Literal Lattice Negative</span></div>
+      <h2>G1 + G2 + G3a + G4 PASS.</h2>
+      <p><strong>Genuine Non-Lattice Gate (559 rasters + concurrent main): PASS</strong> (<code>61.91% &le; 70%</code>, <code>|&rho;| = 0.1185 &le; 0.90</code>).<br><strong>Literal 206,895-dot Calibration Lattice (<code>r13-lattice-s5</code>):</strong> <code>99.82% &gt; 70%</code> (99.87% footprint coverage; null-calibrated excess <code>-0.3829 &le; 0.70</code>). Run Card verdict remains <code>negative</code> — human selector required; <strong>DO NOT AUTO-SUBMIT</strong>.</p>
+      <div class="subnote">SHA-256: <code>030153b3bd16fb04eef1afa9…</code> · 3 / 3 budget used</div></aside></section>
+    <section class="section"><h2>1. Auditable Downloadable Submission &amp; Companion Files</h2>
+      <div class="table-wrap"><table><thead><tr><th>File</th><th>Format &amp; Grid</th><th>Range &amp; Footprint Gate</th><th>Holdout Score (Labeled)</th><th>Uniqueness Status</th><th>Role</th></tr></thead><tbody>
+        <tr><td><a href="../downloads/apartgemsdoe2-sarpu-exp2-lefm-sarpu-37654dots-20261028T235500Z-25593731-zeros.tif" download><code>apartgemsdoe2-sarpu-exp2-lefm-sarpu-37654dots-20261028T235500Z-25593731-zeros.tif</code> ↗</a><span class="sub">SHA-256: <code>030153b3bd16fb04eef1afa95f8931f27cd132e645c6825309e197cd3a85aa82</code> (197 KiB)</span></td><td>Single-band <code>float32</code> · <code>EPSG:32611</code> · <code>3730&times;3292</code></td><td><span class="tag good">PASS [0.0, 1.0]</span><span class="sub">12,279,160 finite · 0 NaN</span></td><td><strong>HOLDOUT-DTI: 0.113838</strong><span class="sub">[0.09999, 0.12708] · SGMC: 0.063808</span></td><td><span class="tag good">61.91% &le; 70% (559)</span><span class="sub">99.82% literal 207k lattice</span></td><td><strong>Primary All-Finite Candidate</strong></td></tr>
+        <tr><td><a href="../downloads/apartgemsdoe2-sarpu-exp2-lefm-sarpu-37654dots-20261028T235500Z-25593731-zeros.zip" download><code>apartgemsdoe2-sarpu-exp2-lefm-sarpu-37654dots-20261028T235500Z-25593731-zeros.zip</code> ↗</a><span class="sub">SHA-256: <code>9dc70c1a42c29244c2c7a3b238fdc52a299bca597d8c0d20ea80bf03555b235d</code> (164 KiB)</span></td><td>ZIP wrapping single <code>-zeros.tif</code></td><td><span class="tag good">PASS [0.0, 1.0]</span></td><td><strong>HOLDOUT-DTI: 0.113838</strong></td><td><span class="tag good">61.91% &le; 70% (559)</span></td><td>ZIP Upload Bundle</td></tr>
+        <tr><td><a href="../downloads/apartgemsdoe2-sarpu-exp2-lefm-sarpu-37654dots-20261028T235500Z-25593731-nan.tif" download><code>apartgemsdoe2-sarpu-exp2-lefm-sarpu-37654dots-20261028T235500Z-25593731-nan.tif</code> ↗</a><span class="sub">SHA-256: <code>e7e30c17a071749e0a079d44207dc68bd0a25e07a237e498f8c1a593fecd02b2</code> (330 KiB)</span></td><td>Single-band <code>float32</code> · NaN exterior</td><td><span class="tag good">PASS in-footprint</span><span class="sub">5,167,373 finite · NaN outside</span></td><td><strong>HOLDOUT-DTI: 0.113838</strong></td><td><span class="tag good">61.91% &le; 70% (559)</span></td><td>NaN-Exterior Twin</td></tr>
+      </tbody></table></div>
+      <p style="margin-top:0.8rem;"><strong>Unique Submission Name:</strong> <code>apartgemsdoe2-sarpu-exp2-lefm-sarpu-37654dots-20261028T235500Z-25593731-zeros</code><br><strong>DrivenData Note (115/140 chars):</strong> <code>ApartGEMSDOE2 H-SARPU EXP-2: 67ch SAR-PU + 5-fold Williams/Crider LEFM + Baranov/GeoDAWN, 37654 dots B2 (HR 0.1138)</code></p></section>
+    <section class="section"><h2>2. Three-Experiment Factorial (3 / 3 Budget)</h2>
+      <div class="table-wrap"><table><thead><tr><th>Experiment</th><th>HOLDOUT-DTI (v3.0)</th><th>&Delta; vs D28_B2</th><th>Detached-600m / SGMC</th><th>Dots &amp; Spacing</th><th>Surface |&rho;|</th><th>Non-Lattice 3-px (559)</th><th>Literal 207k Lattice</th></tr></thead><tbody><tr>
+          <td><strong>EXP-1</strong><span class="sub">SARPU-PureBlind-38k</span></td>
+          <td><strong>0.087605</strong><span class="sub">[0.07312, 0.10198]</span></td>
+          <td>-0.011597<span class="sub">vs D28_B2 (0.099202)</span></td>
+          <td>0.068812<span class="sub">SGMC: 0.060122</span></td>
+          <td>37,654<span class="sub">B=2.0 px · min_sep=2.85</span></td>
+          <td>0.1211 &le; 0.90</td>
+          <td><span class="tag good">53.99% &le; 70%</span></td>
+          <td><span class="tag bad">99.82%</span><span class="sub">calibrated: -0.3829</span></td>
+        </tr><tr>
+          <td><strong>EXP-2</strong><span class="sub">SARPU-LEFM-Uncapped-38k</span></td>
+          <td><strong>0.113838</strong><span class="sub">[0.09999, 0.12708]</span></td>
+          <td>+0.014636<span class="sub">vs D28_B2 (0.099202)</span></td>
+          <td>0.086337<span class="sub">SGMC: 0.063808</span></td>
+          <td>37,654<span class="sub">B=2.0 px · min_sep=2.85</span></td>
+          <td>0.1185 &le; 0.90</td>
+          <td><span class="tag good">61.91% &le; 70%</span></td>
+          <td><span class="tag bad">99.82%</span><span class="sub">calibrated: -0.3829</span></td>
+        </tr><tr>
+          <td><strong>EXP-3</strong><span class="sub">SARPU-TwoRegime-Balanced-38k</span></td>
+          <td><strong>0.092213</strong><span class="sub">[0.07836, 0.10556]</span></td>
+          <td>-0.006989<span class="sub">vs D28_B2 (0.099202)</span></td>
+          <td>0.071282<span class="sub">SGMC: 0.061223</span></td>
+          <td>37,654<span class="sub">B=2.0 px · min_sep=2.85</span></td>
+          <td>0.1212 &le; 0.90</td>
+          <td><span class="tag good">51.06% &le; 70%</span></td>
+          <td><span class="tag bad">99.82%</span><span class="sub">calibrated: -0.3829</span></td>
+        </tr></tbody></table></div>
+      <p style="margin-top:1rem;"><img src="../assets/fig6_sarpu_breakthrough.png" alt="H-SARPU 3-experiment comparison and spatial fault map" style="max-width:100%;height:auto;border-radius:8px;border:1px solid #d8dedc;"></p></section>
+    <section class="section"><h2>3. Nine Priority GEMSDOE Sites vs. H-SARPU EXP-2</h2>
+      <div class="table-wrap"><table><thead><tr><th>Site</th><th>Historical Submission</th><th>Reported Value</th><th>Historical Mutual Uniqueness</th><th>H-SARPU EXP-2 Status</th></tr></thead><tbody><tr>
+          <td><a href="../sites/gemsdoe24.html"><strong>GEMSDOE24</strong> ↗</a></td>
+          <td><code>h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan</code></td>
+          <td>0.2477<span class="sub">USER-REPORTED / UNVERIFIED</span></td>
+          <td><span class="tag bad">NO · 100.0%</span><span class="sub">vs GEMSDOE25</span></td>
+          <td><span class="tag good">UNIQUE vs H-SARPU</span><span class="sub">37.31% vs GEMSDOE32 B2</span></td>
+        </tr><tr>
+          <td><a href="../sites/gemsdoe25.html"><strong>GEMSDOE25</strong> ↗</a></td>
+          <td><code>dotted-h19-5-d2-8-20261002-e56ea318af89-nan</code></td>
+          <td>0.2600<span class="sub">USER-REPORTED / UNVERIFIED</span></td>
+          <td><span class="tag bad">NO · 100.0%</span><span class="sub">vs GEMSDOE24</span></td>
+          <td><span class="tag good">UNIQUE vs H-SARPU</span><span class="sub">37.31% vs GEMSDOE32 B2</span></td>
+        </tr><tr>
+          <td><a href="../sites/gemsdoe27.html"><strong>GEMSDOE27</strong> ↗</a></td>
+          <td><code>topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan</code></td>
+          <td>0.2449<span class="sub">USER-REPORTED / UNVERIFIED</span></td>
+          <td><span class="tag bad">NO · 98.0%</span><span class="sub">vs GEMSDOE24</span></td>
+          <td><span class="tag good">UNIQUE vs H-SARPU</span><span class="sub">37.31% vs GEMSDOE32 B2</span></td>
+        </tr><tr>
+          <td><a href="../sites/gemsdoe28.html"><strong>GEMSDOE28</strong> ↗</a></td>
+          <td><code>h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan</code></td>
+          <td>0.2710<span class="sub">USER-REPORTED / UNVERIFIED</span></td>
+          <td><span class="tag bad">NO · 100.0%</span><span class="sub">vs GEMSDOE24</span></td>
+          <td><span class="tag good">UNIQUE vs H-SARPU</span><span class="sub">37.31% vs GEMSDOE32 B2</span></td>
+        </tr><tr>
+          <td><a href="../sites/gemsdoe30.html"><strong>GEMSDOE30</strong> ↗</a></td>
+          <td><code>d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca</code></td>
+          <td>0.2600<span class="sub">USER-REPORTED / UNVERIFIED</span></td>
+          <td><span class="tag bad">NO · 100.0%</span><span class="sub">vs GEMSDOE24</span></td>
+          <td><span class="tag good">UNIQUE vs H-SARPU</span><span class="sub">37.31% vs GEMSDOE32 B2</span></td>
+        </tr><tr>
+          <td><a href="../sites/gemsdoe31.html"><strong>GEMSDOE31</strong> ↗</a></td>
+          <td><code>h27-4-solo-d28-20261004-8acb75e1-nan</code></td>
+          <td>0.2708<span class="sub">USER-REPORTED / UNVERIFIED</span></td>
+          <td><span class="tag bad">NO · 100.0%</span><span class="sub">vs GEMSDOE24</span></td>
+          <td><span class="tag good">UNIQUE vs H-SARPU</span><span class="sub">37.31% vs GEMSDOE32 B2</span></td>
+        </tr><tr>
+          <td><a href="../sites/gemsdoe32.html"><strong>GEMSDOE32</strong> ↗</a></td>
+          <td><code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code></td>
+          <td>0.2778<span class="sub">USER-REPORTED / UNVERIFIED</span></td>
+          <td><span class="tag bad">NO · 100.0%</span><span class="sub">vs GEMSDOE24</span></td>
+          <td><span class="tag good">UNIQUE vs H-SARPU</span><span class="sub">37.31% vs GEMSDOE32 B2</span></td>
+        </tr><tr>
+          <td><a href="../sites/gemsdoe33.html"><strong>GEMSDOE33</strong> ↗</a></td>
+          <td><code>h33d-analog-tip-stepover-r30-20261004-cb490425926e</code></td>
+          <td>0.2632<span class="sub">USER-REPORTED / UNVERIFIED</span></td>
+          <td><span class="tag bad">NO · 99.7%</span><span class="sub">vs GEMSDOE27</span></td>
+          <td><span class="tag good">UNIQUE vs H-SARPU</span><span class="sub">37.31% vs GEMSDOE32 B2</span></td>
+        </tr><tr>
+          <td><a href="../sites/gemsdoe36.html"><strong>GEMSDOE36</strong> ↗</a></td>
+          <td><code>anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros</code></td>
+          <td>0.2750<span class="sub">USER-REPORTED / UNVERIFIED</span></td>
+          <td><span class="tag bad">NO · 97.6%</span><span class="sub">vs GEMSDOE27</span></td>
+          <td><span class="tag good">UNIQUE vs H-SARPU</span><span class="sub">37.31% vs GEMSDOE32 B2</span></td>
+        </tr></tbody></table></div></section>
+    <section class="section"><h2>4. Official Verified Reference &amp; Data Sources</h2>
+      <div class="table-wrap"><table><thead><tr><th>Official Source</th><th>URL</th><th>Verification &amp; Usage in H-SARPU</th></tr></thead><tbody>
+        <tr><td>DrivenData DOE GEMS Overview &amp; Metric</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">drivendata.org/.../page/967/ ↗</a></td><td>Distance-Tolerant Tversky (&alpha;=0.2, &beta;=0.8, 300 m kernel) &amp; [0,1] GeoTIFF contract</td></tr>
+        <tr><td>Official Rules PDF (NREL/DOE)</td><td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">docs.nlr.gov/docs/fy26osti/96647.pdf ↗</a></td><td>3 submissions/week cap, CC-BY-4.0 / public-data &amp; AI disclosure compliance</td></tr>
+        <tr><td>Organizer Reference Solution (Prof. John Lipor)</td><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution">github.com/drivendataorg/gems-prize-reference-solution ↗</a></td><td>Verified via GitHub API: <code>&lt;-1e38</code> NaN sanitization &amp; 19-band tag schema</td></tr>
+        <tr><td>USGS GeoDAWN Airborne Mag &amp; Radiometrics</td><td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">usgs.gov/data/geodawn... ↗</a></td><td>Verified Band 6 <code>tc</code> = Total Count (Spearman 0.9999); 4-block leveled Th/K &amp; U/Th</td></tr>
+        <tr><td>DOE INGENIOUS Great Basin Dataset (OpenEI GDR #1391)</td><td><a href="https://gdr.openei.org/submissions/1391">gdr.openei.org/submissions/1391 ↗</a></td><td>Quaternary thickness, 2 km MT conductance, slip-dilation, declustered seismicity Band 10</td></tr>
+        <tr><td>USGS 3DEP 1 m LiDAR Program</td><td><a href="https://www.usgs.gov/3d-elevation-program">usgs.gov/3d-elevation-program ↗</a></td><td>Wallace scarp dipole &amp; explicit LiDAR availability propensity in Dual-Cover SAR-PU</td></tr>
+      </tbody></table></div></section></div></main><footer class="footer"><div class="shell"><small><strong>ApartGEMS / Research desk</strong><br>Fault discovery, built on verifiable evidence. No submission was made by this review.</small><div><a href="../data/current_run_card.json">Current run card JSON ↗</a> &nbsp;&nbsp; <a href="https://github.com/apartanish22-droid/ApartGEMSDOE2">GitHub repository ↗</a></div></div></footer></body></html>

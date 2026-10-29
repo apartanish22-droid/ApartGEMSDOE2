@@ -1,0 +1,120 @@
+{
+  "candidate_id": "apartgemsdoe2-sarpu-exp2-lefm-sarpu-37654dots",
+  "slug": "sarpu-exp2-lefm-sarpu-37654dots",
+  "content_digest8": "25593731",
+  "description": "H-SARPU EXP-2: Selected-At-Random propensity-decontaminated Dual-Cover GBDT (67/62 channels: Baranov FFT 1/|k| pseudo-gravity, GeoDAWN Th/K & U/K+U/Th, shallow TMI-TMI_up150, BLM epithermal claims, anisotropic Darcy plume, real-band H-FRACTAL-REAL, Wallace 1m LiDAR scarp dipole, and 5-fold train-test-isomorphic Williams Mode-I/II + Crider-Pollard relay LEFM) with 37,654 binary dots at min_sep=2.85 px outside a 2 px catalogue collar.",
+  "submission_note_zeros": "ApartGEMSDOE2 H-SARPU EXP-2: 67ch SAR-PU + 5-fold Williams/Crider LEFM + Baranov/GeoDAWN, 37654 dots B2 (HR 0.1138)",
+  "submission_note_nan": "ApartGEMSDOE2 H-SARPU EXP-2: 67ch SAR-PU + 5-fold Williams/Crider LEFM + Baranov/GeoDAWN, 37654 dots B2 (HR 0.1138)",
+  "zeros_tif": {
+    "filename": "apartgemsdoe2-sarpu-exp2-lefm-sarpu-37654dots-20261028T235500Z-25593731-zeros.tif",
+    "size_bytes": 202220,
+    "sha256": "030153b3bd16fb04eef1afa95f8931f27cd132e645c6825309e197cd3a85aa82",
+    "mode": "zeros",
+    "geometry_reference": "/home/user/ApartGEMSDOE2/.cache/gems_data/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "None",
+    "emitted_positive_pixels": 37654,
+    "footprint_fraction": 0.007287,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 12279160,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true
+  },
+  "nan_tif": {
+    "filename": "apartgemsdoe2-sarpu-exp2-lefm-sarpu-37654dots-20261028T235500Z-25593731-nan.tif",
+    "size_bytes": 337691,
+    "sha256": "e7e30c17a071749e0a079d44207dc68bd0a25e07a237e498f8c1a593fecd02b2",
+    "mode": "nan",
+    "geometry_reference": "/home/user/ApartGEMSDOE2/.cache/gems_data/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "nan",
+    "emitted_positive_pixels": 37654,
+    "footprint_fraction": 0.007287,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 5167373,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true
+  },
+  "holdout_metrics": {
+    "catalogue_hidden_mean": 0.11383802906074621,
+    "catalogue_hidden_per_quadrant": {
+      "NW": 0.13872942182922016,
+      "NE": 0.11313091430932917,
+      "SW": 0.08201776586894316,
+      "SE": 0.1308799177883964
+    },
+    "sgmc_prevalence_calibrated_dti": 0.0638075831078285,
+    "drift_corrected_holdout_mean": 0.11383802906074621,
+    "drift_corrected_per_quadrant": {
+      "NW": 0.13872942182922016,
+      "NE": 0.11313091430932917,
+      "SW": 0.08201776586894316,
+      "SE": 0.1308799177883964
+    },
+    "predicted_leaderboard_dti": null,
+    "ei_drift_corrected": null,
+    "slot_decision": "CALIBRATED-PASS-LITERAL-LATTICE-BLOCKED"
+  }
+}

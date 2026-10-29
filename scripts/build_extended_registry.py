@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Build an extended duplicate-gate registry manifest combining:
-  1. All 442 live focus-site rasters from GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36.
+  1. All live focus-site rasters from GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36.
   2. All historical scored competition rasters from .cache/gems_data/scored/.
-  3. Sibling parallel-run GeoTIFFs cloned in /tmp/ref_repos/{GEMSDOE70, KANLERGEMSDOE3, WBGGEMSDOE3} (if present),
+  3. Sibling parallel-run GeoTIFFs cloned in /tmp/ref_repos/* (if present),
      copied into .cache/registry_extra/ so local paths remain relative to ROOT.
 """
 from __future__ import annotations
@@ -10,6 +10,7 @@ from __future__ import annotations
 import hashlib
 import json
 import shutil
+import subprocess
 import time
 from pathlib import Path
 
@@ -58,21 +59,20 @@ def main() -> int:
                 }
             )
 
-    # 2. Sibling parallel repos in /tmp/ref_repos
+    # 2. Sibling parallel repos in /tmp/ref_repos/*
     ref_root = Path("/tmp/ref_repos")
-    sib_names = (
-        "GEMSDOE70",
-        "KANLERGEMSDOE3",
-        "WBGGEMSDOE3",
-        "ApartGEMSDOE1",
-        "ApartGEMSDOE3",
-        "GEMSDOESASS2",
-        "GEMSDOESASS3",
-    )
-    for sib in sib_names:
-        sdir = ref_root / sib
-        if not sdir.is_dir():
-            continue
+    sib_dirs = sorted(p for p in ref_root.iterdir() if p.is_dir()) if ref_root.is_dir() else []
+    for sdir in sib_dirs:
+        sib = sdir.name
+        try:
+            head_sha = subprocess.run(
+                ["git", "-C", str(sdir), "rev-parse", "HEAD"],
+                check=True,
+                capture_output=True,
+                text=True,
+            ).stdout.strip()[:12]
+        except Exception:
+            head_sha = "head_20261028"
         for p in sorted(sdir.rglob("*.tif")):
             rel = p.relative_to(sdir).as_posix()
             if rel.startswith(("data/", ".cache/")):
@@ -96,9 +96,9 @@ def main() -> int:
             entries.append(
                 {
                     "repo": sib,
-                    "ref": "head_20261027",
+                    "ref": head_sha,
                     "path": rel,
-                    "bytes": dest.stat().st_size,
+                    "bytes": p.stat().st_size,
                     "sha256": s,
                     "local": str(dest.relative_to(ROOT)),
                     "status": "ok",
@@ -116,7 +116,10 @@ def main() -> int:
     }
     out_path = ROOT / "registry" / "extended_registry_manifest.json"
     out_path.write_text(json.dumps(out_man, indent=1) + "\n")
-    print(f"Wrote {out_path}: {len(entries)} total rasters ({focus_man['n_rasters']} focus + {len(entries) - focus_man['n_rasters']} extra unique)")
+    print(
+        f"Wrote {out_path}: {len(entries)} total rasters "
+        f"({focus_man['n_rasters']} focus + {len(entries) - focus_man['n_rasters']} extra unique)"
+    )
     return 0
 
 
