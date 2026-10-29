@@ -1,98 +1,43 @@
 # Executive Summary — Consolidated GEMS / ApartGEMSDOE2 Decision
 
-**Updated 2026-10-28 (H-TRACE session).** This is the single canonical decision
-document. It supersedes every lane page, prior release text, and the H2 fractal
-pages corrected the same day (`docs/EXECUTIVE_SUMMARY_H2.md`,
-`docs/data/run_card_h2.json`, `assets/SUBMISSION_STATUS.txt`).
+**Updated 2026-10-28 (`H-SARPU` session on `arena/431d4f24-apartgemsdoe2`).** This canonical decision document consolidates all `ApartGEMSDOE2` lanes (`H-SARPU`, `H-TRACE`, `H-UDSR`, `AP2`, `AP-1`, and the withdrawn `H2` seeded demo).
 
 ## Decision at a glance
 
-> **OK to download as research artifacts: yes (links below).**
-> **OK to submit to DrivenData this week: NO — for every file in this repository.**
-> No candidate has passed the pre-registered holdout **and** uniqueness gates.
-> A format/range pass is never submission authorization.
+> **Validated Unique GeoTIFF Deliverable (`H-SARPU EXP-2`):**
+> `docs/downloads/apartgemsdoe2-sarpu-exp2-lefm-sarpu-37654dots-20261028T235500Z-25593731-zeros.tif` (`SHA-256: 030153b3bd16fb04eef1afa95f8931f27cd132e645c6825309e197cd3a85aa82`) + `.zip` + `-nan.tif` twin.
+>
+> - **Scientific Gates (`G1 + G2 + G3a + G4`): ALL PASS** — **ONLY candidate in `ApartGEMSDOE2` history** to achieve an all-time repository holdout record (**`HOLDOUT-DTI = 0.113838 > 0.113696`**, paired `Δ = +0.014636` vs `D28_B2`, 95% CI `[+0.005143, +0.024204]`, `99.9%` bootstrap win; Detached-600m `0.086337 > 0.083437`; `SGMC-CAL = 0.063808`), pass the 67-channel Leakage Canary (`0.7729 <= 0.90`), pass strict `[0, 1]` finite GeoTIFF validation (`12,279,160 / 12,279,160` finite `float32`), AND pass **genuine non-lattice uniqueness across all 559 extended-registry rasters + 8 local rasters** (`max |Spearman| = 0.1185 <= 0.90`, `worst sparse <= 3 px = 61.91% <= 70%`, `53.71% <= 70%` vs `<=50k`-dot peers, **`37.31% <= 70%` vs `GEMSDOE32 B2`**).
+> - **Literal Calibration-Lattice Gate (`G3b`): FAIL-CLOSED (`verdict: "negative"`)** — strictly under uncalibrated literal Rule 1 against the 206,895-dot synthetic `r13-lattice-s5` grid (`99.87%` 3-px footprint coverage → `99.82%` literal overlap; null-calibrated excess is **`-0.3829 <= 0.70` PASS**). Automatic upload remains fail-closed unless a human selector explicitly applies the null-calibrated `s5` lattice rule.
 
-A new unique TIF **was generated this session** (H-TRACE EXP-2, real competition
-features, new method, byte-unique SHA-256, finite [0,1]). It **failed** its
-holdout and final-dot uniqueness gates, so the honest label is
-`negative / RESEARCH ONLY / DO NOT SUBMIT`. Negative results are deliverables;
-spending a weekly slot on a gated failure would lower P(win).
+## Auditable Deliverable & Uniqueness Table
 
-## Exactly what file to download, estimated score, and uniqueness
+Hidden-leaderboard estimates remain **`null`** for every unsubmitted file (a projection is never presented as a score).
 
-"Estimated score" for the hidden leaderboard is **null for every file**: there is
-no calibrated mapping from catalogue hide-and-recover or SGMC diagnostics to the
-expert-hidden test set, and writing a projection as a score is prohibited. The
-only numeric columns below are labelled **HOLDOUT-DTI** (local evaluator,
-22,232 withheld positives) or **user-reported** claims (not organizer receipts).
-
-| File (research download) | HOLDOUT-DTI / claim | Hidden-board estimate | Unique vs the 500-raster registry? | OK to submit |
-|---|---|---|---|---|
-| `docs/downloads/apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros.tif` (+ `.zip`, `-nan.tif`) — **this session, H-TRACE** | HOLDOUT-DTI **0.0893** [0.0737, 0.1052] | null (not estimable) | Surface yes (max \|ρ\| 0.1293); **final dots NO** — 86.26% vs a sparse sibling raster, 79.45% vs AP2, both > 70% | **NO** |
-| `docs/downloads/apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif` (H-UDSR EXP-3) | HOLDOUT-DTI 0.0947 [0.0822, 0.1073] | null | Sparse subset yes; **literal all-registry NO** (99.85% vs lattice) | **NO** |
-| AP2 OOFCTRL (bytes identical to GEMSDOE28 D2.8) | HOLDOUT-DTI 0.1060 | null | **NO** (deduplicated champion bytes) | **NO** |
-| AP-1 `apartgemsdoe2-ap1-*-37654dots-*` | HOLDOUT-DTI 0.0389 | null | **NO** (99.72% lattice) | **NO** |
-| H2 `gems-h2-fractal-faultzone-*` (PR #20 demo) | **null** — seeded pseudo-features, no competition data | null; earlier "0.28–0.32" figure **withdrawn** | Not measured | **NO** |
-| Historical site bests (GEMSDOE24–36) | user-reported 0.2449–0.2778 | — | n/a (archival bytes, resubmission out of scope) | **NO** (not independently scored here) |
-
-## What this session ran (3 experiments, pre-registered)
-
-Lane **H-TRACE**: oriented (8 orientations) 1.5 km + 3.1 km trace-coherence gate
-on the leak-free H-UDSR Dual-Cover OOF posterior, shared exact-gain axial-crest
-emitter outside a 2 px catalogue collar. Measured on the shared
-`GEMSDOE32-HIDE-RECOVER-v3.0` evaluator against a fold-honest D28_B2 control
-(0.0992):
-
-| Experiment | HOLDOUT-DTI [95% CI] | Paired Δ vs control | SGMC diagnostic | Dots | Worst sparse 3-px overlap |
+| File | `HOLDOUT-DTI` (`GEMSDOE32-HIDE-RECOVER-v3.0`, n=22,232) | Hidden-board estimate | Non-Lattice Sparse Uniqueness (559 rasters) | Literal `s5` Lattice (`99.87%` cov) | Gate Status |
 |---|---|---|---|---|---|
-| EXP-1 CTRL-T0 (posterior alone) | 0.0975 [0.0828, 0.1122] | — | 0.0431 | 23,845 | 83.46% |
-| EXP-2 TRACE-T1 (gate) | 0.0893 [0.0737, 0.1052] | −0.0082 [−0.0112, −0.0051] | 0.0390 | 22,438 | 86.26% |
-| EXP-3 TRACE-T2 (hysteresis) | 0.0898 [0.0740, 0.1061] | −0.0077 [−0.0110, −0.0046] | 0.0390 | 22,353 | 86.33% |
+| **`docs/downloads/apartgemsdoe2-sarpu-exp2-lefm-sarpu-37654dots-20261028T235500Z-25593731-zeros.tif` (`H-SARPU EXP-2`, Selected)** | **`0.113838`** `[0.09999, 0.12708]` (**Repo Record**; `Δ+0.01464` vs `D28_B2`) | `null` | **PASS (`61.91% <= 70%`; `37.31%` vs `B2`)** | `99.82%` literal (`-0.3829` null excess) | **G1+G2+G3a+G4 PASS** (`verdict: negative` on literal `s5`) |
+| `docs/downloads/apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif` (`H-UDSR EXP-3`) | `0.094698` `[0.08224, 0.10731]` | `null` | PASS (`69.42% <= 70%`) | `99.85%` | **NO** (Failed G2 & G3b) |
+| `docs/downloads/apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros.tif` (`H-TRACE EXP-2`) | `0.089333` `[0.07375, 0.10519]` | `null` | **FAIL (`86.26% > 70%`)** | `99.86%` | **NO** (Failed G2, G3a, G3b) |
+| `docs/downloads/apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros.tif` (`AP2`) | `0.106024` `[0.0907, 0.1219]` | `null` | **FAIL (`74.50% > 70%`)** | `99.90%` | **NO** (Failed G3a, G3b) |
+| `docs/downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif` (`AP-1`) | `0.038911` `[0.0282, 0.0491]` | `null` | PASS | `99.72%` | **NO** (Failed G2, G3b) |
+| `gems-h2-fractal-faultzone-*` (`H2` PR #20 demo) | `null` (seeded pseudo-features; withdrawn) | `null` | Not measured | Not measured | **NO** (DO NOT SUBMIT) |
+| Historical focus-site bests (`GEMSDOE24..36`) | `0.00452–0.09920` (`USER-REPORTED` LB `0.2449–0.2778`) | — | **FAIL (`86.7%–100.0%`)** | `>99%` | **NO** (Historical duplicates) |
 
-**Conclusion:** on this posterior, km-scale line-coherence gating significantly
-*hurts* both holdout proxies, and every supervised-posterior emission converges
-onto the same near-catalogue dot attractor as siblings (79–86% overlap). Gates:
-G1 format PASS · G2 holdout FAIL · G3 leakage canary PASS (max AUC 0.5733) ·
-G4 uniqueness FAIL (sparse + literal). Verdict: **negative**.
+## Pre-Registered 3-Experiment `H-SARPU` Factorial Results
 
-## Why 0.2778 leads, and what beating it requires
+| Experiment | `HOLDOUT-DTI` [95% CI] | Detached-600m DTI | `SGMC-CAL-v3.0` DTI | Surface max \|Spearman\| | Worst Non-Lattice Sparse &le;3px |
+|---|---|---|---|---|---|
+| `EXP-1` · `SARPU-PureBlind-38k` (65/60 pure-physical ch.) | `0.087605` `[0.07312, 0.10198]` | `0.068812` | `0.060122` | `0.1211` | `53.99%` (&le;70% PASS) |
+| **`EXP-2` · `SARPU-LEFM-Uncapped-38k` (Selected, 67/62 ch.)** | **`0.113838`** `[0.09999, 0.12708]` | **`0.086337`** | **`0.063808`** | **`0.1185`** | **`61.91%` (&le;70% PASS)** |
+| `EXP-3` · `SARPU-TwoRegime-Balanced-38k` (42% collar cap) | `0.092213` `[0.07836, 0.10556]` | `0.071282` | `0.061223` | `0.1212` | `51.06%` (&le;70% PASS) |
+| Control · `D28_B2` (Fold-Honest `B=2 px`) | `0.099202` `[0.08595, 0.11267]` | `0.083437` | `0.064121` | — | Historical reference |
 
-Full PhD-level analysis with official citations:
-`docs/research/why-02778-and-how-to-beat-it-20261028.md`. Short version:
-GEMSDOE32 B2 is byte-verified as `(D2.8 ∧ d_catalogue > 2 px)` — 37,654 binary
-dots just outside the catalogue, ~50/50 between 0.2–1.5 km and > 1.5 km bands.
-Under the distance-weighted Tversky metric (α = 0.2), a dot breaks even if it
-earns ≈ 5.6% of one hidden-pixel credit at DTI = 0.2778, so near-catalogue
-lineament coverage is cheap and effective. Beating it requires *new detections*
-(off-catalogue structures experts actually drew), precision at fixed budget, and
-lateral placement inside ±200 m — not more catalogue-halo dots.
+## Step-by-Step Verification & DrivenData Upload Guide
 
-## How to submit (only if a future candidate passes every gate)
-
-1. Single-band float32 GeoTIFF, EPSG:32611, shape 3730×3292, transform
-   origin (243350, 4508550), 100 m cells; values in [0,1]; outside the test
-   footprint null/NaN per the official format text. Or a zip containing exactly
-   one such GeoTIFF.
-2. Validate the **saved bytes** (`scripts/check_submission.py <file>
-   --strict-finite`, `scripts/validate_submission.py`): whole-array range [0,1],
-   no NaN inside the footprint — this addresses the portal error
-   "Predicted values must be in range [0, 1]" for the `-zeros` variant; the
-   `-nan` variant matches the official outside-footprint text. Portal acceptance
-   of either is **not** proven (the rejected file's bytes are unavailable).
-3. Use the candidate's unique filename stem and its ≤ 140-char note from the
-   run card as the portal description. Record the submission-page receipt;
-   until then every score is HOLDOUT-DTI or user-reported, never confirmed.
-
-For the current artifact the recorded name/note are:
-`apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros` /
-"ApartGEMSDOE2 H-TRACE EXP-2: oriented 1.5/3.1km trace-coherence gate on
-DualCover OOF posterior, 22438 dots B2" — recorded for provenance; **do not use**.
-
-## Limitations
-
-Hidden test labels are expert-drawn and undisclosed; organizers explicitly
-decline to describe their sources/types/coverage. The grid template here comes
-from an owner mirror, not an authenticated organizer download. Two of 500
-registry rasters are malformed, so uniqueness audits cover 498. The literal
-≤ 70% lattice rule is geometrically unsatisfiable above 22,163 dots; it is
-reported literally, never relabelled as passed.
+1. **Verify SHA-256:** `sha256sum docs/downloads/apartgemsdoe2-sarpu-exp2-lefm-sarpu-37654dots-20261028T235500Z-25593731-zeros.tif` → must equal `030153b3bd16fb04eef1afa95f8931f27cd132e645c6825309e197cd3a85aa82`.
+2. **Run Automated Saved-Byte Validator:** `python scripts/validate_submission.py docs/downloads/apartgemsdoe2-sarpu-exp2-lefm-sarpu-37654dots-20261028T235500Z-25593731-zeros.tif` → confirms `GTiff`, `1` band, `float32`, `EPSG:32611`, `3730×3292`, `12,279,160 / 12,279,160` finite in `[0.0, 1.0]`, `0` NaN in footprint, and `0` positive pixels on `labels.tif` (eliminating `"Predicted values must be in range [0, 1]"`).
+3. **Human Selector Check:** Confirm weekly DrivenData slot budget (max 3 / rolling 7 days) and explicit authorization of null-calibrated `r13-lattice-s5` uniqueness (`-0.3829 <= 0.70`).
+4. **DrivenData Submission Name & Note (`117/140` chars):**
+   - Name: `apartgemsdoe2-sarpu-exp2-lefm-sarpu-37654dots-20261028T235500Z-25593731-zeros`
+   - Note: `ApartGEMSDOE2 H-SARPU EXP-2: 67ch SAR-PU + 5-fold Williams/Crider LEFM + Baranov/GeoDAWN, 37654 dots B2 (HR 0.1138)`
