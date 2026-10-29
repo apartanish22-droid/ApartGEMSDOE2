@@ -1,0 +1,315 @@
+{
+  "schema": "parallel-run-protocol-run-card-v1",
+  "generated_at_utc": "2026-10-29T00:19:58Z",
+  "session_branch": "arena/9d6c28d5-apartgemsdoe2",
+  "preregistration": "knowledge/preregistration_spmd_20261028.md",
+  "hypothesis": "H-SPMD: Public fault mapping in Nevada is Selected-Not-At-Random (SAR-PU) by subaerial scarp exposure, causing standard supervised classifiers to treat concealed alluvial-basin faults as negatives and crowd >80% of dots onto bare-rock scarps. Purifying unlabeled negatives with a 39-channel DEM/LiDAR-free subsurface spy teacher and inverse exposure propensity weighting across 61/55-channel Dual-Cover models \u2014 enriched with matched-depth (TMI - TMI_up150) shallow magnetic bandpass, Dickson-Scott Th/K-U/Th epithermal alteration, gated BLM lode corridors, and 1m LiDAR dipolar/graben/strike features \u2014 recovers concealed faults while naturally breaking bare-rock registry crowding below 70%.",
+  "mechanism": "EXP-2 (SPMD-SARPU-Unified): 39-ch subsurface spy purges 15.84% putative concealed fault conduits from unlabeled negatives -> 4-feature logistic exposure propensity e(x_obs) reweights training positives (gamma=0.38) and de-confounds test posteriors (p / e^0.22) -> 61-ch M_Full + 55-ch M_Gap Dual-Cover fused with subsurface conduit + tip/relay -> submodular axial-crest emission (34500 binary dots, min_sep=3.05 px, support_mult=6.8, B=2 px).",
+  "mimicking_non_fault_process": "Pleistocene Lake Lahontan wave-cut shorelines, non-tectonic alluvial fan heads, GeoDAWN survey-block seam steps, US-50/US-95 road embankments, and non-fault placer mining claims mimic linear topographic, radiometric, or claim corridors without fault offset.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "withheld_positives": 22232,
+    "point": 0.11318057654304306,
+    "ci95": [
+      0.09959803467050678,
+      0.12562000576398272
+    ],
+    "paired_vs_fold_honest_d28_b2": {
+      "delta_dti": 0.013978,
+      "ci95_paired_cluster_bootstrap": [
+        8.2e-05,
+        0.027929
+      ],
+      "win_fraction_boot": 0.976,
+      "ci95_strictly_positive": true
+    },
+    "delta_vs_repo_prior_sparse_unique_best_hudsr_exp3": 0.018483,
+    "archived_repo_sparse_unique_best_point": 0.094698,
+    "archived_repo_duplicate_best_point": 0.113696,
+    "session_supervised_control_exp1_point": 0.12718405217384662,
+    "sgmc_diagnostic_only": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+      "withheld_positives": 62703,
+      "calibrated_point": 0.04797392006792899,
+      "calibrated_ci95": [
+        0.04067927167552215,
+        0.05628049302927324
+      ],
+      "raw_point": 0.07029291383977901,
+      "raw_ci95": [
+        0.05809575241271537,
+        0.08499769931506525
+      ]
+    }
+  },
+  "organizer_confirmed": null,
+  "leaderboard_estimate": null,
+  "leaderboard_estimate_reason": "Protocol Rule 3: Never write a projection as a score; only HOLDOUT-DTI and receipt-backed ORGANIZER-CONFIRMED scores are reported.",
+  "leakage_canary": {
+    "passed": true,
+    "threshold_oriented_auc": 0.9,
+    "n_features_tested": 63,
+    "max_oriented_auc": 0.769315,
+    "worst_channel": "vis_relay_bridge",
+    "spmd_new_8ch_aucs": {
+      "spmd_tmi_bandpass_ridge": 0.506247,
+      "spmd_updip_tmi_bandpass": 0.547881,
+      "spmd_epithermal_thk_uth": 0.526075,
+      "spmd_uk_redox_front": 0.543086,
+      "spmd_blm_lode_conduit": 0.544471,
+      "spmd_lidar_dipolar_scarp": 0.558226,
+      "spmd_lidar_graben_pair": 0.563802,
+      "spmd_lidar_pf_strike_align": 0.542223
+    },
+    "artifact": "evidence/spmd_leakage_canary_63ch.json"
+  },
+  "registry_correlation_overlap": {
+    "extended_registry_rasters_total": 549,
+    "readable_valid_rasters": 547,
+    "malformed_upstream_rasters": 2,
+    "surface_max_abs_spearman": 0.12302,
+    "surface_worst_raster": "WBGGEMSDOE3:docs/thcs/downloads/wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.tif",
+    "sparse_dots_max_within_3px": 0.689333,
+    "sparse_dots_worst_raster": "WBGGEMSDOE3:docs/hce/downloads/wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros.tif",
+    "literal_all_max_within_3px_including_13gemsdoe_lattice": 0.998522,
+    "local_prior_candidates_within3px": {
+      "AP-1": 0.173043,
+      "AP2": 0.543652,
+      "H-UDSR-EXP3": 0.542638
+    },
+    "sparse_registry_gate_pass": true,
+    "literal_all_registry_gate_pass": false
+  },
+  "raster": "docs/downloads/apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots-20261028T235800Z-2a51285d-zeros.tif",
+  "raster_nan_companion": "docs/downloads/apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots-20261028T235800Z-2a51285d-nan.tif",
+  "raster_sha256": "d12ff10f7a0753d3c9c27b2030e195ce6c9ad5be23ac23cfaa8fdebb995628e6",
+  "raster_nan_sha256": "cc534d7f5b6a2a00f84f2600f1f2435d5fafaa855dd42b8f908b3d0f9f2b61e2",
+  "zip": "docs/downloads/apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots-20261028T235800Z-2a51285d-zeros.zip",
+  "zip_sha256": "fe48c729e45f9cdb65b872e5dcc7723b77980514f1a7a6048563d5afc3386ae2",
+  "validator_output": {
+    "writer_audit_zeros": {
+      "filename": "apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots-20261028T235800Z-2a51285d-zeros.tif",
+      "size_bytes": 186901,
+      "sha256": "d12ff10f7a0753d3c9c27b2030e195ce6c9ad5be23ac23cfaa8fdebb995628e6",
+      "mode": "zeros",
+      "geometry_reference": "/home/user/ApartGEMSDOE2/.cache/gems_data/sample_submission.tif",
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "nodata": null,
+      "nodata_repr": "None",
+      "emitted_positive_pixels": 34500,
+      "footprint_fraction": 0.006677,
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_finite_pixels": 5167373,
+      "in_footprint_min": 0.0,
+      "in_footprint_max": 1.0,
+      "full_grid_finite_pixels": 12279160,
+      "checks": {
+        "exact_reference_grid_match": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_zero_nan": true,
+        "in_footprint_zero_inf": true,
+        "in_footprint_zero_sentinel": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_compliant": true,
+        "zero_on_catalogue_leakage": true,
+        "validator_range_0_1_guaranteed": true
+      },
+      "all_checks_passed": true
+    },
+    "writer_audit_nan": {
+      "filename": "apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots-20261028T235800Z-2a51285d-nan.tif",
+      "size_bytes": 322295,
+      "sha256": "cc534d7f5b6a2a00f84f2600f1f2435d5fafaa855dd42b8f908b3d0f9f2b61e2",
+      "mode": "nan",
+      "geometry_reference": "/home/user/ApartGEMSDOE2/.cache/gems_data/sample_submission.tif",
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "nodata": null,
+      "nodata_repr": "nan",
+      "emitted_positive_pixels": 34500,
+      "footprint_fraction": 0.006677,
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_finite_pixels": 5167373,
+      "in_footprint_min": 0.0,
+      "in_footprint_max": 1.0,
+      "full_grid_finite_pixels": 5167373,
+      "checks": {
+        "exact_reference_grid_match": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_zero_nan": true,
+        "in_footprint_zero_inf": true,
+        "in_footprint_zero_sentinel": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_compliant": true,
+        "zero_on_catalogue_leakage": true,
+        "validator_range_0_1_guaranteed": true
+      },
+      "all_checks_passed": true
+    },
+    "strict_saved_byte_check": {
+      "file_path": "/home/user/ApartGEMSDOE2/docs/downloads/apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots-20261028T235800Z-2a51285d-zeros.tif",
+      "sha256": "d12ff10f7a0753d3c9c27b2030e195ce6c9ad5be23ac23cfaa8fdebb995628e6",
+      "passed": true,
+      "checks": [
+        {
+          "name": "dimensions",
+          "passed": true,
+          "detail": "shape (3730, 3292) (expected (3730, 3292))"
+        },
+        {
+          "name": "band_count",
+          "passed": true,
+          "detail": "bands: 1 (expected 1)"
+        },
+        {
+          "name": "crs",
+          "passed": true,
+          "detail": "CRS: EPSG:32611 (expected EPSG:32611)"
+        },
+        {
+          "name": "transform",
+          "passed": true,
+          "detail": "transform matched template"
+        },
+        {
+          "name": "dtype",
+          "passed": true,
+          "detail": "dtype: float32 (expected float32)"
+        },
+        {
+          "name": "in_footprint_range",
+          "passed": true,
+          "detail": "in-footprint range [0.0000, 1.0000], all finite"
+        },
+        {
+          "name": "portal_safe_whole_array",
+          "passed": true,
+          "detail": "whole-array range [0.0000, 1.0000], finite=True"
+        }
+      ]
+    },
+    "bit_exact_checkpoint_match": true,
+    "saved_bytes_static_holdout_recheck_dti": 0.01303,
+    "saved_bytes_sgmc_calibrated_recheck_dti": 0.047974,
+    "release_gate_validator": {
+      "single_band": true,
+      "finite": true,
+      "range_0_1": true,
+      "crs_match": true,
+      "shape_match": true,
+      "transform_match": true
+    },
+    "gate_G1_format_pass": true,
+    "geometry_reference": "SHA-256-pinned mirror of sample_submission.tif (re-verify against fresh DrivenData download before portal upload)",
+    "portal_acceptance": null
+  },
+  "gates": {
+    "G1_format_and_saved_bytes": true,
+    "G2a_beats_d28_b2_paired_ci95": true,
+    "G2b_beats_repo_sparse_unique_best_00947": true,
+    "G2c_beats_repo_duplicate_best_01137": false,
+    "G3_leakage_canary_63ch": true,
+    "G4a_sparse_uniqueness_543_rasters": true,
+    "G4b_literal_all_including_13gemsdoe_lattice_and_malformed": false
+  },
+  "release_gate_decision": {
+    "gates": {
+      "lane": true,
+      "surface": false,
+      "final": false,
+      "canaries": true,
+      "holdout": true,
+      "paired_improvement": true,
+      "format": true
+    },
+    "verdict": "negative",
+    "selector_required": true,
+    "slot_used": false
+  },
+  "submission_name": "apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots-20261028T235800Z-2a51285d-zeros",
+  "note": "ApartGEMSDOE2 H-SPMD EXP-2: SAR-PU spy+propensity 61/55ch DualCover + TMI-bandpass/epithermal/LiDAR, 34500d B2",
+  "note_length_chars": 110,
+  "download_and_submit_status": {
+    "technical_file_validity": "VALID_SINGLE_BAND_GEOTIFF_IN_0_1_SPARSE_UNIQUE",
+    "autonomous_slot_verdict": "HOLD_FOR_HUMAN_SELECTOR_DO_NOT_AUTO_SUBMIT",
+    "summary": "File passes all 13 GeoTIFF [0, 1] / zero-NaN / CRS / shape / transform checks, passes 63-ch leakage canary (0.7693 <= 0.90), passes surface Spearman (0.1230 <= 0.90) and sparse 3-px uniqueness across all 543 sparse rasters (68.93% <= 70%), and is this repository's highest-HOLDOUT-DTI sparse-unique candidate (0.1132, +19.5% vs H-UDSR EXP-3 0.0947; paired 95% CI [+0.00008, +0.02793] > D28_B2 0.0992). Protocol verdict remains 'negative' (do not auto-spend a weekly slot) because literal overlap vs the 206,895-dot 13GEMSDOE covering lattice (99.87% footprint coverage) is 99.85% > 70%, 2/549 upstream registry TIFFs are malformed, template geometry is mirror-restored, and slot allocation requires cross-lane human selector review against GEMSDOE32 B2 (ORGANIZER-CONFIRMED 0.2778)."
+  },
+  "verdict": "negative",
+  "experiments_used": 3,
+  "all_experiments": [
+    {
+      "experiment_id": "EXP-1",
+      "name": "SPMD-Sup61-Ctrl",
+      "holdout_dti": 0.12718405217384662,
+      "holdout_ci95": [
+        0.1155231530968954,
+        0.13863574280470295
+      ],
+      "sgmc_calibrated_dti": 0.05032578595502807,
+      "surface_max_abs_spearman": 0.127737,
+      "sparse_max_within_3px": 0.747768,
+      "sparse_unique_pass": false
+    },
+    {
+      "experiment_id": "EXP-2",
+      "name": "SPMD-SARPU-Unified",
+      "holdout_dti": 0.11318057654304306,
+      "holdout_ci95": [
+        0.09959803467050678,
+        0.12562000576398272
+      ],
+      "sgmc_calibrated_dti": 0.04797392006792899,
+      "surface_max_abs_spearman": 0.12302,
+      "sparse_max_within_3px": 0.689333,
+      "sparse_unique_pass": true
+    },
+    {
+      "experiment_id": "EXP-3",
+      "name": "SPMD-SARPU-TwoRegime",
+      "holdout_dti": 0.09915709743308573,
+      "holdout_ci95": [
+        0.08658848570233842,
+        0.1111012198231718
+      ],
+      "sgmc_calibrated_dti": 0.04865120402872558,
+      "surface_max_abs_spearman": 0.106296,
+      "sparse_max_within_3px": 0.653036,
+      "sparse_unique_pass": true
+    }
+  ]
+}

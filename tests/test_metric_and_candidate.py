@@ -52,7 +52,7 @@ class TestMetric(unittest.TestCase):
 
 class TestCandidateFormat(unittest.TestCase):
     def test_candidate_passes_validator_when_data_present(self) -> None:
-        ddir = Path(os.environ.get("GEMS_DATA_DIR", ""))
+        ddir = Path(os.environ.get("GEMS_DATA_DIR", str(ROOT / ".cache/gems_data")))
         candidates = sorted((ROOT / "docs" / "downloads").glob("*-zeros.tif"))
         if not (ddir / "sample_submission.tif").exists() or not candidates:
             self.skipTest("competition data or candidate raster not available")
@@ -61,10 +61,20 @@ class TestCandidateFormat(unittest.TestCase):
         mod = importlib.util.module_from_spec(spec)
         assert spec and spec.loader
         spec.loader.exec_module(mod)
-        result = mod.check(candidates[-1], ddir / "sample_submission.tif", ddir / "labels.tif")
-        self.assertTrue(result["pass"], result)
-        self.assertEqual(result["positive_pixels_in_footprint"], 44_090)
-        self.assertEqual(result["outside_footprint_mode"], "all_zero")
+        expected_dots = {
+            "apartgemsdoe2-ap1-": 37_654,
+            "apartgemsdoe2-ap2-": 44_090,
+            "apartgemsdoe2-udsr-": 26_173,
+            "apartgemsdoe2-trace-": 22_438,
+            "apartgemsdoe2-spmd-": 34_500,
+        }
+        for cand in candidates:
+            result = mod.check(cand, ddir / "sample_submission.tif", ddir / "labels.tif")
+            self.assertTrue(result["pass"], f"{cand.name}: {result}")
+            self.assertEqual(result["outside_footprint_mode"], "all_zero")
+            for prefix, n_exp in expected_dots.items():
+                if cand.name.startswith(prefix):
+                    self.assertEqual(result["positive_pixels_in_footprint"], n_exp)
 
 
 if __name__ == "__main__":
