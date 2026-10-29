@@ -1,0 +1,120 @@
+{
+  "candidate_id": "apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots",
+  "slug": "spmd-exp-2-sarpu-unified-34500dots",
+  "content_digest8": "2a51285d",
+  "description": "H-SPMD EXP-2 (SPMD-SARPU-Unified): 61-channel M_Full + 55-channel M_Gap Dual-Cover gradient-boosted models trained with a 39-channel DEM/LiDAR-free subsurface spy teacher and inverse geomorphic exposure propensity weighting, fused with matched-depth (TMI - TMI_up150) shallow magnetic bandpass, Dickson-Scott Th/K-U/Th epithermal alteration, BLM lode corridors, and 1m LiDAR dipolar/graben/strike features; submodular axial-crest emission at 34500 binary dots outside a 2 px catalogue collar.",
+  "submission_note_zeros": "ApartGEMSDOE2 H-SPMD EXP-2: SAR-PU spy+propensity 61/55ch DualCover + TMI-bandpass/epithermal/LiDAR, 34500d B2",
+  "submission_note_nan": "ApartGEMSDOE2 H-SPMD EXP-2: SAR-PU spy+propensity 61/55ch DualCover + TMI-bandpass/epithermal/LiDAR, 34500d B2",
+  "zeros_tif": {
+    "filename": "apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots-20261028T235800Z-2a51285d-zeros.tif",
+    "size_bytes": 186901,
+    "sha256": "d12ff10f7a0753d3c9c27b2030e195ce6c9ad5be23ac23cfaa8fdebb995628e6",
+    "mode": "zeros",
+    "geometry_reference": "/home/user/ApartGEMSDOE2/.cache/gems_data/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "None",
+    "emitted_positive_pixels": 34500,
+    "footprint_fraction": 0.006677,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 12279160,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true
+  },
+  "nan_tif": {
+    "filename": "apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots-20261028T235800Z-2a51285d-nan.tif",
+    "size_bytes": 322295,
+    "sha256": "cc534d7f5b6a2a00f84f2600f1f2435d5fafaa855dd42b8f908b3d0f9f2b61e2",
+    "mode": "nan",
+    "geometry_reference": "/home/user/ApartGEMSDOE2/.cache/gems_data/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "nan",
+    "emitted_positive_pixels": 34500,
+    "footprint_fraction": 0.006677,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 5167373,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true
+  },
+  "holdout_metrics": {
+    "catalogue_hidden_mean": 0.11318057654304306,
+    "catalogue_hidden_per_quadrant": {
+      "NW": 0.12228742269623416,
+      "NE": 0.12621286661025458,
+      "SW": 0.07560208757791091,
+      "SE": 0.13835183187831185
+    },
+    "sgmc_prevalence_calibrated_dti": 0.04797392006792899,
+    "drift_corrected_holdout_mean": 0.11318057654304306,
+    "drift_corrected_per_quadrant": {
+      "NW": 0.12228742269623416,
+      "NE": 0.12621286661025458,
+      "SW": 0.07560208757791091,
+      "SE": 0.13835183187831185
+    },
+    "predicted_leaderboard_dti": null,
+    "ei_drift_corrected": null,
+    "slot_decision": "HOLD-FOR-HUMAN-PORTFOLIO-SELECTOR"
+  }
+}

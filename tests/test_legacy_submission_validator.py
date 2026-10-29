@@ -24,7 +24,8 @@ def test_nodata_template_and_unmasked_footprint(tmp_path):
     pred = write('pred.tif', [[float('inf'), 0, 0], [0, 1, 0], [0, 0, 0]])
     assert not check(pred, sample, labels)['pass']
     pred = write('pred.tif', [[float('nan'), 0, 0], [0, 1, 0], [0, 0, 0]])
-    assert check(pred, sample, labels)['pass']
+    # Outside NaN is format-ambiguous; the conservative project diagnostic fails it.
+    assert not check(pred, sample, labels)['pass']
     shifted = write('labels.tif', np.zeros((3, 3)), transform=from_origin(110, 200, 10, 10))
     with pytest.raises(ValueError, match='Catalogue grid'):
         check(pred, sample, shifted)

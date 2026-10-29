@@ -61,7 +61,9 @@
         0.07203437432210702
       ],
       "gemsdoe32_b2_calibrated_point": 0.0641209376417646
-    }
+    },
+    "shared_split_geometry_caveat": "Evaluated on pinned shared GEMSDOE32-HIDE-RECOVER-v3.0 (src/gems32/holdout.py). Per evidence/shared_split_geometry_20261028.json, 15,705 / 22,232 withheld occurrences lie within 15 px of visible faults; therefore we ALSO report Detached-600m (d >= 6 px from visible faults: 0.086337 > D28_B2 0.083437) and fully independent SGMC-CAL-v3.0 (0.063808 > H-SPMD 0.047974).",
+    "delta_vs_concurrent_spmd_exp2": 0.000657
   },
   "organizer_confirmed": null,
   "leaderboard_estimate": null,
@@ -112,6 +114,33 @@
       "within_3px_literal": 0.998221,
       "null_calibrated_excess": -0.382857,
       "pigeonhole_floor_at_37654_dots": 0.823418
+    },
+    "concurrent_main_artifacts": {
+      "apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots-20261028T235800Z-2a51285d-zeros.tif": {
+        "dots": 34500,
+        "within_3px": 0.494131,
+        "spearman_sub": 0.110017
+      },
+      "apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-zeros.tif": {
+        "dots": 10457,
+        "within_3px": 0.007728,
+        "spearman_sub": 0.010702
+      },
+      "gemsdoe32-h-dil-grav-dilate-x-gravlow-top37654-20261028T224631Z-3df650f1-zeros.tif": {
+        "dots": 36975,
+        "within_3px": 0.004302,
+        "spearman_sub": -0.03026
+      },
+      "gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif": {
+        "dots": 5103418,
+        "within_3px": 1.0,
+        "spearman_sub": 0.127126
+      },
+      "gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif": {
+        "dots": 5106385,
+        "within_3px": 1.0,
+        "spearman_sub": 0.132113
+      }
     }
   },
   "raster": "docs/downloads/apartgemsdoe2-sarpu-exp2-lefm-sarpu-37654dots-20261028T235500Z-25593731-zeros.tif",

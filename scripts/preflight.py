@@ -52,10 +52,14 @@ def inspect() -> dict:
     blockers = [
         "No explicitly user-assigned method lane or assignment source was identified; the parallel AP-1 lane was self-selected.",
         "The shared parallel-run registry is not complete; no all-registry surface/final-dot pass is possible.",
+        "Archived GEMSDOE32-HIDE-RECOVER-v3.0 does not establish the requested truth-to-visible buffer or whole-segment scoring: 15,705 of 22,232 withheld-positive occurrences lie within 15 px of visible faults, and 76 component instances are partially scored (evidence/shared_split_geometry_20261028.json; upstream issue #60).",
+        "The shared evaluator has additional unresolved empty-truth FP and evidence-label issues (#41, #61), and its writer silently binarizes probabilities (#37, #51). Do not privately fork the shared tools.",
+        "The shared registry auditor can pass missing or tampered entries and calibrated rather than literal overlap (#63); the H-TRACE surface was checked only after dot placement. Prior pass claims cannot authorize a run.",
+        "No owner-mirrored core data or sample is authenticated against the organizer; the mirrored sample disagrees with the public all-absence description.",
         "The parallel holdout/control comparison was not independently replayed and uses different refill rules.",
         "The cached prepared feature stack and metadata are absent or not verified here.",
         "At the historical champion's dot count, the literal registry lattice bound exceeds the 70% overlap limit.",
-        "This review ran no experiment; the parallel AP-1 research TIFF fails the literal lattice gate and has no selector approval.",
+        "This review ran no experiment; archived AP-1 and H-TRACE research TIFFs fail the literal lattice gate and have no selector approval.",
     ]
     if not core or not all(item["hash_verified"] for item in core):
         blockers.append("Current core data is missing or differs from the pinned mirror; the historical restore receipt is not proof of current availability.")
@@ -68,6 +72,7 @@ def inspect() -> dict:
         "verdict": "negative",
         "experiments_run": 0,
         "parallel_run_reported_experiments": 3,
+        "prior_htrace_reported_experiments": 3,
         "weekly_slots_used": 0,
         "lane_assigned": False,
         "complete_parallel_registry": False,

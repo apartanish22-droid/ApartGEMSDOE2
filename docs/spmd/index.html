@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#173c35"><meta name="description" content="An evidence-led, fail-closed GEMS fault-discovery and submission research desk."><title>H-SPMD research brief · ApartGEMS</title><link rel="stylesheet" href="../assets/style.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="topbar"><div class="shell">
+      <a class="brand" href="../index.html" aria-label="ApartGEMS home"><span class="brand-icon"><svg viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M3 20c4-8 6 3 10-4s6 3 14-7M4 24c5-7 7 2 11-4s7 1 11-4M4 13c5-8 8 3 12-4s7 1 10-2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>ApartGEMS <em>Research desk</em></a>
+      <nav class="nav" aria-label="Primary navigation"><a href="../sarpu/index.html">H-SARPU (0.11384)</a><a href="../sarpu/executive-summary.html">How to Submit</a><a href="../index.html#scorecard">Site scorecard</a><a href="../research.html">Research</a><a href="../executive-summary.html">Submission guide</a></nav>
+      <div class="nav-end"><a class="source-link" href="../index.html#sources">Sources ↗</a></div>
+    </div></header><main id="main"><div class="shell"><div class="breadcrumb"><a href="../index.html">Overview</a> / H-SPMD research brief</div>
+    <section class="page-hero"><div class="eyebrow">H-SPMD · SAR-PU Subsurface-Propensity Multi-Depth Dual-Cover</div>
+    <h1 class="page-title">Purging concealed faults<br>from unlabeled cover.</h1>
+    <p class="lead">Three preregistered experiments testing spy-calibrated Selected-At-Random Positive-Unlabeled (SAR-PU) learning plus multi-depth magnetic bandpass, epithermal K/eTh, and LiDAR availability gating.</p></section>
+    <div class="notice"><strong>VERDICT: NEGATIVE (FAIL-CLOSED) — RESEARCH ONLY / DO NOT SUBMIT / DO NOT AUTO-SUBMIT.</strong>
+    <p><strong>EXP-2</strong> beats fold-honest <code>D28_B2</code> on matched <code>GEMSDOE32-HIDE-RECOVER-v3.0</code> (<strong>0.1132</strong> vs <strong>0.0992</strong>, paired 95% CI [+0.00008, +0.02793]) and clears sparse uniqueness across all 543 sparse rasters across 15 repositories (<strong>68.93% &le; 70%</strong>) plus concurrent RAD-SCARP (0.98%) and H-DIL-GRAV (0.74%), yet overlaps <strong>99.852%</strong> with the dense 206,895-dot <code>13GEMSDOE</code> covering lattice, uses the unbuffered shared v3 split (15,705 / 22,232 withheld occurrences within 15 px of visible faults), and relies on an owner-mirrored template without authenticated selector approval.</p></div>
+    <div class="page-grid"><div>
+      <section class="page-section"><h2>Three-experiment factorial (budget 3 / 3)</h2>
+      <p>Reported on pinned <code>GEMSDOE32-HIDE-RECOVER-v3.0</code> (22,232 withheld positive occurrences; <code>D28_B2</code> = 0.099202; <code>SGMC-CAL</code> = 0.064121; prior sparse-unique <code>H-UDSR EXP-3</code> = 0.094698; see unbuffered v3 split caveat in <a href="../data/shared_split_geometry_20261028.json">shared_split_geometry_20261028.json</a>).</p>
+      <div class="table-wrap"><table><thead><tr><th>Experiment</th><th>HOLDOUT-DTI</th><th>Paired &Delta; vs D28_B2</th><th>Dots</th><th>Surface |&rho;|</th><th>Sparse 3-px (543)</th><th>Literal all-registry</th></tr></thead><tbody><tr>
+          <td><strong>EXP-1</strong><span class="sub">SPMD-Sup61-Ctrl</span></td>
+          <td><strong>0.127184</strong><span class="sub">[0.1155, 0.1386]</span></td>
+          <td>+0.027982<span class="sub">[+0.01559, +0.04003]</span></td>
+          <td>34,500<span class="sub">13.3% &gt;15 px</span></td>
+          <td>0.1277 &le; 0.90</td>
+          <td><span class="tag bad">74.78%</span></td>
+          <td><span class="tag bad">99.80%</span><span class="sub">13GEMSDOE lattice</span></td>
+        </tr><tr>
+          <td><strong>EXP-2</strong><span class="sub">SPMD-SARPU-Unified</span></td>
+          <td><strong>0.113181</strong><span class="sub">[0.0996, 0.1256]</span></td>
+          <td>+0.013978<span class="sub">[+0.00008, +0.02793]</span></td>
+          <td>34,500<span class="sub">22.2% &gt;15 px</span></td>
+          <td>0.1230 &le; 0.90</td>
+          <td><span class="tag good">68.93%</span></td>
+          <td><span class="tag bad">99.85%</span><span class="sub">13GEMSDOE lattice</span></td>
+        </tr><tr>
+          <td><strong>EXP-3</strong><span class="sub">SPMD-SARPU-TwoRegime</span></td>
+          <td><strong>0.099157</strong><span class="sub">[0.0866, 0.1111]</span></td>
+          <td>-0.000045<span class="sub">[-0.01275, +0.01233]</span></td>
+          <td>33,600<span class="sub">38.1% &gt;15 px</span></td>
+          <td>0.1063 &le; 0.90</td>
+          <td><span class="tag good">65.30%</span></td>
+          <td><span class="tag bad">99.83%</span><span class="sub">13GEMSDOE lattice</span></td>
+        </tr></tbody></table></div>
+      <p style="margin-top:1rem;"><img src="../assets/fig6_spmd_experiments.png" alt="H-SPMD 3-experiment comparison chart" style="max-width:100%;height:auto;border-radius:8px;border:1px solid #d8dedc;"></p></section>
+      <section class="page-section"><h2>Geological mechanism &amp; non-fault mimics</h2>
+      <p><strong>Mechanism:</strong> Supervised learners treat unlabeled Quaternary basin pixels as 100% true negatives (<code>y=0</code>), penalizing blind Basin-and-Range range-front, step-over, and accommodation-zone faults concealed beneath <code>quaternary_thickness &gt; 0</code> or USGS 3DEP LiDAR gaps. H-SPMD injects 15% of fold-visible faults as concealed spies stripped of catalogue proximity, purges the top 15.8% subsurface-conduit unlabeled pixels, fits propensity-stabilized LightGBM Dual-Cover blends on 8 new multi-depth geophysical channels (63-channel leakage canary max oriented AUC = <strong>0.7693 &le; 0.90</strong>), and suppresses deep non-fault playa interiors.</p>
+      <p><strong>Mimicking non-fault processes:</strong> Buried Miocene caldera ring margins, tabular basaltic sill edges, axial paleo-river magnetics, GeoDAWN N–S survey tie-line leveling steps, and conductive clay-rich saline playas in closed basins.</p></section>
+      <section class="page-section"><h2>Saved-byte validation &amp; provenance</h2>
+      <ul>
+        <li><strong>File (zeros exterior, research only):</strong> <a href="../downloads/apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots-20261028T235800Z-2a51285d-zeros.tif" download><code>apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots-20261028T235800Z-2a51285d-zeros.tif</code></a></li>
+        <li><strong>ZIP bundle (research only):</strong> <a href="../downloads/apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots-20261028T235800Z-2a51285d-zeros.zip" download><code>apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots-20261028T235800Z-2a51285d-zeros.zip</code></a></li>
+        <li><strong>SHA-256 (<code>-zeros.tif</code>):</strong> <code>d12ff10f7a0753d3c9c27b2030e195ce6c9ad5be23ac23cfaa8fdebb995628e6</code></li>
+        <li><strong>Validator:</strong> EPSG:32611 · 3730 &times; 3292 · float32 in [0.0, 1.0] · 0 NaN · 34,500 positive pixels in footprint · 0 on visible <code>fault_mask</code></li>
+        <li><strong>Archived submission name (provenance only):</strong> <code>apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots-20261028T235800Z-2a51285d-zeros</code></li>
+        <li><strong>Archived &le;140-char note (110 chars, provenance only):</strong> <code>ApartGEMSDOE2 H-SPMD EXP-2: SAR-PU spy+propensity 61/55ch DualCover + TMI-bandpass/epithermal/LiDAR, 34500d B2</code></li>
+      </ul></section>
+    </div>
+    <aside><div class="facts">
+      <div class="fact"><div class="mini-label">Verdict</div><div class="value">Negative (fail-closed)</div></div>
+      <div class="fact"><div class="mini-label">HOLDOUT-DTI (EXP-2, v3)</div><div class="value">0.1132</div><p class="sub">95% CI [0.0996, 0.1256]</p></div>
+      <div class="fact"><div class="mini-label">EXP-1 raw-DTI record</div><div class="value">0.1272</div><p class="sub">74.78% sparse overlap (duplicate)</p></div>
+      <div class="fact"><div class="mini-label">Sparse 3-px max (EXP-2)</div><div class="value">68.93% &le; 70%</div><p class="sub">543 sparse rasters · 15 repos</p></div>
+      <div class="fact"><div class="mini-label">Literal lattice overlap</div><div class="value">99.85%</div><p class="sub">13GEMSDOE 206,895-dot grid</p></div>
+      <div class="fact"><div class="mini-label">Evidence JSON</div><div class="inline-list"><a href="../data/spmd_run_card_20261028.json">SPMD Run Card ↗</a><a href="../downloads/apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots-20261028T235800Z-2a51285d-audit.json">Saved-byte audit ↗</a></div></div>
+    </div></aside></div></div></main><footer class="footer"><div class="shell"><small><strong>ApartGEMS / Research desk</strong><br>Fault discovery, built on verifiable evidence. No submission was made by this review.</small><div><a href="../data/current_run_card.json">Current run card JSON ↗</a> &nbsp;&nbsp; <a href="https://github.com/apartanish22-droid/ApartGEMSDOE2">GitHub repository ↗</a></div></div></footer></body></html>
