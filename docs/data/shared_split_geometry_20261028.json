@@ -1,0 +1,103 @@
+{
+  "schema": "apartgems-split-geometry-v1",
+  "checked_utc": "2026-10-28T22:41:41.533368+00:00",
+  "scope": "Geometry only: no predictions, holdout DTI, experiment, raster emission or slot. Eight draw/fold counts include repeated positive occurrences.",
+  "shared_evaluator_file": "src/gems32/holdout.py",
+  "shared_evaluator_sha256": "c476410a3fe27e9c2d6b97e206633ec252929df1c0c0e4c620da0c2f311fd538",
+  "upstream_report": "https://github.com/buffedlizard55-lab/GEMSDOE32/issues/60",
+  "inputs": {
+    "sample_submission": {
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "origin": "pinned owner mirror; not organizer-authenticated"
+    },
+    "labels": {
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "origin": "pinned owner mirror; not organizer-authenticated"
+    },
+    "ext_derived_sgmc_faults_100m_u8": {
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+      "origin": "pinned owner mirror; not organizer-authenticated"
+    }
+  },
+  "collar_claim_px": 15,
+  "cells": [
+    {
+      "cell": "draw20_fold0",
+      "withheld_positive_occurrences": 1911,
+      "min_truth_to_visible_px": 2.0,
+      "truth_within_15px_of_visible": 1450,
+      "source_connected_components_with_scored_truth": 136,
+      "partially_scored_component_instances": 6,
+      "scored_fraction_of_those_components": 0.9516932270916335
+    },
+    {
+      "cell": "draw20_fold1",
+      "withheld_positive_occurrences": 2351,
+      "min_truth_to_visible_px": 2.0,
+      "truth_within_15px_of_visible": 1573,
+      "source_connected_components_with_scored_truth": 158,
+      "partially_scored_component_instances": 6,
+      "scored_fraction_of_those_components": 0.9682866556836903
+    },
+    {
+      "cell": "draw20_fold2",
+      "withheld_positive_occurrences": 3685,
+      "min_truth_to_visible_px": 2.0,
+      "truth_within_15px_of_visible": 2837,
+      "source_connected_components_with_scored_truth": 202,
+      "partially_scored_component_instances": 18,
+      "scored_fraction_of_those_components": 0.945114131828674
+    },
+    {
+      "cell": "draw20_fold3",
+      "withheld_positive_occurrences": 3225,
+      "min_truth_to_visible_px": 2.0,
+      "truth_within_15px_of_visible": 2045,
+      "source_connected_components_with_scored_truth": 123,
+      "partially_scored_component_instances": 9,
+      "scored_fraction_of_those_components": 0.9405074365704287
+    },
+    {
+      "cell": "draw21_fold0",
+      "withheld_positive_occurrences": 2111,
+      "min_truth_to_visible_px": 2.0,
+      "truth_within_15px_of_visible": 1592,
+      "source_connected_components_with_scored_truth": 122,
+      "partially_scored_component_instances": 3,
+      "scored_fraction_of_those_components": 0.9777674849467346
+    },
+    {
+      "cell": "draw21_fold1",
+      "withheld_positive_occurrences": 2265,
+      "min_truth_to_visible_px": 2.0,
+      "truth_within_15px_of_visible": 1545,
+      "source_connected_components_with_scored_truth": 138,
+      "partially_scored_component_instances": 9,
+      "scored_fraction_of_those_components": 0.9429641965029142
+    },
+    {
+      "cell": "draw21_fold2",
+      "withheld_positive_occurrences": 3584,
+      "min_truth_to_visible_px": 2.0,
+      "truth_within_15px_of_visible": 2494,
+      "source_connected_components_with_scored_truth": 192,
+      "partially_scored_component_instances": 14,
+      "scored_fraction_of_those_components": 0.927536231884058
+    },
+    {
+      "cell": "draw21_fold3",
+      "withheld_positive_occurrences": 3100,
+      "min_truth_to_visible_px": 2.0,
+      "truth_within_15px_of_visible": 2169,
+      "source_connected_components_with_scored_truth": 136,
+      "partially_scored_component_instances": 11,
+      "scored_fraction_of_those_components": 0.9468540012217471
+    }
+  ],
+  "withheld_positive_occurrences": 22232,
+  "truth_occurrences_within_15px_of_visible": 15705,
+  "partially_scored_component_instances": 76,
+  "all_truth_more_than_15px_from_visible": false,
+  "all_components_wholly_scored": false,
+  "verdict": "negative"
+}

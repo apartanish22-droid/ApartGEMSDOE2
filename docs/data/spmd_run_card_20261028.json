@@ -42,7 +42,8 @@
         0.05809575241271537,
         0.08499769931506525
       ]
-    }
+    },
+    "shared_split_geometry_caveat": "Evaluated on pinned shared GEMSDOE32-HIDE-RECOVER-v3.0 (src/gems32/holdout.py). Per evidence/shared_split_geometry_20261028.json, 15,705 / 22,232 withheld occurrences lie within 15 px of visible faults and 76 connected-component instances are partially scored; treat v3 numbers as matched same-split diagnostics rather than fully buffered whole-segment validation."
   },
   "organizer_confirmed": null,
   "leaderboard_estimate": null,
@@ -80,7 +81,27 @@
       "H-UDSR-EXP3": 0.542638
     },
     "sparse_registry_gate_pass": true,
-    "literal_all_registry_gate_pass": false
+    "literal_all_registry_gate_pass": false,
+    "concurrent_main_artifacts": {
+      "apartgemsdoe2-rad-scarp-04053573": {
+        "dots": 10457,
+        "within_3px_fraction": 0.00983,
+        "surface_spearman": 0.01045
+      },
+      "gemsdoe32-h-dil-grav-3df650f1": {
+        "dots": 36975,
+        "within_3px_fraction": 0.00736,
+        "surface_spearman": -0.03618
+      },
+      "gemsdoe32-h-mag-edge-slope-2c00c25b": {
+        "positive_cells_continuous": 5103418,
+        "surface_spearman": 0.12522
+      },
+      "gemsdoe32-h-depth-cond-e34db98d": {
+        "positive_cells_continuous": 5106385,
+        "surface_spearman": 0.13115
+      }
+    }
   },
   "raster": "docs/downloads/apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots-20261028T235800Z-2a51285d-zeros.tif",
   "raster_nan_companion": "docs/downloads/apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots-20261028T235800Z-2a51285d-nan.tif",

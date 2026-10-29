@@ -1,0 +1,27 @@
+{
+  "schema": "parallel-run-review-card-v1",
+  "date_utc": "2026-10-28",
+  "hypothesis": "No newly assigned geological lane was identified; no new geological hypothesis was tested in this review.",
+  "mechanism": "Read-only hash-pinned restoration and independent historical geometry replay; fix incomplete core restoration.",
+  "named_non_fault_mimic": "Lake Lahontan paleoshoreline benches can mimic linear fault scarps; not evaluated in this review.",
+  "holdout_dti": null,
+  "holdout_ci95": null,
+  "withheld_positives": null,
+  "evaluator_version": null,
+  "registry_surface_correlation": null,
+  "registry_dot_overlap": null,
+  "registry_status": "No new candidate or full-registry comparison. Pinned historical geometry replay matched its receipt; the complete registry is unavailable.",
+  "raster_sha256": null,
+  "validator_output": {
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "reason": "No new raster exists; the owner-mirrored sample is not an authenticated organizer template."
+  },
+  "submission_name": null,
+  "note": "No submission generated; missing lane and full registry. Do not submit prior research artifacts.",
+  "verdict": "negative",
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "review": "docs/research/review-restoration-20261028.md"
+}

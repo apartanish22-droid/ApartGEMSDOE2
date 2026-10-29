@@ -15,6 +15,10 @@ def main():
     ap.add_argument("--out", default=str(work_dir() / "feature_stack.npy"))
     ap.add_argument("--receipt", default="registry/feature_receipt.json")
     a = ap.parse_args()
+    # Do not overwrite a cache/receipt with an unverified private rebuild.
+    from experiment_guard import require_current_protocol
+    if not require_current_protocol():
+        return 1
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     t0 = time.time()
     rec = features.build(a.features, a.out)
@@ -29,4 +33,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

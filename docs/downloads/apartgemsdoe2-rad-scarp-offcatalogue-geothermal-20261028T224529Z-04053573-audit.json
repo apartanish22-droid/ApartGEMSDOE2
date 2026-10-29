@@ -1,0 +1,131 @@
+{
+  "candidate_id": "apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z",
+  "slug": "rad-scarp-offcatalogue-geothermal",
+  "content_digest8": "04053573",
+  "description": "Archived RAD-SCARP research artifact. The full labels raster was used for the catalogue collar; DO NOT SUBMIT.",
+  "submission_note_zeros": "ApartGEMSDOE2 RAD-SCARP off-catalogue geothermal dots, radiometric+LiDAR, 200m-1.5km collar, [0,1]",
+  "submission_note_nan": "ApartGEMSDOE2 RAD-SCARP off-catalogue geothermal dots, radiometric+LiDAR, 200m-1.5km collar, [0,1]",
+  "zeros_tif": {
+    "filename": "apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-zeros.tif",
+    "size_bytes": 67390,
+    "sha256": "ce5295029b2f506bed5d49b74432370ba6101d5b810797be78af7502d41828f3",
+    "mode": "zeros",
+    "geometry_reference": "/home/user/ApartGEMSDOE2/data/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "None",
+    "emitted_positive_pixels": 10457,
+    "footprint_fraction": 0.002024,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 12279160,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": false,
+      "zero_on_catalogue_leakage": false,
+      "validator_range_0_1_guaranteed": false,
+      "reference_is_organizer_authenticated": false,
+      "portal_acceptance_verified": false,
+      "literal_lattice_uniqueness_pass": false
+    },
+    "all_checks_passed": false
+  },
+  "nan_tif": {
+    "filename": "apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-nan.tif",
+    "size_bytes": 197120,
+    "sha256": "87ca7f2c430250fa6eab20a8e9ab179e947f6f74c84f13647d19d976be08b954",
+    "mode": "nan",
+    "geometry_reference": "/home/user/ApartGEMSDOE2/data/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "nan",
+    "emitted_positive_pixels": 10457,
+    "footprint_fraction": 0.002024,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 5167373,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": null,
+      "zero_on_catalogue_leakage": false,
+      "validator_range_0_1_guaranteed": false,
+      "reference_is_organizer_authenticated": false,
+      "portal_acceptance_verified": false,
+      "literal_lattice_uniqueness_pass": false
+    },
+    "all_checks_passed": false
+  },
+  "holdout_metrics": {
+    "catalogue_hidden_mean": null,
+    "catalogue_hidden_per_quadrant": {},
+    "sgmc_prevalence_calibrated_dti": null,
+    "drift_corrected_holdout_mean": null,
+    "drift_corrected_per_quadrant": {},
+    "predicted_leaderboard_dti": null,
+    "ei_drift_corrected": null,
+    "slot_decision": "NO_RELEASE"
+  },
+  "review_correction": {
+    "verdict": "negative",
+    "message": "Original writer-side checks were not organizer authentication, leakage proof or permission to submit. Literal 3-pixel overlap with the registered lattice is 10,421/10,457. The generator uses the full catalogue and the v3 split is not a valid buffered whole-segment holdout.",
+    "independent_recheck": "../data/rad_scarp_independent_recheck_20261028.json",
+    "original_all_checks_passed_claims": {
+      "zeros": true,
+      "nan": true
+    },
+    "holdout_metrics_note": "The zero-valued fields below are writer placeholders, not evaluated holdout results.",
+    "original_placeholder_values": {
+      "catalogue_hidden_mean": 0.0,
+      "sgmc_prevalence_calibrated_dti": 0.0,
+      "drift_corrected_holdout_mean": 0.0
+    }
+  }
+}

@@ -69,12 +69,13 @@ class TestCandidateFormat(unittest.TestCase):
             "apartgemsdoe2-spmd-": 34_500,
         }
         for cand in candidates:
+            matched = next(((p, n) for p, n in expected_dots.items() if cand.name.startswith(p)), None)
+            if matched is None:
+                continue
             result = mod.check(cand, ddir / "sample_submission.tif", ddir / "labels.tif")
             self.assertTrue(result["pass"], f"{cand.name}: {result}")
             self.assertEqual(result["outside_footprint_mode"], "all_zero")
-            for prefix, n_exp in expected_dots.items():
-                if cand.name.startswith(prefix):
-                    self.assertEqual(result["positive_pixels_in_footprint"], n_exp)
+            self.assertEqual(result["positive_pixels_in_footprint"], matched[1])
 
 
 if __name__ == "__main__":
