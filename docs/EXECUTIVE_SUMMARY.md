@@ -44,6 +44,17 @@ A separate session generated three more TIFFs while this review was underway. No
 
 The last two exceeded their intended 37,654-cell budget because of tied threshold values. All three have finite unmasked [0,1] cells inside the owner-mirrored footprint, but exterior zeros and unknown portal acceptance; the historical shared-v3 diagnostics do not establish the requested buffered holdout. Their generators are blocked, and the full registry and authenticated organizer template remain unavailable.
 
+## H-SPMD three-experiment research artifact (`arena/9d6c28d5-apartgemsdoe2`)
+
+[Research TIFF — DO NOT SUBMIT](downloads/apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots-20261028T235800Z-2a51285d-zeros.tif) · [ZIP — research only](downloads/apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots-20261028T235800Z-2a51285d-zeros.zip) · [H-SPMD Run Card](../evidence/spmd_run_card_20261028.json) · [Preregistration](../knowledge/preregistration_spmd_20261028.md) · [Web brief](spmd/index.html).
+
+- **SHA-256 (`-zeros.tif`):** `d12ff10f7a0753d3c9c27b2030e195ce6c9ad5be23ac23cfaa8fdebb995628e6` (`EPSG:32611`, `3730 × 3292`, single-band `float32` in `[0.0, 1.0]`, `12,279,160` finite pixels, `0` NaN, `34,500` footprint dots, `0` on visible `fault_mask`).
+- **Matched v3 holdout diagnostic (`GEMSDOE32-HIDE-RECOVER-v3.0`, `n = 22,232` withheld occurrences; note unbuffered split caveat: `15,705 / 22,232` within `15 px` of visible faults):**
+  - `EXP-1 (SPMD-Sup61-Ctrl)`: `HOLDOUT-DTI = 0.127184` `[0.11552, 0.13864]` (paired `+0.027982` vs `D28_B2 = 0.099202`), `34,500` dots, sparse 3-px max `74.78% > 70%` (**duplicate**).
+  - **`EXP-2 (SPMD-SARPU-Unified)` [emitted]:** **`HOLDOUT-DTI = 0.113181` `[0.09960, 0.12562]`** (paired `+0.013978` `[+0.00008, +0.02793]` vs `D28_B2`; `+0.018483` vs prior sparse-unique `H-UDSR EXP-3 = 0.094698`), `34,500` dots (`22.17%` at `d > 15 px`, `23.63%` in LiDAR gaps, `0%` in deep playa), 63-ch leakage canary max oriented AUC `0.769315 <= 0.90`, pre-placement surface max `|Spearman| = 0.1230 <= 0.90`, **543-raster sparse 3-px max `68.93% <= 70%` (`WBGGEMSDOE3`, `0.98%` vs `RAD-SCARP`, `0.74%` vs `H-DIL-GRAV`)**, literal `13GEMSDOE` covering-lattice overlap **`99.852% > 70%` (`verdict: negative` — research only / DO NOT SUBMIT)**.
+  - `EXP-3 (SPMD-SARPU-TwoRegime)`: `HOLDOUT-DTI = 0.099157` `[0.08659, 0.11110]`, `33,600` dots, sparse 3-px max `65.30% <= 70%`.
+- **Archived provenance strings (do not upload without separate human selector approval):** name `apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots-20261028T235800Z-2a51285d-zeros`, note (`110` chars) `ApartGEMSDOE2 H-SPMD EXP-2: SAR-PU spy+propensity 61/55ch DualCover + TMI-bandpass/epithermal/LiDAR, 34500d B2`.
+
 ## Submission guide—future candidates only
 
 1. Establish an explicitly assigned lane and budget; authenticate the organizer input files, sample and footprint; use the pinned shared feature stack and resolve upstream evaluator/writer/registry defects centrally.

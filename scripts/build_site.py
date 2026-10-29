@@ -16,6 +16,10 @@ AUDIT = json.loads((ROOT / "evidence/historical_audit.json").read_text())
 SITES = AUDIT["sites"]
 PARALLEL = json.loads((ROOT / "evidence/parallel_candidate_audit.json").read_text())
 PARALLEL_FILE = Path(PARALLEL["variants"]["zeros"]["file"]).name
+SPMD_CARD = json.loads((ROOT / "evidence/spmd_run_card_20261028.json").read_text())
+SPMD_EXPS = json.loads((ROOT / "evidence/spmd_three_experiments_20261028.json").read_text())
+SPMD_TIF_NAME = Path(SPMD_CARD["raster"]).name
+SPMD_ZIP_NAME = Path(SPMD_CARD["zip"]).name
 
 
 def esc(value):
@@ -82,7 +86,8 @@ def index():
       <div class="panel" style="margin-top:1rem;"><div class="mini-label">Archived H-UDSR · EXP-3</div><p>Prior-session diagnostic: reported HOLDOUT-DTI <strong>0.0947</strong> [0.0822, 0.1073], <code>GEMSDOE32-HIDE-RECOVER-v3.0</code>, 22,232 withheld-positive occurrences. It was not independently replayed and the split does not meet the required buffered-whole-segment protocol. The independently checked lattice overlap is <strong>99.85%</strong>; literal gate <strong>FAIL</strong>. Its owner-mirrored template and portal acceptance are not authenticated. <strong>RESEARCH ONLY / DO NOT SUBMIT.</strong></p><p>SHA-256: <code>1f2c28e9eba172fe6a4da138b98afa28a43420549e174c801a02af658ef180b9</code></p><div class="inline-list"><a href="downloads/apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif" download>Download TIFF · RESEARCH ONLY ↗</a><a href="udsr/index.html">Archived H-UDSR review ↗</a><a href="ap2/index.html">Archived AP2 review ↗</a></div></div>
       <div class="panel" style="margin-top:1rem;"><div class="mini-label">Archived H-TRACE · EXP-2</div><p>H-TRACE was a prior run, not independently replayed in this review. Its archived diagnostic reported HOLDOUT-DTI <strong>0.0893</strong> [0.0737, 0.1052], <code>GEMSDOE32-HIDE-RECOVER-v3.0</code>, 22,232 withheld-positive occurrences. It is <strong>not valid under the requested buffered-whole-segment protocol</strong>: the split audit found 15,705 occurrences within 15 px of visible faults and 76 partially scored component instances. The previous surface comparison was incomplete and happened <em>after</em> dot placement, not before. An independent saved-byte check found <strong>99.857%</strong> of the candidate's dots within 3 px of the lattice: literal gate <strong>FAIL</strong>. The TIFF has finite [0,1] cells inside an unauthenticated mirror footprint, but unmasked exterior zeros and unknown portal acceptance. <strong>RESEARCH ONLY / DO NOT SUBMIT.</strong></p><p>SHA-256: <code>32716d4851e9de2df406eeb2386c8ddcf9aa970c985643c7e5484973dd023b4f</code></p><div class="inline-list"><a href="downloads/apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros.tif" download>Download TIFF · RESEARCH ONLY ↗</a><a href="downloads/apartgemsdoe2-trace-exp-2-trace-t1-22438dots-20261028T063240Z-71a21036-zeros.zip" download>Download ZIP · RESEARCH ONLY ↗</a><a href="trace/index.html">Review H-TRACE ↗</a><a href="data/shared_split_geometry_20261028.json">Split geometry receipt ↗</a></div></div>
       <div class="panel" style="margin-top:1rem;"><div class="mini-label">Concurrent archived RAD-SCARP · research only</div><p>Another session generated this TIFF while this review was underway. Its archived full-catalogue construction is not fold-local, its v3 diagnostic lacks a confidence interval, and no complete pre-placement registry pass was established. An independent check found <strong>10,421 / 10,457 = 99.66%</strong> of final dots within 3 px of the registered lattice: literal gate <strong>FAIL</strong>. The owner-mirrored grid and finite [0,1] footprint do not establish portal acceptance; exterior zeros are not null or masked. <strong>RESEARCH ONLY / DO NOT SUBMIT.</strong></p><p>SHA-256: <code>ce5295029b2f506bed5d49b74432370ba6101d5b810797be78af7502d41828f3</code></p><div class="inline-list"><a href="downloads/apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-zeros.tif" download>Download TIFF · RESEARCH ONLY ↗</a><a href="data/rad_scarp_independent_recheck_20261028.json">Independent lattice recheck ↗</a></div></div>
-      <div class="panel" style="margin-top:1rem;"><div class="mini-label">Three more concurrent artifacts · research only</div><p>The earlier lattice audit counted lattice cells near candidate dots, not candidate dots near the lattice. Reopening the saved TIFFs shows <strong>99.23%, 99.903% and 99.872%</strong> directional overlap respectively — all above 70%. Threshold ties caused over five million saved dots in each of the latter two files. The v3 split is not a validated buffered holdout, and no portal acceptance is known. <strong>DO NOT SUBMIT.</strong></p><div class="inline-list"><a href="downloads/gemsdoe32-h-dil-grav-dilate-x-gravlow-top37654-20261028T224631Z-3df650f1-zeros.tif" download>H-DIL-GRAV · RESEARCH ONLY ↗</a><a href="downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif" download>H-MAG-EDGE · RESEARCH ONLY ↗</a><a href="downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif" download>H-DEPTH-COND · RESEARCH ONLY ↗</a><a href="data/parallel_three_independent_recheck_20261028.json">Saved-byte recheck ↗</a></div></div></section>
+      <div class="panel" style="margin-top:1rem;"><div class="mini-label">Three more concurrent artifacts · research only</div><p>The earlier lattice audit counted lattice cells near candidate dots, not candidate dots near the lattice. Reopening the saved TIFFs shows <strong>99.23%, 99.903% and 99.872%</strong> directional overlap respectively — all above 70%. Threshold ties caused over five million saved dots in each of the latter two files. The v3 split is not a validated buffered holdout, and no portal acceptance is known. <strong>DO NOT SUBMIT.</strong></p><div class="inline-list"><a href="downloads/gemsdoe32-h-dil-grav-dilate-x-gravlow-top37654-20261028T224631Z-3df650f1-zeros.tif" download>H-DIL-GRAV · RESEARCH ONLY ↗</a><a href="downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif" download>H-MAG-EDGE · RESEARCH ONLY ↗</a><a href="downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif" download>H-DEPTH-COND · RESEARCH ONLY ↗</a><a href="data/parallel_three_independent_recheck_20261028.json">Saved-byte recheck ↗</a></div></div>
+      <div class="panel" style="margin-top:1rem;"><div class="mini-label">Latest H-SPMD · EXP-2 (SAR-PU Subsurface-Propensity Dual-Cover) · research only</div><p>Three-experiment factorial on pinned <code>GEMSDOE32-HIDE-RECOVER-v3.0</code> (22,232 withheld occurrences; unbuffered split caveat: 15,705 within 15 px of visible faults, not a validated buffered whole-segment holdout): reported HOLDOUT-DTI <strong>{SPMD_CARD['holdout_dti']['point']:.4f}</strong> [{SPMD_CARD['holdout_dti']['ci95'][0]:.4f}, {SPMD_CARD['holdout_dti']['ci95'][1]:.4f}] vs fold-honest <code>D28_B2</code> control <strong>{SPMD_EXPS['baselines']['D28_B2_fold_honest_holdout']['pooled_dti']:.4f}</strong> (paired &Delta; <strong>+{SPMD_CARD['holdout_dti']['paired_vs_fold_honest_d28_b2']['delta_dti']:.4f}</strong> [{SPMD_CARD['holdout_dti']['paired_vs_fold_honest_d28_b2']['ci95_paired_cluster_bootstrap'][0]:+.5f}, {SPMD_CARD['holdout_dti']['paired_vs_fold_honest_d28_b2']['ci95_paired_cluster_bootstrap'][1]:+.5f}]). Pre-placement surface max |&rho;| = <strong>{SPMD_CARD['registry_correlation_overlap']['surface_max_abs_spearman']:.4f}</strong> (&le; 0.90) and 543-raster sparse 3-px overlap = <strong>{SPMD_CARD['registry_correlation_overlap']['sparse_dots_max_within_3px']:.2%}</strong> (&le; 70% vs WBGGEMSDOE3, 0.98% vs RAD-SCARP, 0.74% vs H-DIL-GRAV), while literal <code>13GEMSDOE</code> covering-lattice overlap is <strong>{SPMD_CARD['registry_correlation_overlap']['literal_all_max_within_3px_including_13gemsdoe_lattice']:.3%}</strong> (&gt; 70% literal gate <strong>FAIL</strong>) and template/portal acceptance remain unauthenticated. <strong>RESEARCH ONLY / DO NOT SUBMIT.</strong></p><p>SHA-256: <code>{esc(SPMD_CARD['raster_sha256'])}</code> · Name (provenance only): <code>{esc(SPMD_CARD['submission_name'])}</code></p><div class="inline-list"><a href="downloads/{esc(SPMD_TIF_NAME)}" download>Download H-SPMD TIFF · RESEARCH ONLY ↗</a><a href="downloads/{esc(SPMD_ZIP_NAME)}" download>Download H-SPMD ZIP · RESEARCH ONLY ↗</a><a href="spmd/index.html">Full H-SPMD 3-experiment brief ↗</a><a href="data/spmd_run_card_20261028.json">H-SPMD Run Card JSON ↗</a></div></div></section>
       <section class="section" id="scorecard"><div class="section-head"><div><div class="section-kicker">01 / Nine priority sites</div><h2>Historical results, in context.</h2></div><p>Highest values supplied for each site, not verified organizer receipts. The linked archival variant may differ in bytes from the file named in the claim.</p></div>
       <div class="table-wrap"><table><thead><tr><th>Site</th><th>Reported submission</th><th>Reported value</th><th>New-file estimate</th><th>Unique vs 8 sites?</th><th>Decision</th></tr></thead><tbody>{table}</tbody></table></div>
       <div class="table-foot"><span class="dot"></span><span>Directional overlap is measured on every archived final dot. The audit covers these nine pinned variants, not every private or future submission. A different hash alone does not establish uniqueness. <a href="data/historical_audit.json" class="text-link">View full audit ↗</a> · <button type="button" id="refresh-sources">Check live source HEADs</button><br><span id="freshness-summary" aria-live="polite">Source freshness not yet checked.</span></span></div></section>
@@ -100,7 +105,7 @@ def index():
 
 def summary():
     body = '''<div class="shell"><div class="breadcrumb"><a href="index.html">Overview</a> / Executive summary</div><section class="page-hero"><div class="eyebrow">Executive summary · submission guide</div><h1 class="page-title">One decision before<br>you download.</h1><p class="lead">The process is designed to make upload readiness obvious. Right now, there is no approved new file.</p></section>
-    <div class="notice"><strong>DO NOT SUBMIT — no candidate is approved.</strong><p>A parallel AP-1 research TIFF exists, but 99.72% of its dots overlap the registered lattice within three pixels and its reported holdout is below its control. Its grid is checked only against an owner mirror. <a href="index.html#parallel-candidate">Review the research-only artifacts and evidence ↗</a> Concurrent RAD-SCARP and three additional TIFFs also fail the literal lattice stop; their archived v3 diagnostics are not valid requested-protocol holdouts and portal acceptance is unknown.</p></div>
+    <div class="notice"><strong>DO NOT SUBMIT — no candidate is approved.</strong><p>A parallel AP-1 research TIFF exists, but 99.72% of its dots overlap the registered lattice within three pixels and its reported holdout is below its control. Its grid is checked only against an owner mirror. <a href="index.html#parallel-candidate">Review the research-only artifacts and evidence ↗</a> Concurrent RAD-SCARP and three additional TIFFs also fail the literal lattice stop; their archived v3 diagnostics are not valid requested-protocol holdouts and portal acceptance is unknown. The latest <a href="spmd/index.html">H-SPMD · EXP-2</a> research artifact passes sparse uniqueness (68.93% &le; 70% across 543 sparse rasters) and beats its matched v3 control (0.1132 vs 0.0992), yet remains fail-closed (<code>negative</code> / DO NOT SUBMIT) under the literal <code>13GEMSDOE</code> lattice overlap (99.852%), the unbuffered v3 split geometry caveat (15,705 / 22,232 within 15 px), and unauthenticated mirror/selector governance.</p></div>
     <div class="page-grid"><div><section class="page-section"><h2>What happens when a candidate clears the gates?</h2><ol>
     <li>Prerecord the explicitly assigned method, feature sources, non-fault mimic, budget and immutable registry snapshot. Stop if the surface exceeds the specified correlation or proximity threshold.</li>
     <li>Once the canonical evaluator is fixed and pinned, run the shared holdout with whole buffered withheld segments. Rebuild every catalogue-derived feature from visible faults only; mask visible catalogue pixels exactly. Test each feature individually for leakage.</li>
@@ -147,17 +152,84 @@ def research():
     return page('Research directions', body)
 
 
+def spmd_brief():
+    e1, e2, e3 = SPMD_EXPS["experiments"]
+    rows = []
+    for ex in (e1, e2, e3):
+        hr = ex["holdout_hide_and_recover"]
+        pv = ex["paired_vs_d28_b2_fold_honest"]
+        sp = ex["spatial_profile"]
+        sa = ex["surface_audit"]
+        da = ex["dots_audit"]
+        sp_ok = sa["passed"] and da["passed"]
+        rows.append(f"""<tr>
+          <td><strong>{esc(ex['experiment_id'])}</strong><span class="sub">{esc(ex['name'])}</span></td>
+          <td><strong>{hr['pooled_dti']:.6f}</strong><span class="sub">[{hr['ci95_cluster_bootstrap'][0]:.4f}, {hr['ci95_cluster_bootstrap'][1]:.4f}]</span></td>
+          <td>{pv['delta_dti']:+.6f}<span class="sub">[{pv['ci95_paired_cluster_bootstrap'][0]:+.5f}, {pv['ci95_paired_cluster_bootstrap'][1]:+.5f}]</span></td>
+          <td>{sp['n_dots']:,}<span class="sub">{sp['frac_d_gt_15px']*100:.1f}% &gt;15 px</span></td>
+          <td>{sa['worst_abs_spearman']:.4f} &le; 0.90</td>
+          <td><span class="tag {'good' if sp_ok else 'bad'}">{da['worst_sparse_within_3px']:.2%}</span></td>
+          <td><span class="tag bad">{da['worst_all_including_lattice_within_3px']:.2%}</span><span class="sub">13GEMSDOE lattice</span></td>
+        </tr>""")
+    rows_html = "".join(rows)
+    body = f'''<div class="shell"><div class="breadcrumb"><a href="../index.html">Overview</a> / H-SPMD research brief</div>
+    <section class="page-hero"><div class="eyebrow">H-SPMD · SAR-PU Subsurface-Propensity Multi-Depth Dual-Cover</div>
+    <h1 class="page-title">Purging concealed faults<br>from unlabeled cover.</h1>
+    <p class="lead">Three preregistered experiments testing spy-calibrated Selected-At-Random Positive-Unlabeled (SAR-PU) learning plus multi-depth magnetic bandpass, epithermal K/eTh, and LiDAR availability gating.</p></section>
+    <div class="notice"><strong>VERDICT: NEGATIVE (FAIL-CLOSED) — RESEARCH ONLY / DO NOT SUBMIT / DO NOT AUTO-SUBMIT.</strong>
+    <p><strong>EXP-2</strong> beats fold-honest <code>D28_B2</code> on matched <code>GEMSDOE32-HIDE-RECOVER-v3.0</code> (<strong>0.1132</strong> vs <strong>0.0992</strong>, paired 95% CI [+0.00008, +0.02793]) and clears sparse uniqueness across all 543 sparse rasters across 15 repositories (<strong>68.93% &le; 70%</strong>) plus concurrent RAD-SCARP (0.98%) and H-DIL-GRAV (0.74%), yet overlaps <strong>99.852%</strong> with the dense 206,895-dot <code>13GEMSDOE</code> covering lattice, uses the unbuffered shared v3 split (15,705 / 22,232 withheld occurrences within 15 px of visible faults), and relies on an owner-mirrored template without authenticated selector approval.</p></div>
+    <div class="page-grid"><div>
+      <section class="page-section"><h2>Three-experiment factorial (budget 3 / 3)</h2>
+      <p>Reported on pinned <code>GEMSDOE32-HIDE-RECOVER-v3.0</code> (22,232 withheld positive occurrences; <code>D28_B2</code> = 0.099202; <code>SGMC-CAL</code> = 0.064121; prior sparse-unique <code>H-UDSR EXP-3</code> = 0.094698; see unbuffered v3 split caveat in <a href="../data/shared_split_geometry_20261028.json">shared_split_geometry_20261028.json</a>).</p>
+      <div class="table-wrap"><table><thead><tr><th>Experiment</th><th>HOLDOUT-DTI</th><th>Paired &Delta; vs D28_B2</th><th>Dots</th><th>Surface |&rho;|</th><th>Sparse 3-px (543)</th><th>Literal all-registry</th></tr></thead><tbody>{rows_html}</tbody></table></div>
+      <p style="margin-top:1rem;"><img src="../assets/fig6_spmd_experiments.png" alt="H-SPMD 3-experiment comparison chart" style="max-width:100%;height:auto;border-radius:8px;border:1px solid #d8dedc;"></p></section>
+      <section class="page-section"><h2>Geological mechanism &amp; non-fault mimics</h2>
+      <p><strong>Mechanism:</strong> Supervised learners treat unlabeled Quaternary basin pixels as 100% true negatives (<code>y=0</code>), penalizing blind Basin-and-Range range-front, step-over, and accommodation-zone faults concealed beneath <code>quaternary_thickness &gt; 0</code> or USGS 3DEP LiDAR gaps. H-SPMD injects 15% of fold-visible faults as concealed spies stripped of catalogue proximity, purges the top 15.8% subsurface-conduit unlabeled pixels, fits propensity-stabilized LightGBM Dual-Cover blends on 8 new multi-depth geophysical channels (63-channel leakage canary max oriented AUC = <strong>0.7693 &le; 0.90</strong>), and suppresses deep non-fault playa interiors.</p>
+      <p><strong>Mimicking non-fault processes:</strong> Buried Miocene caldera ring margins, tabular basaltic sill edges, axial paleo-river magnetics, GeoDAWN N–S survey tie-line leveling steps, and conductive clay-rich saline playas in closed basins.</p></section>
+      <section class="page-section"><h2>Saved-byte validation &amp; provenance</h2>
+      <ul>
+        <li><strong>File (zeros exterior, research only):</strong> <a href="../downloads/{esc(SPMD_TIF_NAME)}" download><code>{esc(SPMD_TIF_NAME)}</code></a></li>
+        <li><strong>ZIP bundle (research only):</strong> <a href="../downloads/{esc(SPMD_ZIP_NAME)}" download><code>{esc(SPMD_ZIP_NAME)}</code></a></li>
+        <li><strong>SHA-256 (<code>-zeros.tif</code>):</strong> <code>{esc(SPMD_CARD['raster_sha256'])}</code></li>
+        <li><strong>Validator:</strong> EPSG:32611 · 3730 &times; 3292 · float32 in [0.0, 1.0] · 0 NaN · 34,500 positive pixels in footprint · 0 on visible <code>fault_mask</code></li>
+        <li><strong>Archived submission name (provenance only):</strong> <code>{esc(SPMD_CARD['submission_name'])}</code></li>
+        <li><strong>Archived &le;140-char note ({SPMD_CARD['note_length_chars']} chars, provenance only):</strong> <code>{esc(SPMD_CARD['note'])}</code></li>
+      </ul></section>
+    </div>
+    <aside><div class="facts">
+      <div class="fact"><div class="mini-label">Verdict</div><div class="value">Negative (fail-closed)</div></div>
+      <div class="fact"><div class="mini-label">HOLDOUT-DTI (EXP-2, v3)</div><div class="value">{SPMD_CARD['holdout_dti']['point']:.4f}</div><p class="sub">95% CI [{SPMD_CARD['holdout_dti']['ci95'][0]:.4f}, {SPMD_CARD['holdout_dti']['ci95'][1]:.4f}]</p></div>
+      <div class="fact"><div class="mini-label">EXP-1 raw-DTI record</div><div class="value">0.1272</div><p class="sub">74.78% sparse overlap (duplicate)</p></div>
+      <div class="fact"><div class="mini-label">Sparse 3-px max (EXP-2)</div><div class="value">68.93% &le; 70%</div><p class="sub">543 sparse rasters · 15 repos</p></div>
+      <div class="fact"><div class="mini-label">Literal lattice overlap</div><div class="value">99.85%</div><p class="sub">13GEMSDOE 206,895-dot grid</p></div>
+      <div class="fact"><div class="mini-label">Evidence JSON</div><div class="inline-list"><a href="../data/spmd_run_card_20261028.json">SPMD Run Card ↗</a><a href="../downloads/apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots-20261028T235800Z-2a51285d-audit.json">Saved-byte audit ↗</a></div></div>
+    </div></aside></div></div>'''
+    return page('H-SPMD research brief', body, '../')
+
+
 def main():
     (DOCS / 'sites').mkdir(parents=True, exist_ok=True)
+    (DOCS / 'spmd').mkdir(parents=True, exist_ok=True)
     (DOCS / 'data').mkdir(parents=True, exist_ok=True)
     (DOCS / 'index.html').write_text(index())
     (DOCS / 'executive-summary.html').write_text(summary())
     (DOCS / 'research.html').write_text(research())
+    (DOCS / 'spmd' / 'index.html').write_text(spmd_brief())
     for s in SITES:
         (DOCS / 'sites' / f"{s['site'].lower()}.html").write_text(site_detail(s))
-    for name in ('historical_audit.json', 'parallel_candidate_audit.json', 'run_card.json', 'current_run_card.json', 'shared_split_geometry_20261028.json', 'trace_independent_recheck_20261028.json'):
+    for name in (
+        'historical_audit.json',
+        'parallel_candidate_audit.json',
+        'run_card.json',
+        'current_run_card.json',
+        'shared_split_geometry_20261028.json',
+        'trace_independent_recheck_20261028.json',
+        'rad_scarp_independent_recheck_20261028.json',
+        'parallel_three_independent_recheck_20261028.json',
+        'spmd_run_card_20261028.json',
+    ):
         shutil.copyfile(ROOT / 'evidence' / name, DOCS / 'data' / name)
-    print(f'Built overview, guide, research, and {len(SITES)} static site briefs.')
+    print(f'Built overview, guide, research, H-SPMD brief, and {len(SITES)} static site briefs.')
 
 
 if __name__ == '__main__':

@@ -60,7 +60,16 @@ def main() -> int:
 
     # 2. Sibling parallel repos in /tmp/ref_repos
     ref_root = Path("/tmp/ref_repos")
-    for sib in ("GEMSDOE70", "KANLERGEMSDOE3", "WBGGEMSDOE3"):
+    sib_names = (
+        "GEMSDOE70",
+        "KANLERGEMSDOE3",
+        "WBGGEMSDOE3",
+        "ApartGEMSDOE1",
+        "ApartGEMSDOE3",
+        "GEMSDOESASS2",
+        "GEMSDOESASS3",
+    )
+    for sib in sib_names:
         sdir = ref_root / sib
         if not sdir.is_dir():
             continue
