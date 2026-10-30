@@ -1,6 +1,6 @@
 # ApartGEMS · evidence before the next upload
 
-**Start every session here.** This repository is a research and decision desk for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/). The target is geological faults, not confirmed geothermal vents. We seek a genuinely new, high-quality, reproducible competition submission—not a copied TIFF, renamed prior submission, invented score, or format-only pass.
+**Start every session here.** This repository is a research and decision desk for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/). The target is geological faults, not confirmed geothermal vents. We seek a genuinely new, high-quality, reproducible competition submission—not a copied TIFF, renamed prior submission, invented score, or format-only pass. **Latest repository review (30 Oct 2026): [negative decision, verification results, stale-feed notice, and blockers](docs/repo-review-20261030.md).**
 
 **Arena AI Core Values:** **Maximize P(Win)** · **Own the Outcome**
 
@@ -21,7 +21,7 @@
 > ## CURRENT DECISION: DO NOT SUBMIT
 > **No candidate is approved; no new experiment or weekly slot was used in the latest review.** H-TRACE, H-UDSR and concurrent RAD-SCARP are historical research artifacts, not submission downloads. Their literal lattice overlaps exceed 70%; their owner-mirrored template is not organizer-authenticated. A newly verified flaw in the archived holdout split also means the prior numbers do **not** establish the requested buffered-whole-segment validation. The archived surface check was incomplete and, for H-TRACE, happened after dot placement.
 >
-> [Current JSON run card](evidence/current_run_card.json) · [H-SARPU Run Card (`0.11384` sparse-unique record)](evidence/sarpu_run_card_20261028.json) · [H-SARPU dashboard & guide](docs/sarpu/index.html) · [Executive summary and guide](docs/executive-summary.html) · [Nine-site scorecard](docs/index.html#scorecard) · [Three-pass review](docs/REVIEW_20261028_FOLLOWUP.md)
+> [Current JSON run card](evidence/current_run_card.json) · [H-SARPU Run Card (`0.11384` sparse-unique record)](evidence/sarpu_run_card_20261028.json) · [H-SARPU dashboard & guide](docs/sarpu/index.html) · [Executive summary and guide](docs/executive-summary.html) · [Nine-site scorecard](docs/index.html#scorecard) · [Three-pass review](docs/REVIEW_20261028_FOLLOWUP.md) · [30 Oct repository review](docs/REPO_REVIEW_20261030.md)
 
 ## Standing project prompt — read on every session
 
