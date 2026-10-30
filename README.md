@@ -1,6 +1,6 @@
 # ApartGEMS · evidence before the next upload
 
-**Start every session here.** This repository is a research and decision desk for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/). The target is geological faults, not confirmed geothermal vents. We seek a genuinely new, high-quality, reproducible competition submission—not a copied TIFF, renamed prior submission, invented score, or format-only pass.
+**Start every session here.** This repository is a research and decision desk for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/). The target is geological faults, not confirmed geothermal vents. We seek a genuinely new, high-quality, reproducible competition submission—not a copied TIFF, renamed prior submission, invented score, or format-only pass. **Latest repository review (30 Oct 2026): [negative decision, verification results, stale-feed notice, and blockers](docs/repo-review-20261030.md).**
 
 **Arena AI Core Values:** **Maximize P(Win)** · **Own the Outcome**
 
