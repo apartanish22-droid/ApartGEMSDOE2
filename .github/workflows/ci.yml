@@ -21,6 +21,6 @@ jobs:
       - run: python -m pytest -q
       - run: node tests/feed_ui.cjs
       - run: node --test tests/js/source_freshness.test.cjs
-      - run: python scripts/build_site.py && python scripts/build_scorecard.py
+      - run: python scripts/build_site.py && python scripts/build_scorecard.py && python scripts/build_submission_decision.py
       - name: Verify generated site is committed
         run: git diff --exit-code -- docs

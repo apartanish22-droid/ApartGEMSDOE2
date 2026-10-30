@@ -1,0 +1,20 @@
+{
+  "schema": "review-pass1-independent-recheck-v1",
+  "utc": "2026-10-30",
+  "candidate": "docs/downloads/apartgemsdoe2-h-ridge3-tensorfuse-37654-20261030-nan.tif",
+  "candidate_sha256": "9ef2450c48ce72d65be7e0f7bbf021e4e838a17ca71f1c8067f91353a976ce82",
+  "rasters_compared_same_grid": 471,
+  "non_lattice_rasters": 469,
+  "lattice_rasters": 2,
+  "lattice_overlap_strict_lt3": 0.9906782811919053,
+  "lattice_overlap_inclusive_le3": 0.9925373134328358,
+  "max_nonlattice_strict_lt3": {
+    "fraction": 0.49006745631274234,
+    "reference": ".cache/registry/GEMSDOE30/docs/downloads/gemsdoe30-sgmc-hedge-d10-85k-20261003-ac08b41e.tif"
+  },
+  "max_nonlattice_inclusive_le3": {
+    "fraction": 0.5262389122005631,
+    "reference": ".cache/registry/GEMSDOE25/docs/downloads/gems25-h78-mhscf-conduit-b2-sapd2-85-20261027-b2488f5d216c-nan.tif"
+  },
+  "convention_note": "Strict d < 3 px matches scipy cKDTree distance_upper_bound used by the generator and the official kernel (k(R)=0). Inclusive d <= 3 px is reported as the conservative alternative. Verdicts are the same under both."
+}

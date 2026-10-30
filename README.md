@@ -4,7 +4,16 @@
 
 **Arena AI Core Values:** **Maximize P(Win)** · **Own the Outcome**
 
-> ## START HERE (30 Oct 2026): v4 executive summary — DO NOT SUBMIT ANY FILE
+> ## START HERE (30 Oct 2026): DO NOT SUBMIT ANY FILE
+> Two independent sessions reviewed this repository today. Both reach a negative verdict.
+>
+> ### Session A: submission decision desk (H-RIDGE3 and nine-site table)
+> **Executive summary and per-site download table: [docs/submission-decision.html](docs/submission-decision.html).** Machine-readable: [evidence/submission_decision_20261030.json](evidence/submission_decision_20261030.json).
+>
+> Today's H-RIDGE3 candidate (catalogue-free ridge fusion, 37,654 dots, [NaN-outside TIF](docs/downloads/apartgemsdoe2-h-ridge3-tensorfuse-37654-20261030-nan.tif), [zeros twin](docs/downloads/apartgemsdoe2-h-ridge3-tensorfuse-37654-20261030-zeros.tif), [run card](evidence/ridge3_run_card_20261030.json)) passes the surface gate and the official null/NaN-outside readback. The repo's conservative whole-array checker rejects the NaN file, and the zeros twin fails the official null/NaN-outside clause. The candidate **fails** the literal 70% lattice gate (99.1% overlap with the synthetic 5-px calibration lattice; random null 67.8%), has **no holdout estimate** (catalogue in-sample DTI 0.046, AUC 0.555), and so is **not cleared**. The nine GEMSDOE site bests are all duplicates of other sites' rasters under the literal rule. On the live leaderboard (top 50 rows, fetched today), 0.3195 is rank #48, 0.4413 does not appear, and the top score is 0.4544 at #1. H-RIDGE3 was run as a catalogue-sanity build, not a protocol experiment; no buffered holdout was run and **no weekly slot was used**.
+>
+>
+> ### Session B: v4 executive summary
 > **[Open the v4 executive summary and nine-site table →](docs/v4/index.html)** · [v4 run card](evidence/v4_run_card.json) · [v4 hypothesis slate](docs/research/v4-hypotheses.md)
 >
 > - **New GeoTIFF:** [`apartgems-v4-ridge-tmi-isohg-nms-q5pct-20261030.tif`](docs/downloads/apartgems-v4-ridge-tmi-isohg-nms-q5pct-20261030.tif) (SHA-256 `f6f3e7c9…`), a unique name and a note of 118 characters. **Format PASS** (float32, EPSG:32611, NaN outside footprint, values in [0,1]). **Uniqueness vs the nine focus sites PASS** (max 24.1%). **Fails the literal 13GEMSDOE lattice gate (99.8%), which is structural: no dense file can pass it.** Catalogue-proxy HOLDOUT-DTI **0.0741** (95% CI 0.0599–0.0979, east half, 22,196 withheld cells). **Leaderboard estimate: not estimable.** Verdict: **negative, do not upload.**
@@ -79,6 +88,8 @@ This is the durable, consolidated operational request; [PROJECT_BRIEF.md](docs/P
 
 10. **H-SARPU three-experiment 67-channel Multi-Physics + Isomorphic LEFM artifact (`arena/431d4f24-apartgemsdoe2`):** [preregistered](knowledge/preregistration_sarpu_20261028.md) Selected-At-Random Positive-Unlabeled (`SAR-PU`) observation-propensity learner across **67 verified channels** (`max_oriented_auc = 0.772907 <= 0.90` in [the 67-ch leakage canary](evidence/sarpu_canary_67_20261028.json)) adding 12 label-free physical layers (shallow `TMI - TMI_up150` magnetite destruction, Baranov FFT `1/|k|` pseudo-gravity deficit, 4-block leveled GeoDAWN `Th/K` adularia + `U/K+U/Th` radon, BLM hydrothermal claims, strike-guided anisotropic Darcy plume, Biot slip-dilation × declustered seismicity `deq_n100a15`, Lahontan-damped profile curvature, real-band `H-FRACTAL-REAL` variogram anisotropy, Wallace 1 m LiDAR scarp dipole, LiDAR–PF `cos^2` strike concordance, pure-subsurface blind conduit index) plus 2 **5-fold component-withheld** Williams (1957) Mode-I crack-tip and Crider–Pollard (1998) relay-ramp LEFM channels. **EXP-2 (`SARPU-LEFM-Uncapped-38k`)** ([emitted TIFF](docs/downloads/apartgemsdoe2-sarpu-exp2-lefm-sarpu-37654dots-20261028T235500Z-25593731-zeros.tif), SHA-256 `030153b3bd16fb04eef1afa95f8931f27cd132e645c6825309e197cd3a85aa82`) achieved the **highest sparse-unique score in repository history** across all three axes: **`HOLDOUT-DTI = 0.113838` `[0.09999, 0.12708]`** (`> 0.113181` H-SPMD EXP-2 and `> 0.113696` H-UDSR EXP-2; paired `+0.014636` `[+0.00514, +0.02420]` vs fold-honest `D28_B2 = 0.099202`, `99.9%` win rate), **Detached-600m (`d >= 6 px`) `= 0.086337 > 0.083437`**, **independent `SGMC-CAL-v3.0 = 0.063808`** (`+33.0%` over H-SPMD EXP-2 `0.047974`), pre-placement surface `|Spearman| = 0.1185 <= 0.90`, and **559-raster genuine non-lattice sparse 3-px max `61.91% <= 70%`** (`53.71%` across `<=50k`-dot peers, **`49.41%` vs H-SPMD EXP-2**, **`37.31%` vs `GEMSDOE32 B2`**, `0.77%` vs RAD-SCARP, `0.43%` vs H-DIL-GRAV). Because the dense 206,895-dot `13GEMSDOE` calibration lattice (`99.87%` 3-px footprint coverage) gives **`99.82% > 70%`** literal overlap (`-0.3829 <= 0.70` null-calibrated excess), `2/471` focus-registry rasters are malformed upstream (`IR-SARPU-04`), and the mirror/selector remain unauthenticated, [the H-SARPU Run Card](evidence/sarpu_run_card_20261028.json) records **`verdict: negative` (RESEARCH ONLY / DO NOT AUTO-SUBMIT)**.
 
+11. **Submission decision desk (30 Oct 2026):** the [executive summary](docs/submission-decision.html) names the file to download for each GEMSDOE site, its user-reported score, its literal uniqueness result and its submission status. It is generated from committed evidence by `scripts/build_submission_decision.py` and checked in CI. Findings: GEMSDOE25 and GEMSDOE30 have identical dot masks (both user-reported 0.2600); five user-named `-nan` files have zeros-outside bytes; the user's 0.3195 and 0.4413 are not on the live leaderboard. The other session's H-RAD-MAG-CONTRAST file (`d6cdf8f8`) has 21,064 of its 40,000 dots outside the official training footprint, so it is not a valid submission as delivered. Its "format-valid" label is incorrect. The planned hypothesis slate is in [knowledge/candidate_slate_20261030.md](knowledge/candidate_slate_20261030.md). Only H-RIDGE3 has been measured, and it is negative.
+
 ## Reproduce the read-only checks
 
 A fresh checkout does not include ignored caches. Hashes verify owner mirrors, **not** organizer origin. Restoring the core includes a ~419 MB feature raster; do not confuse historical restore receipts with current files.
@@ -99,6 +110,8 @@ sha256sum --check data/shared_tool_hashes.txt
 node tests/feed_ui.cjs
 node --test tests/js/source_freshness.test.cjs
 .venv/bin/python scripts/build_site.py && .venv/bin/python scripts/build_scorecard.py
+.venv/bin/python scripts/build_submission_decision.py                          # executive summary
+.venv/bin/pytest -q tests/test_ridge3_candidate.py                              # H-RIDGE3 + DTI cross-check
 ```
 
 The old H-TRACE/AP-1/AP2/H-UDSR runners and local exporters are guarded; the old H2 generator stops unconditionally. They are not reproduction instructions for a new experiment. The shared pinned CLIs remain unchanged and are explicitly **not** safe substitutes. A green local format check does not establish an authenticated template, official format compliance or slot authorization.

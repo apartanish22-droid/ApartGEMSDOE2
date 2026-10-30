@@ -1,0 +1,270 @@
+{
+  "schema": "nine-site-bests-audit-v2",
+  "utc": "2026-10-30",
+  "scope": "Nine user-listed site bests vs the pinned 471-raster focus registry + 13GEMSDOE lattice. Own entry excluded; byte-identical copies elsewhere kept. Owner-mirror bytes; not organizer-authenticated.",
+  "rule": "Literal protocol: candidate dots within 3 px of any reference's dots; duplicate if > 0.70.",
+  "registry_duplicate_byte_groups": [
+    [
+      "GEMSDOE24:docs/downloads/gems24-h24-0-mirror-h19-5-group-best-20261002-e27054cf-allfinite.tif",
+      "GEMSDOE24:docs/downloads/gems24-reference-h19-5-20261002-80d47e1ab2ee-allfinite.tif",
+      "GEMSDOE24:inputs/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-allfinite.tif"
+    ],
+    [
+      "GEMSDOE24:docs/downloads/gems24-h24-0-mirror-h19-5-group-best-20261002-e27054cf-nan.tif",
+      "GEMSDOE24:docs/downloads/gems24-reference-h19-5-20261002-80d47e1ab2ee-nan.tif",
+      "GEMSDOE24:inputs/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif"
+    ],
+    [
+      "GEMSDOE24:docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-allfinite.tif",
+      "GEMSDOE25:docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+      "GEMSDOE32:docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif"
+    ],
+    [
+      "GEMSDOE24:docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "GEMSDOE25:docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "GEMSDOE30:docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "GEMSDOE32:docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif"
+    ],
+    [
+      "GEMSDOE27:docs/downloads/gems27-all-increments-d2-8-h27-4-r1-t-v2-20261002-23ad46a4d7ba-allfinite.tif",
+      "GEMSDOE28:docs/downloads/gems27-all-increments-d2-8-h27-4-r1-t-v2-20261002-23ad46a4d7ba-allfinite.tif"
+    ],
+    [
+      "GEMSDOE27:docs/downloads/gems27-all-increments-d2-8-h27-4-r1-t-v2-20261002-23ad46a4d7ba-nan.tif",
+      "GEMSDOE28:docs/downloads/gems27-all-increments-d2-8-h27-4-r1-t-v2-20261002-23ad46a4d7ba-nan.tif"
+    ],
+    [
+      "GEMSDOE27:docs/downloads/gems27-h28-1-edge-coherence-plus-t-v2-h27-4-20261002-1113fba5f6cb-allfinite.tif",
+      "GEMSDOE28:docs/downloads/gems27-h28-1-edge-coherence-plus-t-v2-h27-4-20261002-1113fba5f6cb-allfinite.tif"
+    ],
+    [
+      "GEMSDOE27:docs/downloads/gems27-h28-1-edge-coherence-plus-t-v2-h27-4-20261002-1113fba5f6cb-nan.tif",
+      "GEMSDOE28:docs/downloads/gems27-h28-1-edge-coherence-plus-t-v2-h27-4-20261002-1113fba5f6cb-nan.tif"
+    ],
+    [
+      "GEMSDOE27:docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
+      "GEMSDOE28:docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif"
+    ],
+    [
+      "GEMSDOE27:docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "GEMSDOE28:docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif"
+    ],
+    [
+      "GEMSDOE30:docs/downloads/GEMSDOE30-geothermal-corridor-offcat-d3-20261026T160300Z.tif",
+      "GEMSDOE30:docs/downloads/GEMSDOE30-geothermal-corridor-offcat-d3-20261027T233111Z.tif"
+    ],
+    [
+      "GEMSDOE30:docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside.tif",
+      "GEMSDOE31:docs/downloads/gemsdoe31-reference-d28-offcat-44090-20261004-nan.tif"
+    ],
+    [
+      "GEMSDOE33:docs/downloads/gemsdoe33-a33-r2-hmdt-20261026-hmdt-unique-zeros.tif",
+      "GEMSDOE33:docs/downloads/research/gemsdoe33-a33-r2-hmdt-20261026-hmdt-unique-zeros.tif"
+    ]
+  ],
+  "sites": [
+    {
+      "site": "GEMSDOE24",
+      "user_reported_file": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
+      "user_reported_score": 0.2477,
+      "score_evidence": "USER-REPORTED / UNVERIFIED (no organizer receipt)",
+      "registry_entry": "GEMSDOE24:docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif",
+      "sha256": "3e0730e8d4f7db095dd80246a98cba3bc0fc9a28f436b91db27ca34df4d0d1ce",
+      "dots": 60069,
+      "nan_cells_in_file": 0,
+      "format_variant": "zeros-outside",
+      "max_overlap_other_site_nonlattice": 1.0,
+      "max_overlap_other_site_reference": "GEMSDOE25:docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "max_overlap_other_site_random_null": 0.21435277891398175,
+      "identical_bytes_elsewhere_in_registry": [],
+      "max_overlap_any_nonlattice": 1.0,
+      "max_overlap_calibration_lattice": 0.9991176813331336,
+      "lattice_random_null": 0.6776341292034769,
+      "literal_unique_vs_other_sites": false,
+      "literal_unique_vs_all_nonlattice": false,
+      "literal_unique_incl_lattice": false,
+      "references_compared": 470
+    },
+    {
+      "site": "GEMSDOE25",
+      "user_reported_file": "dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
+      "user_reported_score": 0.26,
+      "score_evidence": "USER-REPORTED / UNVERIFIED (no organizer receipt)",
+      "registry_entry": "GEMSDOE25:docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+      "sha256": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+      "dots": 44090,
+      "nan_cells_in_file": 0,
+      "format_variant": "zeros-outside",
+      "max_overlap_other_site_nonlattice": 1.0,
+      "max_overlap_other_site_reference": "GEMSDOE24:docs/downloads/gems24-h24-0-mirror-h19-5-group-best-20261002-e27054cf-allfinite.tif",
+      "max_overlap_other_site_random_null": 0.48459018577334345,
+      "identical_bytes_elsewhere_in_registry": [
+        "GEMSDOE24:docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-allfinite.tif",
+        "GEMSDOE32:docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif"
+      ],
+      "max_overlap_any_nonlattice": 1.0,
+      "max_overlap_calibration_lattice": 0.9990927647992742,
+      "lattice_random_null": 0.6776341292034769,
+      "literal_unique_vs_other_sites": false,
+      "literal_unique_vs_all_nonlattice": false,
+      "literal_unique_incl_lattice": false,
+      "references_compared": 470
+    },
+    {
+      "site": "GEMSDOE27",
+      "user_reported_file": "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
+      "user_reported_score": 0.2449,
+      "score_evidence": "USER-REPORTED / UNVERIFIED (no organizer receipt)",
+      "registry_entry": "GEMSDOE27:docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
+      "sha256": "a9bf76b57453a5b3af74c8eef837df53c29a0931162aa540b8763220b36ba3bb",
+      "dots": 61328,
+      "nan_cells_in_file": 0,
+      "format_variant": "zeros-outside",
+      "max_overlap_other_site_nonlattice": 1.0,
+      "max_overlap_other_site_reference": "GEMSDOE28:docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
+      "max_overlap_other_site_random_null": 0.285068570404995,
+      "identical_bytes_elsewhere_in_registry": [
+        "GEMSDOE28:docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif"
+      ],
+      "max_overlap_any_nonlattice": 1.0,
+      "max_overlap_calibration_lattice": 0.9991357944169058,
+      "lattice_random_null": 0.6776341292034769,
+      "literal_unique_vs_other_sites": false,
+      "literal_unique_vs_all_nonlattice": false,
+      "literal_unique_incl_lattice": false,
+      "references_compared": 470
+    },
+    {
+      "site": "GEMSDOE28",
+      "user_reported_file": "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan",
+      "user_reported_score": 0.271,
+      "score_evidence": "USER-REPORTED / UNVERIFIED (no organizer receipt)",
+      "registry_entry": "GEMSDOE28:docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
+      "sha256": "7c74270ad48fa0b865163853046a6d3815967c5bf37bbda5b74ca7fa22583a32",
+      "dots": 37660,
+      "nan_cells_in_file": 0,
+      "format_variant": "zeros-outside",
+      "max_overlap_other_site_nonlattice": 1.0,
+      "max_overlap_other_site_reference": "GEMSDOE24:docs/downloads/gems24-h24-0-mirror-h19-5-group-best-20261002-e27054cf-allfinite.tif",
+      "max_overlap_other_site_random_null": 0.48459018577334345,
+      "identical_bytes_elsewhere_in_registry": [],
+      "max_overlap_any_nonlattice": 1.0,
+      "max_overlap_calibration_lattice": 0.9990175252257036,
+      "lattice_random_null": 0.6776341292034769,
+      "literal_unique_vs_other_sites": false,
+      "literal_unique_vs_all_nonlattice": false,
+      "literal_unique_incl_lattice": false,
+      "references_compared": 470
+    },
+    {
+      "site": "GEMSDOE30",
+      "user_reported_file": "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca",
+      "user_reported_score": 0.26,
+      "score_evidence": "USER-REPORTED / UNVERIFIED (no organizer receipt)",
+      "registry_entry": "GEMSDOE30:docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+      "dots": 44090,
+      "nan_cells_in_file": 0,
+      "format_variant": "zeros-outside",
+      "max_overlap_other_site_nonlattice": 1.0,
+      "max_overlap_other_site_reference": "GEMSDOE24:docs/downloads/gems24-h24-0-mirror-h19-5-group-best-20261002-e27054cf-allfinite.tif",
+      "max_overlap_other_site_random_null": 0.48459018577334345,
+      "identical_bytes_elsewhere_in_registry": [],
+      "max_overlap_any_nonlattice": 1.0,
+      "max_overlap_calibration_lattice": 0.9990927647992742,
+      "lattice_random_null": 0.6776341292034769,
+      "literal_unique_vs_other_sites": false,
+      "literal_unique_vs_all_nonlattice": false,
+      "literal_unique_incl_lattice": false,
+      "references_compared": 470
+    },
+    {
+      "site": "GEMSDOE31",
+      "user_reported_file": "h27-4-solo-d28-20261004-8acb75e1-nan",
+      "user_reported_score": 0.2708,
+      "score_evidence": "USER-REPORTED / UNVERIFIED (no organizer receipt)",
+      "registry_entry": "GEMSDOE31:docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif",
+      "sha256": "acd853936e5a7170b207f23411b1844caa0e7cfdfc303c600e520ccfe75159e6",
+      "dots": 40199,
+      "nan_cells_in_file": 0,
+      "format_variant": "zeros-outside",
+      "max_overlap_other_site_nonlattice": 1.0,
+      "max_overlap_other_site_reference": "GEMSDOE24:docs/downloads/gems24-h24-0-mirror-h19-5-group-best-20261002-e27054cf-allfinite.tif",
+      "max_overlap_other_site_random_null": 0.48459018577334345,
+      "identical_bytes_elsewhere_in_registry": [],
+      "max_overlap_any_nonlattice": 1.0,
+      "max_overlap_calibration_lattice": 0.9991044553347098,
+      "lattice_random_null": 0.6776341292034769,
+      "literal_unique_vs_other_sites": false,
+      "literal_unique_vs_all_nonlattice": false,
+      "literal_unique_incl_lattice": false,
+      "references_compared": 470
+    },
+    {
+      "site": "GEMSDOE32",
+      "user_reported_file": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+      "user_reported_score": 0.2778,
+      "score_evidence": "USER-REPORTED / UNVERIFIED (no organizer receipt)",
+      "registry_entry": "GEMSDOE32:docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "dots": 37654,
+      "nan_cells_in_file": 0,
+      "format_variant": "zeros-outside",
+      "max_overlap_other_site_nonlattice": 1.0,
+      "max_overlap_other_site_reference": "GEMSDOE24:docs/downloads/gems24-h24-0-mirror-h19-5-group-best-20261002-e27054cf-allfinite.tif",
+      "max_overlap_other_site_random_null": 0.48459018577334345,
+      "identical_bytes_elsewhere_in_registry": [],
+      "max_overlap_any_nonlattice": 1.0,
+      "max_overlap_calibration_lattice": 0.9990970414829766,
+      "lattice_random_null": 0.6776341292034769,
+      "literal_unique_vs_other_sites": false,
+      "literal_unique_vs_all_nonlattice": false,
+      "literal_unique_incl_lattice": false,
+      "references_compared": 470
+    },
+    {
+      "site": "GEMSDOE33",
+      "user_reported_file": "h33d-analog-tip-stepover-r30-20261004-cb490425926e",
+      "user_reported_score": 0.2632,
+      "score_evidence": "USER-REPORTED / UNVERIFIED (no organizer receipt)",
+      "registry_entry": "GEMSDOE33:docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+      "dots": 41865,
+      "nan_cells_in_file": 0,
+      "format_variant": "zeros-outside",
+      "max_overlap_other_site_nonlattice": 0.9990684342529559,
+      "max_overlap_other_site_reference": "GEMSDOE24:inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "max_overlap_other_site_random_null": 0.6776341292034769,
+      "identical_bytes_elsewhere_in_registry": [],
+      "max_overlap_any_nonlattice": 1.0,
+      "max_overlap_calibration_lattice": 0.9990684342529559,
+      "lattice_random_null": 0.6776341292034769,
+      "literal_unique_vs_other_sites": false,
+      "literal_unique_vs_all_nonlattice": false,
+      "literal_unique_incl_lattice": false,
+      "references_compared": 470
+    },
+    {
+      "site": "GEMSDOE36",
+      "user_reported_file": "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
+      "user_reported_score": 0.275,
+      "score_evidence": "USER-REPORTED / UNVERIFIED (no organizer receipt)",
+      "registry_entry": "GEMSDOE36:docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+      "dots": 38854,
+      "nan_cells_in_file": 0,
+      "format_variant": "zeros-outside",
+      "max_overlap_other_site_nonlattice": 0.9991249292222165,
+      "max_overlap_other_site_reference": "GEMSDOE24:inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "max_overlap_other_site_random_null": 0.6776341292034769,
+      "identical_bytes_elsewhere_in_registry": [],
+      "max_overlap_any_nonlattice": 1.0,
+      "max_overlap_calibration_lattice": 0.9991249292222165,
+      "lattice_random_null": 0.6776341292034769,
+      "literal_unique_vs_other_sites": false,
+      "literal_unique_vs_all_nonlattice": false,
+      "literal_unique_incl_lattice": false,
+      "references_compared": 470
+    }
+  ]
+}

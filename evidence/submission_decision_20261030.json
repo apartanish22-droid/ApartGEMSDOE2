@@ -1,0 +1,152 @@
+{
+  "schema": "submission-decision-v1",
+  "utc": "2026-10-30",
+  "decision": "DO NOT UPLOAD ANY FILE YET",
+  "rows": [
+    {
+      "file": "docs/downloads/apartgemsdoe2-h-ridge3-tensorfuse-37654-20261030-nan.tif  (+ zeros twin apartgemsdoe2-h-ridge3-tensorfuse-37654-20261030-zeros.tif)",
+      "origin": "This session, H-RIDGE3 (catalogue-free), 37,654 dots",
+      "estimated_score": "NOT ESTIMABLE. No holdout. Catalogue in-sample DTI 0.046 is a sanity diagnostic, not a score.",
+      "unique_vs_other_gemsdoe_sites": "PARTLY. Max overlap with any non-lattice registry raster 49.0% (passes 70%). Synthetic calibration lattice 99.1% (fails the literal rule).",
+      "ok_to_submit": "NO",
+      "reason": "Literal lattice gate fails; no holdout; weak catalogue signal (AUC 0.555); no organizer authentication. The zeros twin also stores 0 outside the footprint, which check_submission.py flags against the official null/NaN-outside rule; the NaN file is the only variant that matches that rule."
+    },
+    {
+      "file": "docs/downloads/apartgems-v4-ridge-tmi-isohg-nms-q5pct-20261030.tif",
+      "origin": "Other session (main, v4 lane): label-free TMI+gravity ridge NMS, 203,418 dots",
+      "estimated_score": "HOLDOUT-DTI catalogue proxy 0.07412 (east half, 95% CI 0.05987\u20130.09793) per its run card. Not organizer-confirmed; not the hidden set.",
+      "unique_vs_other_gemsdoe_sites": "PARTLY. Max overlap 48.5% with a non-lattice registry raster (passes). Lattice 99.8% (fails the literal rule).",
+      "ok_to_submit": "NO",
+      "reason": "Lattice gate fails; its own run card records E2 below the same-protocol reference on the east half (verdict: negative)."
+    },
+    {
+      "file": "docs/downloads/gemsdoe32-unique-blind-conduit-20261030T021414Z-70aa4159-nan.tif",
+      "origin": "Other session (PR #38, blind-conduit), 37,169 dots, collar-pruned",
+      "estimated_score": "No holdout (its audit reports predicted leaderboard DTI as null). No estimate.",
+      "unique_vs_other_gemsdoe_sites": "PARTLY. Max overlap 42.8% with a non-lattice registry raster (passes). Lattice 100.0% (fails the literal rule).",
+      "ok_to_submit": "NO",
+      "reason": "Its own audit says OK to download, NOT YET to submit, and slot HOLD-DO-NOT-SUBMIT. The lattice gate fails, and no holdout exists."
+    },
+    {
+      "file": "docs/downloads/apartgemsdoe2-hrm-contrast-blind-geothermal-20261030T015536Z-d6cdf8f8-zeros.tif",
+      "origin": "Other session (main), H-RAD-MAG-CONTRAST, 40,000 dots, zeros outside",
+      "estimated_score": "No estimate (its audit: projection only; uniqueness 'not yet verified').",
+      "unique_vs_other_gemsdoe_sites": "NOT VALID AS DELIVERED. 21,064 of 40,000 dots (53%) lie outside the official training-data footprint. Its uniqueness numbers (17.7% non-lattice, 47.3% lattice) are measured on all dots and are not a valid test.",
+      "ok_to_submit": "NO",
+      "reason": "Dots outside the official footprint and zeros (not null/NaN) outside: fails the official format. Its audit label 'format-valid' is incorrect."
+    },
+    {
+      "file": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "origin": "GEMSDOE32 site best (user-reported name: h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros; audited bytes: zeros-outside)",
+      "estimated_score": "User-reported 0.2778 (UNVERIFIED, no receipt). No new estimate.",
+      "unique_vs_other_gemsdoe_sites": "NO. Overlap 100.0% with another site's registry raster; lattice 99.9%.",
+      "ok_to_submit": "NO",
+      "reason": "Duplicate under the literal rule; not a new submission."
+    },
+    {
+      "file": "docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "origin": "GEMSDOE36 site best (user-reported name: anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros; audited bytes: zeros-outside)",
+      "estimated_score": "User-reported 0.2750 (UNVERIFIED, no receipt). No new estimate.",
+      "unique_vs_other_gemsdoe_sites": "NO. Overlap 99.9% with another site's registry raster; lattice 99.9%.",
+      "ok_to_submit": "NO",
+      "reason": "Duplicate under the literal rule; not a new submission."
+    },
+    {
+      "file": "docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
+      "origin": "GEMSDOE28 site best (user-reported name: h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan; audited bytes: zeros-outside)",
+      "estimated_score": "User-reported 0.2710 (UNVERIFIED, no receipt). No new estimate.",
+      "unique_vs_other_gemsdoe_sites": "NO. Overlap 100.0% with another site's registry raster; lattice 99.9%.",
+      "ok_to_submit": "NO",
+      "reason": "Duplicate under the literal rule; not a new submission."
+    },
+    {
+      "file": "docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif",
+      "origin": "GEMSDOE31 site best (user-reported name: h27-4-solo-d28-20261004-8acb75e1-nan; audited bytes: zeros-outside)",
+      "estimated_score": "User-reported 0.2708 (UNVERIFIED, no receipt). No new estimate.",
+      "unique_vs_other_gemsdoe_sites": "NO. Overlap 100.0% with another site's registry raster; lattice 99.9%.",
+      "ok_to_submit": "NO",
+      "reason": "Duplicate under the literal rule; not a new submission."
+    },
+    {
+      "file": "docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "origin": "GEMSDOE33 site best (user-reported name: h33d-analog-tip-stepover-r30-20261004-cb490425926e; audited bytes: zeros-outside)",
+      "estimated_score": "User-reported 0.2632 (UNVERIFIED, no receipt). No new estimate.",
+      "unique_vs_other_gemsdoe_sites": "NO. Overlap 99.9% with another site's registry raster; lattice 99.9%.",
+      "ok_to_submit": "NO",
+      "reason": "Duplicate under the literal rule; not a new submission."
+    },
+    {
+      "file": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+      "origin": "GEMSDOE25 site best (user-reported name: dotted-h19-5-d2-8-20261002-e56ea318af89-nan; audited bytes: zeros-outside)",
+      "estimated_score": "User-reported 0.2600 (UNVERIFIED, no receipt). No new estimate.",
+      "unique_vs_other_gemsdoe_sites": "NO. Overlap 100.0% with another site's registry raster; lattice 99.9%.",
+      "ok_to_submit": "NO",
+      "reason": "Duplicate under the literal rule; not a new submission."
+    },
+    {
+      "file": "docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "origin": "GEMSDOE30 site best (user-reported name: d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca; audited bytes: zeros-outside)",
+      "estimated_score": "User-reported 0.2600 (UNVERIFIED, no receipt). No new estimate.",
+      "unique_vs_other_gemsdoe_sites": "NO. Overlap 100.0% with another site's registry raster; lattice 99.9%.",
+      "ok_to_submit": "NO",
+      "reason": "Duplicate under the literal rule; not a new submission."
+    },
+    {
+      "file": "docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif",
+      "origin": "GEMSDOE24 site best (user-reported name: h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan; audited bytes: zeros-outside)",
+      "estimated_score": "User-reported 0.2477 (UNVERIFIED, no receipt). No new estimate.",
+      "unique_vs_other_gemsdoe_sites": "NO. Overlap 100.0% with another site's registry raster; lattice 99.9%.",
+      "ok_to_submit": "NO",
+      "reason": "Duplicate under the literal rule; not a new submission."
+    },
+    {
+      "file": "docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
+      "origin": "GEMSDOE27 site best (user-reported name: topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan; audited bytes: zeros-outside)",
+      "estimated_score": "User-reported 0.2449 (UNVERIFIED, no receipt). No new estimate.",
+      "unique_vs_other_gemsdoe_sites": "NO. Overlap 100.0% with another site's registry raster; lattice 99.9%.",
+      "ok_to_submit": "NO",
+      "reason": "Duplicate under the literal rule; not a new submission."
+    }
+  ],
+  "leaderboard_top_observed": [
+    {
+      "rank": "#1",
+      "team": "xiaofanhu",
+      "score": 0.4544
+    },
+    {
+      "rank": "#2",
+      "team": "cfld__",
+      "score": 0.3916
+    },
+    {
+      "rank": "#3",
+      "team": "Batik Shirt Brothers",
+      "score": 0.3915
+    },
+    {
+      "rank": "#4",
+      "team": "BrandenKMurray",
+      "score": 0.3841
+    },
+    {
+      "rank": "#5",
+      "team": "op01",
+      "score": 0.3642
+    },
+    {
+      "rank": "#48",
+      "team": "kpomazi",
+      "score": 0.3195
+    }
+  ],
+  "leaderboard_source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "new_candidate": {
+    "name": "apartgemsdoe2-h-ridge3-tensorfuse-37654-20261030-nan",
+    "nan_variant": "docs/downloads/apartgemsdoe2-h-ridge3-tensorfuse-37654-20261030-nan.tif",
+    "zeros_variant": "docs/downloads/apartgemsdoe2-h-ridge3-tensorfuse-37654-20261030-zeros.tif",
+    "nan_sha256": "9ef2450c48ce72d65be7e0f7bbf021e4e838a17ca71f1c8067f91353a976ce82",
+    "zeros_sha256": "2031ebd623f0bfe9c0566c3c346362f8915330669d0ab9933c460537181051bf",
+    "note": "ApartGEMSDOE2 H-RIDGE3: catalogue-free Hessian ridge fusion (elev, TMI vgrad, gravity hgrad), NMS top-37654 dots"
+  }
+}
