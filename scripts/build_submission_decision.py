@@ -28,10 +28,12 @@ GEODAWN_URL = "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometr
 LEADERBOARD_TOP = [
     ("#1", "xiaofanhu", 0.4544),
     ("#2", "cfld__", 0.3916),
-    ("#3", "Batik Shirt Brothers", 0.3911),
-    ("#4", "name not recorded", 0.3841),
-    ("#5", "name not recorded", 0.3642),
+    ("#3", "Batik Shirt Brothers", 0.3915),
+    ("#4", "BrandenKMurray", 0.3841),
+    ("#5", "op01", 0.3642),
+    ("#48", "kpomazi", 0.3195),
 ]
+XCHECK = json.loads((ROOT / "evidence/review_pass2_cross_candidates_20261030.json").read_text())["candidates"]
 
 NAN_NAME = "apartgemsdoe2-h-ridge3-tensorfuse-37654-20261030-nan"
 ZERO_NAME = "apartgemsdoe2-h-ridge3-tensorfuse-37654-20261030-zeros"
@@ -77,6 +79,44 @@ def build_table_rows():
                   f"{RIDGE_AUC:.3f}); no organizer authentication. The zeros twin also stores 0 outside "
                   "the footprint, which check_submission.py flags against the official null/NaN-outside rule; "
                   "the NaN file is the only variant that matches that rule.",
+    })
+    v4 = XCHECK["v4-ridge-q5pct"]
+    rows.append({
+        "file": "docs/downloads/apartgems-v4-ridge-tmi-isohg-nms-q5pct-20261030.tif",
+        "origin": "Other session (main, v4 lane): label-free TMI+gravity ridge NMS, 203,418 dots",
+        "estimated_score": "HOLDOUT-DTI catalogue proxy 0.07412 (east half, 95% CI 0.05987–0.09793) per its run card. "
+                           "Not organizer-confirmed; not the hidden set.",
+        "unique_vs_other_gemsdoe_sites": (
+            f"PARTLY. Max overlap {pct(v4['max_nonlattice_strict_lt3']['fraction'])} with a non-lattice registry raster "
+            f"(passes). Lattice {pct(v4['max_lattice_strict_lt3']['fraction'])} (fails the literal rule)."),
+        "ok_to_submit": "NO",
+        "reason": "Lattice gate fails; its own run card records E2 below the same-protocol reference on the east half "
+                  "(verdict: negative).",
+    })
+    pr38 = XCHECK["unique-blind-conduit-nan"]
+    rows.append({
+        "file": "docs/downloads/gemsdoe32-unique-blind-conduit-20261030T021414Z-70aa4159-nan.tif",
+        "origin": "Other session (PR #38, blind-conduit), 37,169 dots, collar-pruned",
+        "estimated_score": "No holdout (its audit reports predicted leaderboard DTI as null). No estimate.",
+        "unique_vs_other_gemsdoe_sites": (
+            f"PARTLY. Max overlap {pct(pr38['max_nonlattice_strict_lt3']['fraction'])} with a non-lattice registry raster "
+            f"(passes). Lattice {pct(pr38['max_lattice_strict_lt3']['fraction'])} (fails the literal rule)."),
+        "ok_to_submit": "NO",
+        "reason": "Its own audit says OK to download, NOT YET to submit, and slot HOLD-DO-NOT-SUBMIT. "
+                  "The lattice gate fails, and no holdout exists.",
+    })
+    hrm = XCHECK["hrm-contrast-zeros"]
+    rows.append({
+        "file": "docs/downloads/apartgemsdoe2-hrm-contrast-blind-geothermal-20261030T015536Z-d6cdf8f8-zeros.tif",
+        "origin": "Other session (main), H-RAD-MAG-CONTRAST, 40,000 dots, zeros outside",
+        "estimated_score": "No estimate (its audit: projection only; uniqueness 'not yet verified').",
+        "unique_vs_other_gemsdoe_sites": (
+            "NOT VALID AS DELIVERED. 21,064 of 40,000 dots (53%) lie outside the official training-data footprint. "
+            f"Its uniqueness numbers ({pct(hrm['max_nonlattice_strict_lt3']['fraction'])} non-lattice, "
+            f"{pct(hrm['max_lattice_strict_lt3']['fraction'])} lattice) are measured on all dots and are not a valid test."),
+        "ok_to_submit": "NO",
+        "reason": "Dots outside the official footprint and zeros (not null/NaN) outside: fails the official format. "
+                  "Its audit label 'format-valid' is incorrect.",
     })
     for name in SITE_ORDER:
         s = sites[name]
@@ -167,8 +207,9 @@ small{color:#4b5b55}
                f"<td>{RIDGE_DTI:.4f}</td><td>SANITY ONLY. Not a holdout or leaderboard estimate.</td></tr>")
     out.append("</table>")
     out.append("<p class='warn'>The user reported 0.3195 and 0.4413 as leaderboard top figures. "
-               "The public leaderboard fetched today shows 0.4544 at rank #1, and I could not find 0.3195 or 0.4413 "
-               "on that page. Those two figures remain unverified.</p>")
+               "On the public page fetched today (3 pages, top 50 rows), 0.3195 is rank #48 (kpomazi), "
+               "0.4413 does not appear, and 0.2778 does not appear. The top score is 0.4544 at rank #1. "
+               "None of these is a receipt for any file.</p>")
 
     out.append("<h2>3. The nine GEMSDOE site bests, recomputed</h2>")
     out.append("<p><small>Recomputed from the pinned owner-mirror bytes by "
@@ -231,10 +272,13 @@ small{color:#4b5b55}
         "<strong>Zeros twin is not official-format.</strong> The zeros-outside twin stores 0 outside the footprint. "
         "<code>check_submission.py</code> reports that the outside cells are not null or NaN, so the official rule fails. "
         "Use the NaN-outside file, not the zeros twin, if a file is ever cleared.",
+        "<strong>Other session's H-RAD-MAG-CONTRAST file is invalid as delivered.</strong> "
+        "21,064 of its 40,000 dots (53%) lie outside the official training footprint, and its zeros-outside bytes "
+        "do not meet the null/NaN clause. Its audit label 'format-valid' is incorrect.",
         "<strong>Off-grid test raster excluded.</strong> <code>GEMS36_FORMAT_TEST_NOT_SUBMISSION.tif</code> (32×48) "
         "cannot be compared cell-for-cell and is recorded as excluded.",
-        "<strong>User-reported leaderboard figures do not match the live page.</strong> "
-        "0.3195 and 0.4413 were reported by the user; the public page shows 0.4544 at #1. See section 2.",
+        "<strong>User-reported leaderboard figures are partly off-page.</strong> "
+        "0.3195 is rank #48 on the public page, so it is not the top score. 0.4413 does not appear in the top 50. See section 2.",
         "<strong>User-reported file names do not match the bytes.</strong> "
         f"{n_nan_named_zeros} of the nine site bests are named <code>-nan</code> by the user, "
         "but their registry bytes have no NaN cells (zeros outside the footprint). "

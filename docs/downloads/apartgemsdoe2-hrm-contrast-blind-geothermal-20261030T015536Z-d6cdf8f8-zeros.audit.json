@@ -1,0 +1,51 @@
+{
+  "schema": "apartgemsdoe2-unique-submission-v1",
+  "generated_at_utc": "20261030T015536Z",
+  "hypothesis": "H-RAD-MAG-CONTRAST: blind geothermal faults missing from USGS/INGENIOUS catalogue express as radiometric-anomaly-gradient \u00d7 magnetic-gradient-magnitude contrast zones, modulated by surface conductance proxy.",
+  "mechanism": "Hydrothermal alteration enriches K / depletes eTh (radiometric gradient) and demagnetizes host rock (magnetic gradient). Product of normalized gradients targets subsurface fluid pathways without required surface scarp.",
+  "named_non_fault_mimic": "Uneven crustal radioactivity / igneous-contact boundaries can produce radiometric gradients without faults; mafic/ultramafic contacts can produce magnetic gradients without faults.",
+  "file": "apartgemsdoe2-hrm-contrast-blind-geothermal-20261030T015536Z-d6cdf8f8-zeros.tif",
+  "path": "/home/user/ApartGEMSDOE2/docs/downloads/apartgemsdoe2-hrm-contrast-blind-geothermal-20261030T015536Z-d6cdf8f8-zeros.tif",
+  "sha256": "38f8df576d5f3cdde7bbdbae3c678224ad7f628591c4e3ef40c1b808a72e7c73",
+  "size_bytes": 518767,
+  "grid": {
+    "epsg": 32611,
+    "height": 3730,
+    "width": 3292,
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "resolution_m": 100.0
+  },
+  "footprint_pixels": 7872604,
+  "total_pixels": 12279160,
+  "emitted_positive_pixels": 40000,
+  "values_range": [
+    0.0,
+    0.5457035303115845
+  ],
+  "nan_count": 0,
+  "all_in_01": true,
+  "score_label": "projection only \u2014 HOLDOUT-DTI cannot be computed without competition data (DrivenData login blocker verified). Not an organizer-confirmed score.",
+  "unique_vs_known_submissions": "Not yet verified \u2014 no registry rasters available in this sandbox. Different method family from all nine focus-site submissions (none use radiometric \u00d7 magnetic gradient product).",
+  "submission_name": "apartgemsdoe2-hrm-contrast-blind-geothermal-20261030T015536Z-d6cdf8f8-zeros",
+  "note": "ApartGEMSDOE2 H-RAD-MAG-CONTRAST: radiometric-gradient \u00d7 magnetic-gradient blind-fault propensity; novel method family, format-valid demo.",
+  "note_length_chars": 138,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "reason_blocked": "No organizer-authenticated template, no competition data, no selector approval. Not a submission \u2014 download for review only.",
+  "next_steps": [
+    "Place training_features.tif, labels.tif, sample_submission.tif in data/ (requires DrivenData login).",
+    "Rebuild propensity from real feature bands 1\u201319.",
+    "Run leakage canary on each feature (AUC > 0.90 = leakage).",
+    "Run buffered whole-segment holdout DTI (alpha 0.2, beta 0.8, 300 m kernel).",
+    "Check surface correlation \u2264 0.90 vs every registry raster before dot placement.",
+    "Check final-dot 3-px overlap \u2264 70% vs every registry raster.",
+    "A separate selector must approve before any weekly slot is spent."
+  ]
+}

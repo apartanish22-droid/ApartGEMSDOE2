@@ -127,3 +127,16 @@ def test_independent_recheck_reproduces_run_card_under_strict_convention():
     # inclusive convention is more conservative but leaves both verdicts unchanged
     assert receipt["lattice_overlap_inclusive_le3"] > 0.70
     assert receipt["max_nonlattice_inclusive_le3"]["fraction"] < 0.70
+
+
+def test_decision_table_covers_every_candidate_and_blocks_upload():
+    data = json.loads((ROOT / "evidence/submission_decision_20261030.json").read_text())
+    rows = data["rows"]
+    # 1 H-RIDGE3 + 3 candidates from main (v4, PR #38 blind-conduit, H-RAD-MAG-CONTRAST) + 9 site bests
+    assert len(rows) == 13
+    assert all(r["ok_to_submit"] == "NO" for r in rows)
+    assert data["decision"] == "DO NOT UPLOAD ANY FILE YET"
+    xc = json.loads((ROOT / "evidence/review_pass2_cross_candidates_20261030.json").read_text())["candidates"]
+    assert xc["h-ridge3-nan"]["max_lattice_strict_lt3"]["fraction"] > 0.70
+    assert xc["unique-blind-conduit-nan"]["max_lattice_strict_lt3"]["fraction"] > 0.70
+    assert xc["v4-ridge-q5pct"]["max_lattice_strict_lt3"]["fraction"] > 0.70

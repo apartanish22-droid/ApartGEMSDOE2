@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GEMS Prize — v4 executive summary and submission decision</title>
+<style>
+  :root { --ink:#1b1f24; --muted:#56606b; --line:#d9dee5; --bad:#b42318; --badbg:#fef3f2; --ok:#067647; --okbg:#ecfdf3; --warn:#b54708; --warnbg:#fffaeb; }
+  body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color: var(--ink); margin: 0; background:#fff; line-height:1.5; }
+  main { max-width: 1080px; margin: 0 auto; padding: 24px 18px 60px; }
+  h1 { font-size: 1.7rem; margin: .2rem 0 .6rem; }
+  h2 { font-size: 1.2rem; margin: 2rem 0 .6rem; border-bottom: 1px solid var(--line); padding-bottom: .3rem; }
+  .decision { border: 3px solid var(--bad); background: var(--badbg); padding: 16px 18px; border-radius: 10px; }
+  .decision strong.big { font-size: 1.35rem; color: var(--bad); }
+  table { border-collapse: collapse; width: 100%; font-size: .92rem; margin: .5rem 0 1rem; }
+  th, td { border: 1px solid var(--line); padding: 7px 8px; text-align: left; vertical-align: top; }
+  th { background: #f4f6f8; }
+  .no { color: var(--bad); font-weight: 700; }
+  .yes { color: var(--ok); font-weight: 700; }
+  .flag { background: var(--warnbg); border-left: 4px solid var(--warn); padding: 10px 14px; margin: 10px 0; }
+  code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .85rem; word-break: break-all; }
+  .btn { display:inline-block; background:#1f4fbf; color:#fff !important; padding:9px 14px; border-radius:7px; text-decoration:none; font-weight:600; margin:6px 6px 6px 0; }
+  .btn.secondary { background:#fff; color:#1f4fbf !important; border:1px solid #1f4fbf; }
+  small, .muted { color: var(--muted); }
+  ol li, ul li { margin: .25rem 0; }
+</style>
+</head>
+<body>
+<main>
+
+<p class="muted">Repository: <a href="https://github.com/apartanish22-droid/ApartGEMSDOE2">apartanish22-droid/ApartGEMSDOE2</a> · Branch <code>arena/00251de9-apartgemsdoe2</code> · Prepared 30 October 2026 (UTC) · Competition: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">GEMS Prize</a></p>
+
+<h1>v4 executive summary and submission decision</h1>
+
+<section class="decision" id="decision">
+  <strong class="big">DECISION: DO NOT SUBMIT ANY FILE.</strong>
+  <p style="margin:.6rem 0 0">No file in this repository, and no file from the nine focus sites, is cleared for upload. The one new GeoTIFF generated in this session (below) is provided for review and download only. It is a <strong>negative</strong> result under the project protocol: it does not beat the same-protocol reference, and it fails the literal lattice uniqueness gate. Its format passes, but format is not approval.</p>
+  <p style="margin:.6rem 0 0"><strong>Download for review: YES · Upload to DrivenData: NO · Weekly slot to spend: NO</strong></p>
+</section>
+
+<h2>1. The new GeoTIFF (download for review only)</h2>
+<p><a class="btn" href="../downloads/apartgems-v4-ridge-tmi-isohg-nms-q5pct-20261030.tif">Download the GeoTIFF (review only)</a>
+<a class="btn secondary" href="../downloads/apartgems-v4-ridge-tmi-isohg-nms-q5pct-20261030.json">Byte-level receipt (JSON)</a>
+<a class="btn secondary" href="https://github.com/apartanish22-droid/ApartGEMSDOE2/blob/main/evidence/v4_run_card.json">Run card (JSON)</a></p>
+<table>
+<tr><th>Item</th><th>Value</th></tr>
+<tr><td>File</td><td><code>apartgems-v4-ridge-tmi-isohg-nms-q5pct-20261030.tif</code> (562,341 bytes)</td></tr>
+<tr><td>SHA-256</td><td class="mono">f6f3e7c98de4323b3bc4981648170c5afa361fda4eac03313c08fcaf1b51b8d6</td></tr>
+<tr><td>Unique submission name</td><td><code>apartgems-v4-ridge-tmi-isohg-nms-q5pct-20261030</code></td></tr>
+<tr><td>Short note (118 characters)</td><td><code>Label-free ridge NMS on tmi_hg+iso_hg, top 5% of footprint. Catalogue proxy only; not organizer-scored. DO NOT SUBMIT.</code></td></tr>
+<tr><td>Method</td><td>Ridge non-maximum suppression across the TMI normal, on the sum of z-scored magnetic horizontal gradient (band 3) and isostatic-gravity horizontal gradient (band 18); top 5% of the footprint. Uses no catalogue input.</td></tr>
+<tr><td>Format check (saved bytes)</td><td><span class="yes">PASS</span> EPSG:32611 · 3,730 × 3,292 · 100 m · origin 243350 / 4508550 (identical to <code>sample_submission.tif</code>) · float32 · single band · 0 NaN inside the 5,167,373-cell footprint · values in [0, 1] · NaN outside the footprint (sample convention)</td></tr>
+<tr><td>Uniqueness vs the nine focus-site rasters</td><td><span class="yes">PASS</span> max 24.09% of dots within 3 px of any one focus raster (limit 70%); max |Spearman| 0.011 (limit 0.90)</td></tr>
+<tr><td>Uniqueness vs the 13GEMSDOE calibration lattice (<code>LATTICE_r13</code>)</td><td><span class="no">FAIL</span> 99.83% within 3 px. This is structural: the lattice is a regular 5 px grid covering 99.87% of the footprint within 3 px, and a random set of 203,418 footprint cells also scores 99.88%. No dense candidate can pass this gate. It is flagged, not exempted.</td></tr>
+<tr><td>Score estimate</td><td><strong>Leaderboard estimate: NOT ESTIMABLE.</strong> Catalogue-proxy HOLDOUT-DTI on the spatially blocked east half: <strong>0.0741</strong> (95% CI 0.0599–0.0979; 22,196 withheld fault cells; evaluator <code>src/gems32/metric.py</code>). This is not an organizer score, and the hidden test set is new faults, not the catalogue.</td></tr>
+<tr><td>Verdict</td><td><span class="no">NEGATIVE — DO NOT SUBMIT.</span> Under the same protocol and the same east region, the registry rasters GEMSDOE24, 25, 27 and 30 score 0.18–0.20 (confounded; see section 4).</td></tr>
+</table>
+
+<h2>2. Nine-site table: best file per site, estimated score and uniqueness</h2>
+<p class="muted">Scores are <strong>user- or owner-reported</strong>, with no organizer receipt. No estimate is defensible. Uniqueness was measured by us on the owner-mirrored raster bytes (<a href="https://github.com/apartanish22-droid/ApartGEMSDOE2/blob/main/evidence/focus9_pairwise_v4.json">pairwise JSON</a>, <a href="https://github.com/apartanish22-droid/ApartGEMSDOE2/blob/main/evidence/focus9_per_site_uniqueness_v4.json">per-site JSON</a>). A dot counts as a duplicate when more than 70% of its dots lie within 3 px of another site's dots.</p>
+<table>
+<tr><th>Site</th><th>Best file to download (review only)</th><th>Reported score</th><th>Estimated score</th><th>Unique vs the other 8?</th><th>Action</th></tr>
+<tr><td>GEMSDOE24</td><td><code>gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif</code></td><td>0.2477 (user-reported)</td><td>Not estimable</td><td><span class="no">NO</span> 100% of dots within 3 px of GEMSDOE25; overlaps 8 of 8 others</td><td class="no">DO NOT SUBMIT</td></tr>
+<tr><td>GEMSDOE25</td><td><code>gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</code></td><td>0.2600 (owner-reported)</td><td>Not estimable</td><td><span class="no">NO</span> 100% of dots within 3 px of GEMSDOE24 and 30 (30 is identical in-footprint); 8 of 8 others</td><td class="no">DO NOT SUBMIT</td></tr>
+<tr><td>GEMSDOE27</td><td><code>gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif</code></td><td>0.2449 (owner-reported)</td><td>Not estimable</td><td><span class="no">NO</span> 98.0% vs GEMSDOE24; 8 of 8 others</td><td class="no">DO NOT SUBMIT</td></tr>
+<tr><td>GEMSDOE28</td><td><code>gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif</code> (alternate h27-4 file equals GEMSDOE31's file)</td><td>0.2710 (owner-reported)</td><td>Not estimable</td><td><span class="no">NO</span> 100% vs GEMSDOE24; 8 of 8 others</td><td class="no">DO NOT SUBMIT</td></tr>
+<tr><td>GEMSDOE30</td><td><code>gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif</code></td><td>0.2600 (owner-reported)</td><td>Not estimable</td><td><span class="no">NO</span> 100% vs GEMSDOE24 and 25; 8 of 8 others</td><td class="no">DO NOT SUBMIT</td></tr>
+<tr><td>GEMSDOE31</td><td><code>gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif</code></td><td>0.2708 (owner-reported)</td><td>Not estimable</td><td><span class="no">NO</span> 100% vs GEMSDOE24; 8 of 8 others</td><td class="no">DO NOT SUBMIT</td></tr>
+<tr><td>GEMSDOE32</td><td><code>gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</code></td><td>0.2778 (owner-reported; owner says already submitted)</td><td>Not estimable</td><td><span class="no">NO</span> 100% vs GEMSDOE24, 31, 36; 8 of 8 others. It is an exact subset of GEMSDOE30 (see section 3).</td><td class="no">DO NOT SUBMIT (already submitted; resubmitting adds no information)</td></tr>
+<tr><td>GEMSDOE33</td><td><code>GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif</code></td><td>0.2632 (owner-reported)</td><td>Not estimable</td><td><span class="no">NO</span> 99.7% vs GEMSDOE27; 8 of 8 others</td><td class="no">DO NOT SUBMIT</td></tr>
+<tr><td>GEMSDOE36</td><td><code>gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif</code></td><td>0.2750 (owner-reported)</td><td>Not estimable</td><td><span class="no">NO</span> 97.6% vs GEMSDOE27; 8 of 8 others</td><td class="no">DO NOT SUBMIT</td></tr>
+<tr><td><strong>v4 (this session)</strong></td><td><code>apartgems-v4-ridge-tmi-isohg-nms-q5pct-20261030.tif</code></td><td>None (no receipt)</td><td>Not estimable; proxy 0.0741</td><td><span class="yes">YES</span> vs the nine focus sites (max 24.1%). <span class="no">NO</span> vs the 13GEMSDOE lattice (structural, 99.8%).</td><td class="no">DO NOT SUBMIT</td></tr>
+</table>
+<p class="muted">Owner pages for these sites carry the same decision (for example <a href="https://buffedlizard55-lab.github.io/GEMSDOE36/docs/">GEMSDOE36</a>, <a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32</a>, <a href="https://buffedlizard55-lab.github.io/GEMSDOE25/">GEMSDOE25</a>). Their SHA-256 values are for the NaN-outside files. Our local copies are zeros-outside, and the in-footprint values are identical (section 5, item 3).</p>
+
+<h2>3. Why did GEMSDOE32 reach 0.2778, and can a file beat it?</h2>
+<p><strong>What we verified (local bytes, not an organizer receipt):</strong></p>
+<ul>
+<li>The GEMSDOE32 file (37,654 dots) is an <strong>exact subset</strong> of the GEMSDOE30 file (44,090 dots). The 6,436 dots that were removed all lie within 3 px of the USGS/INGENIOUS catalogue.</li>
+<li>GEMSDOE30 has 8,607 dots within 3 px of the catalogue. GEMSDOE32 has 2,171.</li>
+</ul>
+<p><strong>Mechanism (from the official metric definition, not measured):</strong> The problem page says the hidden test set is <em>new</em> faults that are <em>not</em> in the USGS database. A dot on a catalogue fault therefore has a distance to the nearest hidden truth pixel that is usually greater than 3 px. Its false-positive weight is then close to 1 (<code>p·[1 − k]</code>). Removing catalogue-near dots lowers the false-positive term (α = 0.2). This holds only if the hidden faults lie more than 3 px from the removed dots, which the problem page implies but does not state. The owner-reported gap (0.2778 vs 0.2600 for GEMSDOE30) is consistent with this. It is not proven, because the hidden labels are unknown.</p>
+<p><strong>Can we beat 0.2778?</strong> Not demonstrated. The obvious next experiment is catalogue pruning applied to the v4 ridge candidate. To keep it honest, pruning must use only the west-half labels, and the east half must be used only for scoring. That experiment was not run, because the protocol budget was spent (see section 6).</p>
+<p class="muted">Sources: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem page (metric, hidden-fault definition)</a> · <a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32 owner page ("already submitted")</a></p>
+
+<h2>4. Leaderboard check (fetched 30 October 2026)</h2>
+<table>
+<tr><th>Claim in the brief</th><th>What the official page shows</th></tr>
+<tr><td>"Current GEMSDOE high score 0.4413"</td><td class="no">Not observed.</td></tr>
+<tr><td>"0.3195 is the highest score right now"</td><td class="no">Incorrect. 0.3195 is rank #48 (kpomazi). The top score is <strong>0.4544</strong> (xiaofanhu, rank #1).</td></tr>
+<tr><td>"GEMSDOE32 0.2778"</td><td>Not on the top-50 rows of the page. The page shows only the top 50, so this is unverified.</td></tr>
+</table>
+<p>Source: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">official leaderboard</a> (public DW-Tversky, best per participant, top 50 shown). Public scores are not the private test set that decides the Phase 1 prize.</p>
+<p class="muted">Reference rasters on the same east-half catalogue proxy (same evaluator): GEMSDOE27 0.195, GEMSDOE24 0.195, GEMSDOE25 and 30 0.184, LATTICE_r13 0.229, GEMSDOE28 0.053, GEMSDOE31 0.057, GEMSDOE33 0.090, GEMSDOE32 and 36 0.007. These numbers are confounded: the reference rasters may have been built with catalogue knowledge. They are not a ranking.</p>
+
+<h2>5. Irregularities flagged for review</h2>
+<ol>
+<li><strong>Leaderboard figures in the brief</strong> do not match the official page (section 4).</li>
+<li><strong>All 72 directed pairs</strong> among the nine focus rasters exceed 70% overlap. No focus-site file is unique relative to the others. The owner pages say the same (for example <a href="https://buffedlizard55-lab.github.io/GEMSDOE36/docs/">GEMSDOE36</a>).</li>
+<li><strong>SHA-256 mismatch:</strong> five owner files (GEMSDOE24, 25, 27, 28, 31) have different hashes from our local copies. We fetched the owner's files at the commits the owner page cites. Each owner file is the NaN-outside encoding of the same raster. After NaN→0 the values and positive-cell counts are identical (60,069; 44,090; 61,328; 37,660; 40,199). This is an encoding difference, not a content difference.</li>
+<li><strong>Format risk:</strong> the official rule says data outside the bounds is null or NaN. Several historical files (GEMSDOE32 and others) use zeros outside. The brief's "Predicted values must be in range [0, 1]" error was reported, but we do not have the rejected bytes. Its cause is <strong>not</strong> diagnosed here. The v4 file follows the sample's NaN-outside convention.</li>
+<li><strong>Lattice gate is not discriminating:</strong> <code>LATTICE_r13</code> (206,895 dots, 5 px regular grid) covers 99.87% of the footprint within 3 px, so the literal 70% test fails for any dense file. This needs a rule decision, not a silent exemption.</li>
+<li><strong>Protocol deviations in this session:</strong> the surface check against the registry was not run before dot placement; the q grid's optimum sat at its upper edge (q = 0.05) for all three experiments, so the true optimum may be higher; the budget of three experiments was spent.</li>
+<li><strong>Data provenance:</strong> the training features and labels are <em>owner mirrors</em> on GitHub (hash-verified against the pins). They are not organizer-authenticated. The DrivenData data tab is login-walled, and the Dropbox links in the brief are not reachable from this sandbox.</li>
+<li><strong>Shared tools:</strong> the pinned <code>scripts/evaluate_holdout.py</code> and <code>scripts/submission_writer.py</code> are unchanged and still have the open upstream defects listed in the README. The v4 code uses the official-form metric in <code>src/gems32/metric.py</code> instead. It is verified against the brute-force reference in <code>tests/test_v4_candidate.py</code>.</li>
+</ol>
+
+<h2>6. What was run, and what was not</h2>
+<table>
+<tr><th>Step</th><th>Status</th><th>Evidence</th></tr>
+<tr><td>Restore core data (hash-verified owner mirror)</td><td class="yes">Done</td><td><a href="https://github.com/apartanish22-droid/ApartGEMSDOE2/blob/main/data/restore_receipt.json">restore receipt</a></td></tr>
+<tr><td>Single-feature leakage canary (19 bands)</td><td class="yes">Done. Max AUC 0.570 (≤ 0.90)</td><td><a href="https://github.com/apartanish22-droid/ApartGEMSDOE2/blob/main/evidence/v4_feature_canary.json">v4_feature_canary.json</a></td></tr>
+<tr><td>Experiments E1, E2, E3 (ridge variants)</td><td class="yes">Done. E2 best at 0.0741; all three below the same-protocol reference</td><td><a href="https://github.com/apartanish22-droid/ApartGEMSDOE2/blob/main/evidence/v4_ridge_experiments.json">v4_ridge_experiments.json</a></td></tr>
+<tr><td>Frozen-candidate build, validation and uniqueness</td><td class="yes">Done</td><td><a href="https://github.com/apartanish22-droid/ApartGEMSDOE2/blob/main/evidence/v4_candidate_e2_fixed_q_frozen.json">candidate receipt</a></td></tr>
+<tr><td>Pairwise uniqueness of nine focus rasters</td><td class="yes">Done</td><td><a href="https://github.com/apartanish22-droid/ApartGEMSDOE2/blob/main/evidence/focus9_pairwise_v4.json">pairwise JSON</a></td></tr>
+<tr><td>Catalogue pruning on the v4 candidate (west-tuned)</td><td class="no">Not run. Budget spent.</td><td>Proposed in section 7</td></tr>
+<tr><td>Tilt zero-contour (H2), geodetic strain (H3), basement step (H4)</td><td class="no">Not run.</td><td><a href="../research/v4-hypotheses.md">hypothesis slate</a></td></tr>
+<tr><td>1 m DEM lineament (H5)</td><td class="no">Blocked (login-walled data).</td><td><a href="../research/v4-hypotheses.md">hypothesis slate</a></td></tr>
+</table>
+
+<h2>7. How to submit when a file is cleared (for future use)</h2>
+<p class="muted">Only follow these steps for a file whose run card shows <strong>verdict: promote</strong>, a clean uniqueness pass, and a separate selector approval. None of the files above qualifies.</p>
+<ol>
+<li>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition page</a> and click <em>New submission</em>.</li>
+<li>Upload one single-band GeoTIFF (<code>.tif</code>), or a <code>.zip</code> with one GeoTIFF. CRS EPSG:32611, 3,730 × 3,292, 100 m, same bounds as the training data.</li>
+<li>Values must be float32, inside [0, 1], and NaN (or null) outside the bounds. Check the saved bytes with the validator before uploading.</li>
+<li>Enter a unique name and a note of at most 140 characters.</li>
+<li>Record the organizer's receipt (the submission page) with the file SHA-256. Only that receipt makes a score ORGANIZER-CONFIRMED.</li>
+</ol>
+<p class="muted">Official format: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#submission-format">problem page, submission format</a>.</p>
+
+<h2>8. Limitations and next steps</h2>
+<ul>
+<li><strong>Proxy, not score:</strong> every estimate here uses catalogue labels. The hidden test set is new faults, so the proxy can mislead in either direction.</li>
+<li><strong>Next experiment (E4):</strong> west-tuned catalogue pruning of the ridge candidate, scored on the east half against the same reference. Pre-register it first. This is the only path that tests the GEMSDOE32 mechanism without leakage.</li>
+<li><strong>Next experiment (H2):</strong> tilt zero-contour consensus, pre-registered and run under the same protocol.</li>
+<li><strong>Data:</strong> get the authenticated DrivenData files (training features, labels, DEM link list). Until then every number is a mirror-based proxy.</li>
+<li><strong>Rule decision:</strong> the lattice gate must be fixed by the rule owners (a dot-count-aware or null-calibrated version). Until then no dense file can pass it.</li>
+<li><strong>Owner receipts:</strong> ask the owners of the nine focus sites for their organizer receipts, which would make their scores ORGANIZER-CONFIRMED.</li>
+</ul>
+
+<h2>9. Sources (checked 30 October 2026)</h2>
+<ul>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem description, metric and submission format (DrivenData)</a></li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Leaderboard (DrivenData)</a></li>
+<li><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules, September 2026 (NLR/DOE)</a></li>
+<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Reference solution (DrivenData, GitHub)</a></li>
+<li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a> · <a href="https://gbcge.org/current-projects/ingenious/">GBCGE INGENIOUS</a> · <a href="https://epsg.io/32611">EPSG:32611</a> · <a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a></li>
+<li>Miller, H.G. and Singh, V. (1994). Potential field tilt. <em>J. Applied Geophysics</em> 32, 213–217. <a href="https://doi.org/10.1016/0926-9851(94)90022-1">doi:10.1016/0926-9851(94)90022-1</a></li>
+</ul>
+<p class="muted">Some sources could not be fetched directly from the sandbox. Where they were read through a fetch tool, that is stated here. The rules PDF and the problem page were both read through the fetch tool on 30 October 2026.</p>
+
+</main>
+</body>
+</html>
