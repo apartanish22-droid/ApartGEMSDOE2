@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Submission decision · 30 Oct 2026 · ApartGEMS</title>
+<link rel="stylesheet" href="assets/style.css"></head>
+<body><main id="main"><div class="shell">
+<div class="breadcrumb"><a href="index.html">Overview</a> / Submission summary 30 Oct 2026</div>
+<section class="page-hero"><div class="eyebrow">Executive summary · generated from evidence/*.json</div>
+<h1 class="page-title">Decision: do not submit.</h1>
+<p class="lead">No file in this repository is approved for upload. The two new candidates from this session are negative; nothing here is an organizer score.</p></section>
+<div class="notice"><strong>DO NOT SUBMIT.</strong><p>Every number below is either a <strong>HOLDOUT-DTI</strong> local evaluator value (evaluator version, withheld-positive count and 95% CI given where measured), a <strong>USER-REPORTED / UNVERIFIED</strong> value, or a format/registry check. <strong>ORGANIZER-CONFIRMED: none.</strong> Estimates and projections are not scores.</p></div>
+
+<h2>1. Leaderboard and the conflicting numbers</h2>
+<p>The organizer leaderboard page (fetched 30 Oct 2026, first of three chunks) shows <strong>#1 = 0.4544</strong> (xiaofanhu). That is a page-level figure, not a per-file receipt. The conflicting values in the brief, <strong>0.4413</strong> and <strong>0.3195</strong>, were not found on the chunk read here and remain <strong>unverified</strong>. Sources: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a>, <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem and format</a>, <a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">masking clarification (thread 11516)</a>.</p>
+
+<h2>2. Nine focus sites on identical gates</h2>
+<p>Sorted by SGMC raw proxy. The user-reported site bests (GEMSDOE32 0.2778, GEMSDOE36 0.2750, and others) carry no organizer receipt; they appear in the registry as <strong>USER-REPORTED / UNVERIFIED</strong>. Hide-and-recover tracks catalogue proximity, so it is not a quality ranking.</p>
+<div class="table-wrap"><table><thead><tr><th>Site</th><th>Dots</th><th>SGMC raw proxy <em>(HOLDOUT-DTI)</em></th><th>Hide-and-recover <em>(HOLDOUT-DTI)</em></th><th>Random null, same N (SGMC, 3 seeds)</th><th>Nearest other site by within-3-px</th><th>Worst non-lattice registry overlap (within 3 px)</th><th>Format</th></tr></thead>
+<tbody><tr><td><strong>GEMSDOE27</strong></td><td>61,328</td><td>0.1024 <small>[0.0915, 0.1135]</small></td><td>0.0927 <small>[0.0809, 0.1054]</small></td><td>0.1019–0.1048</td><td>GEMSDOE24 (98.0%)</td><td>100.00%</td><td>pass</td></tr><tr><td><strong>GEMSDOE24</strong></td><td>60,069</td><td>0.1011 <small>[0.0905, 0.1125]</small></td><td>0.0932 <small>[0.0813, 0.1060]</small></td><td>0.0960–0.1009</td><td>GEMSDOE25 (100.0%)</td><td>100.00%</td><td>pass</td></tr><tr><td><strong>GEMSDOE36</strong></td><td>38,854</td><td>0.0974 <small>[0.0868, 0.1085]</small></td><td>0.0046 <small>[0.0039, 0.0053]</small></td><td>0.0723–0.0745</td><td>GEMSDOE27 (97.6%)</td><td>100.00%</td><td>pass</td></tr><tr><td><strong>GEMSDOE33</strong></td><td>41,865</td><td>0.0968 <small>[0.0862, 0.1078]</small></td><td>0.0520 <small>[0.0458, 0.0583]</small></td><td>0.0746–0.0775</td><td>GEMSDOE27 (99.7%)</td><td>100.00%</td><td>pass</td></tr><tr><td><strong>GEMSDOE31</strong></td><td>40,199</td><td>0.0963 <small>[0.0859, 0.1070]</small></td><td>0.0305 <small>[0.0257, 0.0361]</small></td><td>0.0717–0.0740</td><td>GEMSDOE24 (100.0%)</td><td>100.00%</td><td>pass</td></tr><tr><td><strong>GEMSDOE32</strong></td><td>37,654</td><td>0.0961 <small>[0.0857, 0.1071]</small></td><td>0.0045 <small>[0.0038, 0.0053]</small></td><td>0.0681–0.0708</td><td>GEMSDOE24 (100.0%)</td><td>100.00%</td><td>pass</td></tr><tr><td><strong>GEMSDOE25</strong></td><td>44,090</td><td>0.0953 <small>[0.0850, 0.1061]</small></td><td>0.0967 <small>[0.0842, 0.1095]</small></td><td>0.0789–0.0810</td><td>GEMSDOE24 (100.0%)</td><td>100.00%</td><td>pass</td></tr><tr><td><strong>GEMSDOE30</strong></td><td>44,090</td><td>0.0953 <small>[0.0850, 0.1061]</small></td><td>0.0967 <small>[0.0842, 0.1095]</small></td><td>0.0789–0.0810</td><td>GEMSDOE24 (100.0%)</td><td>100.00%</td><td>pass</td></tr><tr><td><strong>GEMSDOE28</strong></td><td>37,660</td><td>0.0943 <small>[0.0843, 0.1049]</small></td><td>0.0294 <small>[0.0250, 0.0344]</small></td><td>0.0687–0.0703</td><td>GEMSDOE24 (100.0%)</td><td>100.00%</td><td>pass</td></tr></tbody></table></div>
+<p>Scoring rule: pooled DTI with α = 0.2, β = 0.8 and a 300 m triangular kernel. Hide-and-recover uses n = 22,232 withheld positives. The SGMC proxy uses 62,703 off-catalogue truth pixels. Evaluator versions: GEMSDOE32-HIDE-RECOVER-v3.0 and GEMSDOE32-SGMC-CAL-v3.0.</p>
+<p><strong>Irregularity:</strong> GEMSDOE25 and GEMSDOE30 report identical dot counts (44,090) and metrics. Byte comparison: SHA-256 DIFFERENT (GEMSDOE25 3e78737f0da8dd2c…, GEMSDOE30 8cf893ead5667df2…); dot masks identical.</p>
+<p><strong>Reading:</strong> on the SGMC proxy the nine raw values sit at 0.094–0.102 with overlapping intervals, so no site separates from the others. Against size-matched random dots (3 seeds, same N), seven sites are above their null: 25, 28, 30, 31, 32, 33 and 36. GEMSDOE24 and GEMSDOE27 are not distinguishable from their own nulls. The hide-and-recover column tracks catalogue proximity (the within-3-px counts in the audit), so it does not rank quality.</p>
+
+<h2>3. This session's candidates (research, both negative)</h2>
+<div class="table-wrap"><table><thead><tr><th>Lane</th><th>Dots</th><th>SGMC raw proxy</th><th>Hide-and-recover</th><th>Random null (SGMC)</th><th>Max |Spearman|</th><th>Within 3 px (literal)</th><th>Verdict</th></tr></thead>
+<tbody><tr><td><strong>H-CATLOGIT-OOF</strong><br><small>ApartGEMS2 CATLOGIT-OOF 37654 (research, negative)</small></td><td>37,654</td><td>0.0052 <small>[0.0013, 0.0102]</small> <em>(HOLDOUT-DTI proxy)</em></td><td>0.0065 <small>[0.0025, 0.0107]</small> <em>(HOLDOUT-DTI)</em></td><td>0.0681–0.0708</td><td>0.026</td><td>99.66% (lattice) · 67.60% (other rasters)</td><td><strong>negative</strong></td></tr><tr><td><strong>H-EQDENS-TOPN</strong><br><small>ApartGEMS2 EQDENS-TOPN 37654 (research, negative)</small></td><td>37,654</td><td>0.0063 <small>[0.0000, 0.0168]</small> <em>(HOLDOUT-DTI proxy)</em></td><td>0.0019 <small>[0.0000, 0.0035]</small> <em>(HOLDOUT-DTI)</em></td><td>0.0681–0.0708</td><td>0.057</td><td>99.41% (lattice) · 74.35% (other rasters)</td><td><strong>negative</strong></td></tr></tbody></table></div>
+<p><strong>H-CATLOGIT-OOF</strong> trained a logistic discriminant on the catalogue, scoring each quadrant out-of-fold. Its per-band leakage canary passed (max single-feature AUC 0.755 on off-catalogue truth; 0.560 on hide-and-recover truth; threshold 0.90). Its surface AUC against off-catalogue truth was 0.509, close to chance. <strong>H-EQDENS-TOPN</strong> ranked cells by declustered earthquake intensity; its band was chosen on hide-and-recover AUC so SGMC was not used for selection. Both fall below the random null on the off-catalogue proxy. Both fail the literal lattice rule (99.4–99.7%). The Walker Lane mimic for H-EQDENS-TOPN was not tested as a separate control.</p>
+<p><strong>Proxy bias to know about:</strong> the SGMC truth is by construction more than 300 m from the catalogue. Dots adjacent to the catalogue therefore cannot score on it. Hide-and-recover has the opposite bias. Its withheld segments are only quadrant-collared, so 15,705 of 22,232 withheld positives lie within 15 px of visible faults (issue #60). Neither proxy is validated against organizer truth.</p>
+
+<h2>4. Uniqueness</h2>
+<p><strong>The nine focus sites are not unique relative to one another.</strong> Every site has at least one other site with 88% or more of its dots within 3 px of that site's dots (pairwise table in <a href="https://github.com/apartanish22-droid/ApartGEMSDOE2/blob/main/evidence/audit_nine_sites_20261030.json">evidence/audit_nine_sites_20261030.json</a>). The worst non-lattice registry comparison is 100% for every one of the nine. GEMSDOE25 and GEMSDOE30 carry identical values (see section 2). This matches the earlier repository finding that all nine archived dot sets fail the 70% rule.</p>
+<p>Registry scope: 489 focus rasters refreshed on 30 Oct 2026 (18 added, 0 removed, 0 SHA changes against the previous snapshot), plus the 13GEMSDOE lattice. The lattice covers 99.87% of the footprint in 3-px dilation, so a literal 70% limit cannot be met by any candidate above about 22,163 dots. The gate reports this literally and does not exempt it. Two malformed upstream rasters are counted, not hidden.</p>
+
+<h2>5. Irregularities flagged</h2>
+<ul>
+<li>sample_submission.tif: the organizer page describes total absence (all zeros), but the owner mirror has 60,988 positive cells inside the footprint. Inside the footprint it equals labels == 1 exactly.</li>
+<li>The submission writer and evaluator have open defects (buffedlizard55-lab/GEMSDOE32 issues #37, #41, #51, #60, #61, #63). The writer binarizes its input, so graded probabilities cannot be emitted through it. This session's candidate writer is separate and did not fork the shared function.</li>
+<li>The owner-mirror hashes verify the mirror, not organizer origin. Portal acceptance of the earlier [0,1] rejection is unverified; its cause was not guessed.</li>
+<li>GEMSDOE32's 0.2778 and the other site bests are user-reported and unverified (champions.json: OWNER-REPORTED, no receipt in this repository).</li>
+</ul>
+
+<h2>6. Limitations and data that would change the answer</h2>
+<ul>
+<li>No organizer-confirmed score exists for any file in this repository. The official submission page and a receipt are needed for ORGANIZER-CONFIRMED values.</li>
+<li>Organizer-authenticated competition inputs and the sample are needed. The mirror has not been authenticated against the organizer.</li>
+<li>A buffered whole-segment holdout with masks matching official scoring. The current evaluator has the split defect above.</li>
+<li>Uniqueness covers only the focus registry and the lattice. The other listed repositories and owners have not been fetched in this session.</li>
+<li>Free official data not obtained: BLM claims, GDR temperature, USGS Great Basin conductance, OPERA DISP-S1 (ASF not allowlisted), and the organizer's sample.</li>
+</ul>
+
+<h2>7. Suggested next work</h2>
+<ol>
+<li>Obtain the organizer's sample and the official submission page receipt; authenticate the template.</li>
+<li>Fix the upstream split (buffered whole segments) and the writer/evaluator defects, then re-pin the shared tools.</li>
+<li>Test the untried hypothesis slate (H–C1 to H–C4) with the canary first, then the buffered holdout and registry gates.</li>
+<li>Re-run the gates after the registry is extended to every listed repository.</li>
+</ol>
+<p class="fine">Generated 2026-10-30 by scripts/build_summary_20261030.py from evidence/run_card_20261030.json, evidence/audit_nine_sites_20261030.json, evidence/gates_nine_sites_20261030.json and registry/champions.json. Regenerate, do not hand-edit.</p>
+</div></main></body></html>

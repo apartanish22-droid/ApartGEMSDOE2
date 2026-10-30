@@ -1,0 +1,354 @@
+{
+  "schema": "apartgems-nine-site-audit-v1",
+  "checked_utc": "2026-10-30T02:56:28.487362+00:00",
+  "score_labels": {
+    "HOLDOUT-DTI": "local evaluator, not organizer score",
+    "ORGANIZER-CONFIRMED": "none in this audit"
+  },
+  "gate_report": "evidence/gates_nine_sites_20261030.json",
+  "pairwise": {
+    "within_3px_row_A_in_col_B": {
+      "GEMSDOE24": {
+        "GEMSDOE24": 1.0,
+        "GEMSDOE25": 1.0,
+        "GEMSDOE27": 1.0,
+        "GEMSDOE28": 0.9347916562619654,
+        "GEMSDOE30": 1.0,
+        "GEMSDOE31": 0.9407847641878506,
+        "GEMSDOE32": 0.88476585260284,
+        "GEMSDOE33": 0.9623932477650702,
+        "GEMSDOE36": 0.8856148762256738
+      },
+      "GEMSDOE25": {
+        "GEMSDOE24": 1.0,
+        "GEMSDOE25": 1.0,
+        "GEMSDOE27": 1.0,
+        "GEMSDOE28": 0.9318212746654571,
+        "GEMSDOE30": 1.0,
+        "GEMSDOE31": 0.937151281469721,
+        "GEMSDOE32": 0.8817192107053754,
+        "GEMSDOE33": 0.9605806305284645,
+        "GEMSDOE36": 0.8826491267861193
+      },
+      "GEMSDOE27": {
+        "GEMSDOE24": 0.9801884946517089,
+        "GEMSDOE25": 0.9801558831202714,
+        "GEMSDOE27": 1.0,
+        "GEMSDOE28": 0.9161557526741456,
+        "GEMSDOE30": 0.9801558831202714,
+        "GEMSDOE31": 0.9220910513957735,
+        "GEMSDOE32": 0.8671895382207149,
+        "GEMSDOE33": 0.9432885468301592,
+        "GEMSDOE36": 0.8680374380380903
+      },
+      "GEMSDOE28": {
+        "GEMSDOE24": 1.0,
+        "GEMSDOE25": 1.0,
+        "GEMSDOE27": 1.0,
+        "GEMSDOE28": 1.0,
+        "GEMSDOE30": 1.0,
+        "GEMSDOE31": 0.9975570897503983,
+        "GEMSDOE32": 0.9547265002655337,
+        "GEMSDOE33": 0.9984067976633032,
+        "GEMSDOE36": 0.9552044609665428
+      },
+      "GEMSDOE30": {
+        "GEMSDOE24": 1.0,
+        "GEMSDOE25": 1.0,
+        "GEMSDOE27": 1.0,
+        "GEMSDOE28": 0.9318212746654571,
+        "GEMSDOE30": 1.0,
+        "GEMSDOE31": 0.937151281469721,
+        "GEMSDOE32": 0.8817192107053754,
+        "GEMSDOE33": 0.9605806305284645,
+        "GEMSDOE36": 0.8826491267861193
+      },
+      "GEMSDOE31": {
+        "GEMSDOE24": 1.0,
+        "GEMSDOE25": 1.0,
+        "GEMSDOE27": 1.0,
+        "GEMSDOE28": 0.9956217816363591,
+        "GEMSDOE30": 1.0,
+        "GEMSDOE31": 1.0,
+        "GEMSDOE32": 0.9539043259782581,
+        "GEMSDOE33": 0.9990547028533048,
+        "GEMSDOE36": 0.9544018507923082
+      },
+      "GEMSDOE32": {
+        "GEMSDOE24": 1.0,
+        "GEMSDOE25": 1.0,
+        "GEMSDOE27": 1.0,
+        "GEMSDOE28": 0.9987517926382323,
+        "GEMSDOE30": 1.0,
+        "GEMSDOE31": 1.0,
+        "GEMSDOE32": 1.0,
+        "GEMSDOE33": 0.9998406543793488,
+        "GEMSDOE36": 1.0
+      },
+      "GEMSDOE33": {
+        "GEMSDOE24": 0.9970619849516302,
+        "GEMSDOE25": 0.997038098650424,
+        "GEMSDOE27": 0.9970858712528365,
+        "GEMSDOE28": 0.9705004180102711,
+        "GEMSDOE30": 0.997038098650424,
+        "GEMSDOE31": 0.9747999522273976,
+        "GEMSDOE32": 0.9264301922847247,
+        "GEMSDOE33": 1.0,
+        "GEMSDOE36": 0.9271228950197062
+      },
+      "GEMSDOE36": {
+        "GEMSDOE24": 0.9756781798527822,
+        "GEMSDOE25": 0.9749832707057189,
+        "GEMSDOE27": 0.9757811293560509,
+        "GEMSDOE28": 0.9731301796468832,
+        "GEMSDOE30": 0.9749832707057189,
+        "GEMSDOE31": 0.9745714726926442,
+        "GEMSDOE32": 0.9740309878004839,
+        "GEMSDOE33": 0.9750347454573531,
+        "GEMSDOE36": 1.0
+      }
+    },
+    "phi_binary": {
+      "GEMSDOE24": {
+        "GEMSDOE24": 1.0,
+        "GEMSDOE25": 0.5758539684450018,
+        "GEMSDOE27": 0.9895603022773184,
+        "GEMSDOE28": 0.5305834380522468,
+        "GEMSDOE30": 0.5758539684450018,
+        "GEMSDOE31": 0.5464471996581903,
+        "GEMSDOE32": 0.5323675249041238,
+        "GEMSDOE33": 0.5654109319628806,
+        "GEMSDOE36": 0.5238726737066267
+      },
+      "GEMSDOE25": {
+        "GEMSDOE24": 0.5758539684450018,
+        "GEMSDOE25": 1.0,
+        "GEMSDOE27": 0.5697740201717397,
+        "GEMSDOE28": 0.6810381814871148,
+        "GEMSDOE30": 1.0,
+        "GEMSDOE31": 0.9544929397119867,
+        "GEMSDOE32": 0.923555278792924,
+        "GEMSDOE33": 0.8096037696275077,
+        "GEMSDOE36": 0.9090384722838919
+      },
+      "GEMSDOE27": {
+        "GEMSDOE24": 0.9895603022773184,
+        "GEMSDOE25": 0.5697740201717397,
+        "GEMSDOE27": 1.0,
+        "GEMSDOE28": 0.5249809941387278,
+        "GEMSDOE30": 0.5697740201717397,
+        "GEMSDOE31": 0.5406765719408814,
+        "GEMSDOE32": 0.5267469064435795,
+        "GEMSDOE33": 0.5594428364432465,
+        "GEMSDOE36": 0.5183562822454874
+      },
+      "GEMSDOE28": {
+        "GEMSDOE24": 0.5305834380522468,
+        "GEMSDOE25": 0.6810381814871148,
+        "GEMSDOE27": 0.5249809941387278,
+        "GEMSDOE28": 1.0,
+        "GEMSDOE30": 0.6810381814871148,
+        "GEMSDOE31": 0.7137007043580809,
+        "GEMSDOE32": 0.6948043434431649,
+        "GEMSDOE33": 0.6929178820463998,
+        "GEMSDOE36": 0.6838404118647652
+      },
+      "GEMSDOE30": {
+        "GEMSDOE24": 0.5758539684450018,
+        "GEMSDOE25": 1.0,
+        "GEMSDOE27": 0.5697740201717397,
+        "GEMSDOE28": 0.6810381814871148,
+        "GEMSDOE30": 1.0,
+        "GEMSDOE31": 0.9544929397119867,
+        "GEMSDOE32": 0.923555278792924,
+        "GEMSDOE33": 0.8096037696275077,
+        "GEMSDOE36": 0.9090384722838919
+      },
+      "GEMSDOE31": {
+        "GEMSDOE24": 0.5464471996581903,
+        "GEMSDOE25": 0.9544929397119867,
+        "GEMSDOE27": 0.5406765719408814,
+        "GEMSDOE28": 0.7137007043580809,
+        "GEMSDOE30": 0.9544929397119867,
+        "GEMSDOE31": 1.0,
+        "GEMSDOE32": 0.9675873339320898,
+        "GEMSDOE33": 0.8193151114671632,
+        "GEMSDOE36": 0.9524016524466369
+      },
+      "GEMSDOE32": {
+        "GEMSDOE24": 0.5323675249041238,
+        "GEMSDOE25": 0.923555278792924,
+        "GEMSDOE27": 0.5267469064435795,
+        "GEMSDOE28": 0.6948043434431649,
+        "GEMSDOE30": 0.923555278792924,
+        "GEMSDOE31": 0.9675873339320898,
+        "GEMSDOE32": 1.0,
+        "GEMSDOE33": 0.7946790316005895,
+        "GEMSDOE36": 0.9843213108529583
+      },
+      "GEMSDOE33": {
+        "GEMSDOE24": 0.5654109319628806,
+        "GEMSDOE25": 0.8096037696275077,
+        "GEMSDOE27": 0.5594428364432465,
+        "GEMSDOE28": 0.6929178820463998,
+        "GEMSDOE30": 0.8096037696275077,
+        "GEMSDOE31": 0.8193151114671632,
+        "GEMSDOE32": 0.7946790316005895,
+        "GEMSDOE33": 1.0,
+        "GEMSDOE36": 0.7821595800141184
+      },
+      "GEMSDOE36": {
+        "GEMSDOE24": 0.5238726737066267,
+        "GEMSDOE25": 0.9090384722838919,
+        "GEMSDOE27": 0.5183562822454874,
+        "GEMSDOE28": 0.6838404118647652,
+        "GEMSDOE30": 0.9090384722838919,
+        "GEMSDOE31": 0.9524016524466369,
+        "GEMSDOE32": 0.9843213108529583,
+        "GEMSDOE33": 0.7821595800141184,
+        "GEMSDOE36": 1.0
+      }
+    },
+    "dots": {
+      "GEMSDOE24": 60069,
+      "GEMSDOE25": 44090,
+      "GEMSDOE27": 61328,
+      "GEMSDOE28": 37660,
+      "GEMSDOE30": 44090,
+      "GEMSDOE31": 40199,
+      "GEMSDOE32": 37654,
+      "GEMSDOE33": 41865,
+      "GEMSDOE36": 38854
+    }
+  },
+  "GEMSDOE25_vs_GEMSDOE30": {
+    "file_a": ".cache/gems_data/registry_focus/GEMSDOE25_best.tif",
+    "file_b": ".cache/gems_data/registry_focus/GEMSDOE30_best.tif",
+    "sha256_a": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+    "sha256_b": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+    "bytes_identical": false,
+    "dots_a": 44090,
+    "dots_b": 44090,
+    "dot_masks_identical": true,
+    "symmetric_difference_dots": 0
+  },
+  "summary": {
+    "GEMSDOE24": {
+      "dots": 60069,
+      "HR_HOLDOUT_DTI": 0.09315052698145053,
+      "SGMC_raw_HOLDOUT_DTI_proxy": 0.10111756213920534,
+      "SGMC_raw_ci95": [
+        0.09049695337455287,
+        0.11246319593456701
+      ],
+      "G1_format": true,
+      "G3_literal": false,
+      "G3_worst_within_3px_excluding_space_filling": 1.0,
+      "G3_worst_within_3px_excluding_space_filling_raster": "GEMSDOE33:docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif"
+    },
+    "GEMSDOE25": {
+      "dots": 44090,
+      "HR_HOLDOUT_DTI": 0.09674330401596999,
+      "SGMC_raw_HOLDOUT_DTI_proxy": 0.09528236525805692,
+      "SGMC_raw_ci95": [
+        0.08501204821158427,
+        0.10605395764558845
+      ],
+      "G1_format": true,
+      "G3_literal": false,
+      "G3_worst_within_3px_excluding_space_filling": 1.0,
+      "G3_worst_within_3px_excluding_space_filling_raster": "GEMSDOE33:docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif"
+    },
+    "GEMSDOE27": {
+      "dots": 61328,
+      "HR_HOLDOUT_DTI": 0.0927484913819319,
+      "SGMC_raw_HOLDOUT_DTI_proxy": 0.10242171571074637,
+      "SGMC_raw_ci95": [
+        0.09151054244866387,
+        0.11353519927655141
+      ],
+      "G1_format": true,
+      "G3_literal": false,
+      "G3_worst_within_3px_excluding_space_filling": 1.0,
+      "G3_worst_within_3px_excluding_space_filling_raster": "GEMSDOE32:docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif"
+    },
+    "GEMSDOE28": {
+      "dots": 37660,
+      "HR_HOLDOUT_DTI": 0.029360078390480288,
+      "SGMC_raw_HOLDOUT_DTI_proxy": 0.09434123664384234,
+      "SGMC_raw_ci95": [
+        0.0842957372052437,
+        0.10485185652503612
+      ],
+      "G1_format": true,
+      "G3_literal": false,
+      "G3_worst_within_3px_excluding_space_filling": 1.0,
+      "G3_worst_within_3px_excluding_space_filling_raster": "GEMSDOE33:docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif"
+    },
+    "GEMSDOE30": {
+      "dots": 44090,
+      "HR_HOLDOUT_DTI": 0.09674330401596999,
+      "SGMC_raw_HOLDOUT_DTI_proxy": 0.09528236525805692,
+      "SGMC_raw_ci95": [
+        0.08501204821158427,
+        0.10605395764558845
+      ],
+      "G1_format": true,
+      "G3_literal": false,
+      "G3_worst_within_3px_excluding_space_filling": 1.0,
+      "G3_worst_within_3px_excluding_space_filling_raster": "GEMSDOE33:docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif"
+    },
+    "GEMSDOE31": {
+      "dots": 40199,
+      "HR_HOLDOUT_DTI": 0.030516096725810685,
+      "SGMC_raw_HOLDOUT_DTI_proxy": 0.09627307160880005,
+      "SGMC_raw_ci95": [
+        0.08590444160453334,
+        0.10700931831323503
+      ],
+      "G1_format": true,
+      "G3_literal": false,
+      "G3_worst_within_3px_excluding_space_filling": 1.0,
+      "G3_worst_within_3px_excluding_space_filling_raster": "GEMSDOE33:docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif"
+    },
+    "GEMSDOE32": {
+      "dots": 37654,
+      "HR_HOLDOUT_DTI": 0.00451537871535044,
+      "SGMC_raw_HOLDOUT_DTI_proxy": 0.09606004283619354,
+      "SGMC_raw_ci95": [
+        0.08565972243445039,
+        0.10707194739837263
+      ],
+      "G1_format": true,
+      "G3_literal": false,
+      "G3_worst_within_3px_excluding_space_filling": 1.0,
+      "G3_worst_within_3px_excluding_space_filling_raster": "GEMSDOE36:docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif"
+    },
+    "GEMSDOE33": {
+      "dots": 41865,
+      "HR_HOLDOUT_DTI": 0.0519685128498396,
+      "SGMC_raw_HOLDOUT_DTI_proxy": 0.09676373589379636,
+      "SGMC_raw_ci95": [
+        0.08618171024628718,
+        0.10778853994649824
+      ],
+      "G1_format": true,
+      "G3_literal": false,
+      "G3_worst_within_3px_excluding_space_filling": 1.0,
+      "G3_worst_within_3px_excluding_space_filling_raster": "GEMSDOE33:docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif"
+    },
+    "GEMSDOE36": {
+      "dots": 38854,
+      "HR_HOLDOUT_DTI": 0.004576730703979592,
+      "SGMC_raw_HOLDOUT_DTI_proxy": 0.09743406327058107,
+      "SGMC_raw_ci95": [
+        0.08676083043853253,
+        0.10846427856649044
+      ],
+      "G1_format": true,
+      "G3_literal": false,
+      "G3_worst_within_3px_excluding_space_filling": 1.0,
+      "G3_worst_within_3px_excluding_space_filling_raster": "GEMSDOE36:docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-nan.tif"
+    }
+  }
+}

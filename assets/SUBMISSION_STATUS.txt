@@ -1,4 +1,14 @@
 ================================================================================
+CORRECTION 2026-10-30 — NEW RESEARCH CANDIDATES ARE NOT OK TO SUBMIT.
+Two research TIFFs were generated and gated this session (stored under
+.cache/candidates, not published): H-CATLOGIT-OOF (37,654 dots) and
+H-EQDENS-TOPN (37,654 dots). Both fail the off-catalogue HOLDOUT-DTI proxy
+against the matched random-dot null, and both fail the literal 13GEMSDOE lattice
+rule. Run cards: evidence/run_card_20261030.json. Summary: docs/submission-summary-20261030.html.
+Verdict: negative. No selector run; no weekly slot used.
+================================================================================
+
+================================================================================
 CORRECTION 2026-10-28 — ALL ARTIFACTS IN THIS FILE ARE RESEARCH ONLY.
 An independent saved-byte audit found 36,692/36,975 H-DIL-GRAV dots (99.23%),
 5,098,478/5,103,418 H-MAG-EDGE dots (99.903%), and 5,099,871/5,106,385
