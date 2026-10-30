@@ -1,0 +1,114 @@
+{
+  "schema": "gems-run-card-v4",
+  "generated_utc": "2026-10-30",
+  "lane": "label-free ridge-consensus (magnetic + gravity horizontal-gradient NMS), 3 pre-declared experiments (E1, E2, E3) - budget spent",
+  "file": {
+    "path": "docs/downloads/apartgems-v4-ridge-tmi-isohg-nms-q5pct-20261030.tif",
+    "sha256": "f6f3e7c98de4323b3bc4981648170c5afa361fda4eac03313c08fcaf1b51b8d6",
+    "bytes": 562341,
+    "submission_name": "apartgems-v4-ridge-tmi-isohg-nms-q5pct-20261030",
+    "note": "Label-free ridge NMS on tmi_hg+iso_hg, top 5% of footprint. Catalogue proxy only; not organizer-scored. DO NOT SUBMIT.",
+    "note_chars": 118
+  },
+  "hypothesis": "Fault traces produce horizontal-gradient ridges in the magnetic (tmi_hg, band 3) and isostatic-gravity (iso_grav_anom_hg, band 18) fields. Non-maximum suppression across the TMI normal, keeping the top 5% of footprint ridge pixels, should recover a larger share of catalogue-withheld fault cells than either field alone.",
+  "mechanism": "Edges of magnetised or density-contrasting bodies, including fault-juxtaposed rock units, appear as local maxima of horizontal gradient. NMS across the TMI normal thins these into lineament candidates.",
+  "named_non_fault_mimic": "Lithologic contacts and intrusive margins (magnetic and density contrasts that are not faults) produce the same horizontal-gradient ridges. Topography-correlated gravity residuals can also mimic gravity ridges.",
+  "holdout": {
+    "label_class": "HOLDOUT-DTI (catalogue proxy, NOT organizer-confirmed, NOT the hidden new-fault set)",
+    "evaluator": "src/gems32/metric.py (official continuous-p DTI; alpha 0.2, beta 0.8, R = 3 px = 300 m, triangular kernel)",
+    "split": "spatially blocked: q tuned on west half (columns < W/2); frozen q evaluated on east half (columns >= W/2). Label-free candidate, so no catalogue feature exists to leak.",
+    "withheld_positive_cells_east": 22196,
+    "CI95_method": "stratified bootstrap over 8 east row-strips, 2000 draws (approximate; strip components treated as additive)",
+    "E2_frozen_q_0.05": {
+      "east_DTI": 0.07412,
+      "CI95": [
+        0.05987,
+        0.09793
+      ],
+      "east_TP_w": 2097.6,
+      "east_FP_w": 50569.7,
+      "east_FN_w": 20098.4,
+      "dots_whole_footprint": 203418
+    }
+  },
+  "experiments": {
+    "E1_ridge_tmi_hg": {
+      "east_DTI": 0.04991,
+      "CI95": [
+        0.0299,
+        0.08868
+      ],
+      "frozen_q": 0.05
+    },
+    "E2_ridge_tmi_hg+iso_hg": {
+      "east_DTI": 0.07412,
+      "CI95": [
+        0.05987,
+        0.09793
+      ],
+      "frozen_q": 0.05
+    },
+    "E3_E2_plus_1px_ring": {
+      "east_DTI": 0.05605,
+      "CI95": [
+        0.04714,
+        0.07153
+      ],
+      "frozen_q": 0.05
+    }
+  },
+  "same_protocol_reference_east_half": {
+    "label_class": "HOLDOUT-DTI proxy, same evaluator, same east region, same catalogue labels",
+    "GEMSDOE24_best": 0.19451,
+    "GEMSDOE25_best": 0.1843,
+    "GEMSDOE27_best": 0.19529,
+    "GEMSDOE28_best": 0.0533,
+    "GEMSDOE30_best": 0.1843,
+    "GEMSDOE31_best": 0.05663,
+    "GEMSDOE32_best": 0.00709,
+    "GEMSDOE33_best": 0.08975,
+    "GEMSDOE36_best": 0.00709,
+    "LATTICE_r13": 0.22934,
+    "caveat": "Reference rasters may have been built with catalogue knowledge, so this comparison is confounded and does not establish a ranking. Their CIs are in evidence/v4_ridge_experiments.json."
+  },
+  "verdict_on_protocol": "E2 did not beat the same-protocol reference best (0.19529 GEMSDOE27 on the same east region). Under the protocol this is a NEGATIVE result for promotion.",
+  "correlation_and_overlap": {
+    "max_dots_within_3px_of_any_of_9_focus_rasters": 0.24093,
+    "max_abs_spearman_vs_9_focus_rasters_300k_sample": 0.01122,
+    "dots_within_3px_of_LATTICE_r13": 0.9983,
+    "lattice_gate_is_structural": "LATTICE_r13 is a regular 5-px grid covering 99.87% of footprint cells within 3 px; a random set of 203,418 footprint cells gives 99.88% overlap. The 70% literal gate cannot be passed by any dense candidate. Flagged, not exempted.",
+    "pre_placement_surface_check": "NOT PERFORMED for this lane - the dot placement and the registry surface check were not run in the required order. Flagged as a protocol deviation."
+  },
+  "validator": {
+    "file_passes": true,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "dtype": "float32",
+    "bands": 1,
+    "nan_inside_footprint": 0,
+    "footprint_cells": 5167373,
+    "min_inside": 0.0,
+    "max_inside": 1.0,
+    "outside_footprint": "all NaN (matches sample_submission.tif convention)",
+    "positive_dots": 203418
+  },
+  "uniqueness_gate": {
+    "vs_9_focus_rasters": "PASS (max 24.09% <= 70%; max |Spearman| 0.011 <= 0.90)",
+    "vs_LATTICE_r13": "FAIL (99.83% > 70%), structural - see lattice_gate_is_structural"
+  },
+  "organizer_receipt": null,
+  "leaderboard_estimate": "NOT ESTIMATED. The proxy is not a score and no mapping from proxy to the hidden test is established.",
+  "verdict": "negative",
+  "submit_to_drivendata": "NO - DO NOT SUBMIT"
+}

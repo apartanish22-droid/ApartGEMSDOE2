@@ -1,0 +1,56 @@
+{
+  "GEMSDOE24": {
+    "dots": 60069,
+    "max_overlap_vs_other8": 1.0,
+    "others_over_70pct": 8,
+    "closest": "GEMSDOE25"
+  },
+  "GEMSDOE25": {
+    "dots": 44090,
+    "max_overlap_vs_other8": 1.0,
+    "others_over_70pct": 8,
+    "closest": "GEMSDOE24"
+  },
+  "GEMSDOE27": {
+    "dots": 61328,
+    "max_overlap_vs_other8": 0.98019,
+    "others_over_70pct": 8,
+    "closest": "GEMSDOE24"
+  },
+  "GEMSDOE28": {
+    "dots": 37660,
+    "max_overlap_vs_other8": 1.0,
+    "others_over_70pct": 8,
+    "closest": "GEMSDOE24"
+  },
+  "GEMSDOE30": {
+    "dots": 44090,
+    "max_overlap_vs_other8": 1.0,
+    "others_over_70pct": 8,
+    "closest": "GEMSDOE24"
+  },
+  "GEMSDOE31": {
+    "dots": 40199,
+    "max_overlap_vs_other8": 1.0,
+    "others_over_70pct": 8,
+    "closest": "GEMSDOE24"
+  },
+  "GEMSDOE32": {
+    "dots": 37654,
+    "max_overlap_vs_other8": 1.0,
+    "others_over_70pct": 8,
+    "closest": "GEMSDOE24"
+  },
+  "GEMSDOE33": {
+    "dots": 41865,
+    "max_overlap_vs_other8": 0.99709,
+    "others_over_70pct": 8,
+    "closest": "GEMSDOE27"
+  },
+  "GEMSDOE36": {
+    "dots": 38854,
+    "max_overlap_vs_other8": 0.97578,
+    "others_over_70pct": 8,
+    "closest": "GEMSDOE27"
+  }
+}
