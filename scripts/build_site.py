@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 AUDIT = json.loads((ROOT / "evidence/historical_audit.json").read_text())
 SITES = AUDIT["sites"]
+PAGE_AUDIT = json.loads((ROOT / "evidence/focus_site_publication_audit_20261030.json").read_text())
 PARALLEL = json.loads((ROOT / "evidence/parallel_candidate_audit.json").read_text())
 PARALLEL_FILE = Path(PARALLEL["variants"]["zeros"]["file"]).name
 SPMD_CARD = json.loads((ROOT / "evidence/spmd_run_card_20261028.json").read_text())
@@ -34,7 +35,7 @@ def esc(value):
 def header(prefix=""):
     return f'''<header class="topbar"><div class="shell">
       <a class="brand" href="{prefix}index.html" aria-label="ApartGEMS home"><span class="brand-icon"><svg viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M3 20c4-8 6 3 10-4s6 3 14-7M4 24c5-7 7 2 11-4s7 1 11-4M4 13c5-8 8 3 12-4s7 1 10-2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>ApartGEMS <em>Research desk</em></a>
-      <nav class="nav" aria-label="Primary navigation"><a href="{prefix}sarpu/index.html">H-SARPU (0.11384)</a><a href="{prefix}sarpu/executive-summary.html">How to Submit</a><a href="{prefix}index.html#scorecard">Site scorecard</a><a href="{prefix}research.html">Research</a><a href="{prefix}executive-summary.html">Submission guide</a></nav>
+      <nav class="nav" aria-label="Primary navigation"><a href="{prefix}sarpu/index.html">H-SARPU research</a><a href="{prefix}sarpu/executive-summary.html">Submission process</a><a href="{prefix}index.html#scorecard">Site scorecard</a><a href="{prefix}current-review.html">Current review</a><a href="{prefix}research.html">Research</a><a href="{prefix}executive-summary.html">Decision guide</a></nav>
       <div class="nav-end"><a class="source-link" href="{prefix}index.html#sources">Sources ↗</a></div>
     </div></header>'''
 
@@ -64,6 +65,124 @@ def row(s):
     <td><span class="tag bad">DO NOT SUBMIT</span><span class="sub">Historical / duplicate</span></td></tr>'''
 
 
+def render_metric(metric, context=None):
+    """Render only explicitly labeled owner-page diagnostics, never a score projection."""
+    if not metric:
+        return ""
+    label = esc(metric.get("label", "HOLDOUT-DTI"))
+    evaluator = metric.get("evaluator_version")
+    count = metric.get("withheld_positive_count")
+    status = metric.get("source_status") or metric.get("status")
+    parts = []
+    value = metric.get("value")
+    if value is not None:
+        line = f"<strong>{label} {float(value):.6f}</strong>"
+        ci = metric.get("ci95")
+        if ci:
+            line += f" · 95% CI [{float(ci[0]):.6f}, {float(ci[1]):.6f}]"
+        if evaluator:
+            line += f" · evaluator <code>{esc(evaluator)}</code>"
+        if count:
+            line += f" · n={int(count):,} withheld positives"
+        parts.append(f"<p>{line}</p>")
+    elif metric.get("candidate_value") is not None:
+        line = f"<strong>{label} {float(metric['candidate_value']):.6f}</strong>"
+        ci = metric.get("candidate_ci95")
+        if ci:
+            line += f" · standalone 95% CI [{float(ci[0]):.6f}, {float(ci[1]):.6f}]"
+        parts.append(f"<p>{line}</p>")
+    elif metric.get("paired_delta_ci95"):
+        ci = metric["paired_delta_ci95"]
+        line = f"<strong>{label}</strong> · paired 95% CI [{float(ci[0]):+.6f}, {float(ci[1]):+.6f}]"
+        if evaluator:
+            line += f" · evaluator <code>{esc(evaluator)}</code>"
+        else:
+            line += " · evaluator version not identified in page summary"
+        if count:
+            line += f" · n={int(count):,} withheld positives"
+        parts.append(f"<p>{line}</p>")
+    if context:
+        parts.insert(0, f"<p><strong>{esc(context)}</strong></p>")
+    if status:
+        parts.append(f"<small>{esc(status)}</small>")
+    return "".join(parts)
+
+
+def render_paired_comparison(comparison, primary_metric=None):
+    if not comparison:
+        return ""
+    delta = comparison.get("candidate_minus_H35", comparison.get("candidate_minus_control"))
+    ci = comparison.get("ci95")
+    line = f"<strong>{esc(comparison.get('label', 'Paired HOLDOUT-DTI difference'))}</strong>"
+    if delta is not None:
+        line += f" {float(delta):+.6f}"
+    if ci:
+        line += f" · paired 95% CI [{float(ci[0]):+.6f}, {float(ci[1]):+.6f}]"
+    evaluator = (primary_metric or {}).get("evaluator_version")
+    count = (primary_metric or {}).get("withheld_positive_count")
+    if evaluator:
+        line += f" · evaluator <code>{esc(evaluator)}</code>"
+    if count:
+        line += f" · n={int(count):,} withheld positives"
+    if comparison.get("folds_won"):
+        line += f" · folds won: {esc(comparison['folds_won'])}"
+    return f"<p>{line}</p>"
+
+
+def current_review():
+    pages_by_site = {}
+    for source in PAGE_AUDIT["source_pages"]:
+        pages_by_site.setdefault(source["site"], []).append(source)
+    rows = []
+    for site in PAGE_AUDIT["sites"]:
+        name = esc(site["site"])
+        historical = site.get("reported_historical_best", {})
+        historical_value = historical.get("value")
+        historical_html = (
+            f"<strong>{float(historical_value):.4f}</strong>"
+            if historical_value is not None else "Not reported"
+        )
+        historical_html += f"<small>{esc(historical.get('evidence_class', 'Owner-page claim; unverified'))}</small>"
+
+        primary = site.get("latest_page_holdout_dti") or site.get("latest_emitted_tiff_holdout_dti")
+        metrics = render_metric(primary)
+        metrics += render_paired_comparison(site.get("paired_comparison"), primary)
+        metrics += render_metric(site.get("confirmation_holdout_dti"), "Confirmation screen")
+        metrics += render_metric(
+            site.get("non_comparable_reemission_diagnostic"),
+            "Withdrawn fold-local re-emission; not the emitted TIFF",
+        )
+        if not metrics:
+            metrics = "<p>No standalone HOLDOUT-DTI point estimate is reported for the current file/page. This is not an organizer score.</p>"
+        metrics += "<small>Owner-page diagnostics only; not independently replayed or organizer-confirmed in this review.</small>"
+
+        source_links = []
+        for source in pages_by_site.get(site["site"], []):
+            label = f"{source['path']} · {source['commit'][:8]}"
+            source_links.append(f'<li><a href="{esc(source["url"])}">{esc(label)} ↗</a></li>')
+        source_html = "<ul class=\"source-list\">" + "".join(source_links) + "</ul>"
+
+        rows.append(f'''<tr data-site="{name}">
+          <th scope="row"><a href="index.html#scorecard">{name}</a></th>
+          <td>{historical_html}</td>
+          <td><p>{esc(site.get("latest_page_update", "No current page update recorded."))}</p>{metrics}</td>
+          <td>{esc(site.get("uniqueness_and_release", "No uniqueness or release determination recorded."))}</td>
+          <td><strong>Not estimable</strong><small>Not an organizer score projection.</small><span class="tag bad">DO NOT SUBMIT</span></td>
+          <td>{source_html}</td>
+        </tr>''')
+
+    body = f'''<div class="shell"><div class="breadcrumb"><a href="index.html">Overview</a> / Current nine-site review</div>
+    <section class="page-hero"><div class="eyebrow">Current source review · 30 October 2026 UTC</div><h1 class="page-title">Nine owner pages.<br>No file approved.</h1>
+    <p class="lead">A pinned-head review of the public owner pages for GEMSDOE24, 25, 27, 28, 30, 31, 32, 33 and 36. It updates publication freshness—not score authenticity, TIFF validation, or organizer submission status.</p></section>
+    <div class="notice" role="alert"><strong>NEGATIVE — DO NOT SUBMIT.</strong><p>All nine owner pages were fetched at their recorded commits. Their HOLDOUT-DTI figures are owner-page diagnostics, not independently replayed results or organizer scores. Current candidate TIFF bytes, organizer receipts, and portal state were not re-audited. No new-file leaderboard estimate is defensible.</p>
+    <p><a href="data/focus_site_publication_audit_20261030.json">Raw page audit JSON ↗</a> · <a href="data/focus_site_head_check_20261030.json">Pinned source-head receipt ↗</a> · <a href="data/current_run_card.json">Current negative run card ↗</a> · <a href="data/source_feed.json">Timestamped status feed ↗</a></p></div>
+    <section class="page-section"><h2>Per-site comparison and release decision</h2><p>Historical bests are owner-reported and unverified; recent HOLDOUT-DTI diagnostics use heterogeneous evaluators and tasks, so they are not cross-site comparable. A paired-delta confidence interval is not a standalone point estimate. Each row's immutable GitHub source links identify the reviewed page version.</p>
+    <div class="table-wrap"><table class="current-review-table"><thead><tr><th>Site</th><th>Historical best claim</th><th>Latest owner-page status and diagnostic</th><th>Uniqueness / release</th><th>New-file estimate &amp; action</th><th>Reviewed source page(s)</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div>
+    <p class="sub">Audit observed {esc(PAGE_AUDIT['observed_utc'])}; {PAGE_AUDIT['summary']['focus_sites_reviewed']} focus sites and {PAGE_AUDIT['summary']['public_page_blobs_retrieved']} public page blobs. No current candidate TIFF bytes or organizer receipts were verified.</p>
+    <p><a class="text-link" href="https://github.com/apartanish22-droid/ApartGEMSDOE2/blob/main/docs/REVIEW_20261030.md">Full research review source in the repository ↗</a> · <a class="text-link" href="index.html#scorecard">Historical geometry scorecard ↗</a></p></section></div>'''
+    return page('Current nine-site review', body)
+
+
 def index():
     source_cards = ''.join([
       source_card('Competition problem & metric','Official fault target, weighted Tversky and submission format.','https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/'),
@@ -76,7 +195,7 @@ def index():
     body = f'''<div class="shell"><section class="hero" aria-labelledby="hero-title"><div>
       <div class="eyebrow">DOE GEMS prize · decision brief</div><h1 id="hero-title">Evidence before<br><span class="soft">the next upload.</span></h1>
       <p class="lead">A clearer path from fault-discovery research to a competition submission. Track the strongest historical work, the evidence behind it, and the gates that protect the next slot.</p>
-      <div class="hero-actions"><a class="button primary" href="#scorecard">Explore the scorecard <span aria-hidden="true">↗</span></a><a class="text-link" href="executive-summary.html">Read the submission guide →</a><a class="text-link" href="research.html">Explore the research →</a></div>
+      <div class="hero-actions"><a class="button primary" href="#scorecard">Explore the scorecard <span aria-hidden="true">↗</span></a><a class="text-link" href="current-review.html">Read the current nine-site review →</a><a class="text-link" href="executive-summary.html">Read the submission guide →</a><a class="text-link" href="research.html">Explore the research →</a></div>
       <div class="hero-note"><span></span> Evidence-led review · no automated portal submissions</div></div>
       <aside class="status-card" aria-label="Submission decision"><div class="status-top"><span>Current submission decision</span><span class="status-badge">● &nbsp; Negative</span></div>
       <h2>Not ready to submit.</h2><p>No new TIFF has passed the required lane, holdout, uniqueness and format gates. A past file or a different name is not a new submission.</p>
@@ -93,10 +212,10 @@ def index():
       <div class="panel" style="margin-top:1rem;"><div class="mini-label">Concurrent archived RAD-SCARP · research only</div><p>Another session generated this TIFF while this review was underway. Its archived full-catalogue construction is not fold-local, its v3 diagnostic lacks a confidence interval, and no complete pre-placement registry pass was established. An independent check found <strong>10,421 / 10,457 = 99.66%</strong> of final dots within 3 px of the registered lattice: literal gate <strong>FAIL</strong>. The owner-mirrored grid and finite [0,1] footprint do not establish portal acceptance; exterior zeros are not null or masked. <strong>RESEARCH ONLY / DO NOT SUBMIT.</strong></p><p>SHA-256: <code>ce5295029b2f506bed5d49b74432370ba6101d5b810797be78af7502d41828f3</code></p><div class="inline-list"><a href="downloads/apartgemsdoe2-rad-scarp-offcatalogue-geothermal-20261028T224529Z-04053573-zeros.tif" download>Download TIFF · RESEARCH ONLY ↗</a><a href="data/rad_scarp_independent_recheck_20261028.json">Independent lattice recheck ↗</a></div></div>
       <div class="panel" style="margin-top:1rem;"><div class="mini-label">Three more concurrent artifacts · research only</div><p>The earlier lattice audit counted lattice cells near candidate dots, not candidate dots near the lattice. Reopening the saved TIFFs shows <strong>99.23%, 99.903% and 99.872%</strong> directional overlap respectively — all above 70%. Threshold ties caused over five million saved dots in each of the latter two files. The v3 split is not a validated buffered holdout, and no portal acceptance is known. <strong>DO NOT SUBMIT.</strong></p><div class="inline-list"><a href="downloads/gemsdoe32-h-dil-grav-dilate-x-gravlow-top37654-20261028T224631Z-3df650f1-zeros.tif" download>H-DIL-GRAV · RESEARCH ONLY ↗</a><a href="downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif" download>H-MAG-EDGE · RESEARCH ONLY ↗</a><a href="downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif" download>H-DEPTH-COND · RESEARCH ONLY ↗</a><a href="data/parallel_three_independent_recheck_20261028.json">Saved-byte recheck ↗</a></div></div>
       <div class="panel" style="margin-top:1rem;"><div class="mini-label">Latest H-SPMD · EXP-2 (SAR-PU Subsurface-Propensity Dual-Cover) · research only</div><p>Three-experiment factorial on pinned <code>GEMSDOE32-HIDE-RECOVER-v3.0</code> (22,232 withheld occurrences; unbuffered split caveat: 15,705 within 15 px of visible faults, not a validated buffered whole-segment holdout): reported HOLDOUT-DTI <strong>{SPMD_CARD['holdout_dti']['point']:.4f}</strong> [{SPMD_CARD['holdout_dti']['ci95'][0]:.4f}, {SPMD_CARD['holdout_dti']['ci95'][1]:.4f}] vs fold-honest <code>D28_B2</code> control <strong>{SPMD_EXPS['baselines']['D28_B2_fold_honest_holdout']['pooled_dti']:.4f}</strong> (paired &Delta; <strong>+{SPMD_CARD['holdout_dti']['paired_vs_fold_honest_d28_b2']['delta_dti']:.4f}</strong> [{SPMD_CARD['holdout_dti']['paired_vs_fold_honest_d28_b2']['ci95_paired_cluster_bootstrap'][0]:+.5f}, {SPMD_CARD['holdout_dti']['paired_vs_fold_honest_d28_b2']['ci95_paired_cluster_bootstrap'][1]:+.5f}]). Pre-placement surface max |&rho;| = <strong>{SPMD_CARD['registry_correlation_overlap']['surface_max_abs_spearman']:.4f}</strong> (&le; 0.90) and 543-raster sparse 3-px overlap = <strong>{SPMD_CARD['registry_correlation_overlap']['sparse_dots_max_within_3px']:.2%}</strong> (&le; 70% vs WBGGEMSDOE3, 0.98% vs RAD-SCARP, 0.74% vs H-DIL-GRAV), while literal <code>13GEMSDOE</code> covering-lattice overlap is <strong>{SPMD_CARD['registry_correlation_overlap']['literal_all_max_within_3px_including_13gemsdoe_lattice']:.3%}</strong> (&gt; 70% literal gate <strong>FAIL</strong>) and template/portal acceptance remain unauthenticated. <strong>RESEARCH ONLY / DO NOT SUBMIT.</strong></p><p>SHA-256: <code>{esc(SPMD_CARD['raster_sha256'])}</code> · Name (provenance only): <code>{esc(SPMD_CARD['submission_name'])}</code></p><div class="inline-list"><a href="downloads/{esc(SPMD_TIF_NAME)}" download>Download H-SPMD TIFF · RESEARCH ONLY ↗</a><a href="downloads/{esc(SPMD_ZIP_NAME)}" download>Download H-SPMD ZIP · RESEARCH ONLY ↗</a><a href="spmd/index.html">Full H-SPMD 3-experiment brief ↗</a><a href="data/spmd_run_card_20261028.json">H-SPMD Run Card JSON ↗</a></div></div>
-      <div class="panel" style="margin-top:1rem;"><div class="mini-label">New H-SARPU · EXP-2 (67-ch Multi-Physics + Isomorphic LEFM) · #1 Sparse-Unique Score in Repo</div><p>Three-experiment factorial on <code>GEMSDOE32-HIDE-RECOVER-v3.0</code> (22,232 withheld occurrences), Detached-600m (<code>d &ge; 6 px</code>), and independent <code>GEMSDOE32-SGMC-CAL-v3.0</code> (62,703 blind basement positives): <strong>HOLDOUT-DTI = {SARPU_CARD['holdout_dti']['point']:.6f}</strong> [{SARPU_CARD['holdout_dti']['ci95'][0]:.5f}, {SARPU_CARD['holdout_dti']['ci95'][1]:.5f}] (surpassing both H-SPMD EXP-2 <strong>0.113181</strong> and H-UDSR EXP-2 <strong>0.113696</strong>; paired &Delta; <strong>+{SARPU_CARD['holdout_dti']['paired_vs_fold_honest_d28_b2']['delta_dti']:.5f}</strong> [{SARPU_CARD['holdout_dti']['paired_vs_fold_honest_d28_b2']['ci95_paired_cluster_bootstrap'][0]:+.5f}, {SARPU_CARD['holdout_dti']['paired_vs_fold_honest_d28_b2']['ci95_paired_cluster_bootstrap'][1]:+.5f}] vs fold-honest <code>D28_B2 = 0.099202</code>, 99.9% win; Detached-600m <strong>{SARPU_CARD['holdout_dti']['detached_600m_holdout']['point']:.6f} &gt; 0.083437</strong>; independent <code>SGMC-CAL-v3.0</code> <strong>{SARPU_CARD['holdout_dti']['sgmc_diagnostic_only']['calibrated_point']:.6f} &gt; 0.047974</strong>). 67-ch canary max oriented AUC = <strong>{SARPU_CARD['leakage_canary']['max_oriented_auc']:.6f} &le; 0.90</strong>; pre-placement surface max |&rho;| = <strong>{SARPU_CARD['registry_correlation_overlap']['surface_before_placement']['worst_abs_spearman']:.4f} &le; 0.90</strong>; 559-raster genuine non-lattice sparse 3-px max = <strong>{SARPU_CARD['registry_correlation_overlap']['dots_genuine_sparse_non_lattice']['worst_all_559_non_lattice']:.2%} &le; 70%</strong> (53.71% vs &le;50k-dot peers, 49.41% vs H-SPMD EXP-2, <strong>37.31% vs GEMSDOE32 B2</strong>). Literal 206,895-dot <code>13GEMSDOE</code> lattice overlap = <strong>99.82% &gt; 70%</strong> (null-calibrated excess -0.3829 &le; 0.70) &rarr; literal Run Card <code>verdict: negative</code> (human selector required; <strong>DO NOT AUTO-SUBMIT</strong>).</p><p>SHA-256: <code>{esc(SARPU_CARD['raster_sha256'])}</code> · Name: <code>{esc(SARPU_CARD['submission_name'])}</code> · Note ({SARPU_CARD['note_length_chars']}/140): <code>{esc(SARPU_CARD['note'])}</code></p><div class="inline-list"><a href="downloads/{esc(SARPU_TIF_NAME)}" download>Download Validated H-SARPU .TIF (-zeros, {SARPU_KIB} KiB) ↗</a><a href="downloads/{esc(SARPU_ZIP_NAME)}" download>Download H-SARPU .ZIP ↗</a><a href="downloads/{esc(SARPU_NAN_NAME)}" download>Download NaN-Exterior Twin .TIF ↗</a><a href="sarpu/index.html">Executive Dashboard &amp; Tables ↗</a><a href="sarpu/executive-summary.html">Step-by-Step DrivenData Submission Guide ↗</a><a href="data/sarpu_run_card_20261028.json">H-SARPU Run Card JSON ↗</a></div></div></section>
+      <div class="panel" style="margin-top:1rem;"><div class="mini-label">Archived H-SARPU EXP-2 · RESEARCH ONLY / DO NOT SUBMIT</div><p><strong>DO NOT SUBMIT.</strong> The prior run card reports <strong>HOLDOUT-DTI 0.113838 [0.09999, 0.12708]</strong> (evaluator <code>GEMSDOE32-HIDE-RECOVER-v3.0</code>, 22,232 withheld-positive occurrences; archived diagnostic only). The split does not establish the requested buffered whole-segment contract: 15,705 / 22,232 occurrences lie within 15 px of visible faults. The saved dots also overlap the registered calibration lattice by <strong>99.82% &gt; 70%</strong>. No leaderboard estimate, submission name/note, or slot is approved; the organizer template and portal acceptance remain unverified.</p><p>The prior local byte check reported a single-band float32 raster on an owner-mirrored grid. This is not an authenticated-template or portal pass. SHA-256: <code>{esc(SARPU_CARD['raster_sha256'])}</code></p><div class="inline-list"><a href="downloads/{esc(SARPU_TIF_NAME)}" download>Download archived research TIFF — DO NOT SUBMIT ↗</a><a href="data/sarpu_run_card_20261028.json">Archived run card ↗</a><a href="sarpu/executive-summary.html">General submission process (no file approved) ↗</a></div></div>
       <section class="section" id="scorecard"><div class="section-head"><div><div class="section-kicker">01 / Nine priority sites</div><h2>Historical results, in context.</h2></div><p>Highest values supplied for each site, not verified organizer receipts. The linked archival variant may differ in bytes from the file named in the claim.</p></div>
       <div class="table-wrap"><table><thead><tr><th>Site</th><th>Reported submission</th><th>Reported value</th><th>New-file estimate</th><th>Unique vs 8 sites?</th><th>Decision</th></tr></thead><tbody>{table}</tbody></table></div>
-      <div class="table-foot"><span class="dot"></span><span>Directional overlap is measured on every archived final dot. The audit covers these nine pinned variants, not every private or future submission. A different hash alone does not establish uniqueness. <a href="data/historical_audit.json" class="text-link">View full audit ↗</a> · <button type="button" id="refresh-sources">Check live source HEADs</button><br><span id="freshness-summary" aria-live="polite">Source freshness not yet checked.</span></span></div></section>
+      <div class="table-foot"><span class="dot"></span><span>Directional overlap is measured on every archived final dot. The audit covers these nine pinned variants, not every private or future submission. A different hash alone does not establish uniqueness. <a href="data/historical_audit.json" class="text-link">View full audit ↗</a> · <button type="button" id="refresh-sources">Check live source HEADs</button><br><span id="freshness-summary" aria-live="polite">Source freshness not yet checked.</span></span></div><div class="notice"><strong>Source movement — owner pages reviewed, TIFF bytes not re-audited.</strong> GitHub API HEAD checks on 30 October 2026 found newer commits in all 9 focus-site repositories. We fetched and reviewed the public pages at those exact heads; their owner-reported claims were not independently verified, and current downloadable TIFF bytes remain unaudited. The values above remain pinned historical claims, not a current ranking. <a href="data/focus_site_head_check_20261030.json">View the source-head receipt ↗</a> · <a href="data/focus_site_publication_audit_20261030.json">View the page-content audit ↗</a> · <a href="current-review.html">Read the current nine-site comparison ↗</a></div></section>
       <section class="section" id="analysis"><div class="section-head"><div><div class="section-kicker">02 / What the evidence says</div><h2>Why did the leader stand out?</h2></div><p>We can explain the geometry, not establish the cause of a reported score without the hidden labels and a file-bound receipt.</p></div>
       <div class="analysis-grid"><div class="panel"><div class="mini-label">Verified file geometry</div><h3>Less redundancy, not a new detector.</h3><p>The GEMSDOE32 archival dot set is contained in the GEMSDOE31 set. The former removes <strong>2,545 dots</strong>; every removed dot lies within two pixels of the mirrored known catalogue. This is a <strong>geometry audit</strong>, not a leaderboard result.</p><p>Under the organizer’s distance-weighted metric, tightly clustered predictions can compete for the same nearby credit while contributing prediction mass. Pruning could help, but this does not prove why the reported value was higher or that it will generalize.</p><a class="text-link" href="data/historical_audit.json">Inspect the reconstruction ↗</a> &nbsp; <a class="text-link" href="https://github.com/apartanish22-droid/ApartGEMSDOE2/blob/main/research/findings.md">Full analysis ↗</a></div>
       <div class="panel dark"><div class="mini-label">The gate that stops this run</div><h3>A literal uniqueness conflict.</h3><div class="metric">≥ 82.34%</div><p>Minimum possible 3-pixel overlap with one registered calibration lattice at the champion’s 37,654-dot count — above the requested 70% limit. Only 6,649 mirrored-footprint cells are outside the lattice’s 3-pixel neighborhood.</p><p>This is a counting bound, not a score. It does not rule out every smaller candidate, and it does not justify moving dots into holes to game the rule.</p><a class="text-link" href="executive-summary.html#blockers">Read the full stop rationale ↗</a></div></div></section>
@@ -105,13 +224,13 @@ def index():
       <div class="step"><span class="step-no">02 / VALIDATE</span><h3>Leakage-safe holdout</h3><p>The archived split fails the requested buffered whole-segment contract; prior reported numbers are diagnostics, not validated holdouts.</p><span class="tag bad">INVALID / BLOCKED</span></div>
       <div class="step"><span class="step-no">03 / COMPARE</span><h3>Prove uniqueness</h3><p>Check surface correlation before placement and final-dot proximity against every registry raster.</p><span class="tag bad">BLOCKED</span></div>
       <div class="step"><span class="step-no">04 / RELEASE</span><h3>Validate saved bytes</h3><p>A research TIFF exists but has no authenticated template or portal acceptance; no selector approved it.</p><span class="tag bad">NO APPROVAL</span></div></div></section>
-      <section class="section" id="sources"><div class="section-head"><div><div class="section-kicker">04 / Verified starting points</div><h2>Follow the source.</h2></div><p>Official sources describe the problem and data. A catalogue holdout is not the organizer’s hidden-label score.</p></div><div class="sources">{source_cards}</div><div class="feed-panel"><div><strong>Source snapshot</strong><p id="feed-checked">Loading timestamped source-head checks…</p><small>Updated periodically when the workflow runs. A changed repository has not been re-audited automatically.</small></div><div id="feed-grid" class="feed-grid" aria-live="polite"></div><a class="text-link" href="data/source_feed.json">View raw source snapshot ↗</a></div></section></div>'''
+      <section class="section" id="sources"><div class="section-head"><div><div class="section-kicker">04 / Verified starting points</div><h2>Follow the source.</h2></div><p>Official sources describe the problem and data. A catalogue holdout is not the organizer’s hidden-label score.</p></div><div class="sources">{source_cards}</div><div class="feed-panel"><div><strong>Source snapshot</strong><p id="feed-checked">Loading timestamped source-head checks…</p><small>This automated feed tracks repository HEADs only. Owner pages were manually reviewed at 30 October pins; current TIFF bytes and organizer receipts remain unaudited. See the <a href="current-review.html">current page comparison</a>.</small></div><div id="feed-grid" class="feed-grid" aria-live="polite"></div><a class="text-link" href="data/source_feed.json">View raw source snapshot ↗</a></div></section></div>'''
     return page('Evidence before the next upload', body, script=True)
 
 
 def summary():
     body = '''<div class="shell"><div class="breadcrumb"><a href="index.html">Overview</a> / Executive summary</div><section class="page-hero"><div class="eyebrow">Executive summary · submission guide</div><h1 class="page-title">One decision before<br>you download.</h1><p class="lead">The process is designed to make upload readiness obvious. Right now, there is no approved new file.</p></section>
-    <div class="notice"><strong>DO NOT SUBMIT — no candidate is approved.</strong><p>A parallel AP-1 research TIFF exists, but 99.72% of its dots overlap the registered lattice within three pixels and its reported holdout is below its control. Its grid is checked only against an owner mirror. <a href="index.html#parallel-candidate">Review the research-only artifacts and evidence ↗</a> Concurrent RAD-SCARP and three additional TIFFs also fail the literal lattice stop; their archived v3 diagnostics are not valid requested-protocol holdouts and portal acceptance is unknown. The <a href="spmd/index.html">H-SPMD · EXP-2</a> artifact (0.1132, 68.93% sparse) and the new <a href="sarpu/index.html">H-SARPU · EXP-2</a> 67-ch Multi-Physics + Isomorphic LEFM artifact (<strong>0.113838 HOLDOUT-DTI</strong> — #1 sparse-unique score in repo, Detached-600m <strong>0.086337 &gt; 0.083437</strong>, independent <code>SGMC-CAL-v3.0</code> <strong>0.063808</strong>, <strong>61.91% &le; 70%</strong> across all 559 non-lattice rasters, <strong>37.31% vs GEMSDOE32 B2</strong>; <a href="sarpu/executive-summary.html">step-by-step DrivenData upload guide ↗</a>) remain fail-closed (<code>negative</code> / DO NOT AUTO-SUBMIT) under the literal 206,895-dot <code>13GEMSDOE</code> lattice overlap (99.82%), the unbuffered v3 split caveat, and unauthenticated mirror/selector governance.</p></div>
+    <div class="notice"><strong>DO NOT SUBMIT — no candidate is approved.</strong><p>A parallel AP-1 research TIFF exists, but 99.72% of its dots overlap the registered lattice within three pixels and its reported holdout is below its control. Its grid is checked only against an owner mirror. <a href="index.html#parallel-candidate">Review the research-only artifacts and evidence ↗</a> Concurrent RAD-SCARP and three additional TIFFs also fail the literal lattice stop; their archived v3 diagnostics are not valid requested-protocol holdouts and portal acceptance is unknown. The archived H-SPMD/H-SARPU reports are research diagnostics, not current valid holdouts or leaderboard estimates. H-SARPU's prior run card reports <strong>HOLDOUT-DTI 0.113838 [0.09999, 0.12708]</strong> (evaluator <code>GEMSDOE32-HIDE-RECOVER-v3.0</code>, 22,232 withheld-positive occurrences); the independent split audit shows the requested buffer/whole-segment contract was not established, and its literal lattice overlap is <strong>99.82% &gt; 70%</strong>. <a href="sarpu/index.html">Review H-SARPU research-only evidence ↗</a></p></div>
     <div class="page-grid"><div><section class="page-section"><h2>What happens when a candidate clears the gates?</h2><ol>
     <li>Prerecord the explicitly assigned method, feature sources, non-fault mimic, budget and immutable registry snapshot. Stop if the surface exceeds the specified correlation or proximity threshold.</li>
     <li>Once the canonical evaluator is fixed and pinned, run the shared holdout with whole buffered withheld segments. Rebuild every catalogue-derived feature from visible faults only; mask visible catalogue pixels exactly. Test each feature individually for leakage.</li>
@@ -123,7 +242,7 @@ def summary():
     <section class="page-section" id="blockers"><h2>Why is this run blocked?</h2><ul><li>No single method lane was explicitly assigned in the supplied prompt. A parallel session self-selected AP-1, which is not a user assignment.</li><li>The full shared registry and prepared feature stack are not verified here. The parallel holdout/control comparison was not independently replayed and uses different refill rules for candidate and control.</li><li>One registered lattice proves that a 37,654-dot candidate must overlap at least 82.34% within 3 pixels. The literal limit is 70%. This is a conditional geometry bound, not a result for every smaller candidate.</li><li>The public mirror called <code>sample_submission.tif</code> contains 60,988 positive pixels identical to the mirrored labels; the official page describes the sample as predicting total absence. The mirror is not organizer-authenticated.</li><li>The shared split has no verified 15-pixel truth-to-visible buffer: <a href="data/shared_split_geometry_20261028.json">15,705 / 22,232 withheld occurrences</a> are within that distance. The prior H-TRACE surface check also happened after placement, and the shared registry auditor is fail-open (<a href="https://github.com/buffedlizard55-lab/GEMSDOE32/issues/63">issue #63</a>).</li><li>The shared validator's grid-match label does not authenticate source origin. The pinned reproducible ambiguity was <a href="https://github.com/buffedlizard55-lab/GEMSDOE24/issues/74">reported to the canonical maintainers</a>; this account cannot push there.</li></ul></section>
     <section class="page-section"><h2>About the range error</h2><p>The reported message “Predicted values must be in range [0, 1]” is real, but the rejected bytes are not present here, so its cause is unknown. Negative sentinels such as <code>-9999</code>, infinities, values outside the range, NaNs inside the footprint, or incompatible mask/nodata handling are possibilities—not a diagnosis.</p><p>The published format requests null or NaN outside the bounds; some older all-finite files use zeros outside. We cannot infer which representation the live portal accepts from a local diagnostic. Do not blindly clip values or change the exterior to claim a fix. Validate the exact saved file against the authenticated template and retain the portal receipt.</p></section>
     <section class="page-section"><h2>Current best does not mean current permission</h2><p>GEMSDOE32’s 0.2778 is a user-reported historical value, not an authenticated receipt. All nine audited archival dot sets fail the requested uniqueness rule against another focus-site raster. They are not candidates for a new upload, and the true cause of their reported ranking remains unknown.</p></section></div>
-    <aside><div class="facts"><div class="fact"><div class="mini-label">Upload decision</div><div class="value">No file approved</div></div><div class="fact"><div class="mini-label">Estimated new-file score</div><div class="value">Not estimable</div></div><div class="fact"><div class="mini-label">Research file</div><div class="value small">AP-1 · DO NOT SUBMIT</div></div><div class="fact"><div class="mini-label">Weekly slots used</div><div class="value">0 this run</div></div><div class="fact"><div class="mini-label">Evidence</div><div class="inline-list"><a href="data/current_run_card.json">Current run card ↗</a><a href="data/parallel_candidate_audit.json">AP-1 audit ↗</a><a href="data/historical_audit.json">Geometry audit ↗</a></div></div></div></aside></div></div>'''
+    <aside><div class="facts"><div class="fact"><div class="mini-label">Upload decision</div><div class="value">No file approved</div></div><div class="fact"><div class="mini-label">Estimated new-file score</div><div class="value">Not estimable</div></div><div class="fact"><div class="mini-label">Research file</div><div class="value small">AP-1 · DO NOT SUBMIT</div></div><div class="fact"><div class="mini-label">Weekly slots used</div><div class="value">0 this run</div></div><div class="fact"><div class="mini-label">Evidence</div><div class="inline-list"><a href="data/current_run_card.json">Current run card ↗</a><a href="current-review.html">Current nine-site review ↗</a><a href="data/focus_site_publication_audit_20261030.json">Raw page audit ↗</a><a href="data/parallel_candidate_audit.json">AP-1 audit ↗</a><a href="data/historical_audit.json">Geometry audit ↗</a></div></div></div></aside></div></div>'''
     return page('Executive summary & submission guide', body)
 
 
@@ -215,96 +334,80 @@ def spmd_brief():
 
 def sarpu_index():
     rows = []
+    literal_overlap = SARPU_CARD["registry_correlation_overlap"]["dots_literal_space_filling_lattice"]["within_3px_literal"]
     for ex in SARPU_CARD["all_experiments"]:
-        delta = ex["holdout_dti"] - 0.099202
         rows.append(f"""<tr>
           <td><strong>{esc(ex['experiment_id'])}</strong><span class="sub">{esc(ex['name'])}</span></td>
-          <td><strong>{ex['holdout_dti']:.6f}</strong><span class="sub">[{ex['holdout_ci95'][0]:.5f}, {ex['holdout_ci95'][1]:.5f}]</span></td>
-          <td>{delta:+.6f}<span class="sub">vs D28_B2 (0.099202)</span></td>
-          <td>{ex['detached_600m_dti']:.6f}<span class="sub">SGMC: {ex['sgmc_cal_dti']:.6f}</span></td>
-          <td>37,654<span class="sub">B=2.0 px · min_sep=2.85</span></td>
-          <td>{ex['surface_max_abs_spearman']:.4f} &le; 0.90</td>
-          <td><span class="tag good">{ex['worst_sparse_within_3px']:.2%} &le; 70%</span></td>
-          <td><span class="tag bad">99.82%</span><span class="sub">calibrated: -0.3829</span></td>
+          <td><strong>HOLDOUT-DTI {ex['holdout_dti']:.6f}</strong><span class="sub">95% CI [{ex['holdout_ci95'][0]:.5f}, {ex['holdout_ci95'][1]:.5f}]</span></td>
+          <td>{ex['surface_max_abs_spearman']:.4f}<span class="sub">archived surface report</span></td>
+          <td>{ex['worst_sparse_within_3px']:.2%}<span class="sub">non-lattice subset only</span></td>
+          <td>{literal_overlap:.2%}<span class="sub">registered lattice; literal limit 70%</span></td>
+          <td><span class="tag bad">NEGATIVE · DO NOT SUBMIT</span></td>
         </tr>""")
     rows_html = "".join(rows)
-    site_rows = []
-    for s in SITES:
-        site = s["site"]
-        ov = s["max_overlap_other_focus_site"]
-        site_rows.append(f"""<tr>
-          <td><a href="../sites/{site.lower()}.html"><strong>{esc(site)}</strong> ↗</a></td>
-          <td><code>{esc(s['reported_submission_name'])}</code></td>
-          <td>{esc(s['reported_value'])}<span class="sub">USER-REPORTED / UNVERIFIED</span></td>
-          <td><span class="tag bad">NO · {ov['fraction']:.1%}</span><span class="sub">vs {esc(ov['reference'])}</span></td>
-          <td><span class="tag good">UNIQUE vs H-SARPU</span><span class="sub">37.31% vs GEMSDOE32 B2</span></td>
-        </tr>""")
-    site_rows_html = "".join(site_rows)
-    body = f'''<div class="shell"><div class="breadcrumb"><a href="../index.html">Overview</a> / H-SARPU executive dashboard</div>
-    <section class="hero" aria-labelledby="sarpu-title"><div>
-      <div class="eyebrow">H-SARPU · EXP-2 · 67-Channel Multi-Physics + Isomorphic LEFM</div>
-      <h1 id="sarpu-title">Top sparse-unique holdout,<br><span class="soft">ready for selector review.</span></h1>
-      <p class="lead"><strong>EXP-2 (SARPU-LEFM-Uncapped-38k)</strong> sets a new sparse-unique repository record on every axis: <strong>HOLDOUT-DTI = {SARPU_CARD['holdout_dti']['point']:.6f}</strong> [{SARPU_CARD['holdout_dti']['ci95'][0]:.5f}, {SARPU_CARD['holdout_dti']['ci95'][1]:.5f}] (&gt; 0.113181 H-SPMD &amp; &gt; 0.113696 H-UDSR), <strong>Detached-600m = {SARPU_CARD['holdout_dti']['detached_600m_holdout']['point']:.6f} &gt; 0.083437</strong>, independent <strong>SGMC-CAL = {SARPU_CARD['holdout_dti']['sgmc_diagnostic_only']['calibrated_point']:.6f}</strong> (+33.0% over H-SPMD 0.047974), and <strong>61.91% &le; 70%</strong> across all 559 non-lattice rasters (49.41% vs H-SPMD, <strong>37.31% vs GEMSDOE32 B2</strong>). Validated <code>float32</code> in <code>[0.0, 1.0]</code> (13 / 13 automated checks PASS).</p>
-      <div class="hero-actions">
-        <a class="button primary" href="../downloads/{esc(SARPU_TIF_NAME)}" download>↓ &nbsp; Download Validated H-SARPU .TIF (-zeros, {SARPU_KIB} KiB)</a>
-        <a class="text-link" href="executive-summary.html">Step-by-Step DrivenData Submission Guide →</a>
-        <a class="text-link" href="../downloads/{esc(SARPU_ZIP_NAME)}" download>Download .ZIP (164 KiB) →</a>
-      </div></div>
-      <aside class="status-card"><div class="status-top"><span>Dual-Gate Release Audit</span><span class="status-badge">● &nbsp; Scientific PASS · Literal Lattice Negative</span></div>
-      <h2>G1 + G2 + G3a + G4 PASS.</h2>
-      <p><strong>Genuine Non-Lattice Gate (559 rasters + concurrent main): PASS</strong> (<code>61.91% &le; 70%</code>, <code>|&rho;| = 0.1185 &le; 0.90</code>).<br><strong>Literal 206,895-dot Calibration Lattice (<code>r13-lattice-s5</code>):</strong> <code>99.82% &gt; 70%</code> (99.87% footprint coverage; null-calibrated excess <code>-0.3829 &le; 0.70</code>). Run Card verdict remains <code>negative</code> — human selector required; <strong>DO NOT AUTO-SUBMIT</strong>.</p>
-      <div class="subnote">SHA-256: <code>{esc(SARPU_CARD['raster_sha256'][:24])}…</code> · 3 / 3 budget used</div></aside></section>
-    <section class="section"><h2>1. Auditable Downloadable Submission &amp; Companion Files</h2>
-      <div class="table-wrap"><table><thead><tr><th>File</th><th>Format &amp; Grid</th><th>Range &amp; Footprint Gate</th><th>Holdout Score (Labeled)</th><th>Uniqueness Status</th><th>Role</th></tr></thead><tbody>
-        <tr><td><a href="../downloads/{esc(SARPU_TIF_NAME)}" download><code>{esc(SARPU_TIF_NAME)}</code> ↗</a><span class="sub">SHA-256: <code>{esc(SARPU_CARD['raster_sha256'])}</code> ({SARPU_KIB} KiB)</span></td><td>Single-band <code>float32</code> · <code>EPSG:32611</code> · <code>3730&times;3292</code></td><td><span class="tag good">PASS [0.0, 1.0]</span><span class="sub">12,279,160 finite · 0 NaN</span></td><td><strong>HOLDOUT-DTI: 0.113838</strong><span class="sub">[0.09999, 0.12708] · SGMC: 0.063808</span></td><td><span class="tag good">61.91% &le; 70% (559)</span><span class="sub">99.82% literal 207k lattice</span></td><td><strong>Primary All-Finite Candidate</strong></td></tr>
-        <tr><td><a href="../downloads/{esc(SARPU_ZIP_NAME)}" download><code>{esc(SARPU_ZIP_NAME)}</code> ↗</a><span class="sub">SHA-256: <code>{esc(SARPU_CARD['zip_sha256'])}</code> (164 KiB)</span></td><td>ZIP wrapping single <code>-zeros.tif</code></td><td><span class="tag good">PASS [0.0, 1.0]</span></td><td><strong>HOLDOUT-DTI: 0.113838</strong></td><td><span class="tag good">61.91% &le; 70% (559)</span></td><td>ZIP Upload Bundle</td></tr>
-        <tr><td><a href="../downloads/{esc(SARPU_NAN_NAME)}" download><code>{esc(SARPU_NAN_NAME)}</code> ↗</a><span class="sub">SHA-256: <code>{esc(SARPU_CARD['nan_twin_sha256'])}</code> (330 KiB)</span></td><td>Single-band <code>float32</code> · NaN exterior</td><td><span class="tag good">PASS in-footprint</span><span class="sub">5,167,373 finite · NaN outside</span></td><td><strong>HOLDOUT-DTI: 0.113838</strong></td><td><span class="tag good">61.91% &le; 70% (559)</span></td><td>NaN-Exterior Twin</td></tr>
-      </tbody></table></div>
-      <p style="margin-top:0.8rem;"><strong>Unique Submission Name:</strong> <code>{esc(SARPU_CARD['submission_name'])}</code><br><strong>DrivenData Note ({SARPU_CARD['note_length_chars']}/140 chars):</strong> <code>{esc(SARPU_CARD['note'])}</code></p></section>
-    <section class="section"><h2>2. Three-Experiment Factorial (3 / 3 Budget)</h2>
-      <div class="table-wrap"><table><thead><tr><th>Experiment</th><th>HOLDOUT-DTI (v3.0)</th><th>&Delta; vs D28_B2</th><th>Detached-600m / SGMC</th><th>Dots &amp; Spacing</th><th>Surface |&rho;|</th><th>Non-Lattice 3-px (559)</th><th>Literal 207k Lattice</th></tr></thead><tbody>{rows_html}</tbody></table></div>
-      <p style="margin-top:1rem;"><img src="../assets/fig6_sarpu_breakthrough.png" alt="H-SARPU 3-experiment comparison and spatial fault map" style="max-width:100%;height:auto;border-radius:8px;border:1px solid #d8dedc;"></p></section>
-    <section class="section"><h2>3. Nine Priority GEMSDOE Sites vs. H-SARPU EXP-2</h2>
-      <div class="table-wrap"><table><thead><tr><th>Site</th><th>Historical Submission</th><th>Reported Value</th><th>Historical Mutual Uniqueness</th><th>H-SARPU EXP-2 Status</th></tr></thead><tbody>{site_rows_html}</tbody></table></div></section>
-    <section class="section"><h2>4. Official Verified Reference &amp; Data Sources</h2>
-      <div class="table-wrap"><table><thead><tr><th>Official Source</th><th>URL</th><th>Verification &amp; Usage in H-SARPU</th></tr></thead><tbody>
-        <tr><td>DrivenData DOE GEMS Overview &amp; Metric</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">drivendata.org/.../page/967/ ↗</a></td><td>Distance-Tolerant Tversky (&alpha;=0.2, &beta;=0.8, 300 m kernel) &amp; [0,1] GeoTIFF contract</td></tr>
-        <tr><td>Official Rules PDF (NREL/DOE)</td><td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">docs.nlr.gov/docs/fy26osti/96647.pdf ↗</a></td><td>3 submissions/week cap, CC-BY-4.0 / public-data &amp; AI disclosure compliance</td></tr>
-        <tr><td>Organizer Reference Solution (Prof. John Lipor)</td><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution">github.com/drivendataorg/gems-prize-reference-solution ↗</a></td><td>Verified via GitHub API: <code>&lt;-1e38</code> NaN sanitization &amp; 19-band tag schema</td></tr>
-        <tr><td>USGS GeoDAWN Airborne Mag &amp; Radiometrics</td><td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">usgs.gov/data/geodawn... ↗</a></td><td>Verified Band 6 <code>tc</code> = Total Count (Spearman 0.9999); 4-block leveled Th/K &amp; U/Th</td></tr>
-        <tr><td>DOE INGENIOUS Great Basin Dataset (OpenEI GDR #1391)</td><td><a href="https://gdr.openei.org/submissions/1391">gdr.openei.org/submissions/1391 ↗</a></td><td>Quaternary thickness, 2 km MT conductance, slip-dilation, declustered seismicity Band 10</td></tr>
-        <tr><td>USGS 3DEP 1 m LiDAR Program</td><td><a href="https://www.usgs.gov/3d-elevation-program">usgs.gov/3d-elevation-program ↗</a></td><td>Wallace scarp dipole &amp; explicit LiDAR availability propensity in Dual-Cover SAR-PU</td></tr>
-      </tbody></table></div></section></div>'''
-    return page('H-SARPU executive dashboard', body, '../')
+    body = f'''<div class="shell"><div class="breadcrumb"><a href="../index.html">Overview</a> / Archived H-SARPU research</div>
+    <section class="page-hero"><div class="eyebrow">Archived H-SARPU EXP-2 · research record only</div>
+    <h1 class="page-title">A research result,<br>not a submission.</h1>
+    <p class="lead">This page documents a prior SAR-PU + multi-physics experiment. It does not identify an eligible upload, predict a leaderboard score, or authorize a competition slot.</p></section>
+    <div class="notice" role="alert"><strong>DO NOT SUBMIT — H-SARPU EXP-2 has a negative release verdict.</strong>
+    <p>The run card reports an archived <strong>HOLDOUT-DTI of {SARPU_CARD['holdout_dti']['point']:.6f} with 95% CI [{SARPU_CARD['holdout_dti']['ci95'][0]:.5f}, {SARPU_CARD['holdout_dti']['ci95'][1]:.5f}]</strong> from evaluator <code>{esc(SARPU_CARD['holdout_dti']['evaluator_version'])}</code> on <strong>{SARPU_CARD['holdout_dti']['withheld_positives']:,} withheld-positive occurrences</strong>. The shared split did not establish the requested buffered whole-segment contract: the independent geometry receipt found 15,705 of 22,232 occurrences within 15 px of visible faults and 76 partially scored component instances. These archived metrics are not valid promotion evidence and are not organizer scores.</p>
+    <p>The final dots overlap the registered lattice by <strong>{literal_overlap:.2%}</strong>, above the literal 70% stop. The registry snapshot is incomplete, and the run's template is an owner mirror rather than an authenticated organizer sample. New-file leaderboard estimate: <strong>not estimable</strong>. No file, name, note, or slot is approved.</p>
+    <p><a href="../data/sarpu_review_correction_20261030.json">Open the 30 October fail-closed correction ↗</a> · <a href="../data/current_run_card.json">Open the current negative run card ↗</a> · <a href="../data/shared_split_geometry_20261028.json">Open the split-geometry receipt ↗</a></p></div>
+    <section class="section"><h2>Archived experiment diagnostics — not valid holdout evidence</h2>
+      <p>Each number in this table is an archived <strong>HOLDOUT-DTI</strong> report from <code>{esc(SARPU_CARD['holdout_dti']['evaluator_version'])}</code> with {SARPU_CARD['holdout_dti']['withheld_positives']:,} withheld-positive occurrences and its reported 95% CI. The split defect described above applies to every row. These values must not be compared with organizer leaderboard scores or used as a numerical forecast.</p>
+      <div class="table-wrap"><table><thead><tr><th>Experiment</th><th>Archived HOLDOUT-DTI + 95% CI</th><th>Surface comparison report</th><th>Sparse non-lattice overlap</th><th>Literal lattice overlap</th><th>Decision</th></tr></thead><tbody>{rows_html}</tbody></table></div>
+      <p><strong>Score estimate for a new file:</strong> not estimable. No calibrated mapping from this catalogue hide-and-recover diagnostic to the organizer's hidden labels is established.</p></section>
+    <section class="section"><h2>Research artifact only — do not upload</h2>
+      <div class="notice"><strong>These links are for research and reproducibility only. They are not submission downloads.</strong>
+      <p>The archived byte check reports a single-band float32 GeoTIFF on the owner-mirrored EPSG:32611 grid (3730 × 3292; 100 m pixels). The all-finite “zeros” variant was reported in [0,1] across its array, but its exterior zeros do not satisfy the conservative null/NaN-outside interpretation. The NaN-exterior twin has NaNs outside the mirrored footprint. Neither format choice is confirmed by an organizer receipt; the mirror is not authenticated and portal acceptance is unknown. The rejected file that produced the user's range error is not available, so its cause remains undiagnosed.</p>
+      <p><strong>Archived TIFF SHA-256:</strong> <code>{esc(SARPU_CARD['raster_sha256'])}</code>. This checksum identifies the research bytes only; it does not establish permission to upload.</p>
+      <p><strong>No submission name or note is approved.</strong> The archived run card contains an old provenance string; do not paste it into the portal.</p>
+      <div class="inline-list"><a href="../downloads/{esc(SARPU_TIF_NAME)}" download>Download archived TIFF for research — DO NOT SUBMIT ↗</a><a href="../downloads/{esc(SARPU_ZIP_NAME)}" download>Download archived ZIP for research — DO NOT SUBMIT ↗</a><a href="../downloads/{esc(SARPU_NAN_NAME)}" download>Download NaN-exterior diagnostic for research — DO NOT SUBMIT ↗</a><a href="../data/sarpu_run_card_20261028.json">Archived run card (provenance) ↗</a><a href="../downloads/{esc(Path(SARPU_CARD['raster']).name.replace('-zeros.tif', '-audit.json'))}">Saved-byte audit ↗</a></div></div></section>
+    <section class="section"><h2>Methods and source limits</h2>
+      <p>The archived method combined selected-at-random positive-unlabeled learning, label-free geophysical channels, and elastic-fracture-mechanics-inspired features. Its named non-fault mimics include Lake Lahontan shoreline benches, saline playa clay, lithologic contacts, roads/rail, and survey-line artifacts. This is fault-propensity research, not direct confirmation of geothermal vents.</p>
+      <p>The sources below are starting points for manual review, not evidence that the exact external bytes, coverage, licence, or current competition rules were re-verified in this session. Data provenance and portal status remain unresolved.</p>
+      <div class="sources"><div class="source-card"><strong>Competition problem and submission format</strong><span>Official organizer description; consult for current target and template.</span><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Open official page ↗</a></div>
+      <div class="source-card"><strong>Competition rules</strong><span>Official DOE/NLR rules; check the current revision and portal quota.</span><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Open rules PDF ↗</a></div>
+      <div class="source-card"><strong>DrivenData reference solution</strong><span>Public GitHub code; it does not supply authenticated competition data.</span><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Open repository ↗</a></div>
+      <div class="source-card"><strong>USGS GeoDAWN</strong><span>Official survey source; exact feature bytes and footprint coverage are not verified here.</span><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">Open source page ↗</a></div>
+      <div class="source-card"><strong>DOE INGENIOUS / GDR 1391</strong><span>Public project listing; individual data conditions and coverage need checking.</span><a href="https://gdr.openei.org/submissions/1391">Open source listing ↗</a></div>
+      <div class="source-card"><strong>USGS 3DEP</strong><span>Official elevation program; study-area tile availability is not checked here.</span><a href="https://www.usgs.gov/3d-elevation-program">Open program page ↗</a></div></div>
+      <p><a href="../index.html#scorecard">Return to the nine-site historical scorecard ↗</a> · <a href="../executive-summary.html">Read the current decision guide ↗</a></p></section></div>'''
+    return page('H-SARPU archived research — do not submit', body, '../')
 
 
 def sarpu_guide():
-    body = f'''<div class="shell"><div class="breadcrumb"><a href="../index.html">Overview</a> / <a href="index.html">H-SARPU dashboard</a> / Step-by-step DrivenData submission guide</div>
-    <section class="page-hero"><div class="eyebrow">Step-by-step DrivenData upload guide · H-SARPU EXP-2</div>
-    <h1 class="page-title">How to verify &amp; submit<br>to DrivenData.</h1>
-    <p class="lead">Every automated local format, range <code>[0, 1]</code>, spatial holdout, leakage canary, and genuine non-lattice uniqueness gate passed. Because the 206,895-dot <code>13GEMSDOE</code> calibration lattice covers 99.87% of the study footprint within 3 px, a human selector must make the explicit weekly-slot decision (<strong>DO NOT AUTO-SUBMIT</strong>).</p></section>
-    <div class="page-grid"><div>
-      <section class="page-section"><h2>Step-by-Step DrivenData Submission Checklist</h2><ol>
-        <li><strong>Confirm weekly slot &amp; selector authorization:</strong> Log in to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData Submissions ↗</a> and confirm at least 1 of 3 rolling 7-day slots is open and a human selector authorizes spending a slot on <code>H-SARPU EXP-2</code>.</li>
-        <li><strong>Download the validated GeoTIFF (or ZIP):</strong> <a href="../downloads/{esc(SARPU_TIF_NAME)}" download><code>{esc(SARPU_TIF_NAME)}</code></a> ({SARPU_KIB} KiB, compressed single-band <code>float32</code>) or <a href="../downloads/{esc(SARPU_ZIP_NAME)}" download><code>{esc(SARPU_ZIP_NAME)}</code></a> (164 KiB).</li>
-        <li><strong>Verify SHA-256 locally before upload:</strong><br><code>sha256sum {esc(SARPU_TIF_NAME)}</code><br>Expected: <code>{esc(SARPU_CARD['raster_sha256'])}</code></li>
-        <li><strong>Run the zero-human-intervention validator (optional double-check):</strong><br><code>python scripts/validate_submission.py docs/downloads/{esc(SARPU_TIF_NAME)}</code> &rarr; <code>LOCAL FORMAT PASS</code>.</li>
-        <li><strong>Upload &amp; paste exact {SARPU_CARD['note_length_chars']}-character note (&le;140 chars):</strong><br>Name: <code>{esc(SARPU_CARD['submission_name'])}</code><br>Note: <code>{esc(SARPU_CARD['note'])}</code></li>
-        <li><strong>Why the prior <code>"Predicted values must be in range [0, 1]"</code> portal error cannot recur on <code>-zeros.tif</code>:</strong> Every single pixel across the full <code>3730 &times; 3292 = 12,279,160</code> raster is finite <code>float32</code> in <code>[0.0, 1.0]</code> (<code>nodata=None</code>, <code>0</code> NaN, <code>0</code> Inf, <code>0</code> negative sentinels like <code>-9999</code> or <code>-3.4e38</code>). If the portal instead requires <code>NaN</code> outside the footprint, upload the companion <a href="../downloads/{esc(SARPU_NAN_NAME)}" download><code>{esc(SARPU_NAN_NAME)}</code></a> (SHA-256 <code>{esc(SARPU_CARD['nan_twin_sha256'])}</code>).</li>
-        <li><strong>Archive organizer receipt:</strong> Save the DrivenData submission-page screenshot/receipt alongside the SHA-256 before labeling any score <code>ORGANIZER-CONFIRMED</code>.</li>
-      </ol></section>
-      <section class="page-section"><h2>Why GEMSDOE32 Reached 0.2778 &amp; How H-SARPU EXP-2 Surpasses It</h2>
-      <p>In Distance-Tolerant Tversky (&alpha;=0.2, &beta;=0.8, 300 m triangular kernel), recall is weighted <strong>4&times;</strong> heavier than precision and dense pixel patches self-cannibalize the denominator while covering zero new hidden faults. <code>GEMSDOE32</code> combined Poisson-disc spacing (<code>min_sep &approx; 2.8 px</code>, <code>~37,654</code> dots) with <code>B=2 px</code> visible-fault collar pruning. However, standard supervised models treat concealed alluvial/playa faults as <code>y=0</code> negatives (Selected-At-Random Positive-Unlabeled bias) and drop physical crack-tip propagation across folds.</p>
-      <p><strong>H-SARPU EXP-2</strong> resolves both bottlenecks simultaneously: (1) observation-propensity SAR-PU reliable-negative purification across 12 new label-free geophysical channels (shallow <code>TMI - TMI_up150</code> demag, Baranov FFT <code>1/|k|</code> pseudo-gravity deficit, 4-block leveled GeoDAWN <code>Th/K</code> + <code>U/Th</code>, BLM hydrothermal claims, Biot slip-dilation &times; seismicity, Wallace 1 m LiDAR dipole), and (2) <strong>5-fold isomorphic Williams (1957) Mode-I crack-tip + Crider–Pollard (1998) relay-ramp LEFM</strong> computed strictly from fold-visible faults during CV and full <code>labels.tif</code> at test time — lifting <code>HOLDOUT-DTI</code> to <strong>0.113838</strong>, Detached-600m to <strong>0.086337</strong>, and blind <code>SGMC-CAL</code> to <strong>0.063808</strong> while cutting non-lattice overlap to <strong>61.91% &le; 70%</strong> (<strong>37.31% vs GEMSDOE32 B2</strong>).</p></section>
-    </div>
-    <aside><div class="facts">
-      <div class="fact"><div class="mini-label">Automated Format Gate</div><div class="value">13 / 13 PASS</div><p class="sub">0 NaN · [0.0, 1.0] · EPSG:32611</p></div>
-      <div class="fact"><div class="mini-label">HOLDOUT-DTI (EXP-2)</div><div class="value">0.113838</div><p class="sub">#1 sparse-unique score in repo</p></div>
-      <div class="fact"><div class="mini-label">Blind SGMC-CAL-v3.0</div><div class="value">0.063808</div><p class="sub">+33.0% over H-SPMD (0.0480)</p></div>
-      <div class="fact"><div class="mini-label">Non-Lattice 3-px Max</div><div class="value">61.91% &le; 70%</div><p class="sub">37.31% vs GEMSDOE32 B2</p></div>
-      <div class="fact"><div class="mini-label">Evidence Artifacts</div><div class="inline-list"><a href="../data/sarpu_run_card_20261028.json">H-SARPU Run Card ↗</a><a href="../downloads/apartgemsdoe2-sarpu-exp2-lefm-sarpu-37654dots-20261028T235500Z-25593731-audit.json">Saved-byte audit ↗</a></div></div>
+    body = f'''<div class="shell"><div class="breadcrumb"><a href="../index.html">Overview</a> / <a href="index.html">H-SARPU research archive</a> / Submission process</div>
+    <section class="page-hero"><div class="eyebrow">Competition submission process · no current file approved</div>
+    <h1 class="page-title">How to submit only<br>after every gate passes.</h1>
+    <p class="lead">This is a general process guide, not an upload instruction for H-SARPU or any other archived TIFF. The project currently has no approved candidate and no submission download.</p></section>
+    <div class="notice" role="alert"><strong>NO FILE APPROVED — DO NOT SUBMIT.</strong>
+    <p>The current run card is negative, names no candidate, and authorizes no upload. H-SARPU's archived metrics fail the requested holdout and literal registry gates. Its historical filename, note, and local format checks are provenance only. The reported “Predicted values must be in range [0, 1]” error cannot be diagnosed without the actual rejected bytes.</p>
+    <p><a href="../data/sarpu_review_correction_20261030.json">Read the current H-SARPU correction ↗</a> · <a href="../data/current_run_card.json">Check current run card ↗</a> · <a href="../data/focus_site_head_check_20261030.json">Check source-head freshness ↗</a> · <a href="../data/focus_site_publication_audit_20261030.json">Review current owner pages ↗</a> · <a href="../data/shared_split_geometry_20261028.json">Check the independent holdout geometry receipt ↗</a></p></div>
+    <div class="page-grid"><div><section class="page-section"><h2>Automated release checklist for a future candidate</h2><ol>
+      <li><strong>Confirm authorization in machine-readable evidence.</strong> The current run card must say <code>verdict: promote</code>, contain a real candidate path and SHA-256, and record a verified selector decision. The current card is <code>negative</code>; stop.</li>
+      <li><strong>Pass the scientific protocol.</strong> Use an explicitly assigned method lane, the canonical repaired shared evaluator/writer, feature-by-feature leakage canaries, a buffered whole-segment holdout, paired uncertainty-aware comparison against a frozen same-protocol best, and the complete registry check before placement and on final dots.</li>
+      <li><strong>Validate exact saved bytes.</strong> Compare the single-band GeoTIFF against an authenticated organizer sample, checking CRS, shape, affine transform, footprint, in-footprint finite values in [0,1], masks/nodata, exterior representation and self-contained bytes. Record SHA-256. A local PASS is not portal acceptance.</li>
+      <li><strong>Use only the approved manifest values.</strong> After every gate passes, the candidate's exact download path, unique name, ≤140-character note, and checksum must come from the current positive run card. Do not copy metadata from an archived card. There is no approved path, name or note today.</li>
+      <li><strong>Check the live rules and allowance.</strong> Consult the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">official competition page</a> and authenticated submission page for current file rules and weekly allowance. This sandbox cannot verify the live quota or portal behavior.</li>
+      <li><strong>Upload only after machine approval.</strong> Select the exact approved file, enter the generated note, and preserve the organizer's submission receipt with the file checksum. No portal upload or slot was used in this review; this repository does not implement authenticated submission automation.</li>
+    </ol></section>
+    <section class="page-section"><h2>Why no TIFF is available to submit</h2><ul>
+      <li>No new geological experiment or prediction surface was generated in this repository review.</li>
+      <li>The prompt's “single method paragraph” is not identifiable as an explicit lane assignment. Previous lanes already report spent three-experiment budgets.</li>
+      <li>The cached feature stack, current core competition rasters, authenticated sample, complete registry, and repaired/pinned shared evaluation tools are not verified in this checkout.</li>
+      <li>The shared v3 split fails the requested separation/whole-segment condition; earlier reported holdout values are retained as diagnostics, not valid promotion evidence.</li>
+      <li>The literal 70% overlap rule includes a registered calibration lattice. At the archived 37,654-dot count, the measured lower-bound overlap is 82.34%, so a candidate at that count cannot pass the literal rule.</li>
+      <li>All nine priority-site repositories have new commits since the pinned historical audit. Their public pages were re-read at those pinned heads, but their claims were not independently verified and current TIFF bytes were not re-audited; source movement does not validate scores or files.</li>
+    </ul></section>
+    <section class="page-section"><h2>Format and range error</h2><p>The exact rejected TIFF is absent, so the cause is unknown. Check the file bytes themselves: band count and type; CRS, shape and transform; footprint mask; nonfinite and out-of-range values; nodata/exterior behavior; sidecars; and the authenticated template. Do not claim the error is fixed merely because an archived local check reports a [0,1] range.</p><p>The current checkout lacks the authenticated sample and portal confirmation. No automated validator in this repository can prove what the live portal will accept without those inputs.</p></section></div>
+    <aside><div class="facts"><div class="fact"><div class="mini-label">Current verdict</div><div class="value">NEGATIVE</div><p class="sub">No approved candidate</p></div>
+      <div class="fact"><div class="mini-label">Submission TIFF</div><div class="value">None</div><p class="sub">No file eligible for download/upload</p></div>
+      <div class="fact"><div class="mini-label">New-file score estimate</div><div class="value">Not estimable</div><p class="sub">No calibrated hidden-score transfer</p></div>
+      <div class="fact"><div class="mini-label">Portal upload automation</div><div class="value">Not implemented</div><p class="sub">No credentials or slot use</p></div>
+      <div class="fact"><div class="mini-label">Evidence</div><div class="inline-list"><a href="../data/current_run_card.json">Current run card ↗</a><a href="../index.html#scorecard">Nine-site table ↗</a><a href="../research.html">Research slate ↗</a></div></div>
     </div></aside></div></div>'''
-    return page('Step-by-step DrivenData submission guide · H-SARPU', body, '../')
+    return page('Submission process — no file approved', body, '../')
 
 
 def main():
@@ -313,6 +416,7 @@ def main():
     (DOCS / 'sarpu').mkdir(parents=True, exist_ok=True)
     (DOCS / 'data').mkdir(parents=True, exist_ok=True)
     (DOCS / 'index.html').write_text(index())
+    (DOCS / 'current-review.html').write_text(current_review())
     (DOCS / 'executive-summary.html').write_text(summary())
     (DOCS / 'research.html').write_text(research())
     (DOCS / 'spmd' / 'index.html').write_text(spmd_brief())
@@ -325,15 +429,18 @@ def main():
         'parallel_candidate_audit.json',
         'run_card.json',
         'current_run_card.json',
+        'focus_site_head_check_20261030.json',
+        'focus_site_publication_audit_20261030.json',
         'shared_split_geometry_20261028.json',
         'trace_independent_recheck_20261028.json',
         'rad_scarp_independent_recheck_20261028.json',
         'parallel_three_independent_recheck_20261028.json',
         'spmd_run_card_20261028.json',
         'sarpu_run_card_20261028.json',
+        'sarpu_review_correction_20261030.json',
     ):
         shutil.copyfile(ROOT / 'evidence' / name, DOCS / 'data' / name)
-    print(f'Built overview, guide, research, H-SPMD brief, H-SARPU dashboard/guide, and {len(SITES)} static site briefs.')
+    print(f'Built overview, current nine-site review, guide, research, H-SPMD brief, H-SARPU dashboard/guide, and {len(SITES)} static site briefs.')
 
 
 if __name__ == '__main__':

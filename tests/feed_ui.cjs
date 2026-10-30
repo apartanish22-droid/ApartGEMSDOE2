@@ -20,12 +20,14 @@ async function run(feed, reject = false) {
 }
 (async () => {
   const now = new Date().toISOString();
-  const x = await run({updated_utc: now, leaderboard: {status:'ok', top_public_value:'0.4544', last_success_utc:now}, site_heads:{GEMSDOE24:{status:'ok', head_sha:'a'.repeat(40), last_success_utc:now, changed_since_previous_check:true}, badkey:{status:'ok', last_success_utc:now}}});
+  const x = await run({updated_utc: now, leaderboard: {status:'ok', top_public_value:'0.4544', last_success_utc:now}, site_heads:{GEMSDOE24:{status:'ok', head_sha:'a'.repeat(40), last_success_utc:now, changed_since_previous_check:true, public_owner_page_retrieved_and_reviewed_at_pinned_head:true}, badkey:{status:'ok', last_success_utc:now}}});
   assert.equal(x['leader-value'].textContent, '0.4544');
   assert.match(x['leader-age'].textContent, /^Observed/);
   assert.match(x['feed-checked'].textContent, /^1\/9/);
   assert.equal(x['feed-grid'].children.length, 1);
-  assert.match(x['feed-grid'].children[0].children[1].textContent, /not re-audited/);
+  assert.match(x['feed-grid'].children[0].children[1].textContent, /owner page reviewed/);
+  const movedUnreviewed = await run({updated_utc:now, leaderboard:{status:'unavailable'}, site_heads:{GEMSDOE24:{status:'ok', head_sha:'a'.repeat(40), last_success_utc:now, changed_since_previous_check:true}}});
+  assert.match(movedUnreviewed['feed-grid'].children[0].children[1].textContent, /not re-audited/);
   const stale = await run({updated_utc:now, leaderboard:{status:'stale',top_public_value:'0.4544',last_success_utc:now},site_heads:{}});
   assert.match(stale['leader-age'].textContent, /^STALE/);
   const partial = await run({updated_utc:now, leaderboard:{status:'unavailable'}, site_heads:{GEMSDOE24:{status:'ok', head_sha:'a'.repeat(40), last_success_utc:now}}});

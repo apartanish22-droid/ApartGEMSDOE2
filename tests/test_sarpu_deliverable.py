@@ -30,32 +30,34 @@ def test_run_card_synced_and_protocol_compliant() -> None:
     assert len(CARD["all_experiments"]) == 3
 
 
-def test_scientific_gates_pass_and_holdout_sets_new_repo_record() -> None:
-    g = CARD["gates"]
-    assert g["G1_format_and_unit_interval"] is True
-    assert g["G2_holdout_record_and_paired_ci"] is True
-    assert g["G3a_genuine_non_lattice_uniqueness_567_rasters"] is True
-    assert g["G3b_literal_206895_dot_calibration_lattice"] is False
-    assert g["G4_single_feature_leakage_canary_67ch"] is True
-    assert g["calibrated_all_scientific_gates_pass"] is True
+def test_archived_metrics_are_superseded_by_fail_closed_review() -> None:
+    correction_path = ROOT / "evidence" / "sarpu_review_correction_20261030.json"
+    correction = json.loads(correction_path.read_text())
+    assert correction_path.read_bytes() == (ROOT / "docs/data/sarpu_review_correction_20261030.json").read_bytes()
+    assert correction["verdict"] == "negative"
+    assert correction["status"] == "research_only_do_not_submit"
+    assert correction["archived_diagnostic"]["label"] == "HOLDOUT-DTI"
+    assert correction["archived_diagnostic"]["point"] == CARD["holdout_dti"]["point"]
+    assert correction["archived_diagnostic"]["ci95"] == CARD["holdout_dti"]["ci95"]
+    assert correction["archived_diagnostic"]["evaluator_version"] == "GEMSDOE32-HIDE-RECOVER-v3.0"
+    assert correction["archived_diagnostic"]["withheld_positive_occurrences"] == 22232
+    assert correction["archived_diagnostic"]["promotion_valid"] is False
+    assert correction["split_geometry"]["within_15px_of_visible_faults"] == 15705
+    assert correction["split_geometry"]["partially_scored_component_instances"] == 76
+    assert correction["split_geometry"]["requested_buffered_whole_segment_contract_established"] is False
+    assert correction["registry_correlation_overlap"]["literal_lattice_overlap_fraction"] == CARD["registry_correlation_overlap"]["dots_literal_space_filling_lattice"]["within_3px_literal"]
+    assert correction["registry_correlation_overlap"]["literal_gate_pass"] is False
+    assert correction["registry_correlation_overlap"]["complete_current_registry_verified"] is False
+    assert correction["raster"]["archived_sha256"] == CARD["raster_sha256"]
+    assert correction["submission"]["name"] is correction["submission"]["note"] is None
+    assert not correction["submission"]["file_approved"]
+    assert not correction["submission"]["selector_approved"] and not correction["submission"]["upload_authorized"]
+    assert correction["organizer_confirmed_score"] is None
+    assert correction["new_file_leaderboard_estimate"] is None
 
-    h = CARD["holdout_dti"]
-    assert h["label"] == "HOLDOUT-DTI"
-    assert h["evaluator_version"] == "GEMSDOE32-HIDE-RECOVER-v3.0"
-    assert h["withheld_positives"] == 22232
-    lo, hi = h["ci95"]
-    assert lo < h["point"] < hi
-    assert h["point"] > h["archived_repo_best_point"] == 0.113696
-    assert h["paired_vs_fold_honest_d28_b2"]["ci95_strictly_positive"] is True
-    assert h["detached_600m_holdout"]["point"] > h["detached_600m_holdout"]["d28_b2_control_point"]
-
-    ov = CARD["registry_correlation_overlap"]
-    assert ov["surface_before_placement"]["worst_abs_spearman"] <= 0.90
-    assert ov["dots_genuine_sparse_non_lattice"]["worst_all_559_non_lattice"] <= 0.70
-    assert ov["dots_genuine_sparse_non_lattice"]["within_3px_of_gemsdoe32_b2_02778"] <= 0.70
-    assert ov["dots_genuine_sparse_non_lattice"]["worst_local_apartgemsdoe2"] <= 0.70
-    assert CARD["leakage_canary"]["n_features_tested"] == 67
-    assert CARD["leakage_canary"]["max_oriented_auc"] <= 0.90
+    # The original card is retained as provenance; its old combined-gate flag is explicitly superseded.
+    assert CARD["gates"]["calibrated_all_scientific_gates_pass"] is True
+    assert "old card's historical gate-pass flags do not supersede" in correction["reason"]
 
 
 def test_geotiff_and_zip_bytes_match_hashes_and_unit_interval() -> None:
@@ -79,7 +81,7 @@ def test_geotiff_and_zip_bytes_match_hashes_and_unit_interval() -> None:
     assert int((arr > 0).sum()) == 37654
 
 
-def test_sarpu_pages_are_deterministic_and_expose_checksums() -> None:
+def test_sarpu_pages_are_deterministic_and_fail_closed() -> None:
     p_idx = ROOT / "docs" / "sarpu" / "index.html"
     p_gde = ROOT / "docs" / "sarpu" / "executive-summary.html"
     p_fig = ROOT / "docs" / "assets" / "fig6_sarpu_breakthrough.png"
@@ -89,8 +91,22 @@ def test_sarpu_pages_are_deterministic_and_expose_checksums() -> None:
     subprocess.run([sys.executable, str(ROOT / "scripts" / "build_site.py")], cwd=ROOT, check=True)
     assert before == {p: p.read_bytes() for p in (p_idx, p_gde)}
 
-    for page_file in (p_idx, p_gde):
-        txt = page_file.read_text()
-        assert CARD["raster_sha256"] in txt
-        assert CARD["submission_name"] in txt
-        assert "HOLDOUT-DTI" in txt
+    dashboard = p_idx.read_text()
+    guide = p_gde.read_text()
+    assert CARD["raster_sha256"] in dashboard
+    assert CARD["submission_name"] in dashboard  # embedded in archived filename only
+    assert "HOLDOUT-DTI" in dashboard
+    assert "DO NOT SUBMIT" in dashboard and "negative release verdict" in dashboard
+    assert "Download archived TIFF for research — DO NOT SUBMIT" in dashboard
+    assert "New-file leaderboard estimate: <strong>not estimable</strong>" in dashboard
+    assert "ready for selector review" not in dashboard
+    assert "Download Validated" not in dashboard
+    assert "Unique Submission Name" not in dashboard
+
+    assert "NO FILE APPROVED — DO NOT SUBMIT" in guide
+    assert "There is no approved path, name or note today." in guide
+    assert "does not implement authenticated submission automation" in guide
+    assert "Predicted values must be in range [0, 1]" in guide
+    assert CARD["submission_name"] not in guide
+    assert CARD["note"] not in guide
+    assert "downloads/" not in guide

@@ -1,0 +1,405 @@
+{
+  "schema": "apartgems-focus-site-publication-audit-v1",
+  "observed_utc": "2026-10-30T02:11:35Z",
+  "scope": "GitHub REST Contents API retrieval of owner-controlled public site pages at the exact main-branch commit IDs in evidence/focus_site_head_check_20261030.json. Page claims were reviewed; the audit did not fetch candidate TIFF bytes, authenticate organizer receipts, access the competition portal, or independently replay owner HOLDOUT-DTI runs.",
+  "provenance": "All sources below are owner-controlled sibling repositories. SHA fields identify the fetched HTML or review source only; they do not authenticate a submitted raster or score.",
+  "summary": {
+    "focus_sites_reviewed": 9,
+    "public_page_blobs_retrieved": 11,
+    "owner_pages_reaudited_at_pinned_heads": true,
+    "current_candidate_tiff_bytes_reaudited": false,
+    "organizer_submission_receipts_verified": false,
+    "new_file_leaderboard_estimates": 0,
+    "sites_with_no_approved_submission": 9
+  },
+  "source_pages": [
+    {
+      "site": "GEMSDOE24",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "commit": "63d5885b68f73c19a7746052ccb3e5690f3271b5",
+      "path": "docs/index.html",
+      "git_blob_sha": "515c3312823d45be401af181e32226060f2db58d",
+      "size_bytes": 195480,
+      "content_sha256": "7b5be2afeecfdf2e47c4ad15a20aa9e5eecf9527e2495588855703c3e0be7fb2",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/63d5885b68f73c19a7746052ccb3e5690f3271b5/docs/index.html"
+    },
+    {
+      "site": "GEMSDOE25",
+      "repo": "buffedlizard55-lab/GEMSDOE25",
+      "commit": "782824f08879a52ad5142b4b0f46d59d48017e7a",
+      "path": "docs/index.html",
+      "git_blob_sha": "b6890047ebe9f5a0c173782b5818294dbc457324",
+      "size_bytes": 53831,
+      "content_sha256": "c66c3c20c426cbae0cbc4331164256b78fc735074363967094461cd6ea2de21a",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/782824f08879a52ad5142b4b0f46d59d48017e7a/docs/index.html"
+    },
+    {
+      "site": "GEMSDOE27",
+      "repo": "buffedlizard55-lab/GEMSDOE27",
+      "commit": "bf34151e8e4ef26ec924f28dbc371a39bd740782",
+      "path": "docs/index.html",
+      "git_blob_sha": "117608419dd94f32c08bddb6345c7b7b839d4530",
+      "size_bytes": 16913,
+      "content_sha256": "2f9a662d72dfcdb8332bad7f568824b2bfa81091531f038858083b5c13ae2866",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/bf34151e8e4ef26ec924f28dbc371a39bd740782/docs/index.html"
+    },
+    {
+      "site": "GEMSDOE28",
+      "repo": "buffedlizard55-lab/GEMSDOE28",
+      "commit": "424bf795ed2183000c643d6e30a12ce2d4bf401d",
+      "path": "docs/index.html",
+      "git_blob_sha": "3c819210fdaa5924680053999ef6c9700e70aea4",
+      "size_bytes": 52967,
+      "content_sha256": "a5866b94e80d174b763a880148edb00d1b3018bf76b4daec568ebb564c2619d1",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/424bf795ed2183000c643d6e30a12ce2d4bf401d/docs/index.html"
+    },
+    {
+      "site": "GEMSDOE30",
+      "repo": "buffedlizard55-lab/GEMSDOE30",
+      "commit": "eaff218f81e89fadc605650bb2cd55dd4b58e18d",
+      "path": "docs/index.html",
+      "git_blob_sha": "bef375416cb29f515401034957c38b8727e1d4ef",
+      "size_bytes": 262,
+      "content_sha256": "7b24402562566eeec7f4045c9e9bdf1e3196720192cc5943d961fdf7491f785c",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/eaff218f81e89fadc605650bb2cd55dd4b58e18d/docs/index.html"
+    },
+    {
+      "site": "GEMSDOE30",
+      "repo": "buffedlizard55-lab/GEMSDOE30",
+      "commit": "eaff218f81e89fadc605650bb2cd55dd4b58e18d",
+      "path": "README.md",
+      "git_blob_sha": "67e45e67b61cfd8902638f9e562f3acce3d88a50",
+      "size_bytes": 49409,
+      "content_sha256": "6beccf692694a9b4826baa2154fad07737762ba1c22ff3ea7ad620b4f78fd1e9",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/eaff218f81e89fadc605650bb2cd55dd4b58e18d/README.md"
+    },
+    {
+      "site": "GEMSDOE30",
+      "repo": "buffedlizard55-lab/GEMSDOE30",
+      "commit": "eaff218f81e89fadc605650bb2cd55dd4b58e18d",
+      "path": "docs/repository-review-2026-10-29.md",
+      "git_blob_sha": "e03ae696d19db9f2167766a992832d5f15dec62e",
+      "size_bytes": 13594,
+      "content_sha256": "5d901152142f25557310a166b38dd098e05f9621b108e09f3dab1f1aa1c4715e",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/eaff218f81e89fadc605650bb2cd55dd4b58e18d/docs/repository-review-2026-10-29.md"
+    },
+    {
+      "site": "GEMSDOE31",
+      "repo": "buffedlizard55-lab/GEMSDOE31",
+      "commit": "f9248200f20def2654af596c1cc13ab2f9d96687",
+      "path": "docs/index.html",
+      "git_blob_sha": "819f0b03acfd2008575c85d17c029b1b70952cb9",
+      "size_bytes": 141065,
+      "content_sha256": "f0013d3f08745b312d0031c2ddf14ee869b233588a03fc86ff88932168cb8629",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/f9248200f20def2654af596c1cc13ab2f9d96687/docs/index.html"
+    },
+    {
+      "site": "GEMSDOE32",
+      "repo": "buffedlizard55-lab/GEMSDOE32",
+      "commit": "6edcc4cd529ca0809b956ccb00aea7f0e3b79cbf",
+      "path": "docs/index.html",
+      "git_blob_sha": "efa7976ecba114a6e1df9806115065ff551ae2c3",
+      "size_bytes": 113241,
+      "content_sha256": "2462c5091abe58266aa0347237c6fadd583008856bcc88dc6542cb8ea9ec52aa",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/6edcc4cd529ca0809b956ccb00aea7f0e3b79cbf/docs/index.html"
+    },
+    {
+      "site": "GEMSDOE33",
+      "repo": "buffedlizard55-lab/GEMSDOE33",
+      "commit": "ee2e464b61cb0e0aa604b0525044ad9ff31c9ec7",
+      "path": "docs/index.html",
+      "git_blob_sha": "b33c3a54b1faaca7a29b20fc48ef05c7c8661d32",
+      "size_bytes": 45626,
+      "content_sha256": "ed9124b620b18c76952ea3ece7136d49529ff585ac93d50ecec9dbffe7d49eee",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/ee2e464b61cb0e0aa604b0525044ad9ff31c9ec7/docs/index.html"
+    },
+    {
+      "site": "GEMSDOE36",
+      "repo": "buffedlizard55-lab/GEMSDOE36",
+      "commit": "b0824c550c02792897d0ebe3aba1cb0e75583ea1",
+      "path": "docs/index.html",
+      "git_blob_sha": "89a292df06d2f5ea215aa41f918a3fd8e7251868",
+      "size_bytes": 17642,
+      "content_sha256": "83357c9088a12684564bd9ccb4c335dc9d9aaf35cba9f3f601c53295f1679ae1",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/b0824c550c02792897d0ebe3aba1cb0e75583ea1/docs/index.html"
+    }
+  ],
+  "sites": [
+    {
+      "site": "GEMSDOE24",
+      "reported_historical_best": {
+        "value": 0.2477,
+        "evidence_class": "OWNER-REPORTED / UNVERIFIED; not ORGANIZER-CONFIRMED",
+        "file_family": "H19-5 D1.5"
+      },
+      "latest_page_update": "Current recorded local point-best H24-S3DEP1; the later H24-XVAR1 lane is marked negative. The owner page says the exact S3DEP1 TIFF bytes were revalidated on that site but its scientific measurement was not replayed during that build.",
+      "latest_page_holdout_dti": {
+        "label": "HOLDOUT-DTI",
+        "value": 0.16606,
+        "ci95": [
+          0.15186,
+          0.18034
+        ],
+        "evaluator_version": "gems-segment-pooled-v1",
+        "withheld_positive_count": 60988,
+        "source_status": "owner-page-reported; not independently replayed in this review; not an organizer score"
+      },
+      "uniqueness_and_release": "The owner page says S3DEP1 is not unique under its literal all-entry rule; its prior nine-file audit is not a complete current-registry pass. DO NOT SUBMIT.",
+      "new_file_leaderboard_estimate": null
+    },
+    {
+      "site": "GEMSDOE25",
+      "reported_historical_best": {
+        "value": 0.26,
+        "evidence_class": "OWNER-REPORTED / UNVERIFIED; not ORGANIZER-CONFIRMED",
+        "file_family": "H19-5 D2.8"
+      },
+      "latest_page_update": "H80 screen is marked negative; confirmation was withdrawn and no competition-ready TIFF, upload, or slot resulted. The page warns that its four spatial clusters do not resolve catalogue-to-hidden-fault domain shift.",
+      "latest_page_holdout_dti": {
+        "label": "HOLDOUT-DTI",
+        "value": 0.08744,
+        "ci95": [
+          0.06204,
+          0.10615
+        ],
+        "evaluator_version": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, triangular R=300 m)",
+        "withheld_positive_count": 26367,
+        "draws": "140-141; four quadrant clusters; shared buffered whole-component draw_block25km",
+        "source_status": "owner-page-reported catalogue-gap proxy; not independently replayed; not a leaderboard score"
+      },
+      "paired_comparison": {
+        "label": "paired HOLDOUT-DTI delta vs H35",
+        "candidate_minus_H35": -0.03421,
+        "ci95": [
+          -0.05209,
+          -0.01936
+        ],
+        "control_holdout_dti": {
+          "label": "HOLDOUT-DTI",
+          "value": 0.12165,
+          "ci95": [
+            0.11235,
+            0.13057
+          ],
+          "evaluator_version": "gems25.metric.dti_binary (alpha=0.2, beta=0.8, triangular R=300 m)",
+          "withheld_positive_count": 26367
+        },
+        "same_evaluator_and_draws": true
+      },
+      "uniqueness_and_release": "The H80 screen produced no candidate TIFF. Earlier research candidates are explicitly DO NOT SUBMIT; the champion-scale lattice bound remains above the literal threshold. No current candidate uniqueness is established.",
+      "new_file_leaderboard_estimate": null
+    },
+    {
+      "site": "GEMSDOE27",
+      "reported_historical_best": {
+        "value": 0.2449,
+        "evidence_class": "OWNER-REPORTED / UNVERIFIED; not ORGANIZER-CONFIRMED",
+        "file_family": "D1.5 topographic gap-closure"
+      },
+      "latest_page_update": "The 29 October H29-XG and 28 October H28-6 screens wrote no TIFF and failed their matched efficacy/uniqueness gates. The only current-site generated TIFF shown is H33-1, which lost to its control and is research-only.",
+      "latest_page_holdout_dti": {
+        "label": "paired HOLDOUT-DTI difference",
+        "candidate_value": null,
+        "candidate_ci95": null,
+        "evaluator_version": null,
+        "withheld_positive_count": 126011,
+        "paired_delta_ci95": [
+          -0.001546,
+          0.000614
+        ],
+        "source_status": "owner-page-reported H29-XG screen; evaluator version is not specified in the current summary; no valid TIFF was written; paired interval includes zero; not independently replayed"
+      },
+      "uniqueness_and_release": "H29-XG's no-file screen reports 84.5% of dots within 3 px of one registered raster. H33-1's limited 12-raster audit is not a complete current-registry pass, and its HOLDOUT-DTI failed the control. DO NOT SUBMIT.",
+      "new_file_leaderboard_estimate": null
+    },
+    {
+      "site": "GEMSDOE28",
+      "reported_historical_best": {
+        "value": 0.271,
+        "evidence_class": "OWNER-REPORTED / UNVERIFIED; not ORGANIZER-CONFIRMED",
+        "file_family": "H19-5 blind-rung Rung30"
+      },
+      "latest_page_update": "S28-TCB is marked negative. It stopped before serialization after its final placement duplicated the registered spacing-five calibration control; no TIFF was produced and no slot was spent.",
+      "latest_page_holdout_dti": {
+        "label": "HOLDOUT-DTI",
+        "value": 0.055374,
+        "ci95": [
+          0.051817,
+          0.058997
+        ],
+        "evaluator_version": "gems-segment-pooled-v1",
+        "withheld_positive_count": 60988,
+        "source_status": "parallel owner-page report; not this branch's experiment and not independently replayed"
+      },
+      "paired_comparison": {
+        "label": "paired HOLDOUT-DTI delta vs random-K",
+        "candidate_minus_control": -0.012032,
+        "ci95": [
+          -0.016346,
+          -0.00782
+        ],
+        "folds_won": "0/4"
+      },
+      "uniqueness_and_release": "Final placement is reported as 100% within 3 px of the registered control; no TIFF was written. DO NOT SUBMIT.",
+      "new_file_leaderboard_estimate": null
+    },
+    {
+      "site": "GEMSDOE30",
+      "reported_historical_best": {
+        "value": 0.26,
+        "evidence_class": "OWNER-REPORTED / UNVERIFIED; not ORGANIZER-CONFIRMED",
+        "file_family": "D2.8 Poisson off-catalogue"
+      },
+      "latest_page_update": "The docs/index.html is a redirect; the current README and 29 October repository review were read at the pinned main head. PR #78's geothermal-unique TIFF passes a local format check but its novelty receipt reports 9,652/9,652 dots within 3 px of a 40,000-dot geothermal-corridor raster. Its holdout was not measured; the site says no file is approved and does not link it as a download.",
+      "latest_page_holdout_dti": null,
+      "uniqueness_and_release": "PR #78 artifact is a duplicate under the site's checked comparator and lacks HOLDOUT-DTI; the nine-site historical table also fails the pinned lattice check. DO NOT SUBMIT.",
+      "new_file_leaderboard_estimate": null
+    },
+    {
+      "site": "GEMSDOE31",
+      "reported_historical_best": {
+        "value": 0.2708,
+        "evidence_class": "OWNER-REPORTED / UNVERIFIED; not ORGANIZER-CONFIRMED",
+        "file_family": "H19-5 D2.8 solo / B1 parent"
+      },
+      "latest_page_update": "H31-CC is the latest research artifact on the page; its byte recheck is explicitly limited and the release verdict is negative.",
+      "latest_page_holdout_dti": {
+        "label": "HOLDOUT-DTI",
+        "value": 0.0471,
+        "ci95": [
+          0.0332,
+          0.0618
+        ],
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "withheld_positive_count": 60988,
+        "source_status": "owner-page-reported; not independently replayed in this review; not a leaderboard score"
+      },
+      "paired_comparison": {
+        "label": "paired HOLDOUT-DTI delta vs same-run NULL",
+        "candidate_minus_control": -0.0097,
+        "ci95": [
+          -0.0235,
+          0.0052
+        ]
+      },
+      "uniqueness_and_release": "The owner page's saved-byte check reports 99.61% of final dots within 3 px of the registered spacing-five control. Its peer-raster checks are partial. DO NOT SUBMIT.",
+      "new_file_leaderboard_estimate": null
+    },
+    {
+      "site": "GEMSDOE32",
+      "reported_historical_best": {
+        "value": 0.2778,
+        "evidence_class": "OWNER-REPORTED / UNVERIFIED; no file-bound organizer receipt",
+        "file_family": "H33-2-B2; D2.8 with a catalogue-adjacent collar pruned"
+      },
+      "latest_page_update": "The 28 October correction says the earlier H51-1-EWSP 0.115134 figure belongs to a fold-local re-emission arm, not the downloadable TIFF. Its static byte-level recheck reports the emitted H51 TIFF below the champion on both HIDE-RECOVER and SGMC-CAL; the page retains contradictory older text, so the correction block is the controlling owner-page statement.",
+      "latest_emitted_tiff_holdout_dti": {
+        "label": "HOLDOUT-DTI",
+        "value": 0.002289,
+        "ci95": [
+          0.001847,
+          0.002676
+        ],
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "withheld_positive_count": 22232,
+        "source_status": "owner-page-reported static byte-level recheck; not independently replayed in this review; not an organizer score"
+      },
+      "non_comparable_reemission_diagnostic": {
+        "label": "HOLDOUT-DTI",
+        "value": 0.115134,
+        "ci95": [
+          0.101496,
+          0.128693
+        ],
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "withheld_positive_count": 22232,
+        "status": "explicitly withdrawn as a result for emitted bytes; fold-local re-emission arm only"
+      },
+      "uniqueness_and_release": "H51 is reported to pass selected sparse subsets but fails the dense r13 lattice at about 99.7%; this is not global uniqueness. The 0.2778 H33-2-B2 claim remains historical owner-reported and no receipt binds it to the exact TIFF. DO NOT SUBMIT.",
+      "new_file_leaderboard_estimate": null
+    },
+    {
+      "site": "GEMSDOE33",
+      "reported_historical_best": {
+        "value": 0.2632,
+        "evidence_class": "OWNER-REPORTED / UNVERIFIED; not ORGANIZER-CONFIRMED",
+        "file_family": "B2 analog tip / step-over"
+      },
+      "latest_page_update": "The 29 October deployment-density audit says no file is OK to submit and no leaderboard estimate is defensible. Latest H34-COH and S33-SEISDIL catalogue-proxy screens are negative versus B1; the A33-R7 pre-placement surface also trips the duplicate stop.",
+      "latest_page_holdout_dti": {
+        "label": "paired HOLDOUT-DTI difference",
+        "candidate_value": null,
+        "candidate_ci95": null,
+        "evaluator_version": "gems-segment-pooled-v1",
+        "withheld_positive_count": 60988,
+        "paired_delta_ci95": [
+          -0.028714,
+          -0.014335
+        ],
+        "source_status": "owner-page-reported H34-COH screen; standalone point and CI omitted because the summary does not state a point CI; not independently replayed"
+      },
+      "confirmation_holdout_dti": {
+        "label": "paired HOLDOUT-DTI difference",
+        "candidate_value": null,
+        "candidate_ci95": null,
+        "evaluator_version": "gems-segment-pooled-v1",
+        "withheld_positive_count": 60988,
+        "paired_delta_ci95": [
+          -0.031118,
+          -0.017497
+        ],
+        "source_status": "owner-page-reported H34-COH confirmation; standalone point and CI omitted because the summary does not state a point CI; not independently replayed"
+      },
+      "uniqueness_and_release": "The A33-R7 surface comparison is reported at 86.08% within 3 px (>70%) and cannot be cured by later dot placement. The H34 screen's current complete-registry uniqueness is not established. DO NOT SUBMIT.",
+      "new_file_leaderboard_estimate": null
+    },
+    {
+      "site": "GEMSDOE36",
+      "reported_historical_best": {
+        "value": 0.275,
+        "evidence_class": "OWNER-REPORTED / UNVERIFIED; not ORGANIZER-CONFIRMED",
+        "file_family": "Anderson geothermal PINN"
+      },
+      "latest_page_update": "GSEWC36-EXP1 is marked negative; no final map, TIFF, slot, or submission name exists.",
+      "latest_page_holdout_dti": {
+        "label": "HOLDOUT-DTI",
+        "value": 0.039712,
+        "ci95": [
+          0.026757,
+          0.05499
+        ],
+        "evaluator_version": "gems36-segment-audit-v1",
+        "withheld_positive_count": 60988,
+        "segment_count": 3199,
+        "source_status": "owner-page-reported; not independently replayed in this review; not a leaderboard score"
+      },
+      "paired_comparison": {
+        "label": "paired HOLDOUT-DTI delta vs B1",
+        "candidate_minus_control": 0.000189,
+        "ci95": [
+          -0.004191,
+          0.004111
+        ],
+        "control_holdout_dti": {
+          "label": "HOLDOUT-DTI",
+          "value": 0.039523,
+          "ci95": [
+            0.027195,
+            0.054596
+          ],
+          "evaluator_version": "gems36-segment-audit-v1",
+          "withheld_positive_count": 60988
+        }
+      },
+      "uniqueness_and_release": "The OOF diagnostic reports 96.9645% of dots within 3 px of the calibration lattice (>70%); no final TIFF was produced. DO NOT SUBMIT.",
+      "new_file_leaderboard_estimate": null
+    }
+  ],
+  "limitations": [
+    "All current page metrics above are owner-page claims, not independently replayed in this review and not organizer scores.",
+    "Several sites use different evaluators, holdouts, buffers, withheld-positive counts, and calibration instruments; the local diagnostics cannot be ranked against one another.",
+    "The documented shared GEMSDOE32 v3 split has a verified contract problem: 15,705 of 22,232 withheld-positive occurrences fall within 15 px of visible faults, and 76 component instances are partially scored. Old v3 values are not valid promotion evidence under the requested protocol.",
+    "No current candidate TIFF bytes were fetched or compared against every registry raster in this review. The site-page uniqueness summaries have their own stated comparator scope; a changed commit or different hash does not prove current/global uniqueness.",
+    "No organizer portal, current submission-page receipt, or official leaderboard was accessed. The historical 0.2477\u20130.2778 claims remain unverified; no new-file leaderboard estimate is defensible."
+  ]
+}

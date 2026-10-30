@@ -1,0 +1,106 @@
+{
+  "schema": "apartgems-focus-site-head-check-v1",
+  "observed_utc": "2026-10-30T01:56:49.740189+00:00",
+  "scope": "GitHub API main-branch commit HEADs only. This does not fetch or audit current site scorecards or TIFF bytes and is not an organizer receipt, score, or submission approval.",
+  "pinned_audit_manifest": "evidence/history_manifest.json",
+  "previous_head_snapshot": "docs/data/source_heads.json",
+  "sites": [
+    {
+      "site": "GEMSDOE24",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "pinned_audit_ref": "2521cb676e172c141a4417e4925b73b6a896c1eb",
+      "current_main_sha": "63d5885b68f73c19a7746052ccb3e5690f3271b5",
+      "current_commit_utc": "2026-10-29T17:52:55Z",
+      "changed_since_pinned_audit": true,
+      "changed_since_20261027_source_head_snapshot": true,
+      "status": "moved_not_reaudited"
+    },
+    {
+      "site": "GEMSDOE25",
+      "repo": "buffedlizard55-lab/GEMSDOE25",
+      "pinned_audit_ref": "5a60fb475b7171af93cfce795abe6d96c4021ea2",
+      "current_main_sha": "782824f08879a52ad5142b4b0f46d59d48017e7a",
+      "current_commit_utc": "2026-10-29T22:50:09Z",
+      "changed_since_pinned_audit": true,
+      "changed_since_20261027_source_head_snapshot": true,
+      "status": "moved_not_reaudited"
+    },
+    {
+      "site": "GEMSDOE27",
+      "repo": "buffedlizard55-lab/GEMSDOE27",
+      "pinned_audit_ref": "4d39bbf92edd51fdf47004df5873793a035592e5",
+      "current_main_sha": "bf34151e8e4ef26ec924f28dbc371a39bd740782",
+      "current_commit_utc": "2026-10-29T16:54:15Z",
+      "changed_since_pinned_audit": true,
+      "changed_since_20261027_source_head_snapshot": true,
+      "status": "moved_not_reaudited"
+    },
+    {
+      "site": "GEMSDOE28",
+      "repo": "buffedlizard55-lab/GEMSDOE28",
+      "pinned_audit_ref": "67dbdf4da84fc92a98dd9644ab816ed18ae36bcc",
+      "current_main_sha": "424bf795ed2183000c643d6e30a12ce2d4bf401d",
+      "current_commit_utc": "2026-10-29T17:22:38Z",
+      "changed_since_pinned_audit": true,
+      "changed_since_20261027_source_head_snapshot": true,
+      "status": "moved_not_reaudited"
+    },
+    {
+      "site": "GEMSDOE30",
+      "repo": "buffedlizard55-lab/GEMSDOE30",
+      "pinned_audit_ref": "3c3d7255fdbb3a94375eff086522463a8eaca449",
+      "current_main_sha": "eaff218f81e89fadc605650bb2cd55dd4b58e18d",
+      "current_commit_utc": "2026-10-29T17:22:38Z",
+      "changed_since_pinned_audit": true,
+      "changed_since_20261027_source_head_snapshot": true,
+      "status": "moved_not_reaudited"
+    },
+    {
+      "site": "GEMSDOE31",
+      "repo": "buffedlizard55-lab/GEMSDOE31",
+      "pinned_audit_ref": "abd9a45cc7adf046d7d3829eb6e8c980943f462d",
+      "current_main_sha": "f9248200f20def2654af596c1cc13ab2f9d96687",
+      "current_commit_utc": "2026-10-29T18:43:29Z",
+      "changed_since_pinned_audit": true,
+      "changed_since_20261027_source_head_snapshot": true,
+      "status": "moved_not_reaudited"
+    },
+    {
+      "site": "GEMSDOE32",
+      "repo": "buffedlizard55-lab/GEMSDOE32",
+      "pinned_audit_ref": "1398109a23f04a2ace71c1bd2f527cfba87860b5",
+      "current_main_sha": "6edcc4cd529ca0809b956ccb00aea7f0e3b79cbf",
+      "current_commit_utc": "2026-10-29T18:23:11Z",
+      "changed_since_pinned_audit": true,
+      "changed_since_20261027_source_head_snapshot": true,
+      "status": "moved_not_reaudited"
+    },
+    {
+      "site": "GEMSDOE33",
+      "repo": "buffedlizard55-lab/GEMSDOE33",
+      "pinned_audit_ref": "122e2240a835c9c84831943ee3489dbb48fd6e85",
+      "current_main_sha": "ee2e464b61cb0e0aa604b0525044ad9ff31c9ec7",
+      "current_commit_utc": "2026-10-29T18:38:47Z",
+      "changed_since_pinned_audit": true,
+      "changed_since_20261027_source_head_snapshot": true,
+      "status": "moved_not_reaudited"
+    },
+    {
+      "site": "GEMSDOE36",
+      "repo": "buffedlizard55-lab/GEMSDOE36",
+      "pinned_audit_ref": "61783525af4aa6dcf8da0bc68b06fa38b89ed27a",
+      "current_main_sha": "b0824c550c02792897d0ebe3aba1cb0e75583ea1",
+      "current_commit_utc": "2026-10-29T18:44:33Z",
+      "changed_since_pinned_audit": true,
+      "changed_since_20261027_source_head_snapshot": true,
+      "status": "moved_not_reaudited"
+    }
+  ],
+  "summary": {
+    "sites_checked": 9,
+    "changed_since_pinned_audit": 9,
+    "changed_since_previous_head_snapshot": 9,
+    "current_score_values_refreshed": false,
+    "archived_file_bytes_reaudited": false
+  }
+}

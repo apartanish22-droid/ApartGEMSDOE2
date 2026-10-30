@@ -24,6 +24,21 @@ class Links(HTMLParser):
             self.sites.append(attrs['data-site'])
 
 
+def test_current_review_matches_pinned_owner_page_audit():
+    audit = json.loads((ROOT/'evidence/focus_site_publication_audit_20261030.json').read_text())
+    page = (ROOT/'docs/current-review.html').read_text()
+    parser = Links(); parser.feed(page)
+    assert len(parser.sites) == 9 and set(parser.sites) == {site['site'] for site in audit['sites']}
+    assert len([link for link in parser.links if link.startswith('https://github.com/buffedlizard55-lab/')]) == 11
+    assert 'NEGATIVE — DO NOT SUBMIT' in page
+    assert 'New-file estimate' in page and 'Not estimable' in page
+    assert 'HOLDOUT-DTI 0.002289' in page
+    assert 'Withdrawn fold-local re-emission; not the emitted TIFF' in page
+    assert '0.115134' in page
+    assert 'organizer receipts' in page
+    assert all(site['new_file_leaderboard_estimate'] is None for site in audit['sites'])
+
+
 def test_scorecard_matches_machine_audit():
     m = json.loads((ROOT/'evidence/history_manifest.json').read_text())
     a = json.loads((ROOT/'evidence/history_audit.json').read_text())
@@ -88,7 +103,7 @@ def test_both_site_generators_are_deterministic_and_do_not_clobber_each_other():
     import hashlib
     import subprocess
     import sys
-    files = [ROOT/'docs/index.html', ROOT/'docs/executive-summary.html',
+    files = [ROOT/'docs/index.html', ROOT/'docs/current-review.html', ROOT/'docs/executive-summary.html',
              ROOT/'docs/research.html', *sorted((ROOT/'docs/sites').glob('*.html')),
              *sorted((ROOT/'docs/forensics').glob('*.html'))]
     before = {p: hashlib.sha256(p.read_bytes()).hexdigest() for p in files}

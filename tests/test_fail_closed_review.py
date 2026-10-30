@@ -128,34 +128,74 @@ def test_feature_rebuild_does_not_overwrite_receipt(tmp_path):
 
 def test_current_card_and_split_receipt_are_consistent():
     card = json.loads((ROOT / "evidence/current_run_card.json").read_text())
+    heads = json.loads((ROOT / "evidence/focus_site_head_check_20261030.json").read_text())
     split = json.loads((ROOT / "evidence/shared_split_geometry_20261028.json").read_text())
     recheck = json.loads((ROOT / "evidence/trace_independent_recheck_20261028.json").read_text())
+    trace_card = json.loads((ROOT / "evidence/trace_run_card_20261028.json").read_text())
+    assert card["schema"] == "parallel-run-review-card-v3"
+    assert card["date_utc"] == "2026-10-30"
     assert card["verdict"] == "negative" and card["new_candidate"] is None
     assert card["experiments_run_this_review"] == card["weekly_slots_used_this_review"] == 0
-    assert card["holdout_dti"]["current_valid_point"] is None
+    assert card["holdout_dti"]["point"] is None
+    assert card["holdout_dti"]["ci95"] == [None, None]
+    assert card["raster"]["sha256"] is None and card["raster"]["path"] is None
+    assert card["submission"]["name"] is card["submission"]["note"] is None
+    assert not card["submission"]["selector_approved"] and not card["submission"]["upload_authorized"]
+    assert card["organizer_confirmed_score"] is None and card["leaderboard_estimate"] is None
+    assert card["source_head_check"] == "evidence/focus_site_head_check_20261030.json"
+    assert card["source_publication_audit"] == "evidence/focus_site_publication_audit_20261030.json"
+    assert heads["summary"]["changed_since_pinned_audit"] == heads["summary"]["sites_checked"] == 9
+    assert heads["summary"]["current_score_values_refreshed"] is False
+    assert heads["summary"]["archived_file_bytes_reaudited"] is False
+    feed = json.loads((ROOT / "docs/data/source_feed.json").read_text())
+    assert feed["updated_utc"] == heads["observed_utc"]
+    assert feed["leaderboard"]["status"] == "stale"
+    assert feed["leaderboard"]["last_success_utc"] == "2026-10-27T21:20:59Z"
+    for site in heads["sites"]:
+        feed_site = feed["site_heads"][site["site"]]
+        assert feed_site["head_sha"] == site["current_main_sha"]
+        assert feed_site["last_success_utc"] == heads["observed_utc"]
+        assert feed_site["public_owner_page_retrieved_and_reviewed_at_pinned_head"] is True
+        assert feed_site["owner_score_claims_independently_verified"] is False
+        assert feed_site["current_scorecard_reaudited"] is False
+        assert feed_site["archived_tiff_bytes_reaudited"] is False
+    page_audit = json.loads((ROOT / "evidence/focus_site_publication_audit_20261030.json").read_text())
+    assert page_audit["summary"]["focus_sites_reviewed"] == 9
+    assert page_audit["summary"]["public_page_blobs_retrieved"] == 11
+    assert page_audit["summary"]["current_candidate_tiff_bytes_reaudited"] is False
+    assert page_audit["summary"]["organizer_submission_receipts_verified"] is False
+    assert page_audit["summary"]["new_file_leaderboard_estimates"] == 0
+    for site in page_audit["sites"]:
+        assert site["new_file_leaderboard_estimate"] is None
+        metric = site.get("latest_page_holdout_dti") or site.get("latest_emitted_tiff_holdout_dti")
+        if metric and metric.get("value") is not None:
+            assert metric["label"] == "HOLDOUT-DTI"
+            assert metric.get("evaluator_version")
+            assert metric.get("withheld_positive_count")
+            assert metric.get("ci95")
+
     assert split["withheld_positive_occurrences"] == 22232
     assert split["truth_occurrences_within_15px_of_visible"] == 15705
     assert split["partially_scored_component_instances"] == 76
     assert not split["all_truth_more_than_15px_from_visible"] and not split["all_components_wholly_scored"]
     assert split["shared_evaluator_sha256"] == hashlib.sha256((ROOT / split["shared_evaluator_file"]).read_bytes()).hexdigest()
-    assert recheck["candidate_sha256"] == card["raster_sha256"]
-    assert recheck["overlap_fraction"] == card["registry_correlation_overlap"]["final_dots_vs_lattice"]["fraction"]
+    # These receipts belong to the archived H-TRACE artifact, not this documentation-only review card.
+    assert recheck["candidate_sha256"] == trace_card["raster_sha256"]
+    assert recheck["overlap_fraction"] == pytest.approx(trace_card["registry_correlation_overlap"]["dots"]["worst_within_3px_fraction_literal"], abs=1e-6)
     assert not recheck["literal_overlap_gate_pass"] and not recheck["outside_null_or_masked"]
     assert recheck["dtype"] == "float32"
     assert recheck["in_footprint_nan_cells"] == recheck["in_footprint_nonfinite_cells"] == recheck["in_footprint_masked_cells"] == 0
-    assert len(card["submission"]["note"]) == card["submission"]["note_length"] <= 140
-    assert not card["submission"]["upload_authorized"]
-    assert card["organizer_confirmed_score"] is None and card["leaderboard_estimate"] is None
+    assert trace_card["verdict"] == "negative" and not trace_card["gates"]["G4_literal_including_space_filling_lattice"]
+
     rad = json.loads((ROOT / "evidence/rad_scarp_independent_recheck_20261028.json").read_text())
     rad_card = json.loads((ROOT / "evidence/rad_scarp_run_card_20261028.json").read_text())
-    assert rad["candidate_dots_within_3px"] == card["concurrent_research_artifact"]["dots_near_lattice"] == 10421
+    assert rad["candidate_dots_within_3px"] == 10421
     assert rad["candidate_positive_pixels_inside_mirror"] == 10457
     assert not rad["literal_overlap_gate_pass"] and not rad["outside_null_or_masked"]
     assert rad["dtype"] == "float32" and rad["in_footprint_nan_cells"] == rad["in_footprint_masked_cells"] == 0
     assert rad_card["unique_vs_gemsdoe_sites"] is None and not rad_card["validator_output"]["all_pass"]
     assert rad_card["verdict"] == "negative" and "not valid HOLDOUT-DTI" in rad_card["score_label"]
     three = json.loads((ROOT / "evidence/parallel_three_independent_recheck_20261028.json").read_text())
-    assert not card["concurrent_parallel_three"]["registry_complete_verified"]
     assert [v["candidate_dots_within_3px"] for v in three["candidates"].values()] == [36692, 5098478, 5099871]
     assert all(not v["literal_overlap_gate_pass"] and not v["outside_null_or_masked"] for v in three["candidates"].values())
     for path in ("h_dil_grav_exp1_20261028T224631Z.json", "h_mag_edge_slope_exp2_20261028T224750Z.json", "h_depth_cond_exp3_20261028T224836Z.json"):
@@ -165,7 +205,7 @@ def test_current_card_and_split_receipt_are_consistent():
         assert prior["verdict"] == "negative" and not prior["validator_output"]["all_checks_passed"]
         assert "not valid HOLDOUT-DTI" in prior["score_label"]
         assert not prior["registry_correlation_overlap"]["literal_gate_pass"]
-    for name in ("current_run_card.json", "shared_split_geometry_20261028.json", "trace_independent_recheck_20261028.json", "rad_scarp_independent_recheck_20261028.json", "parallel_three_independent_recheck_20261028.json"):
+    for name in ("current_run_card.json", "focus_site_head_check_20261030.json", "focus_site_publication_audit_20261030.json", "shared_split_geometry_20261028.json", "trace_independent_recheck_20261028.json", "rad_scarp_independent_recheck_20261028.json", "parallel_three_independent_recheck_20261028.json", "sarpu_review_correction_20261030.json"):
         assert (ROOT / "docs/data" / name).read_bytes() == (ROOT / "evidence" / name).read_bytes()
 
 

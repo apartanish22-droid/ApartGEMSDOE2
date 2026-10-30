@@ -38,7 +38,8 @@
             entry.className = 'feed-entry' + (item && item.changed_since_previous_check ? ' changed' : '');
             const label = document.createElement('strong');
             label.textContent = name;
-            entry.append(label, document.createTextNode(' · ' + (siteIsStale(item) ? 'stale' : item.changed_since_previous_check ? 'moved; not re-audited' : 'checked')));
+            const changedText = item && item.public_owner_page_retrieved_and_reviewed_at_pinned_head ? 'moved; owner page reviewed' : 'moved; not re-audited';
+            entry.append(label, document.createTextNode(' · ' + (siteIsStale(item) ? 'stale' : item.changed_since_previous_check ? changedText : 'checked')));
             grid.appendChild(entry);
           });
         }

@@ -1,0 +1,51 @@
+{
+  "schema": "apartgems-sarpu-review-correction-v1",
+  "date_utc": "2026-10-30",
+  "supersedes": "evidence/sarpu_run_card_20261028.json for promotion, uniqueness, and submission decisions only; the original is retained as an archival experiment record.",
+  "verdict": "negative",
+  "status": "research_only_do_not_submit",
+  "archived_diagnostic": {
+    "label": "HOLDOUT-DTI",
+    "point": 0.11383802906074621,
+    "ci95": [0.09999151192297004, 0.1270786936701712],
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "withheld_positive_occurrences": 22232,
+    "promotion_valid": false,
+    "reason": "The archived split does not establish the requested buffered whole-segment holdout contract; this is not an organizer score, leaderboard estimate, or evidence of expected score."
+  },
+  "split_geometry": {
+    "receipt": "evidence/shared_split_geometry_20261028.json",
+    "within_15px_of_visible_faults": 15705,
+    "withheld_positive_occurrences": 22232,
+    "partially_scored_component_instances": 76,
+    "requested_buffered_whole_segment_contract_established": false
+  },
+  "registry_correlation_overlap": {
+    "archived_surface_max_abs_spearman": 0.118543,
+    "archived_registry_rasters_checked": 560,
+    "archived_registry_audit_complete": false,
+    "literal_lattice_overlap_fraction": 0.998221,
+    "literal_overlap_threshold": 0.7,
+    "literal_gate_pass": false,
+    "complete_current_registry_verified": false,
+    "current_9_focus_site_repositories_changed_since_pinned_audit": true
+  },
+  "raster": {
+    "archived_research_path": "docs/downloads/apartgemsdoe2-sarpu-exp2-lefm-sarpu-37654dots-20261028T235500Z-25593731-zeros.tif",
+    "archived_sha256": "030153b3bd16fb04eef1afa95f8931f27cd132e645c6825309e197cd3a85aa82",
+    "new_candidate_generated": false,
+    "uniqueness_established": false,
+    "portal_acceptance": null,
+    "authenticated_organizer_template": false
+  },
+  "submission": {
+    "file_approved": false,
+    "name": null,
+    "note": null,
+    "selector_approved": false,
+    "upload_authorized": false
+  },
+  "organizer_confirmed_score": null,
+  "new_file_leaderboard_estimate": null,
+  "reason": "The split-contract failure, literal 99.82% lattice overlap, incomplete/stale registry, and unauthenticated template independently block promotion. The old card's historical gate-pass flags do not supersede these findings. The archived TIFF is linked only for reproducibility and must not be uploaded."
+}
