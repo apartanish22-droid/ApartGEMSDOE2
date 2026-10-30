@@ -1,0 +1,118 @@
+{
+  "file": "docs/downloads/apartgems-v4-ridge-tmi-isohg-nms-q5pct-20261030.tif",
+  "sha256": "f6f3e7c98de4323b3bc4981648170c5afa361fda4eac03313c08fcaf1b51b8d6",
+  "bytes": 562341,
+  "submission_name": "apartgems-v4-ridge-tmi-isohg-nms-q5pct-20261030",
+  "note": "Label-free ridge NMS on tmi_hg+iso_hg, top 5% of footprint. Catalogue proxy only; not organizer-scored. DO NOT SUBMIT.",
+  "note_chars": 118,
+  "validator": {
+    "driver": "GTiff",
+    "count": 1,
+    "dtype": "float32",
+    "crs_matches_sample": true,
+    "crs": "EPSG:32611",
+    "shape_matches_sample": true,
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform_matches_sample": true,
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "res": [
+      100.0,
+      100.0
+    ],
+    "footprint_cells": 5167373,
+    "nan_inside_footprint": 0,
+    "finite_inside_footprint": true,
+    "min_inside": 0.0,
+    "max_inside": 1.0,
+    "in_unit_interval_inside": true,
+    "outside_all_nan": true,
+    "positive_dots": 203418,
+    "PASS": true
+  },
+  "uniqueness": {
+    "per_reference": {
+      "GEMSDOE24_best": {
+        "candidate_dots_within_3px_of_reference": 0.23679,
+        "reference_dots_within_3px_of_candidate": 0.3164,
+        "spearman_rho_300k_footprint_sample": 0.00393,
+        "reference_dots": 60069
+      },
+      "GEMSDOE25_best": {
+        "candidate_dots_within_3px_of_reference": 0.22557,
+        "reference_dots_within_3px_of_candidate": 0.31728,
+        "spearman_rho_300k_footprint_sample": 0.00426,
+        "reference_dots": 44090
+      },
+      "GEMSDOE27_best": {
+        "candidate_dots_within_3px_of_reference": 0.24093,
+        "reference_dots_within_3px_of_candidate": 0.31534,
+        "spearman_rho_300k_footprint_sample": 0.00392,
+        "reference_dots": 61328
+      },
+      "GEMSDOE28_best": {
+        "candidate_dots_within_3px_of_reference": 0.2087,
+        "reference_dots_within_3px_of_candidate": 0.32265,
+        "spearman_rho_300k_footprint_sample": 0.00606,
+        "reference_dots": 37660
+      },
+      "GEMSDOE30_best": {
+        "candidate_dots_within_3px_of_reference": 0.22557,
+        "reference_dots_within_3px_of_candidate": 0.31728,
+        "spearman_rho_300k_footprint_sample": 0.00426,
+        "reference_dots": 44090
+      },
+      "GEMSDOE31_best": {
+        "candidate_dots_within_3px_of_reference": 0.21271,
+        "reference_dots_within_3px_of_candidate": 0.32287,
+        "spearman_rho_300k_footprint_sample": 0.00344,
+        "reference_dots": 40199
+      },
+      "GEMSDOE32_best": {
+        "candidate_dots_within_3px_of_reference": 0.20238,
+        "reference_dots_within_3px_of_candidate": 0.32565,
+        "spearman_rho_300k_footprint_sample": 0.0034,
+        "reference_dots": 37654
+      },
+      "GEMSDOE33_best": {
+        "candidate_dots_within_3px_of_reference": 0.22055,
+        "reference_dots_within_3px_of_candidate": 0.32225,
+        "spearman_rho_300k_footprint_sample": 0.00362,
+        "reference_dots": 41865
+      },
+      "GEMSDOE36_best": {
+        "candidate_dots_within_3px_of_reference": 0.22114,
+        "reference_dots_within_3px_of_candidate": 0.34313,
+        "spearman_rho_300k_footprint_sample": 0.00698,
+        "reference_dots": 38854
+      },
+      "LATTICE_r13": {
+        "candidate_dots_within_3px_of_reference": 0.9983,
+        "reference_dots_within_3px_of_candidate": 0.24476,
+        "spearman_rho_300k_footprint_sample": 0.00072,
+        "reference_dots": 206895
+      }
+    },
+    "max_candidate_overlap_3px": 0.9983,
+    "max_abs_spearman": 0.00698,
+    "limits": {
+      "overlap": 0.7,
+      "rho": 0.9
+    },
+    "PASS": false
+  },
+  "score_estimate": {
+    "type": "HOLDOUT-DTI proxy (catalogue labels, east half, frozen q chosen on west half)",
+    "evaluator": "src/gems32/metric.py (official continuous-p DTI, alpha 0.2 beta 0.8 R 3 px)",
+    "note": "NOT an organizer score. Catalogue labels are the training-era USGS/INGENIOUS faults, not the hidden new-fault test set."
+  }
+}

@@ -1,0 +1,380 @@
+{
+  "dots": {
+    "GEMSDOE24": 60069,
+    "GEMSDOE25": 44090,
+    "GEMSDOE27": 61328,
+    "GEMSDOE28": 37660,
+    "GEMSDOE30": 44090,
+    "GEMSDOE31": 40199,
+    "GEMSDOE32": 37654,
+    "GEMSDOE33": 41865,
+    "GEMSDOE36": 38854,
+    "V4_CANDIDATE": 203418
+  },
+  "pairs": {
+    "GEMSDOE24->GEMSDOE25": {
+      "dots_within_3px": 1.0,
+      "spearman": 0.5679
+    },
+    "GEMSDOE24->GEMSDOE27": {
+      "dots_within_3px": 1.0,
+      "spearman": 0.98876
+    },
+    "GEMSDOE24->GEMSDOE28": {
+      "dots_within_3px": 0.93479,
+      "spearman": 0.51872
+    },
+    "GEMSDOE24->GEMSDOE30": {
+      "dots_within_3px": 1.0,
+      "spearman": 0.5679
+    },
+    "GEMSDOE24->GEMSDOE31": {
+      "dots_within_3px": 0.94078,
+      "spearman": 0.53238
+    },
+    "GEMSDOE24->GEMSDOE32": {
+      "dots_within_3px": 0.88477,
+      "spearman": 0.52242
+    },
+    "GEMSDOE24->GEMSDOE33": {
+      "dots_within_3px": 0.96239,
+      "spearman": 0.55135
+    },
+    "GEMSDOE24->GEMSDOE36": {
+      "dots_within_3px": 0.88561,
+      "spearman": 0.51301
+    },
+    "GEMSDOE24->V4_CANDIDATE": {
+      "dots_within_3px": 0.3164,
+      "spearman": 0.0044
+    },
+    "GEMSDOE25->GEMSDOE24": {
+      "dots_within_3px": 1.0,
+      "spearman": 0.5679
+    },
+    "GEMSDOE25->GEMSDOE27": {
+      "dots_within_3px": 1.0,
+      "spearman": 0.56144
+    },
+    "GEMSDOE25->GEMSDOE28": {
+      "dots_within_3px": 0.93182,
+      "spearman": 0.68907
+    },
+    "GEMSDOE25->GEMSDOE30": {
+      "dots_within_3px": 1.0,
+      "spearman": 1.0
+    },
+    "GEMSDOE25->GEMSDOE31": {
+      "dots_within_3px": 0.93715,
+      "spearman": 0.94769
+    },
+    "GEMSDOE25->GEMSDOE32": {
+      "dots_within_3px": 0.88172,
+      "spearman": 0.92078
+    },
+    "GEMSDOE25->GEMSDOE33": {
+      "dots_within_3px": 0.96058,
+      "spearman": 0.80256
+    },
+    "GEMSDOE25->GEMSDOE36": {
+      "dots_within_3px": 0.88265,
+      "spearman": 0.9045
+    },
+    "GEMSDOE25->V4_CANDIDATE": {
+      "dots_within_3px": 0.31728,
+      "spearman": 0.00584
+    },
+    "GEMSDOE27->GEMSDOE24": {
+      "dots_within_3px": 0.98019,
+      "spearman": 0.98876
+    },
+    "GEMSDOE27->GEMSDOE25": {
+      "dots_within_3px": 0.98016,
+      "spearman": 0.56144
+    },
+    "GEMSDOE27->GEMSDOE28": {
+      "dots_within_3px": 0.91616,
+      "spearman": 0.51282
+    },
+    "GEMSDOE27->GEMSDOE30": {
+      "dots_within_3px": 0.98016,
+      "spearman": 0.56144
+    },
+    "GEMSDOE27->GEMSDOE31": {
+      "dots_within_3px": 0.92209,
+      "spearman": 0.52632
+    },
+    "GEMSDOE27->GEMSDOE32": {
+      "dots_within_3px": 0.86719,
+      "spearman": 0.51648
+    },
+    "GEMSDOE27->GEMSDOE33": {
+      "dots_within_3px": 0.94329,
+      "spearman": 0.54508
+    },
+    "GEMSDOE27->GEMSDOE36": {
+      "dots_within_3px": 0.86804,
+      "spearman": 0.50717
+    },
+    "GEMSDOE27->V4_CANDIDATE": {
+      "dots_within_3px": 0.31534,
+      "spearman": 0.0048
+    },
+    "GEMSDOE28->GEMSDOE24": {
+      "dots_within_3px": 1.0,
+      "spearman": 0.51872
+    },
+    "GEMSDOE28->GEMSDOE25": {
+      "dots_within_3px": 1.0,
+      "spearman": 0.68907
+    },
+    "GEMSDOE28->GEMSDOE27": {
+      "dots_within_3px": 1.0,
+      "spearman": 0.51282
+    },
+    "GEMSDOE28->GEMSDOE30": {
+      "dots_within_3px": 1.0,
+      "spearman": 0.68907
+    },
+    "GEMSDOE28->GEMSDOE31": {
+      "dots_within_3px": 0.99756,
+      "spearman": 0.72731
+    },
+    "GEMSDOE28->GEMSDOE32": {
+      "dots_within_3px": 0.95473,
+      "spearman": 0.7078
+    },
+    "GEMSDOE28->GEMSDOE33": {
+      "dots_within_3px": 0.99841,
+      "spearman": 0.6954
+    },
+    "GEMSDOE28->GEMSDOE36": {
+      "dots_within_3px": 0.9552,
+      "spearman": 0.69524
+    },
+    "GEMSDOE28->V4_CANDIDATE": {
+      "dots_within_3px": 0.32265,
+      "spearman": 0.00447
+    },
+    "GEMSDOE30->GEMSDOE24": {
+      "dots_within_3px": 1.0,
+      "spearman": 0.5679
+    },
+    "GEMSDOE30->GEMSDOE25": {
+      "dots_within_3px": 1.0,
+      "spearman": 1.0
+    },
+    "GEMSDOE30->GEMSDOE27": {
+      "dots_within_3px": 1.0,
+      "spearman": 0.56144
+    },
+    "GEMSDOE30->GEMSDOE28": {
+      "dots_within_3px": 0.93182,
+      "spearman": 0.68907
+    },
+    "GEMSDOE30->GEMSDOE31": {
+      "dots_within_3px": 0.93715,
+      "spearman": 0.94769
+    },
+    "GEMSDOE30->GEMSDOE32": {
+      "dots_within_3px": 0.88172,
+      "spearman": 0.92078
+    },
+    "GEMSDOE30->GEMSDOE33": {
+      "dots_within_3px": 0.96058,
+      "spearman": 0.80256
+    },
+    "GEMSDOE30->GEMSDOE36": {
+      "dots_within_3px": 0.88265,
+      "spearman": 0.9045
+    },
+    "GEMSDOE30->V4_CANDIDATE": {
+      "dots_within_3px": 0.31728,
+      "spearman": 0.00584
+    },
+    "GEMSDOE31->GEMSDOE24": {
+      "dots_within_3px": 1.0,
+      "spearman": 0.53238
+    },
+    "GEMSDOE31->GEMSDOE25": {
+      "dots_within_3px": 1.0,
+      "spearman": 0.94769
+    },
+    "GEMSDOE31->GEMSDOE27": {
+      "dots_within_3px": 1.0,
+      "spearman": 0.52632
+    },
+    "GEMSDOE31->GEMSDOE28": {
+      "dots_within_3px": 0.99562,
+      "spearman": 0.72731
+    },
+    "GEMSDOE31->GEMSDOE30": {
+      "dots_within_3px": 1.0,
+      "spearman": 0.94769
+    },
+    "GEMSDOE31->GEMSDOE32": {
+      "dots_within_3px": 0.9539,
+      "spearman": 0.97161
+    },
+    "GEMSDOE31->GEMSDOE33": {
+      "dots_within_3px": 0.99905,
+      "spearman": 0.81308
+    },
+    "GEMSDOE31->GEMSDOE36": {
+      "dots_within_3px": 0.9544,
+      "spearman": 0.95446
+    },
+    "GEMSDOE31->V4_CANDIDATE": {
+      "dots_within_3px": 0.32287,
+      "spearman": 0.00637
+    },
+    "GEMSDOE32->GEMSDOE24": {
+      "dots_within_3px": 1.0,
+      "spearman": 0.52242
+    },
+    "GEMSDOE32->GEMSDOE25": {
+      "dots_within_3px": 1.0,
+      "spearman": 0.92078
+    },
+    "GEMSDOE32->GEMSDOE27": {
+      "dots_within_3px": 1.0,
+      "spearman": 0.51648
+    },
+    "GEMSDOE32->GEMSDOE28": {
+      "dots_within_3px": 0.99875,
+      "spearman": 0.7078
+    },
+    "GEMSDOE32->GEMSDOE30": {
+      "dots_within_3px": 1.0,
+      "spearman": 0.92078
+    },
+    "GEMSDOE32->GEMSDOE31": {
+      "dots_within_3px": 1.0,
+      "spearman": 0.97161
+    },
+    "GEMSDOE32->GEMSDOE33": {
+      "dots_within_3px": 0.99984,
+      "spearman": 0.79274
+    },
+    "GEMSDOE32->GEMSDOE36": {
+      "dots_within_3px": 1.0,
+      "spearman": 0.98236
+    },
+    "GEMSDOE32->V4_CANDIDATE": {
+      "dots_within_3px": 0.32565,
+      "spearman": 0.00737
+    },
+    "GEMSDOE33->GEMSDOE24": {
+      "dots_within_3px": 0.99706,
+      "spearman": 0.55135
+    },
+    "GEMSDOE33->GEMSDOE25": {
+      "dots_within_3px": 0.99704,
+      "spearman": 0.80256
+    },
+    "GEMSDOE33->GEMSDOE27": {
+      "dots_within_3px": 0.99709,
+      "spearman": 0.54508
+    },
+    "GEMSDOE33->GEMSDOE28": {
+      "dots_within_3px": 0.9705,
+      "spearman": 0.6954
+    },
+    "GEMSDOE33->GEMSDOE30": {
+      "dots_within_3px": 0.99704,
+      "spearman": 0.80256
+    },
+    "GEMSDOE33->GEMSDOE31": {
+      "dots_within_3px": 0.9748,
+      "spearman": 0.81308
+    },
+    "GEMSDOE33->GEMSDOE32": {
+      "dots_within_3px": 0.92643,
+      "spearman": 0.79274
+    },
+    "GEMSDOE33->GEMSDOE36": {
+      "dots_within_3px": 0.92712,
+      "spearman": 0.77869
+    },
+    "GEMSDOE33->V4_CANDIDATE": {
+      "dots_within_3px": 0.32225,
+      "spearman": 0.00475
+    },
+    "GEMSDOE36->GEMSDOE24": {
+      "dots_within_3px": 0.97568,
+      "spearman": 0.51301
+    },
+    "GEMSDOE36->GEMSDOE25": {
+      "dots_within_3px": 0.97498,
+      "spearman": 0.9045
+    },
+    "GEMSDOE36->GEMSDOE27": {
+      "dots_within_3px": 0.97578,
+      "spearman": 0.50717
+    },
+    "GEMSDOE36->GEMSDOE28": {
+      "dots_within_3px": 0.97313,
+      "spearman": 0.69524
+    },
+    "GEMSDOE36->GEMSDOE30": {
+      "dots_within_3px": 0.97498,
+      "spearman": 0.9045
+    },
+    "GEMSDOE36->GEMSDOE31": {
+      "dots_within_3px": 0.97457,
+      "spearman": 0.95446
+    },
+    "GEMSDOE36->GEMSDOE32": {
+      "dots_within_3px": 0.97403,
+      "spearman": 0.98236
+    },
+    "GEMSDOE36->GEMSDOE33": {
+      "dots_within_3px": 0.97503,
+      "spearman": 0.77869
+    },
+    "GEMSDOE36->V4_CANDIDATE": {
+      "dots_within_3px": 0.34313,
+      "spearman": 0.01122
+    },
+    "V4_CANDIDATE->GEMSDOE24": {
+      "dots_within_3px": 0.23679,
+      "spearman": 0.0044
+    },
+    "V4_CANDIDATE->GEMSDOE25": {
+      "dots_within_3px": 0.22557,
+      "spearman": 0.00584
+    },
+    "V4_CANDIDATE->GEMSDOE27": {
+      "dots_within_3px": 0.24093,
+      "spearman": 0.0048
+    },
+    "V4_CANDIDATE->GEMSDOE28": {
+      "dots_within_3px": 0.2087,
+      "spearman": 0.00447
+    },
+    "V4_CANDIDATE->GEMSDOE30": {
+      "dots_within_3px": 0.22557,
+      "spearman": 0.00584
+    },
+    "V4_CANDIDATE->GEMSDOE31": {
+      "dots_within_3px": 0.21271,
+      "spearman": 0.00637
+    },
+    "V4_CANDIDATE->GEMSDOE32": {
+      "dots_within_3px": 0.20238,
+      "spearman": 0.00737
+    },
+    "V4_CANDIDATE->GEMSDOE33": {
+      "dots_within_3px": 0.22055,
+      "spearman": 0.00475
+    },
+    "V4_CANDIDATE->GEMSDOE36": {
+      "dots_within_3px": 0.22114,
+      "spearman": 0.01122
+    }
+  },
+  "max_focus_pair_overlap": 1.0,
+  "max_v4_overlap_vs_focus": 0.24093,
+  "max_v4_abs_spearman_vs_focus": 0.01122,
+  "note": "Focus rasters are the owner-mirrored *_best.tif registry files; overlap uses the saved dots (>0) within the footprint."
+}

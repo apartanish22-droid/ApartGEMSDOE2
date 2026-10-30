@@ -4,6 +4,20 @@
 
 **Arena AI Core Values:** **Maximize P(Win)** · **Own the Outcome**
 
+> ## START HERE (30 Oct 2026): v4 executive summary — DO NOT SUBMIT ANY FILE
+> **[Open the v4 executive summary and nine-site table →](docs/v4/index.html)** · [v4 run card](evidence/v4_run_card.json) · [v4 hypothesis slate](docs/research/v4-hypotheses.md)
+>
+> - **New GeoTIFF:** [`apartgems-v4-ridge-tmi-isohg-nms-q5pct-20261030.tif`](docs/downloads/apartgems-v4-ridge-tmi-isohg-nms-q5pct-20261030.tif) (SHA-256 `f6f3e7c9…`), a unique name and a note of 118 characters. **Format PASS** (float32, EPSG:32611, NaN outside footprint, values in [0,1]). **Uniqueness vs the nine focus sites PASS** (max 24.1%). **Fails the literal 13GEMSDOE lattice gate (99.8%), which is structural: no dense file can pass it.** Catalogue-proxy HOLDOUT-DTI **0.0741** (95% CI 0.0599–0.0979, east half, 22,196 withheld cells). **Leaderboard estimate: not estimable.** Verdict: **negative, do not upload.**
+> - **Nine focus sites:** all 72 directed pairs exceed 70% overlap, so no focus file is unique relative to the others. Every reported score is owner- or user-reported, with no organizer receipt. Estimates: not estimable.
+> - **Leaderboard (fetched 30 Oct 2026):** top score **0.4544** (rank #1). **0.3195 is rank #48**, not the top score. **0.4413 was not observed.** 0.2778 is not on the top-50 rows.
+> - **0.2778 (GEMSDOE32):** an exact subset of GEMSDOE30's dots, with all 6,436 removed dots within 3 px of the catalogue. Under the official metric, catalogue-near dots add false-positive weight on the hidden new-fault test. This is a mechanism, not a measured score.
+> - **Irregularities** are listed in section 5 of the [v4 summary](docs/v4/index.html).
+>
+> ### Session brief (read every session)
+> *Goal:* place top of the DrivenData GEMS leaderboard with an original, validated, uniquely named GeoTIFF, plus a clear, auditable executive summary. *Hard rules:* one file must be obviously OK or NOT OK to upload; no copied file presented as new; no score presented without a receipt; every number labelled (HOLDOUT-DTI proxy, ORGANIZER-CONFIRMED, or user-reported); all sources official and linked; no manual input in the pipeline; flag irregularities; no hallucinations. *Constraints:* the DrivenData data tab is login-walled and the Dropbox links are not reachable from this sandbox, so the training features come from a hash-verified owner mirror (not organizer-authenticated). *Core values:* Maximize P(Win) and Own the Outcome.
+> *Reproduce v4 (after `restore_data.py`):* `scripts/run_ridge_experiments.py` · `scripts/build_v4_candidate.py` · `scripts/focus9_pairwise.py` · `scripts/feature_canary_v4.py` · `pytest tests/test_v4_candidate.py`. The rebuild reproduces the candidate SHA-256 exactly.
+> *Next steps:* (1) pre-register and run catalogue pruning with west-only labels (E4); (2) run the tilt zero-contour hypothesis H2; (3) get authenticated data; (4) ask the rule owners to fix the lattice gate; (5) obtain organizer receipts for the nine focus sites.
+
 > ## CURRENT DECISION: DO NOT SUBMIT
 > **No candidate is approved; no new experiment or weekly slot was used in the latest review.** H-TRACE, H-UDSR and concurrent RAD-SCARP are historical research artifacts, not submission downloads. Their literal lattice overlaps exceed 70%; their owner-mirrored template is not organizer-authenticated. A newly verified flaw in the archived holdout split also means the prior numbers do **not** establish the requested buffered-whole-segment validation. The archived surface check was incomplete and, for H-TRACE, happened after dot placement.
 >
