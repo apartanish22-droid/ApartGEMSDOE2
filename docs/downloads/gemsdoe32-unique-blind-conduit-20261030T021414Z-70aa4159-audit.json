@@ -1,0 +1,110 @@
+{
+  "candidate_id": "apartgemsdoe2-unique-blind-conduit-20261030",
+  "slug": "unique-blind-conduit",
+  "content_digest8": "70aa4159",
+  "description": "Generated via scripts/submission_writer.py for apartgemsdoe2-unique-blind-conduit-20261030",
+  "submission_note_zeros": "ApartGEMSDOE2 unique blind-conduit: subsurface gravity/mag/radiometric/seismic anomaly dots, collar-pruned, 37654 dots B2 (holdout est only)",
+  "submission_note_nan": "ApartGEMSDOE2 unique blind-conduit: subsurface gravity/mag/radiometric/seismic anomaly dots, collar-pruned, 37654 dots B2 (holdout est only)",
+  "zeros_tif": {
+    "filename": "gemsdoe32-unique-blind-conduit-20261030T021414Z-70aa4159-zeros.tif",
+    "size_bytes": 191531,
+    "sha256": "1849e9f5f17173cab2962f5c688ecfd0a1598dc60bc9d4e8b6c8abeb77583456",
+    "mode": "zeros",
+    "geometry_reference": "/tmp/gems_data/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "None",
+    "emitted_positive_pixels": 37169,
+    "footprint_fraction": 0.007193,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 12279160,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true
+  },
+  "nan_tif": {
+    "filename": "gemsdoe32-unique-blind-conduit-20261030T021414Z-70aa4159-nan.tif",
+    "size_bytes": 324381,
+    "sha256": "fe3d8e88188067b5ed578317f7686a2a912ca8e2e0ee20af5d8d754d791e8791",
+    "mode": "nan",
+    "geometry_reference": "/tmp/gems_data/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "nan",
+    "emitted_positive_pixels": 37169,
+    "footprint_fraction": 0.007193,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 5167373,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true
+  },
+  "holdout_metrics": {
+    "catalogue_hidden_mean": 0.0,
+    "catalogue_hidden_per_quadrant": {},
+    "sgmc_prevalence_calibrated_dti": 0.0,
+    "drift_corrected_holdout_mean": 0.0,
+    "drift_corrected_per_quadrant": {},
+    "predicted_leaderboard_dti": null,
+    "ei_drift_corrected": null,
+    "slot_decision": "HOLD-DO-NOT-SUBMIT"
+  }
+}
