@@ -1,0 +1,45 @@
+{
+  "schema": "parallel-run-protocol-run-card-v1",
+  "generated_at_utc": "2026-10-30T01:52:49Z",
+  "session_branch": "arena/600928cb-apartgemsdoe2",
+  "hypothesis": "No new geological hypothesis is authorized or supportable for testing in this review because the explicit lane, authenticated competition inputs, cached feature stack, complete registry, and valid shared holdout are unavailable.",
+  "mechanism": "Repository and release-path review only: fail-closed preflight checks current input presence and shared-tool/registry blockers; no geological feature was computed and no prediction was generated.",
+  "named_non_fault_process": "Not applicable: no geological candidate or surface was evaluated. Candidate-specific mimics are recorded in docs/research/hypotheses_untried.md and must be evaluated if a lane is authorized.",
+  "holdout_dti": null,
+  "holdout_evaluator_version": null,
+  "withheld_positive_count": null,
+  "holdout_ci95": null,
+  "score_status": "No HOLDOUT-DTI and no score projection. The 0.2778 GEMSDOE32 value is user-reported/unverified; no file-bound organizer receipt was reviewed.",
+  "registry_correlation_overlap": {
+    "surface_rank_correlation": null,
+    "final_dot_overlap": null,
+    "status": "Not measured in this review; existing historical overlap failures remain documented in evidence and cannot authorize submission. Complete registry is unavailable."
+  },
+  "raster": null,
+  "raster_sha256": null,
+  "validator_output": {
+    "candidate_created": false,
+    "no_nan_inside_footprint": null,
+    "values_in_range_0_1": null,
+    "crs_shape_transform_match": null,
+    "official_template_authenticated": false,
+    "portal_acceptance": null,
+    "preflight": "BLOCKED: competition rasters, sample, prepared feature stack, and pinned shared assets are absent.",
+    "independent_replay": "Could not run to completion: data/audit/lattice.tif is missing.",
+    "tests": "183 passed, 9 skipped, 4 unittest subtests passed; 65 Rasterio PendingDeprecationWarnings",
+    "javascript_tests": "feed UI passed; source freshness 2 passed"
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "verdict": "negative",
+  "experiments_run_this_review": 0,
+  "weekly_slots_used_this_review": 0,
+  "blockers": [
+    "No explicit method lane assignment identified.",
+    "Current competition inputs and organizer-authenticated sample/template absent.",
+    "Prepared feature stack and shared template assets absent.",
+    "Complete registry unavailable; historical candidate outputs violate the literal lattice-overlap threshold.",
+    "Shared split/evaluator/writer/registry issues are unresolved upstream; no private fork permitted.",
+    "Public source feed last attempted 2026-10-27 and is stale as of this review."
+  ]
+}
