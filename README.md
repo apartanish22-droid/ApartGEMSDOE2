@@ -32,6 +32,16 @@
 >
 > [Current JSON run card](evidence/current_run_card.json) · [H-SARPU Run Card (`0.11384` sparse-unique record)](evidence/sarpu_run_card_20261028.json) · [H-SARPU dashboard & guide](docs/sarpu/index.html) · [Executive summary and guide](docs/executive-summary.html) · [Nine-site scorecard](docs/index.html#scorecard) · [Three-pass review](docs/REVIEW_20261028_FOLLOWUP.md) · [30 Oct repository review](docs/REPO_REVIEW_20261030.md)
 
+## Latest review — 30 Oct 2026 (two new research candidates, both negative)
+
+- **Decision unchanged: DO NOT SUBMIT.** No file is approved; no selector was run; no weekly slot was used. Two new research TIFFs were generated and gated but are kept out of `docs/` (not published).
+- **H-CATLOGIT-OOF** (quadrant-out-of-fold logistic discriminant) and **H-EQDENS-TOPN** (earthquake-intensity top-N): both fall below the matched random-dot null on the off-catalogue HOLDOUT-DTI proxy and both fail the literal 13GEMSDOE lattice rule (99.4–99.7% within 3 px). Run cards: [evidence/run_card_20261030.json](evidence/run_card_20261030.json). Preregistration record: [knowledge/preregistration_catlogit_20261030.md](knowledge/preregistration_catlogit_20261030.md).
+- **Leaderboard check:** the official page shows #1 = 0.4544 (fetched 30 Oct 2026, page-level). The brief's 0.4413 and 0.3195 were not found on the chunk read and remain unverified. **ORGANIZER-CONFIRMED: none.**
+- **Nine-site audit** (GEMSDOE24/25/27/28/30/31/32/33/36, identical gates): [evidence/audit_nine_sites_20261030.json](evidence/audit_nine_sites_20261030.json). GEMSDOE25 and GEMSDOE30 are checked byte-for-byte rather than assumed identical.
+- **Summary page:** [docs/submission-summary-20261030.html](docs/submission-summary-20261030.html) (generated from the evidence JSON).
+- **Reproduce (30 Oct 2026 lane; candidates are written to `.cache/candidates`, never `docs/`):** `GEMS_DATA_DIR=.cache/gems_data .venv/bin/python scripts/feature_canary.py` → `scripts/build_catlogit_candidate.py` → `scripts/build_topn_feature_candidate.py --band ieq_n100a15 --direction high --slug ieqtopn-37654dots --lane H-EQDENS-TOPN` → `scripts/gate_candidates.py NAME=PATH ... --out evidence/…json` → `scripts/audit_nine_sites.py` → `scripts/write_run_card_20261030.py` → `scripts/build_summary_20261030.py`.
+- **Registry:** `registry/focus_registry_manifest.json` refreshed to 489 rasters (18 added, 0 removed, 0 SHA changes); the 13GEMSDOE lattice is added in the gate scripts.
+
 ## Standing project prompt — read on every session
 
 This is the durable, consolidated operational request; [PROJECT_BRIEF.md](docs/PROJECT_BRIEF.md) preserves the longer brief and source links. Later explicit user instructions and current official rules take precedence.

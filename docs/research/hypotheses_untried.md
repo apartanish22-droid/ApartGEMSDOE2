@@ -18,3 +18,13 @@ Prior lanes AP-1, AP2, H-UDSR, H-TRACE, H2 and RAD-SCARP are research-only; none
 **Holdout reference:** no current matched best on a validated buffered-whole-segment evaluator is established. Archived v3 control numbers are diagnostics, not promotion thresholds.
 
 **Mandatory validation before any budget is spent:** pre-register the mechanism, confirm no catalogue leakage, build all label-dependent features from fold-visible faults only, mask visible catalogue pixels exactly, run standalone single-feature leakage canaries (AUC ≤ 0.90), compare pooled HOLDOUT-DTI + spatial-block 95% CI against the frozen best, check the complete registry before placement AND on final dots, validate saved bytes against an authenticated competition template, and route any release through a separate automated selector. A holdout win is a necessary gate, not a leaderboard score.
+
+## Tested 30 Oct 2026 (research only; both negative)
+
+Preregistration record: [knowledge/preregistration_catlogit_20261030.md](../../knowledge/preregistration_catlogit_20261030.md) · Run cards: [evidence/run_card_20261030.json](../../evidence/run_card_20261030.json) · Summary: [docs/submission-summary-20261030.html](../submission-summary-20261030.html)
+
+- **H-CATLOGIT-OOF** (quadrant-out-of-fold logistic catalogue discriminant, 37,654 binary dots). Leakage canary passed (max single-feature AUC 0.755 vs off-catalogue truth; threshold 0.90). Surface AUC vs off-catalogue truth 0.509. SGMC raw proxy below the matched random null. Literal lattice overlap 99.66%. **Negative.**
+- **H-EQDENS-TOPN** (top 37,654 non-catalogue cells by declustered earthquake intensity `ieq_n100a15`; band chosen on hide-and-recover AUC, not SGMC). SGMC raw proxy below the matched random null; literal lattice overlap 99.41%; non-lattice overlap 74.3% vs a GEMSDOE24 raster (fails 70%). **Negative.**
+- Proxy caveat: SGMC truth lies more than 300 m from the catalogue by construction, which penalises catalogue-adjacent placement; hide-and-recover has the opposite bias (issue #60). Neither is validated against organizer truth.
+- The Walker Lane mimic named for H-EQDENS-TOPN was not tested as a separate control.
+- Untried slate H–C1 to H–C4 remains untried; no slot was used.

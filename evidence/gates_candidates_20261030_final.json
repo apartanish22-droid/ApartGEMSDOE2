@@ -1,0 +1,597 @@
+{
+  "schema": "apartgems-gate-run-v1",
+  "checked_utc": "2026-10-30T02:36:28.886362+00:00",
+  "manifest": "registry/focus_registry_manifest.json",
+  "manifest_rasters": 490,
+  "lane_note": "Uniqueness scope = focus registry + 13GEMSDOE lattice only; other listed repos not fetched in this run.",
+  "candidates": {
+    "catlogit-zeros": {
+      "file": ".cache/candidates/apartgemsdoe2-catlogit-oof-37654dots-20261030T020149Z-1977a528-zeros.tif",
+      "sha256": "2290fb41d4634f0ef94be207493fa154f9748fbbf0ae35a7b9b37125367720ef",
+      "bytes": 67856,
+      "mode": "zeros",
+      "dots": 37654,
+      "G1_format": {
+        "all_checks_passed": true,
+        "checks": {
+          "exact_reference_grid_match": true,
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_zero_nan": true,
+          "in_footprint_zero_inf": true,
+          "in_footprint_zero_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_compliant": true,
+          "zero_on_catalogue_leakage": true,
+          "validator_range_0_1_guaranteed": true
+        },
+        "in_footprint_min": 0.0,
+        "in_footprint_max": 1.0,
+        "on_catalogue_positive_pixels": 0
+      },
+      "G2_proxies": {
+        "HOLDOUT-DTI_hide_recover": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "target": "withheld USGS/INGENIOUS catalogue segments (NOT the organizer target)",
+          "pooled_dti": 0.006545501617355427,
+          "ci95": [
+            0.0025383716766512565,
+            0.010713527271159318
+          ],
+          "n_withheld_positives": 22232,
+          "known_split_defect": "Withheld segments are only quadrant-collared (issue #60): 15,705/22,232 lie within 15 px of visible faults"
+        },
+        "SGMC-CAL_off_catalogue_proxy": {
+          "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+          "score_label": "HOLDOUT-DTI (proxy)",
+          "target": "USGS SGMC faults more than 300 m from the catalogue; closest local proxy for new faults, not the organizer truth",
+          "raw_dti": 0.005153854138930088,
+          "raw_ci95": [
+            0.0013320962636422609,
+            0.010197318009022625
+          ],
+          "prevalence_calibrated_dti": 0.0033992104159830407,
+          "calibrated_ci95": [
+            0.0010265423233536762,
+            0.00553272071442577
+          ],
+          "n_truth_pixels": 62703
+        }
+      },
+      "G2_random_null_same_n": {
+        "seeds": 3,
+        "SGMC_raw_dti_values": [
+          0.07077959992119393,
+          0.06811427215292888,
+          0.06879366177577474
+        ],
+        "HOLDOUT_hide_recover_values": [
+          0.03257824295386065,
+          0.030273639597753955,
+          0.032715231568126536
+        ]
+      },
+      "G3_registry": {
+        "literal_rule_passed": false,
+        "no_exemption_duplicates_empty": false,
+        "worst_within_3px_excluding_space_filling": 0.6759706804058002,
+        "worst_within_3px_excluding_space_filling_raster": "GEMSDOE24:docs/downloads/GEMSDOE24-geo1-concealed-conduit-rad-mag-lidar-20261029-8c9946590ca7-zeros.tif",
+        "rule": "full-footprint |Spearman| <= 0.9 AND candidate dots within 3 px <= 0.7; no density exemptions",
+        "registry_rasters": 490,
+        "malformed_or_missing": 2,
+        "constant_or_empty": 0,
+        "worst_abs_spearman": 0.026448102375854425,
+        "worst_spearman_raster": "GEMSDOE36:docs/downloads/gemsdoe36-csdl36-exp2-20261026-12962cc72ae1-zeros.tif",
+        "worst_within_3px_fraction": 0.9966271843628831,
+        "worst_overlap_raster": "GEMSDOE24:inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+        "top5_overlap": [
+          {
+            "repo": "GEMSDOE24",
+            "path": "inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+            "within_3px": 0.9966271843628831,
+            "footprint_coverage_3px": 0.9987132726822701,
+            "spearman": -0.00010001959038498484
+          },
+          {
+            "repo": "buffedlizard55-lab/13GEMSDOE",
+            "path": "docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+            "within_3px": 0.9966271843628831,
+            "footprint_coverage_3px": 0.9987132726822701,
+            "spearman": -0.00010001959038498484
+          },
+          {
+            "repo": "GEMSDOE24",
+            "path": "docs/downloads/GEMSDOE24-geo1-concealed-conduit-rad-mag-lidar-20261029-8c9946590ca7-nan.tif",
+            "within_3px": 0.6759706804058002,
+            "footprint_coverage_3px": 0.41585501956216436,
+            "spearman": 0.010765047928385714
+          },
+          {
+            "repo": "GEMSDOE24",
+            "path": "docs/downloads/GEMSDOE24-geo1-concealed-conduit-rad-mag-lidar-20261029-8c9946590ca7-zeros.tif",
+            "within_3px": 0.6759706804058002,
+            "footprint_coverage_3px": 0.41585501956216436,
+            "spearman": 0.010765047928385714
+          },
+          {
+            "repo": "GEMSDOE30",
+            "path": "docs/downloads/gemsdoe30-sgmc-hedge-d10-85k-20261003-ac08b41e-zeros.tif",
+            "within_3px": 0.5393583683008445,
+            "footprint_coverage_3px": 0.3188835023134579,
+            "spearman": 0.008645791285442435
+          }
+        ],
+        "literal_duplicates": [
+          {
+            "repo": "GEMSDOE24",
+            "path": "inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+            "within_3px_fraction": 0.9966271843628831,
+            "footprint_coverage_3px": 0.9987132726822701,
+            "space_filling": false
+          },
+          {
+            "repo": "buffedlizard55-lab/13GEMSDOE",
+            "path": "docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+            "within_3px_fraction": 0.9966271843628831,
+            "footprint_coverage_3px": 0.9987132726822701,
+            "space_filling": false
+          }
+        ]
+      },
+      "G3_self_excluded_sha": "2290fb41d4634f0ef94be207493fa154f9748fbbf0ae35a7b9b37125367720ef",
+      "_dots_digest": "1977a528904306b9ad4ebccfe42f9868d0be2501187bcec3a7e0b80948e813d1"
+    },
+    "catlogit-nan": {
+      "file": ".cache/candidates/apartgemsdoe2-catlogit-oof-37654dots-20261030T020149Z-1977a528-nan.tif",
+      "sha256": "c58d2bbdde874b5b9e09fe5c5d0d5a887b3fe1cf6eca534b357d88326dd1d672",
+      "bytes": 197216,
+      "mode": "nan",
+      "dots": 37654,
+      "G1_format": {
+        "all_checks_passed": true,
+        "checks": {
+          "exact_reference_grid_match": true,
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_zero_nan": true,
+          "in_footprint_zero_inf": true,
+          "in_footprint_zero_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_compliant": true,
+          "zero_on_catalogue_leakage": true,
+          "validator_range_0_1_guaranteed": true
+        },
+        "in_footprint_min": 0.0,
+        "in_footprint_max": 1.0,
+        "on_catalogue_positive_pixels": 0
+      },
+      "G2_proxies": {
+        "HOLDOUT-DTI_hide_recover": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "target": "withheld USGS/INGENIOUS catalogue segments (NOT the organizer target)",
+          "pooled_dti": 0.006545501617355427,
+          "ci95": [
+            0.0025383716766512565,
+            0.010713527271159318
+          ],
+          "n_withheld_positives": 22232,
+          "known_split_defect": "Withheld segments are only quadrant-collared (issue #60): 15,705/22,232 lie within 15 px of visible faults"
+        },
+        "SGMC-CAL_off_catalogue_proxy": {
+          "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+          "score_label": "HOLDOUT-DTI (proxy)",
+          "target": "USGS SGMC faults more than 300 m from the catalogue; closest local proxy for new faults, not the organizer truth",
+          "raw_dti": 0.005153854138930088,
+          "raw_ci95": [
+            0.0013320962636422609,
+            0.010197318009022625
+          ],
+          "prevalence_calibrated_dti": 0.0033992104159830407,
+          "calibrated_ci95": [
+            0.0010265423233536762,
+            0.00553272071442577
+          ],
+          "n_truth_pixels": 62703
+        }
+      },
+      "G2_random_null_same_n": {
+        "seeds": 3,
+        "SGMC_raw_dti_values": [
+          0.07077959992119393,
+          0.06811427215292888,
+          0.06879366177577474
+        ],
+        "HOLDOUT_hide_recover_values": [
+          0.03257824295386065,
+          0.030273639597753955,
+          0.032715231568126536
+        ]
+      },
+      "G3_registry": {
+        "literal_rule_passed": false,
+        "no_exemption_duplicates_empty": false,
+        "worst_within_3px_excluding_space_filling": 0.6759706804058002,
+        "worst_within_3px_excluding_space_filling_raster": "GEMSDOE24:docs/downloads/GEMSDOE24-geo1-concealed-conduit-rad-mag-lidar-20261029-8c9946590ca7-zeros.tif",
+        "rule": "full-footprint |Spearman| <= 0.9 AND candidate dots within 3 px <= 0.7; no density exemptions",
+        "registry_rasters": 490,
+        "malformed_or_missing": 2,
+        "constant_or_empty": 0,
+        "worst_abs_spearman": 0.026448102375854425,
+        "worst_spearman_raster": "GEMSDOE36:docs/downloads/gemsdoe36-csdl36-exp2-20261026-12962cc72ae1-zeros.tif",
+        "worst_within_3px_fraction": 0.9966271843628831,
+        "worst_overlap_raster": "GEMSDOE24:inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+        "top5_overlap": [
+          {
+            "repo": "GEMSDOE24",
+            "path": "inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+            "within_3px": 0.9966271843628831,
+            "footprint_coverage_3px": 0.9987132726822701,
+            "spearman": -0.00010001959038498484
+          },
+          {
+            "repo": "buffedlizard55-lab/13GEMSDOE",
+            "path": "docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+            "within_3px": 0.9966271843628831,
+            "footprint_coverage_3px": 0.9987132726822701,
+            "spearman": -0.00010001959038498484
+          },
+          {
+            "repo": "GEMSDOE24",
+            "path": "docs/downloads/GEMSDOE24-geo1-concealed-conduit-rad-mag-lidar-20261029-8c9946590ca7-nan.tif",
+            "within_3px": 0.6759706804058002,
+            "footprint_coverage_3px": 0.41585501956216436,
+            "spearman": 0.010765047928385714
+          },
+          {
+            "repo": "GEMSDOE24",
+            "path": "docs/downloads/GEMSDOE24-geo1-concealed-conduit-rad-mag-lidar-20261029-8c9946590ca7-zeros.tif",
+            "within_3px": 0.6759706804058002,
+            "footprint_coverage_3px": 0.41585501956216436,
+            "spearman": 0.010765047928385714
+          },
+          {
+            "repo": "GEMSDOE30",
+            "path": "docs/downloads/gemsdoe30-sgmc-hedge-d10-85k-20261003-ac08b41e-zeros.tif",
+            "within_3px": 0.5393583683008445,
+            "footprint_coverage_3px": 0.3188835023134579,
+            "spearman": 0.008645791285442435
+          }
+        ],
+        "literal_duplicates": [
+          {
+            "repo": "GEMSDOE24",
+            "path": "inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+            "within_3px_fraction": 0.9966271843628831,
+            "footprint_coverage_3px": 0.9987132726822701,
+            "space_filling": false
+          },
+          {
+            "repo": "buffedlizard55-lab/13GEMSDOE",
+            "path": "docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+            "within_3px_fraction": 0.9966271843628831,
+            "footprint_coverage_3px": 0.9987132726822701,
+            "space_filling": false
+          }
+        ]
+      },
+      "G3_self_excluded_sha": "c58d2bbdde874b5b9e09fe5c5d0d5a887b3fe1cf6eca534b357d88326dd1d672",
+      "_dots_digest": "1977a528904306b9ad4ebccfe42f9868d0be2501187bcec3a7e0b80948e813d1"
+    },
+    "ieqtopn-zeros": {
+      "file": ".cache/candidates/apartgemsdoe2-ieqtopn-37654dots-20261030T020949Z-b95eb1f3-zeros.tif",
+      "sha256": "94a75e83ef55687021e4fa3d195e5fe01af86195ec011879d8675a4d897ee6dc",
+      "bytes": 59090,
+      "mode": "zeros",
+      "dots": 37654,
+      "G1_format": {
+        "all_checks_passed": true,
+        "checks": {
+          "exact_reference_grid_match": true,
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_zero_nan": true,
+          "in_footprint_zero_inf": true,
+          "in_footprint_zero_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_compliant": true,
+          "zero_on_catalogue_leakage": true,
+          "validator_range_0_1_guaranteed": true
+        },
+        "in_footprint_min": 0.0,
+        "in_footprint_max": 1.0,
+        "on_catalogue_positive_pixels": 0
+      },
+      "G2_proxies": {
+        "HOLDOUT-DTI_hide_recover": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "target": "withheld USGS/INGENIOUS catalogue segments (NOT the organizer target)",
+          "pooled_dti": 0.0018920181527147804,
+          "ci95": [
+            0.0,
+            0.0034701024671232156
+          ],
+          "n_withheld_positives": 22232,
+          "known_split_defect": "Withheld segments are only quadrant-collared (issue #60): 15,705/22,232 lie within 15 px of visible faults"
+        },
+        "SGMC-CAL_off_catalogue_proxy": {
+          "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+          "score_label": "HOLDOUT-DTI (proxy)",
+          "target": "USGS SGMC faults more than 300 m from the catalogue; closest local proxy for new faults, not the organizer truth",
+          "raw_dti": 0.00632903600036636,
+          "raw_ci95": [
+            0.0,
+            0.016775782392151196
+          ],
+          "prevalence_calibrated_dti": 0.00416618187424312,
+          "calibrated_ci95": [
+            0.0,
+            0.008017462783522913
+          ],
+          "n_truth_pixels": 62703
+        }
+      },
+      "G2_random_null_same_n": {
+        "seeds": 3,
+        "SGMC_raw_dti_values": [
+          0.07077959992119393,
+          0.06811427215292888,
+          0.06879366177577474
+        ],
+        "HOLDOUT_hide_recover_values": [
+          0.03257824295386065,
+          0.030273639597753955,
+          0.032715231568126536
+        ]
+      },
+      "G3_registry": {
+        "literal_rule_passed": false,
+        "no_exemption_duplicates_empty": false,
+        "worst_within_3px_excluding_space_filling": 0.7434801083550221,
+        "worst_within_3px_excluding_space_filling_raster": "GEMSDOE24:docs/downloads/GEMSDOE24-geo1-concealed-conduit-rad-mag-lidar-20261029-8c9946590ca7-zeros.tif",
+        "rule": "full-footprint |Spearman| <= 0.9 AND candidate dots within 3 px <= 0.7; no density exemptions",
+        "registry_rasters": 490,
+        "malformed_or_missing": 2,
+        "constant_or_empty": 0,
+        "worst_abs_spearman": 0.056802619292462456,
+        "worst_spearman_raster": "GEMSDOE36:docs/downloads/gemsdoe36-bdc36-exp-2-20261026-18000dots-zeros.tif",
+        "worst_within_3px_fraction": 0.9941042120359059,
+        "worst_overlap_raster": "GEMSDOE24:inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+        "top5_overlap": [
+          {
+            "repo": "GEMSDOE24",
+            "path": "inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+            "within_3px": 0.9941042120359059,
+            "footprint_coverage_3px": 0.9987132726822701,
+            "spearman": -4.198983932748267e-05
+          },
+          {
+            "repo": "buffedlizard55-lab/13GEMSDOE",
+            "path": "docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+            "within_3px": 0.9941042120359059,
+            "footprint_coverage_3px": 0.9987132726822701,
+            "spearman": -4.198983932748267e-05
+          },
+          {
+            "repo": "GEMSDOE24",
+            "path": "docs/downloads/GEMSDOE24-geo1-concealed-conduit-rad-mag-lidar-20261029-8c9946590ca7-nan.tif",
+            "within_3px": 0.7434801083550221,
+            "footprint_coverage_3px": 0.41585501956216436,
+            "spearman": 0.013257185332824441
+          },
+          {
+            "repo": "GEMSDOE24",
+            "path": "docs/downloads/GEMSDOE24-geo1-concealed-conduit-rad-mag-lidar-20261029-8c9946590ca7-zeros.tif",
+            "within_3px": 0.7434801083550221,
+            "footprint_coverage_3px": 0.41585501956216436,
+            "spearman": 0.013257185332824441
+          },
+          {
+            "repo": "GEMSDOE24",
+            "path": "inputs/calibration/8GEMSDOE_Hedge-v2_submission.tif",
+            "within_3px": 0.47575290805757686,
+            "footprint_coverage_3px": 0.2835643952933144,
+            "spearman": 0.012290647352427407
+          }
+        ],
+        "literal_duplicates": [
+          {
+            "repo": "GEMSDOE24",
+            "path": "docs/downloads/GEMSDOE24-geo1-concealed-conduit-rad-mag-lidar-20261029-8c9946590ca7-nan.tif",
+            "within_3px_fraction": 0.7434801083550221,
+            "footprint_coverage_3px": 0.41585501956216436,
+            "space_filling": false
+          },
+          {
+            "repo": "GEMSDOE24",
+            "path": "docs/downloads/GEMSDOE24-geo1-concealed-conduit-rad-mag-lidar-20261029-8c9946590ca7-zeros.tif",
+            "within_3px_fraction": 0.7434801083550221,
+            "footprint_coverage_3px": 0.41585501956216436,
+            "space_filling": false
+          },
+          {
+            "repo": "GEMSDOE24",
+            "path": "inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+            "within_3px_fraction": 0.9941042120359059,
+            "footprint_coverage_3px": 0.9987132726822701,
+            "space_filling": false
+          },
+          {
+            "repo": "buffedlizard55-lab/13GEMSDOE",
+            "path": "docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+            "within_3px_fraction": 0.9941042120359059,
+            "footprint_coverage_3px": 0.9987132726822701,
+            "space_filling": false
+          }
+        ]
+      },
+      "G3_self_excluded_sha": "94a75e83ef55687021e4fa3d195e5fe01af86195ec011879d8675a4d897ee6dc",
+      "_dots_digest": "b95eb1f3af8f8d46c131c157f67600f9c6cf4c7e2b4984b0f8d2625a2d995279"
+    },
+    "ieqtopn-nan": {
+      "file": ".cache/candidates/apartgemsdoe2-ieqtopn-37654dots-20261030T020949Z-b95eb1f3-nan.tif",
+      "sha256": "12a2b26db7a6424a0c1755f1a9d28e6bf252c234d48ca7ac57aa4356993dda78",
+      "bytes": 188321,
+      "mode": "nan",
+      "dots": 37654,
+      "G1_format": {
+        "all_checks_passed": true,
+        "checks": {
+          "exact_reference_grid_match": true,
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_zero_nan": true,
+          "in_footprint_zero_inf": true,
+          "in_footprint_zero_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_compliant": true,
+          "zero_on_catalogue_leakage": true,
+          "validator_range_0_1_guaranteed": true
+        },
+        "in_footprint_min": 0.0,
+        "in_footprint_max": 1.0,
+        "on_catalogue_positive_pixels": 0
+      },
+      "G2_proxies": {
+        "HOLDOUT-DTI_hide_recover": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "target": "withheld USGS/INGENIOUS catalogue segments (NOT the organizer target)",
+          "pooled_dti": 0.0018920181527147804,
+          "ci95": [
+            0.0,
+            0.0034701024671232156
+          ],
+          "n_withheld_positives": 22232,
+          "known_split_defect": "Withheld segments are only quadrant-collared (issue #60): 15,705/22,232 lie within 15 px of visible faults"
+        },
+        "SGMC-CAL_off_catalogue_proxy": {
+          "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+          "score_label": "HOLDOUT-DTI (proxy)",
+          "target": "USGS SGMC faults more than 300 m from the catalogue; closest local proxy for new faults, not the organizer truth",
+          "raw_dti": 0.00632903600036636,
+          "raw_ci95": [
+            0.0,
+            0.016775782392151196
+          ],
+          "prevalence_calibrated_dti": 0.00416618187424312,
+          "calibrated_ci95": [
+            0.0,
+            0.008017462783522913
+          ],
+          "n_truth_pixels": 62703
+        }
+      },
+      "G2_random_null_same_n": {
+        "seeds": 3,
+        "SGMC_raw_dti_values": [
+          0.07077959992119393,
+          0.06811427215292888,
+          0.06879366177577474
+        ],
+        "HOLDOUT_hide_recover_values": [
+          0.03257824295386065,
+          0.030273639597753955,
+          0.032715231568126536
+        ]
+      },
+      "G3_registry": {
+        "literal_rule_passed": false,
+        "no_exemption_duplicates_empty": false,
+        "worst_within_3px_excluding_space_filling": 0.7434801083550221,
+        "worst_within_3px_excluding_space_filling_raster": "GEMSDOE24:docs/downloads/GEMSDOE24-geo1-concealed-conduit-rad-mag-lidar-20261029-8c9946590ca7-zeros.tif",
+        "rule": "full-footprint |Spearman| <= 0.9 AND candidate dots within 3 px <= 0.7; no density exemptions",
+        "registry_rasters": 490,
+        "malformed_or_missing": 2,
+        "constant_or_empty": 0,
+        "worst_abs_spearman": 0.056802619292462456,
+        "worst_spearman_raster": "GEMSDOE36:docs/downloads/gemsdoe36-bdc36-exp-2-20261026-18000dots-zeros.tif",
+        "worst_within_3px_fraction": 0.9941042120359059,
+        "worst_overlap_raster": "GEMSDOE24:inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+        "top5_overlap": [
+          {
+            "repo": "GEMSDOE24",
+            "path": "inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+            "within_3px": 0.9941042120359059,
+            "footprint_coverage_3px": 0.9987132726822701,
+            "spearman": -4.198983932748267e-05
+          },
+          {
+            "repo": "buffedlizard55-lab/13GEMSDOE",
+            "path": "docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+            "within_3px": 0.9941042120359059,
+            "footprint_coverage_3px": 0.9987132726822701,
+            "spearman": -4.198983932748267e-05
+          },
+          {
+            "repo": "GEMSDOE24",
+            "path": "docs/downloads/GEMSDOE24-geo1-concealed-conduit-rad-mag-lidar-20261029-8c9946590ca7-nan.tif",
+            "within_3px": 0.7434801083550221,
+            "footprint_coverage_3px": 0.41585501956216436,
+            "spearman": 0.013257185332824441
+          },
+          {
+            "repo": "GEMSDOE24",
+            "path": "docs/downloads/GEMSDOE24-geo1-concealed-conduit-rad-mag-lidar-20261029-8c9946590ca7-zeros.tif",
+            "within_3px": 0.7434801083550221,
+            "footprint_coverage_3px": 0.41585501956216436,
+            "spearman": 0.013257185332824441
+          },
+          {
+            "repo": "GEMSDOE24",
+            "path": "inputs/calibration/8GEMSDOE_Hedge-v2_submission.tif",
+            "within_3px": 0.47575290805757686,
+            "footprint_coverage_3px": 0.2835643952933144,
+            "spearman": 0.012290647352427407
+          }
+        ],
+        "literal_duplicates": [
+          {
+            "repo": "GEMSDOE24",
+            "path": "docs/downloads/GEMSDOE24-geo1-concealed-conduit-rad-mag-lidar-20261029-8c9946590ca7-nan.tif",
+            "within_3px_fraction": 0.7434801083550221,
+            "footprint_coverage_3px": 0.41585501956216436,
+            "space_filling": false
+          },
+          {
+            "repo": "GEMSDOE24",
+            "path": "docs/downloads/GEMSDOE24-geo1-concealed-conduit-rad-mag-lidar-20261029-8c9946590ca7-zeros.tif",
+            "within_3px_fraction": 0.7434801083550221,
+            "footprint_coverage_3px": 0.41585501956216436,
+            "space_filling": false
+          },
+          {
+            "repo": "GEMSDOE24",
+            "path": "inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+            "within_3px_fraction": 0.9941042120359059,
+            "footprint_coverage_3px": 0.9987132726822701,
+            "space_filling": false
+          },
+          {
+            "repo": "buffedlizard55-lab/13GEMSDOE",
+            "path": "docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+            "within_3px_fraction": 0.9941042120359059,
+            "footprint_coverage_3px": 0.9987132726822701,
+            "space_filling": false
+          }
+        ]
+      },
+      "G3_self_excluded_sha": "12a2b26db7a6424a0c1755f1a9d28e6bf252c234d48ca7ac57aa4356993dda78",
+      "_dots_digest": "b95eb1f3af8f8d46c131c157f67600f9c6cf4c7e2b4984b0f8d2625a2d995279"
+    }
+  }
+}
