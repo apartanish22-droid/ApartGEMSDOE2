@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ApartGEMS — nine-site executive summary (31 Oct 2026)</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#1d2330;background:#fafbfc;line-height:1.5}
+header,main{max-width:1080px;margin:0 auto;padding:0 20px}
+header{padding:18px 20px;border-bottom:1px solid #e3e7ee;background:#fff}
+nav a{margin-right:14px;color:#1b5fb8;text-decoration:none;font-size:14px}
+h1{font-size:26px;margin:18px 0 6px} h2{font-size:20px;margin-top:34px;border-bottom:1px solid #e3e7ee;padding-bottom:4px}
+.banner{background:#fdecea;border:2px solid #b3261e;color:#7a140e;padding:14px 16px;border-radius:8px;font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px;margin:12px 0;background:#fff}
+th,td{border:1px solid #d9dee7;padding:7px 9px;text-align:left;vertical-align:top} th{background:#f1f4f9}
+tr.best td{background:#fff8e1}
+.tag{display:inline-block;font-size:11px;background:#eef2f7;border-radius:4px;padding:1px 5px;color:#44506a}
+code{font-size:12px;word-break:break-all} .small{font-size:13px;color:#4a5468}
+footer{margin:40px 0;font-size:13px;color:#4a5468}
+</style></head><body>
+<header><strong>ApartGEMS</strong> · DOE GEMS prize · research desk
+<nav><a href="#decision">Decision</a><a href="#sites">Nine sites</a><a href="#candidates">Our files</a><a href="#why">Why 0.2778</a>
+<a href="#submit">How to submit</a><a href="#hypotheses">Hypotheses</a><a href="#limits">Limitations</a><a href="#sources">Sources</a></nav></header>
+<main>
+<h1>Nine-site executive summary</h1>
+<p class="small">Generated from evidence files by <code>scripts/build_executive_summary.py</code> on 31 Oct 2026. Every number is HOLDOUT-DTI (evaluator GEMSDOE32-HIDE-RECOVER-v3.0), ORGANIZER-CONFIRMED (none in this session), or prompt-cited / unverified, as labelled.</p>
+
+<section id="decision">
+<h2>Decision</h2>
+<div class="banner">DO NOT SUBMIT ANY FILE FROM THIS REPOSITORY. No file passes every gate. The best-known file (GEMSDOE32, 0.2778) is a duplicate and was reported by users, not verified.</div>
+<ul>
+<li><strong>Best historical file:</strong> GEMSDOE32, prompt-cited 0.2778 (unverified). It is a copy for learning only, not a new submission. Link below.</li>
+<li><strong>Our best new file:</strong> none passes. Candidate V5 fails the lane check (lattice overlap 99.8%) and the whole-array checker. Candidate v4 fails the lane check (lattice overlap 99.8%; one more registry raster at 70.2%) and the strict checker.</li>
+<li><strong>Experiments:</strong> 3 of 3 budget used. All three are NEGATIVE (E1, E2, E3). Details in <code>evidence/run_cards_20261031.json</code>.</li>
+<li><strong>Unique vs listed GEMSDOE sites:</strong> V5 passes this literal check (max overlap 22.9% vs 27; max Pearson 0.021). It fails the full-registry lane check.</li>
+</ul>
+</section>
+
+<section id="sites">
+<h2>Nine focus sites — file, estimated score, uniqueness</h2>
+<p class="small">The "file to download" links point to pinned commits in the owner mirror <code>buffedlizard55-lab</code>. They are not organizer-authenticated. Estimated score for a new file: <strong>not estimable</strong>, because no validated estimator exists. The prompt-cited scores are reproduced as reported and are not verified.
+Uniqueness: each site was compared with the other eight in this table. Overlap = share of its dots within 3 px of another site's dots.</p>
+<table><thead><tr><th>Site</th><th>File to download</th><th>Dots</th><th>Score (prompt-cited)</th><th>Estimated score for new file</th><th>Unique vs other GEMSDOE sites?</th></tr></thead>
+<tbody><tr><td>GEMSDOE24</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE24/blob/63d5885b68f73c19a7746052ccb3e5690f3271b5/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif">gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif ↗</a><br><small>repo <code>GEMSDOE24</code>; identical bytes also pinned in: none</small></td><td>60,069</td><td>0.2477 <span class='tag'>prompt-cited, unverified</span></td><td>Not estimable <span class='tag'>no validated estimator</span></td><td>NO — 100.0% of dots within 3 px of GEMSDOE25</td></tr><tr><td>GEMSDOE25</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE25/blob/782824f08879a52ad5142b4b0f46d59d48017e7a/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif">gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif ↗</a><br><small>repo <code>GEMSDOE25</code>; identical bytes also pinned in: GEMSDOE24, GEMSDOE32</small></td><td>44,090</td><td>0.2600 <span class='tag'>prompt-cited, unverified</span></td><td>Not estimable <span class='tag'>no validated estimator</span></td><td>NO — 100.0% of dots within 3 px of GEMSDOE24</td></tr><tr><td>GEMSDOE27</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE27/blob/bf34151e8e4ef26ec924f28dbc371a39bd740782/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif">gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif ↗</a><br><small>repo <code>GEMSDOE27</code>; identical bytes also pinned in: GEMSDOE28</small></td><td>61,328</td><td>0.2449 <span class='tag'>prompt-cited, unverified</span></td><td>Not estimable <span class='tag'>no validated estimator</span></td><td>NO — 98.0% of dots within 3 px of GEMSDOE24</td></tr><tr><td>GEMSDOE28</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE28/blob/424bf795ed2183000c643d6e30a12ce2d4bf401d/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif">gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif ↗</a><br><small>repo <code>GEMSDOE28</code>; identical bytes also pinned in: none</small></td><td>37,660</td><td>0.2710 <span class='tag'>prompt-cited, unverified</span></td><td>Not estimable <span class='tag'>no validated estimator</span></td><td>NO — 100.0% of dots within 3 px of GEMSDOE24</td></tr><tr><td>GEMSDOE30</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE30/blob/eaff218f81e89fadc605650bb2cd55dd4b58e18d/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif">gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif ↗</a><br><small>repo <code>GEMSDOE30</code>; identical bytes also pinned in: GEMSDOE32</small></td><td>44,090</td><td>0.2600 <span class='tag'>prompt-cited, unverified</span></td><td>Not estimable <span class='tag'>no validated estimator</span></td><td>NO — 100.0% of dots within 3 px of GEMSDOE24</td></tr><tr><td>GEMSDOE31</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE31/blob/f9248200f20def2654af596c1cc13ab2f9d96687/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif">gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif ↗</a><br><small>repo <code>GEMSDOE31</code>; identical bytes also pinned in: none</small></td><td>40,199</td><td>0.2708 <span class='tag'>prompt-cited, unverified</span></td><td>Not estimable <span class='tag'>no validated estimator</span></td><td>NO — 100.0% of dots within 3 px of GEMSDOE24</td></tr><tr class="best"><td>GEMSDOE32</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE32/blob/6edcc4cd529ca0809b956ccb00aea7f0e3b79cbf/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif">gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif ↗</a><br><small>repo <code>GEMSDOE32</code>; identical bytes also pinned in: none</small></td><td>37,654</td><td>0.2778 <span class='tag'>prompt-cited, unverified</span></td><td>Not estimable <span class='tag'>no validated estimator</span></td><td>NO — 100.0% of dots within 3 px of GEMSDOE24</td></tr><tr><td>GEMSDOE33</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/ee2e464b61cb0e0aa604b0525044ad9ff31c9ec7/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif">GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif ↗</a><br><small>repo <code>GEMSDOE33</code>; identical bytes also pinned in: GEMSDOE32</small></td><td>41,865</td><td>0.2632 <span class='tag'>prompt-cited, unverified</span></td><td>Not estimable <span class='tag'>no validated estimator</span></td><td>NO — 99.7% of dots within 3 px of GEMSDOE27</td></tr><tr><td>GEMSDOE36</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE36/blob/b0824c550c02792897d0ebe3aba1cb0e75583ea1/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif">gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif ↗</a><br><small>repo <code>GEMSDOE36</code>; identical bytes also pinned in: GEMSDOE32</small></td><td>38,854</td><td>0.2750 <span class='tag'>prompt-cited, unverified</span></td><td>Not estimable <span class='tag'>no validated estimator</span></td><td>NO — 97.6% of dots within 3 px of GEMSDOE27</td></tr></tbody></table>
+<p class="small">Pairwise facts (<code>evidence/focus9_pairwise_20261031.json</code>): GEMSDOE25 and GEMSDOE30 have identical dot sets (<code>25=30</code> same dot set, different bytes). GEMSDOE32 (B2) dots are a subset of GEMSDOE30 and 31. All 72 directed pairs exceed 70% (minimum 86.7%); every site has at least 97.6% of its dots within 3 px of another site.</p>
+</section>
+
+<section id="candidates">
+<h2>Our files — gate results</h2>
+<table><thead><tr><th>File</th><th>Dots</th><th>Holdout (HOLDOUT-DTI)</th><th>Full-registry gate</th><th>Whole-array checker</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td><a href="downloads/apartgems-v5-b2excl-zeros-20261031-DO-NOT-SUBMIT.tif">V5 zeros outside (DO-NOT-SUBMIT)</a><br><code>ec67e466f2396eda…</code></td>
+<td>189,724</td>
+<td>E1 control C0 0.03313 [0.02694, 0.03920] (n=22,232); B2 0.03385 — gain matched by random thinning</td>
+<td>FAIL: lattice 99.8%; 4 registry rasters &gt;70%</td>
+<td>FAIL: outside_null_or_masked</td>
+<td><strong>NOT OK TO SUBMIT</strong></td></tr>
+<tr><td><a href="downloads/apartgems-v4-ridge-tmi-isohg-nms-q5pct-20261030.tif">v4 ridge base (NaN-free, zeros outside)</a></td>
+<td>203,418</td>
+<td>C0 0.03313 [0.02694, 0.03920] (n=22,232)</td>
+<td>FAIL: lattice 99.8%; 4 rasters &gt;70%</td>
+<td>FAIL: conservative_strict_whole_array_0_1</td>
+<td><strong>NOT OK TO SUBMIT</strong></td></tr>
+</tbody></table>
+<p class="small">Checker notes: the official sample is NaN outside, which fails our conservative strict [0, 1] rule. V5 is zeros outside, which fails the outside-null rule. No file passes both. A nodata-tag variant was tested and rejected: it masks inside zeros and changes the scored footprint. Local checks are not portal acceptance.</p>
+</section>
+
+<section id="why">
+<h2>Why GEMSDOE32 scored highest (0.2778) — and is &gt;0.2778 reachable?</h2>
+<ol>
+<li><strong>What is verified.</strong> GEMSDOE32 B2 has 37,654 dots. It is an exact subset of GEMSDOE30 (44,090 dots) and of GEMSDOE31 (40,199 dots), checked cell by cell. The 6,436 dots removed from GEMSDOE30 all lie within 2 px of the known-fault catalogue (<code>existing_faults.tif</code>; 3,891 within 1 px; none farther). This is the only structural difference the repo can show.</li>
+<li><strong>What is not verified.</strong> The 0.2778 score itself. It is user-reported with no receipt. Organizer masking of known faults is unresolved (see Limitations), so the mechanism is a hypothesis, not a proof.</li>
+<li><strong>What our proxy says.</strong> Removing near-catalogue dots (E1, B2) gives a holdout gain of +0.00072, 95% CI [+0.00034, +0.00117]. Random thinning to the same count gives 0.03387, so the gain is explained by density. This is much smaller than the jump from 0.2600 (GEMSDOE30) to 0.2778 (GEMSDOE32). The proxy therefore does not reproduce the claimed mechanism.</li>
+<li><strong>Is &gt;0.2778 reachable?</strong> Not shown. Our three experiments are negative: the v4 ridge ranking scores below random placement at matched budget (E2), spatial clustering does not explain that (E3), and near-catalogue removal is density-equivalent (E1). Higher scores have been reported on the public leaderboard (repo notes record 0.4544 at rank 1, observed 28 and 30 Oct 2026, and 0.3916 at rank 2, observed 28 Oct; none verified here). The method that gets there is unknown to us.</li>
+</ol>
+</section>
+
+<section id="submit">
+<h2>How to submit (for the selector — not an instruction to upload)</h2>
+<ol>
+<li>File: single-band GeoTIFF (or a zip of one), EPSG:32611, 3730 × 3292, 100 m, geotransform (243350, 100, 0, 4508550, 0, −100) — as in the official sample.</li>
+<li>Values must be in [0, 1]. Prior upload error: "Predicted values must be in range [0, 1]".</li>
+<li>Unique name and a note of at most 140 characters.</li>
+<li>Pass every gate (uniqueness vs the full registry, holdout vs random control, checker). No file currently does, so there is nothing to upload.</li>
+<li>Weekly cap: shown on the submission page. The selector step is separate from this research and no slot has been used.</li>
+</ol>
+</section>
+
+<section id="hypotheses">
+<h2>Untried hypotheses (ranked, unvalidated)</h2>
+<p>Four candidates with layers, physical signatures, mimics, costs and data status are in <a href="research/v5-hypotheses-20261031.md">docs/research/v5-hypotheses-20261031.md</a>. Rank 1 is H5-A, hydrothermal magnetic-low troughs (layers <code>tmi</code>, <code>rtp</code>). Its physical basis is supported by <a href="https://www.osti.gov/biblio/5598190">the USDOE/OSTI Coso aeromagnetic report</a>, which attributes a magnetic low to magnetite destruction by hydrothermal solutions. None of the four has been run.</p>
+</section>
+
+<section id="limits">
+<h2>Limitations and irregularities</h2>
+<ul>
+<li>No live leaderboard check. DrivenData and community.drivendata.org are unreachable from the sandbox.</li>
+<li>Prompt leaderboard conflict: the prompt cites 0.4413 and 0.3195 as current highs. Repo notes (30 Oct review, top-50 snapshot) record 0.4544 at #1, report 0.3195 at #48, and say 0.4413 does not appear. None of this is re-verified live from this sandbox.</li>
+<li>Known-fault masking is unresolved. The organizer thread that would settle it is unreachable.</li>
+<li>Gate rule vs implementation: the rule says rank-correlation; the gate computes Pearson correlation. For binary dot fields the two are close, but they are not identical for the float fields.</li>
+<li>Registry: 489 rasters compared. One (GEMSDOE36 format test, 32×48) is a different grid and is excluded from the gate, as recorded in the uniqueness JSON.</li>
+<li>Official reference notebook (drivendataorg/gems-prize-reference-solution, <code>unet-mc-cv-reference-solution.ipynb</code>): the raw file returns HTTP 302 to a host outside the sandbox allowlist, so its submission-writing convention is unchecked.</li>
+<li>The "[0, 1]" rejection is not reproduced: all in-footprint values in the files tested are inside [0, 1]. The bytes of the rejected upload are not in the workspace.</li>
+<li>The pre-existing GEMSDOE32 explanation and the metric documentation disagree on whether near-catalogue dots are penalised. This is open.</li>
+</ul>
+</section>
+
+<section id="sources">
+<h2>Sources (links for manual review)</h2>
+<ul class="small">
+<li>DrivenData competition 306 leaderboard: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">drivendata.org/…/leaderboard</a> — unreachable from sandbox.</li>
+<li>DrivenData reference solution (repo, README): <a href="https://github.com/drivendataorg/gems-prize-reference-solution">github.com/drivendataorg/gems-prize-reference-solution</a> — notebook not retrieved.</li>
+<li>USDOE OSTI, Coso KGRA aeromagnetic survey (magnetite destruction): <a href="https://www.osti.gov/biblio/5598190">osti.gov/biblio/5598190</a>.</li>
+<li>Aso Volcano UAV magnetic survey (magnetisation lows match alteration), Springer 2026: <a href="https://link.springer.com/article/10.1186/s40645-026-00800-3">link.springer.com/…/s40645-026-00800-3</a>.</li>
+<li>Glen &amp; Earney, GRC aeromagnetic paper (destruction of magnetite by hydrothermal alteration): <a href="https://publications.mygeoenergynow.org/grc/1034804.pdf">publications.mygeoenergynow.org/grc/1034804.pdf</a>.</li>
+</ul>
+</section>
+</main>
+<footer>Research desk output. Not a submission. Evidence: <code>evidence/run_cards_20261031.json</code>, <code>evidence/focus9_pairwise_20261031.json</code>, <code>evidence/focus_registry_uniqueness_20261031.json</code>.</footer>
+</body></html>

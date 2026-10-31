@@ -27,8 +27,12 @@ def test_parallel_raster_readback_if_inputs_available():
     assert actual['directional_comparisons']['lattice']['within_3px_count'] == 37548
     assert actual['literal_lattice_duplicate']
     assert actual['format_diagnostic']['ok_to_submit'] is False
-    assert not actual['format_diagnostic']['checks']['reference_zeros_on_its_valid_footprint']
-    assert not actual['format_diagnostic']['checks']['outside_null_or_masked']
+    checks = actual['format_diagnostic']['checks']
+    # 31 Oct 2026: the retired check 'reference_zeros_on_its_valid_footprint' required the official sample to be
+    # all zeros; the official sample is binary (0/1) inside its footprint. Its replacement must pass on the sample.
+    assert 'reference_zeros_on_its_valid_footprint' not in checks
+    assert checks['reference_values_in_0_1_inside_footprint'] is True
+    assert not checks['outside_null_or_masked']
 
 
 @pytest.mark.parametrize('script', [

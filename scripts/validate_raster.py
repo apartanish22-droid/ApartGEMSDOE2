@@ -38,8 +38,9 @@ def validate(candidate: Path, template: Path, template_provenance: str) -> dict:
                                                and t.transform.b == 0 and t.transform.d == 0),
             'reference_float32': t.dtypes == ('float32',),
             'reference_self_contained': all(Path(f).resolve() == template.resolve() for f in t.files),
-            'reference_zeros_on_its_valid_footprint': bool(np.isfinite(reference_inside).all()
-                                                           and np.all(reference_inside == 0)),
+            # Fixed 2026-10-31: the official sample is binary (0/1) inside its footprint, not all zeros.
+            'reference_values_in_0_1_inside_footprint': bool(np.isfinite(reference_inside).all()
+                                                             and np.all((reference_inside >= 0) & (reference_inside <= 1))),
             'candidate_is_geotiff': c.driver == 'GTiff',
             'candidate_self_contained': all(Path(f).resolve() == candidate.resolve() for f in c.files),
             'single_band': c.count == 1,

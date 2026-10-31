@@ -1,0 +1,96 @@
+{
+  "schema": "candidate-vs-focus9-v1",
+  "definition": "same as focus_registry_uniqueness: overlap = candidate dots within 3px of site dots; pearson over union footprint",
+  "results": {
+    "v5": {
+      "dots": 189724,
+      "per_focus_site": {
+        "24": {
+          "overlap_within_3px": 0.225364,
+          "pearson": 0.016106
+        },
+        "25": {
+          "overlap_within_3px": 0.214633,
+          "pearson": 0.014072
+        },
+        "27": {
+          "overlap_within_3px": 0.229307,
+          "pearson": 0.016208
+        },
+        "28": {
+          "overlap_within_3px": 0.208461,
+          "pearson": 0.015298
+        },
+        "30": {
+          "overlap_within_3px": 0.214633,
+          "pearson": 0.014072
+        },
+        "31": {
+          "overlap_within_3px": 0.212019,
+          "pearson": 0.01543
+        },
+        "32": {
+          "overlap_within_3px": 0.208529,
+          "pearson": 0.016411
+        },
+        "33": {
+          "overlap_within_3px": 0.216109,
+          "pearson": 0.014988
+        },
+        "36": {
+          "overlap_within_3px": 0.227378,
+          "pearson": 0.020688
+        }
+      },
+      "max_overlap_site": "27",
+      "max_overlap": 0.229307,
+      "max_pearson_site": "36",
+      "max_pearson": 0.020688
+    },
+    "v4": {
+      "dots": 203418,
+      "per_focus_site": {
+        "24": {
+          "overlap_within_3px": 0.236793,
+          "pearson": 0.018133
+        },
+        "25": {
+          "overlap_within_3px": 0.225565,
+          "pearson": 0.01606
+        },
+        "27": {
+          "overlap_within_3px": 0.240932,
+          "pearson": 0.018247
+        },
+        "28": {
+          "overlap_within_3px": 0.208698,
+          "pearson": 0.015429
+        },
+        "30": {
+          "overlap_within_3px": 0.225565,
+          "pearson": 0.01606
+        },
+        "31": {
+          "overlap_within_3px": 0.21271,
+          "pearson": 0.015772
+        },
+        "32": {
+          "overlap_within_3px": 0.202381,
+          "pearson": 0.015373
+        },
+        "33": {
+          "overlap_within_3px": 0.220546,
+          "pearson": 0.015898
+        },
+        "36": {
+          "overlap_within_3px": 0.221141,
+          "pearson": 0.019499
+        }
+      },
+      "max_overlap_site": "27",
+      "max_overlap": 0.240932,
+      "max_pearson_site": "36",
+      "max_pearson": 0.019499
+    }
+  }
+}

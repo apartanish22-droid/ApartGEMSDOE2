@@ -1,0 +1,33 @@
+{
+  "file": "docs/downloads/apartgems-v5-b2excl-zeros-20261031-DO-NOT-SUBMIT.tif",
+  "submission_name": "apartgems-v5-b2excl-zeros-20261031-DO-NOT-SUBMIT",
+  "note": "v4 ridge base minus dots within 2px of catalogue faults. HOLDOUT-DTI negative vs random control. DO NOT SUBMIT.",
+  "note_chars": 111,
+  "sha256": "ec67e466f2396eda42a3ae56ead6a9f903b52d9e0a005474315b72cb9e2ef0b6",
+  "bytes": 523051,
+  "base_file": "docs/downloads/apartgems-v4-ridge-tmi-isohg-nms-q5pct-20261030.tif",
+  "base_dots": 203418,
+  "excluded_dots_within_2px_of_catalogue": 13694,
+  "dots": 189724,
+  "outside_convention": "zeros (0.0) outside footprint; NaN not used",
+  "format_checks": {
+    "driver": "GTiff",
+    "band_count": 1,
+    "dtype": "float32",
+    "crs_epsg": 32611,
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform_matches_sample": true,
+    "nodata": null,
+    "nan_count_total": 0,
+    "nan_inside_footprint": 0,
+    "values_in_unit_interval_inside_footprint": true,
+    "all_cells_in_unit_interval": true,
+    "nonzero_outside_footprint": 0,
+    "positive_dots": 189724
+  },
+  "ok_to_submit": "NO",
+  "reason": "Holdout negative against random-thinning control; lattice gate fails (see run card)."
+}

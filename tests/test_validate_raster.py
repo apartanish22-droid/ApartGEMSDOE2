@@ -55,9 +55,19 @@ def test_unmasked_zeros_outside_and_nonzero_sample_fail(tmp_path):
     t = make(tmp_path/'bad-template.tif', arr, valid=valid)
     c = make(tmp_path/'candidate.tif', np.zeros_like(arr))
     result = validate(c, t, 'unit test')
-    assert not result['checks']['reference_zeros_on_its_valid_footprint']
+    # A binary (0/1) reference inside its footprint is valid (the official sample is binary).
+    assert result['checks']['reference_values_in_0_1_inside_footprint']
     assert not result['checks']['outside_null_or_masked']
     assert result['strict_whole_array_range_diagnostic']
+
+
+def test_reference_with_out_of_range_inside_value_fails(tmp_path):
+    valid, arr, _ = fixtures(tmp_path)
+    arr[1, 1] = 2
+    t = make(tmp_path/'bad-template.tif', arr, valid=valid)
+    c = make(tmp_path/'candidate.tif', np.zeros_like(arr))
+    result = validate(c, t, 'unit test')
+    assert not result['checks']['reference_values_in_0_1_inside_footprint']
 
 
 def test_external_mask_is_not_single_tiff(tmp_path):

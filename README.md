@@ -41,6 +41,18 @@
 >
 > [Current JSON run card](evidence/current_run_card.json) · [H-SARPU Run Card (`0.11384` sparse-unique record)](evidence/sarpu_run_card_20261028.json) · [H-SARPU dashboard & guide](docs/sarpu/index.html) · [Executive summary and guide](docs/executive-summary.html) · [Nine-site scorecard](docs/index.html#scorecard) · [Three-pass review](docs/REVIEW_20261028_FOLLOWUP.md) · [30 Oct repository review](docs/REPO_REVIEW_20261030.md)
 
+## Latest review — 31 Oct 2026 (session start: read the standing prompt below)
+
+- **Decision: DO NOT SUBMIT ANY FILE.** No candidate passes the lane check, and no file passes both whole-array checker rules. No selector was run; no weekly slot was used.
+- **Executive summary (nine sites, obvious decision):** [docs/executive-summary-nine-sites.html](docs/executive-summary-nine-sites.html). Source of truth: `scripts/build_executive_summary.py` reads `evidence/*.json`.
+- **Run cards (JSON, one per experiment plus the candidate gates):** [evidence/run_cards_20261031.json](evidence/run_cards_20261031.json).
+- **Experiments (3 of 3 budget used, all NEGATIVE):** E1 visible-catalogue exclusion ([evidence](evidence/v5_visible_exclusion_20261031.json)); E2 budget-matched ridge ranking ([evidence](evidence/v5_budget_rank_experiment_20261031.json)); E3 block-stratified ranking ([evidence](evidence/v5_stratified_experiment_20261031.json)). Pre-registration: [knowledge/preregistration_v5_visible_exclusion_20261031.md](knowledge/preregistration_v5_visible_exclusion_20261031.md).
+- **Hypotheses (ranked, unvalidated):** [docs/research/v5-hypotheses-20261031.md](docs/research/v5-hypotheses-20261031.md). Rank 1 is H5-A, hydrothermal magnetic-low troughs.
+- **Uniqueness:** [full-registry gate, 489 rasters](evidence/focus_registry_uniqueness_20261031.json); [nine focus sites, pairwise](evidence/focus9_pairwise_20261031.json); [candidates vs nine focus sites](evidence/candidates_vs_focus9_20261031.json). All 72 directed focus pairs exceed 70%. V5 passes the literal "not a listed site" check but fails the lane check (13GEMSDOE lattice 99.8%; one non-focus raster at 73.4%).
+- **Files:** [V5 zeros, DO-NOT-SUBMIT](docs/downloads/apartgems-v5-b2excl-zeros-20261031-DO-NOT-SUBMIT.tif) (sidecar `.json`). The v4 base is unchanged.
+- **Irregularities and limits:** see the [limitations section of the summary](docs/executive-summary-nine-sites.html#limits). The notebook of the official reference repository was not retrievable; the leaderboard is not live-verifiable from the sandbox.
+- **Reproduce:** `python scripts/restore_data.py --target-dir .cache/gems_data` → `python scripts/restore_focus_registry.py --jobs 8` → `GEMS_DATA_DIR=.cache/gems_data python scripts/run_v5_visible_exclusion.py` → `… run_v5_budget_rank_experiment.py` → `… run_v5_stratified_experiment.py` → `python scripts/focus_registry_uniqueness.py <candidate.tif> --out evidence/focus_registry_uniqueness_20261031.json` → `python scripts/focus9_pairwise_20261031.py` → `python scripts/build_executive_summary.py`.
+
 ## Latest review — 30 Oct 2026 (two new research candidates, both negative)
 
 - **Decision unchanged: DO NOT SUBMIT.** No file is approved; no selector was run; no weekly slot was used. Two new research TIFFs were generated and gated but are kept out of `docs/` (not published).
