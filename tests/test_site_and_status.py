@@ -56,7 +56,7 @@ def test_site_is_deterministic_and_never_offers_current_submission():
 
 
 def test_site_data_is_not_hidden_by_competition_data_ignore_rule():
-    for relative in ('docs/data/source_feed.json', 'docs/data/run_card.json', 'docs/data/historical_audit.json', 'docs/data/parallel_candidate_audit.json', 'docs/data/repo_review_run_card_20261031.json', 'docs/data/preflight.json', 'docs/data/audit_nine_sites_20261030.json'):
+    for relative in ('docs/data/source_feed.json', 'docs/data/run_card.json', 'docs/data/historical_audit.json', 'docs/data/parallel_candidate_audit.json', 'docs/data/repo_review_run_card_20261031.json', 'docs/data/preflight.json', 'docs/data/audit_nine_sites_20261030.json', 'docs/data/h_blind_conduit_footprint_audit_20261031.json', 'docs/data/h_blind_conduit_run_card.json'):
         assert (ROOT / relative).is_file()
         # Check ignore rules independently of whether files are already tracked.
         ignored = subprocess.run(['git', 'check-ignore', '--no-index', '-q', relative], cwd=ROOT)
@@ -92,7 +92,7 @@ def test_preflight_never_promotes_in_current_run():
 def test_latest_review_page_is_explicitly_negative_for_all_nine_sites():
     page = (DOCS / 'repo-review-20261031.html').read_text()
     card = json.loads((ROOT / 'evidence/repo_review_run_card_20261031.json').read_text())
-    assert 'DO NOT DOWNLOAD OR SUBMIT A TIFF' in page
+    assert 'DO NOT USE ANY TIFF HERE AS A COMPETITION SUBMISSION' in page
     assert 'Not estimable' in page
     for site in ('GEMSDOE24', 'GEMSDOE25', 'GEMSDOE27', 'GEMSDOE28', 'GEMSDOE30', 'GEMSDOE31', 'GEMSDOE32', 'GEMSDOE33', 'GEMSDOE36'):
         assert f'>{site}<' in page
@@ -100,3 +100,4 @@ def test_latest_review_page_is_explicitly_negative_for_all_nine_sites():
     assert card['holdout_dti'] is None and card['raster_sha256'] is None
     assert card['submission_name'] is None and card['experiments_run_this_review'] == 0
     assert card['weekly_slots_used_this_review'] == 0
+    assert card['existing_repository_demo_audited']['review_verdict'].startswith('negative')

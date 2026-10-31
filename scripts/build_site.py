@@ -337,6 +337,8 @@ def main():
         'repo_review_run_card_20261031.json',
         'preflight.json',
         'audit_nine_sites_20261030.json',
+        'h_blind_conduit_footprint_audit_20261031.json',
+        'h_blind_conduit_run_card.json',
     ):
         shutil.copyfile(ROOT / 'evidence' / name, DOCS / 'data' / name)
     print(f'Built overview, guide, research, H-SPMD brief, H-SARPU dashboard/guide, and {len(SITES)} static site briefs.')

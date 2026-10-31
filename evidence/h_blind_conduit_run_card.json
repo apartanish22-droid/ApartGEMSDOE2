@@ -1,0 +1,63 @@
+{
+  "schema": "parallel-run-protocol-run-card-v1",
+  "generated_at_utc": "20261031T044226Z",
+  "session_branch": "arena/f701b00f-apartgemsdoe2",
+  "lane": "H-BLIND-CONDUIT",
+  "hypothesis": "H-BLIND-CONDUIT",
+  "mechanism": "radiometric potassium enrichment \u00d7 magnetic demagnetization \u00d7 curvature convergence targeting blind geothermal conduits missing from the USGS/INGENIOUS catalogue",
+  "mimicking_non_fault_process": "uneven crustal radioactivity / igneous-contact boundaries; mafic/ultramafic contacts; concave mass-wasting terrain",
+  "holdout_dti": null,
+  "holdout_withheld_positives": null,
+  "holdout_ci95": [
+    null,
+    null
+  ],
+  "score_label": "not estimable \u2014 no competition training data in sandbox (DrivenData login-walled; Dropbox mirrors unreachable). Projection only, never written as a score.",
+  "leakage_canary": "not run (no data). Rule: test each feature alone on the holdout; AUC > 0.90 means leakage until proven otherwise.",
+  "lane_check": {
+    "surface_rank_correlation_vs_registry": "not auditable \u2014 no complete registry in sandbox",
+    "final_dot_3px_overlap_vs_gemsdoe32": "0.00% (limit 70%) \u2014 PASS",
+    "final_dot_3px_overlap_vs_peers": "not auditable \u2014 no complete registry in sandbox"
+  },
+  "raster": "apartgemsdoe2-h-blind-conduit-radiometric-magnetic-curvature-25k-20261031T044226Z-c92314e1-zeros.tif",
+  "raster_path": "/home/user/ApartGEMSDOE2/docs/downloads/apartgemsdoe2-h-blind-conduit-radiometric-magnetic-curvature-25k-20261031T044226Z-c92314e1-zeros.tif",
+  "raster_sha256": "5c41d6382c113196c340d0edfadddc94b3618d145f2e8cfa39597c3da1509cff",
+  "size_bytes": 340264,
+  "validator_output": {
+    "single_band": true,
+    "dtype_float32": true,
+    "shape_3730x3292": true,
+    "crs_epsg_32611": true,
+    "transform_match": true,
+    "in_footprint_all_finite": true,
+    "in_footprint_zero_nan": true,
+    "in_footprint_zero_inf": true,
+    "in_footprint_range_0_1": true,
+    "outside_all_zero": true,
+    "zero_nan_anywhere": true,
+    "full_grid_range_0_1": true,
+    "emitted_positive_pixels": 25000,
+    "footprint_pixels": 12279160
+  },
+  "validator_all_passed": true,
+  "emitted_dots": 25000,
+  "submission_name": "apartgemsdoe2-h-blind-conduit-radiometric-magnetic-curvature-25k-20261031T044226Z-c92314e1",
+  "note": "ApartGEMSDOE2 H-BLIND-CONDUIT: radiometric\u00d7magnetic\u00d7curvature blind-conduit, 25k dots, novel method, format-valid demo.",
+  "note_length_chars": 119,
+  "note_under_140": true,
+  "unique_vs_gemsdoe_sites": "not fully auditable \u2014 no complete registry in sandbox",
+  "uniqueness_basis": "different method family from all nine focus sites (dotted ridge / catalogue-distance / Poisson scatter / PINN / stepover); synthetic structural-convergence field not derived from any archival dot set",
+  "unique_vs_gemsdoe32_3px": "0.00% (limit 70%) \u2014 PASS",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "reason_not_approved": "no holdout estimate (no training data), no registry uniqueness audit, no selector approval; format-valid demo only",
+  "verdict": "negative \u2014 format-valid demo only; not approved for submission until holdout, registry, and selector gates clear",
+  "next_steps": [
+    "Place competition training data in data/ (requires DrivenData auth)",
+    "Compute HOLDOUT-DTI on spatially-blocked holdout",
+    "Run surface gate (|rho| <= 0.90) vs every registry raster",
+    "Run final-dot gate (<= 70% within 3 px) vs every registry raster",
+    "Obtain separate selector approval for weekly slot",
+    "Then submit via DrivenData portal"
+  ]
+}
