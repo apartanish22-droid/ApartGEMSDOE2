@@ -1,0 +1,168 @@
+{
+  "schema": "run-card-20261031-v1",
+  "date_utc": "2026-10-31",
+  "branch": "arena/ba20222e-apartgemsdoe2",
+  "label_key": {
+    "HOLDOUT-DTI": "scored on the repo's own withheld holdout or proxy, not the organizer target",
+    "ORGANIZER-CONFIRMED": "value shown on the official DrivenData leaderboard (public board, read 31 Oct)",
+    "OWNER-REPORTED": "value shown on a third-party owner page; not verified"
+  },
+  "experiments": [
+    {
+      "id": "E1",
+      "name": "nine-site byte verification and 3-px overlap matrix",
+      "script": "scripts/verify_nine_sites_20261031.py",
+      "output": "evidence/nine_site_verification_20261031.json",
+      "label": "byte-level facts (not scores)"
+    },
+    {
+      "id": "E2",
+      "name": "same-evaluator proxy controls on nine pinned files + two S31 files",
+      "script": "scripts/proxy_controls_20261031.py",
+      "output": "evidence/proxy_controls_20261031.json",
+      "label": "HOLDOUT-DTI (proxy): SGMC-CAL-v3.0 calibrated; HIDE-RECOVER-v3.0 for the second column",
+      "evaluators": {
+        "sgmc": "GEMSDOE32-SGMC-CAL-v3.0",
+        "hide_recover": "GEMSDOE32-HIDE-RECOVER-v3.0"
+      },
+      "truth_pixels_sgmc": 62703,
+      "withheld_positives_hide_recover": 22232
+    },
+    {
+      "id": "E3",
+      "name": "full-registry literal gate on the two S31 files",
+      "script": "scripts/gate_candidates.py (run with GEMS_DATA_DIR=.cache/gems_data)",
+      "output": "evidence/gates_s31_20261031.json",
+      "label": "rule check (G1 format, G3 uniqueness); not an organizer score"
+    }
+  ],
+  "weekly_submission_slots_used": 0,
+  "final_submission_used": false,
+  "new_hypotheses_preregistered_this_session": 0,
+  "candidate_tif_generated": false,
+  "candidate_tif_reason": "no file clears the literal uniqueness rule (lattice 99.9% within 3 px)",
+  "inputs": [
+    {
+      "path": "registry/focus_registry_manifest.json",
+      "present": true,
+      "sha256": "2d2a1df264034f7a04625ff5cb55f2f7a22db7415d761203ed0278aaa27616f1",
+      "bytes": 216333
+    },
+    {
+      "path": "registry/historical-pins.json",
+      "present": true,
+      "sha256": "118d154f96406e570d99af7d5f74f7a61aaedacf7d1b4e1020586d6c0396fe5f",
+      "bytes": 8106
+    },
+    {
+      "path": "data/shared_tool_hashes.txt",
+      "present": true,
+      "sha256": "8b29849f66e4a6598e0d2fcfadf0f1d75ebea8f42056351db833cae7e5ce5c1d",
+      "bytes": 921
+    }
+  ],
+  "scripts": [
+    {
+      "path": "scripts/verify_nine_sites_20261031.py",
+      "present": true,
+      "sha256": "7a071c54a360027db7cf7700ac7ae70583368b057a4a99263c849c6ef2569ab7",
+      "bytes": 11979
+    },
+    {
+      "path": "scripts/proxy_controls_20261031.py",
+      "present": true,
+      "sha256": "7bf3cf14d58eeaffd921c2059fe90bdd777631aef42724b3b138b09b06434f0c",
+      "bytes": 4297
+    },
+    {
+      "path": "scripts/build_verdict_20261031.py",
+      "present": true,
+      "sha256": "d5c13491d562a27821b287791002b145e24a01c505c565d47f199464b86061fa",
+      "bytes": 26463
+    },
+    {
+      "path": "scripts/build_submission_decision.py",
+      "present": true,
+      "sha256": "c5dcfcbb79f8669258121fdcd569d4ac05f4e47202531bb08563690ebcc92861",
+      "bytes": 23066
+    },
+    {
+      "path": "scripts/build_site.py",
+      "present": true,
+      "sha256": "907576a7551b65656f5f03444ee1c6143864ec7d263572ef27a5e012e13426fe",
+      "bytes": 65453
+    },
+    {
+      "path": "scripts/build_run_card_20261031.py",
+      "present": true,
+      "sha256": "1c6fb10aafc8cbaa9ebabdd221561c0d83a16a80ad9f48f0c378261d5a3a6cc0",
+      "bytes": 4552
+    }
+  ],
+  "outputs": [
+    {
+      "path": "evidence/nine_site_verification_20261031.json",
+      "present": true,
+      "sha256": "50500120034b304521548a9dbc87fb709c385dcbff0cf3cb267a154bf041b882",
+      "bytes": 28140
+    },
+    {
+      "path": "evidence/proxy_controls_20261031.json",
+      "present": true,
+      "sha256": "37099c46816ba875ec3a3c9014b39c8adaa5f135bb1708a3bcbd928490a862fd",
+      "bytes": 8402
+    },
+    {
+      "path": "evidence/gates_s31_20261031.json",
+      "present": true,
+      "sha256": "294f80716ab738d75d376634ffca2d0d360fa1101f27144f318a517e00985baa",
+      "bytes": 11959
+    },
+    {
+      "path": "evidence/verdict_table_20261031.json",
+      "present": true,
+      "sha256": "c07b9f5e1372145071b12c3724f784ad8a2fb27eb2ed533053912c4287961785",
+      "bytes": 13232
+    },
+    {
+      "path": "docs/verdict-20261031.html",
+      "present": true,
+      "sha256": "7d549b9f0e96786b637d972b6895051b90707e08224048259f45c81355d90efb",
+      "bytes": 21258
+    },
+    {
+      "path": "docs/submission-decision.html",
+      "present": true,
+      "sha256": "26dff6e3078bbd56ec694c25ef3e44acbd32cf2d54b1bff6b8d997d7335b1be6",
+      "bytes": 21913
+    },
+    {
+      "path": "docs/index.html",
+      "present": true,
+      "sha256": "c041952685ea4ec48fec7870e0c9656b3efb0e7f42be695fa8a08c27e64d4142",
+      "bytes": 28341
+    },
+    {
+      "path": "evidence/submission_decision_20261030.json",
+      "present": true,
+      "sha256": "eaa45f69c66719aa18200c66aecbffb513408baa39315ce034c40e76b9852494",
+      "bytes": 9366
+    }
+  ],
+  "limitations": [
+    "Training rasters are third-party owner mirrors, SHA-256 pinned, not organizer-authenticated.",
+    "Owner-reported scores (0.2449-0.2778) have no organizer receipt.",
+    "Proxies are not the organizer target; the hide-and-recover proxy is anti-aligned for pruned files.",
+    "Only nine focus files, the 13GEMSDOE lattice and two S31 files were overlap-checked; global uniqueness is not established.",
+    "Full registry gate uses 511 focus rasters (two malformed or missing); the other listed repos were not fetched in this run.",
+    "Portal behaviour on NaN vs zeros outside the footprint has not been tested from here."
+  ],
+  "reproduce": [
+    "scripts/restore_data.py --references-only --target-dir .cache/gems_data",
+    "scripts/verify_nine_sites_20261031.py",
+    "scripts/proxy_controls_20261031.py",
+    "GEMS_DATA_DIR=.cache/gems_data scripts/gate_candidates.py S31_far65=.cache/nine/s31_far65.tif S31_midband=.cache/nine/s31_midband.tif --out evidence/gates_s31_20261031.json",
+    "scripts/build_verdict_20261031.py",
+    "scripts/build_run_card_20261031.py"
+  ]
+}

@@ -25,13 +25,17 @@ GDR_URL = "https://gdr.openei.org/submissions/1391"
 GEODAWN_URL = "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and"
 
 # Organizer public leaderboard, fetched 2026-10-30 (top rows). Public scores, not file receipts.
+# Public leaderboard rows as fetched 31 Oct 2026 (ranks 1-50). Corrects the 30 Oct values:
+# #2 cfld__ 0.3934 (was 0.3916), #3 Batik Shirt Brothers 0.3917 (was 0.3915), #4 BrandenKMurray 0.3860
+# (was 0.3841), and kpomazi is #50 (was #48). Source: LEADERBOARD_URL.
+LEADERBOARD_FETCHED = "2026-10-31"
 LEADERBOARD_TOP = [
     ("#1", "xiaofanhu", 0.4544),
-    ("#2", "cfld__", 0.3916),
-    ("#3", "Batik Shirt Brothers", 0.3915),
-    ("#4", "BrandenKMurray", 0.3841),
+    ("#2", "cfld__", 0.3934),
+    ("#3", "Batik Shirt Brothers", 0.3917),
+    ("#4", "BrandenKMurray", 0.3860),
     ("#5", "op01", 0.3642),
-    ("#48", "kpomazi", 0.3195),
+    ("#50", "kpomazi", 0.3195),
 ]
 XCHECK = json.loads((ROOT / "evidence/review_pass2_cross_candidates_20261030.json").read_text())["candidates"]
 
@@ -155,7 +159,10 @@ small{color:#4b5b55}
     out.append("<!doctype html><html lang='en'><head><meta charset='utf-8'>"
                "<meta name='viewport' content='width=device-width,initial-scale=1'>"
                "<title>GEMS submission decision · ApartGEMSDOE2</title>"
-               f"<style>{css}</style></head><body>")
+               f"<style>{css}</style></head><body>"
+               "<p style=\"background:#7a1c1c;color:#fff;padding:10px 14px;border-radius:6px\"><b>31 Oct 2026 verdict: "
+               "NO FILE IS OK TO DOWNLOAD AND SUBMIT.</b> <a style=\"color:#fff\" href=\"verdict-20261031.html\">"
+               "Read the 31 Oct executive summary →</a></p>")
     out.append("<h1>GEMS competition: submission decision</h1>")
     out.append("<small>Generated from committed evidence on 30 Oct 2026 (UTC). "
                "Regenerate with <code>python scripts/build_submission_decision.py</code>.</small>")
@@ -320,6 +327,7 @@ def main() -> int:
         "rows": rows,
         "leaderboard_top_observed": [{"rank": r, "team": t, "score": s} for r, t, s in LEADERBOARD_TOP],
         "leaderboard_source": LEADERBOARD_URL,
+        "leaderboard_fetched": LEADERBOARD_FETCHED,
         "new_candidate": {"name": NAN_NAME, "nan_variant": NAN_PATH, "zeros_variant": ZERO_PATH,
                           "nan_sha256": NAN_SHA, "zeros_sha256": ZERO_SHA, "note": NOTE},
     }

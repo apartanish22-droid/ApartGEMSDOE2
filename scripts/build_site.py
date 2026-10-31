@@ -73,7 +73,7 @@ def index():
       source_card('USGS 3DEP','Public elevation data; availability varies across the study footprint.','https://www.usgs.gov/3d-elevation-program'),
       source_card('Organizer reference solution','Baseline code; data and authenticated access are separate.','https://github.com/drivendataorg/gems-prize-reference-solution')])
     table = ''.join(map(row, SITES))
-    body = f'''<div class="shell"><section class="hero" aria-labelledby="hero-title"><div>
+    body = f'''<div class="shell"><div style="background:#7a1c1c;color:#fff;padding:14px 18px;border-radius:8px;margin:14px 0"><b style="font-size:1.1rem">31 Oct 2026 verdict: NO FILE IS OK TO DOWNLOAD AND SUBMIT.</b> Top leaderboard score 0.4544; 0.3195 is rank #50. <a style="color:#fff;text-decoration:underline" href="verdict-20261031.html">Read the executive summary and download table →</a></div><section class="hero" aria-labelledby="hero-title"><div>
       <div class="eyebrow">DOE GEMS prize · decision brief</div><h1 id="hero-title">Evidence before<br><span class="soft">the next upload.</span></h1>
       <p class="lead">A clearer path from fault-discovery research to a competition submission. Track the strongest historical work, the evidence behind it, and the gates that protect the next slot.</p>
       <div class="hero-actions"><a class="button primary" href="#scorecard">Explore the scorecard <span aria-hidden="true">↗</span></a><a class="text-link" href="executive-summary.html">Read the submission guide →</a><a class="text-link" href="research.html">Explore the research →</a></div>

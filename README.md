@@ -4,6 +4,18 @@
 
 **Arena AI Core Values:** **Maximize P(Win)** · **Own the Outcome**
 
+> ## START HERE (31 Oct 2026): NO FILE IS OK TO DOWNLOAD OR SUBMIT
+> **Executive summary (top of site): [docs/verdict-20261031.html](docs/verdict-20261031.html).** The site root now opens this page. It has the file to download per site, the estimate status, and the uniqueness table.
+>
+> - **Leaderboard, fetched 31 Oct 2026 (ranks 1–50):** #1 xiaofanhu 0.4544. **0.3195 is rank #50 (kpomazi), not the top.** 0.4413 does not appear in ranks 1–50. Source: [DrivenData leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/). The 30 Oct table had stale #2–#4 values and listed kpomazi at #48; both are corrected.
+> - **Nine-site bests (owner-reported, unverified):** GEMSDOE32 0.2778 (owner says already submitted; no receipt here), 36 0.2750, 28 0.2710, 31 0.2708, 33 0.2632, 25 0.2600, 30 0.2600, 24 0.2477, 27 0.2449. Every site fails the literal 70% uniqueness rule against its neighbours (worst 97.6–100%).
+> - **GEMSDOE28 S31 files (31 Oct):** the owner page says OK to download and submit. Our verdict is NO under the literal rule. The lattice gate fails at 99.95% (far65) and 99.91% (midband). 95.8% of GEMSDOE32's dots lie within 3 px of a midband dot, which is close to a copy.
+> - **Portal error "Predicted values must be in range [0, 1]" (hypothesis, unverified):** the user-named `-nan` files for GEMSDOE24, 25, 27, 28 and 31 carry 7,111,787 NaN cells outside the footprint. The pinned zeros-outside copies have the same in-footprint dot sets and no NaN. Try the zeros copy first.
+> - **Decisions needed from you:** (1) does the 13GEMSDOE lattice count as a registry raster under the 70% rule; (2) does the portal accept zeros-outside files (the rules say "null or nan"); (3) is a same-family derivative a "copy" under your rule.
+> - **Method:** the nine-site and S31 checks are byte-level and reproducible. Scores are not organizer receipts. Proxy values are HOLDOUT-DTI proxies, with the evaluator version and 95% CI in each table cell. Weekly submission slots used in this session: 0.
+>
+> Reproduce: `scripts/verify_nine_sites_20261031.py`, `scripts/proxy_controls_20261031.py`, `GEMS_DATA_DIR=.cache/gems_data scripts/gate_candidates.py …`, then `scripts/build_verdict_20261031.py`.
+
 > ## START HERE (30 Oct 2026): DO NOT SUBMIT ANY FILE
 > Two independent sessions reviewed this repository today. Both reach a negative verdict.
 >
