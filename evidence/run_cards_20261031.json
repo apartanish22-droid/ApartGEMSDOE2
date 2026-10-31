@@ -1,0 +1,223 @@
+{
+  "schema": "run-cards-v5-20261031",
+  "cards": [
+    {
+      "id": "E1",
+      "hypothesis": "Removing v4 dots within 2 px of visible catalogue faults (B2) improves holdout DTI.",
+      "mechanism": "Near-catalogue dots are false positives under the DTI kernel, so their removal helps.",
+      "mimicking_non_fault_process": "Density reduction: random thinning to the same retained fraction.",
+      "holdout": {
+        "label": "HOLDOUT-DTI",
+        "evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "n_withheld_positives": 22232,
+        "C0_pooled_dti": 0.03313164326621937,
+        "C0_ci95": [
+          0.02693849203795821,
+          0.03920396664574617
+        ],
+        "B2_pooled_dti": 0.03385473705842177,
+        "B2_ci95": [
+          0.027371563950210943,
+          0.04029397738552123
+        ],
+        "paired_delta_B2_minus_C0": 0.0007230937922024019,
+        "paired_delta_ci95": [
+          0.00033800551426991355,
+          0.0011679092149734821
+        ],
+        "random_thinning_mean_same_count": 0.033869564716692675
+      },
+      "correlation_overlap_vs_registry": "not applicable (no candidate file produced)",
+      "raster_sha256": null,
+      "validator_output": null,
+      "submission_name": null,
+      "submission_note": null,
+      "verdict": "negative"
+    },
+    {
+      "id": "E2",
+      "hypothesis": "Top-N ridge ranking (v4 score) beats N random ridge pixels at matched budget.",
+      "mechanism": "Highest-score ridge pixels concentrate on true faults.",
+      "mimicking_non_fault_process": "Uniform random placement at the same N (5 seeds).",
+      "holdout": {
+        "label": "HOLDOUT-DTI",
+        "evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "n_withheld_positives": 22232,
+        "rows": {
+          "v4_base_full": {
+            "dots": 203418,
+            "pooled_dti": 0.03313164326621937,
+            "ci95": [
+              0.02693849203795821,
+              0.03920396664574617
+            ]
+          },
+          "A_top37654": {
+            "dots": 37654,
+            "pooled_dti": 0.02063864310751265,
+            "ci95": [
+              0.014004207300862588,
+              0.027836748048461597
+            ]
+          },
+          "A_top44090": {
+            "dots": 44090,
+            "pooled_dti": 0.022686550274656055,
+            "ci95": [
+              0.015705700427064425,
+              0.029931651943212508
+            ]
+          }
+        }
+      },
+      "paired_vs_random": {
+        "A_top37654": {
+          "A_pooled_dti": 0.02063864310751265,
+          "random_mean_pooled_dti": 0.04337202361370075,
+          "delta_vs_random_mean": -0.022733380506188103,
+          "delta_ci95_paired_bootstrap": [
+            -0.029038813133595933,
+            -0.016176303828220155
+          ],
+          "promote_rule_pass": false
+        },
+        "A_top44090": {
+          "A_pooled_dti": 0.022686550274656055,
+          "random_mean_pooled_dti": 0.04670667211079541,
+          "delta_vs_random_mean": -0.024020121836139358,
+          "delta_ci95_paired_bootstrap": [
+            -0.030452338593937076,
+            -0.017508941292871533
+          ],
+          "promote_rule_pass": false
+        }
+      },
+      "correlation_overlap_vs_registry": "not applicable (no candidate file produced)",
+      "raster_sha256": "f6f3e7c98de4323b3bc4981648170c5afa361fda4eac03313c08fcaf1b51b8d6",
+      "validator_output": null,
+      "submission_name": null,
+      "submission_note": null,
+      "verdict": "negative: ridge ranking does not beat random at matched budget"
+    },
+    {
+      "id": "E3",
+      "hypothesis": "Block-stratified ridge ranking (spatial coverage fixed) beats random ridge pixels.",
+      "mechanism": "E2 gap is spatial clustering; within-block ranking is informative.",
+      "mimicking_non_fault_process": "Uniform random ridge placement at the same N (5 seeds), same as E2.",
+      "holdout": {
+        "label": "HOLDOUT-DTI",
+        "evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "paired_vs_random": {
+          "S_strat37654": {
+            "S_pooled_dti": 0.018515665125965346,
+            "random_mean_pooled_dti": 0.04337202361370075,
+            "delta_vs_random_mean": -0.024856358487735406,
+            "delta_ci95_paired_bootstrap": [
+              -0.029730409692739844,
+              -0.02006208722711884
+            ],
+            "promote_rule_pass": false
+          },
+          "S_strat44090": {
+            "S_pooled_dti": 0.020464751178872666,
+            "random_mean_pooled_dti": 0.04670667211079541,
+            "delta_vs_random_mean": -0.026241920931922746,
+            "delta_ci95_paired_bootstrap": [
+              -0.031146607779004062,
+              -0.02139444714844095
+            ],
+            "promote_rule_pass": false
+          }
+        }
+      },
+      "correlation_overlap_vs_registry": "not applicable (no candidate file produced)",
+      "raster_sha256": null,
+      "validator_output": null,
+      "submission_name": null,
+      "submission_note": null,
+      "verdict": "negative: block-stratified ranking does not beat random"
+    },
+    {
+      "id": "CANDIDATE-V5-GATE",
+      "hypothesis": "E1 B2 candidate (V5) is unique and format-valid.",
+      "mechanism": "Full-registry lane check (489 rasters + lattice).",
+      "mimicking_non_fault_process": "Density and lattice placement (99.8% of footprint is within 3 px of 13GEMSDOE lattice).",
+      "holdout": {
+        "label": "HOLDOUT-DTI",
+        "note": "The V5 sidecar holdout is not valid (full labels used). Valid proxy is E1 B2 above."
+      },
+      "correlation_overlap_vs_registry": {
+        "full_registry_max_overlap": 0.998303,
+        "full_registry_argmax": "GEMSDOE24:inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+        "full_registry_max_abs_corr": 0.11186,
+        "registry_over_70pct": 4,
+        "registry_over_70pct_examples": [
+          {
+            "registry": "GEMSDOE24:docs/downloads/GEMSDOE24-geo1-concealed-conduit-rad-mag-lidar-20261029-8c9946590ca7-nan.tif",
+            "overlap": 0.73367
+          },
+          {
+            "registry": "GEMSDOE24:docs/downloads/GEMSDOE24-geo1-concealed-conduit-rad-mag-lidar-20261029-8c9946590ca7-zeros.tif",
+            "overlap": 0.73367
+          },
+          {
+            "registry": "GEMSDOE24:inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+            "overlap": 0.9983
+          },
+          {
+            "registry": "13GEMSDOE:docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+            "overlap": 0.9983
+          }
+        ],
+        "vs_nine_focus_sites_max_overlap": 0.229307,
+        "vs_nine_focus_sites_max_overlap_site": "27",
+        "vs_nine_focus_sites_max_pearson": 0.020688
+      },
+      "raster_sha256": "ec67e466f2396eda42a3ae56ead6a9f903b52d9e0a005474315b72cb9e2ef0b6",
+      "validator_output": {
+        "format_checks_pass": false,
+        "failed_checks": [
+          "outside_null_or_masked"
+        ]
+      },
+      "submission_name": "apartgems-v5-b2excl-zeros-20261031-DO-NOT-SUBMIT",
+      "submission_note": "v4 ridge base minus dots within 2px of catalogue faults. HOLDOUT-DTI negative vs random control. DO NOT SUBMIT.",
+      "verdict": "negative: fails lane check (overlap and lattice) and whole-array checker. DO NOT SUBMIT."
+    },
+    {
+      "id": "CANDIDATE-V4-GATE",
+      "hypothesis": "v4 ridge base (NaN-free, zeros outside) is unique and format-valid.",
+      "mechanism": "Full-registry lane check.",
+      "mimicking_non_fault_process": "Dense lattice-aligned placement.",
+      "holdout": {
+        "label": "HOLDOUT-DTI",
+        "pooled_dti": 0.03313164326621937,
+        "ci95": [
+          0.02693849203795821,
+          0.03920396664574617
+        ],
+        "n_withheld_positives": 22232,
+        "evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0"
+      },
+      "correlation_overlap_vs_registry": {
+        "full_registry_max_overlap": 0.998299,
+        "full_registry_argmax": "GEMSDOE24:inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+        "full_registry_max_abs_corr": 0.110036,
+        "registry_over_70pct": 4,
+        "vs_nine_focus_sites_max_overlap": 0.240932,
+        "vs_nine_focus_sites_max_overlap_site": "27",
+        "vs_nine_focus_sites_max_pearson": 0.019499
+      },
+      "raster_sha256": "f6f3e7c98de4323b3bc4981648170c5afa361fda4eac03313c08fcaf1b51b8d6",
+      "validator_output": {
+        "format_checks_pass": false,
+        "failed_checks": [
+          "conservative_strict_whole_array_0_1"
+        ]
+      },
+      "submission_name": null,
+      "submission_note": null,
+      "verdict": "negative: fails lane check (lattice, 70% overlap threshold exceeded by one registry raster) and strict whole-array checker. DO NOT SUBMIT."
+    }
+  ]
+}

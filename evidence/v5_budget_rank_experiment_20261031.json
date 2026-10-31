@@ -1,0 +1,236 @@
+{
+  "schema": "v5-budget-rank-experiment-v1",
+  "experiment": "E2 of 3 (budget-matched ridge ranking vs random ridge pixels)",
+  "preregistration": "knowledge/preregistration_v5_visible_exclusion_20261031.md (addendum)",
+  "v4_base_reproduced_byte_identical": true,
+  "v4_base_sha256": "f6f3e7c98de4323b3bc4981648170c5afa361fda4eac03313c08fcaf1b51b8d6",
+  "ridge_pixels_in_footprint": 643680,
+  "labels": {
+    "primary": "HOLDOUT-DTI (hide-and-recover, GEMSDOE32-HIDE-RECOVER-v3.0)",
+    "organizer_confirmed": null
+  },
+  "rows": {
+    "v4_base_full": {
+      "dots": 203418,
+      "summary": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "score_label": "HOLDOUT-DTI",
+        "pooled_dti": 0.03313164326621937,
+        "ci95_cluster_bootstrap": [
+          0.02693849203795821,
+          0.03920396664574617
+        ],
+        "n_withheld_positives": 22232,
+        "n_bootstrap_reps": 2000
+      }
+    },
+    "A_top37654": {
+      "dots": 37654,
+      "summary": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "score_label": "HOLDOUT-DTI",
+        "pooled_dti": 0.02063864310751265,
+        "ci95_cluster_bootstrap": [
+          0.014004207300862588,
+          0.027836748048461597
+        ],
+        "n_withheld_positives": 22232,
+        "n_bootstrap_reps": 2000
+      }
+    },
+    "R_rand37654": [
+      {
+        "seed": 11,
+        "dots": 37654,
+        "summary": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "pooled_dti": 0.04361571360379731,
+          "ci95_cluster_bootstrap": [
+            0.03824897148322033,
+            0.04861818894994341
+          ],
+          "n_withheld_positives": 22232,
+          "n_bootstrap_reps": 2000
+        }
+      },
+      {
+        "seed": 22,
+        "dots": 37654,
+        "summary": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "pooled_dti": 0.045313588971905454,
+          "ci95_cluster_bootstrap": [
+            0.03983361571122045,
+            0.0503960715665246
+          ],
+          "n_withheld_positives": 22232,
+          "n_bootstrap_reps": 2000
+        }
+      },
+      {
+        "seed": 33,
+        "dots": 37654,
+        "summary": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "pooled_dti": 0.043003993918854094,
+          "ci95_cluster_bootstrap": [
+            0.03829743957381223,
+            0.04747616383229609
+          ],
+          "n_withheld_positives": 22232,
+          "n_bootstrap_reps": 2000
+        }
+      },
+      {
+        "seed": 44,
+        "dots": 37654,
+        "summary": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "pooled_dti": 0.04108515488125829,
+          "ci95_cluster_bootstrap": [
+            0.03633464901580025,
+            0.04565929582472387
+          ],
+          "n_withheld_positives": 22232,
+          "n_bootstrap_reps": 2000
+        }
+      },
+      {
+        "seed": 55,
+        "dots": 37654,
+        "summary": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "pooled_dti": 0.04384166669268856,
+          "ci95_cluster_bootstrap": [
+            0.0386133203535271,
+            0.04879563855853098
+          ],
+          "n_withheld_positives": 22232,
+          "n_bootstrap_reps": 2000
+        }
+      }
+    ],
+    "A_top44090": {
+      "dots": 44090,
+      "summary": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "score_label": "HOLDOUT-DTI",
+        "pooled_dti": 0.022686550274656055,
+        "ci95_cluster_bootstrap": [
+          0.015705700427064425,
+          0.029931651943212508
+        ],
+        "n_withheld_positives": 22232,
+        "n_bootstrap_reps": 2000
+      }
+    },
+    "R_rand44090": [
+      {
+        "seed": 11,
+        "dots": 44090,
+        "summary": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "pooled_dti": 0.04701384113821129,
+          "ci95_cluster_bootstrap": [
+            0.041770049511696224,
+            0.051857615391805806
+          ],
+          "n_withheld_positives": 22232,
+          "n_bootstrap_reps": 2000
+        }
+      },
+      {
+        "seed": 22,
+        "dots": 44090,
+        "summary": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "pooled_dti": 0.048233702625416465,
+          "ci95_cluster_bootstrap": [
+            0.04239477077964301,
+            0.053867988236083145
+          ],
+          "n_withheld_positives": 22232,
+          "n_bootstrap_reps": 2000
+        }
+      },
+      {
+        "seed": 33,
+        "dots": 44090,
+        "summary": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "pooled_dti": 0.04728158485361987,
+          "ci95_cluster_bootstrap": [
+            0.04195348573239874,
+            0.05211249118348939
+          ],
+          "n_withheld_positives": 22232,
+          "n_bootstrap_reps": 2000
+        }
+      },
+      {
+        "seed": 44,
+        "dots": 44090,
+        "summary": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "pooled_dti": 0.04427408384548958,
+          "ci95_cluster_bootstrap": [
+            0.03937223657390585,
+            0.049076238705048326
+          ],
+          "n_withheld_positives": 22232,
+          "n_bootstrap_reps": 2000
+        }
+      },
+      {
+        "seed": 55,
+        "dots": 44090,
+        "summary": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "pooled_dti": 0.04673014809123983,
+          "ci95_cluster_bootstrap": [
+            0.041250941966912806,
+            0.051934833228565895
+          ],
+          "n_withheld_positives": 22232,
+          "n_bootstrap_reps": 2000
+        }
+      }
+    ]
+  },
+  "paired_vs_random": {
+    "A_top37654": {
+      "A_pooled_dti": 0.02063864310751265,
+      "random_mean_pooled_dti": 0.04337202361370075,
+      "delta_vs_random_mean": -0.022733380506188103,
+      "delta_ci95_paired_bootstrap": [
+        -0.029038813133595933,
+        -0.016176303828220155
+      ],
+      "promote_rule_pass": false
+    },
+    "A_top44090": {
+      "A_pooled_dti": 0.022686550274656055,
+      "random_mean_pooled_dti": 0.04670667211079541,
+      "delta_vs_random_mean": -0.024020121836139358,
+      "delta_ci95_paired_bootstrap": [
+        -0.030452338593937076,
+        -0.017508941292871533
+      ],
+      "promote_rule_pass": false
+    }
+  },
+  "decision": {
+    "promoted": [],
+    "verdict": "negative: ridge ranking does not beat random at matched budget"
+  }
+}

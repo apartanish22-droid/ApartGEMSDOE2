@@ -1,0 +1,211 @@
+{
+  "schema": "v5-stratified-experiment-v1",
+  "experiment": "E3 of 3 (block-stratified ridge ranking vs uniform random ridge pixels)",
+  "preregistration": "knowledge/preregistration_v5_visible_exclusion_20261031.md (experiment 3 addendum)",
+  "grid_n": 16,
+  "ridge_pixels_in_footprint": 643680,
+  "labels": {
+    "primary": "HOLDOUT-DTI (hide-and-recover, GEMSDOE32-HIDE-RECOVER-v3.0)",
+    "organizer_confirmed": null
+  },
+  "rows": {
+    "S_strat37654": {
+      "dots": 37648,
+      "summary": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "score_label": "HOLDOUT-DTI",
+        "pooled_dti": 0.018515665125965346,
+        "ci95_cluster_bootstrap": [
+          0.013659668614792647,
+          0.023415489064898497
+        ],
+        "n_withheld_positives": 22232,
+        "n_bootstrap_reps": 2000
+      }
+    },
+    "R_rand37654": [
+      {
+        "seed": 11,
+        "summary": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "pooled_dti": 0.04361571360379731,
+          "ci95_cluster_bootstrap": [
+            0.03824897148322033,
+            0.04861818894994341
+          ],
+          "n_withheld_positives": 22232,
+          "n_bootstrap_reps": 2000
+        }
+      },
+      {
+        "seed": 22,
+        "summary": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "pooled_dti": 0.045313588971905454,
+          "ci95_cluster_bootstrap": [
+            0.03983361571122045,
+            0.0503960715665246
+          ],
+          "n_withheld_positives": 22232,
+          "n_bootstrap_reps": 2000
+        }
+      },
+      {
+        "seed": 33,
+        "summary": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "pooled_dti": 0.043003993918854094,
+          "ci95_cluster_bootstrap": [
+            0.03829743957381223,
+            0.04747616383229609
+          ],
+          "n_withheld_positives": 22232,
+          "n_bootstrap_reps": 2000
+        }
+      },
+      {
+        "seed": 44,
+        "summary": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "pooled_dti": 0.04108515488125829,
+          "ci95_cluster_bootstrap": [
+            0.03633464901580025,
+            0.04565929582472387
+          ],
+          "n_withheld_positives": 22232,
+          "n_bootstrap_reps": 2000
+        }
+      },
+      {
+        "seed": 55,
+        "summary": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "pooled_dti": 0.04384166669268856,
+          "ci95_cluster_bootstrap": [
+            0.0386133203535271,
+            0.04879563855853098
+          ],
+          "n_withheld_positives": 22232,
+          "n_bootstrap_reps": 2000
+        }
+      }
+    ],
+    "S_strat44090": {
+      "dots": 44091,
+      "summary": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "score_label": "HOLDOUT-DTI",
+        "pooled_dti": 0.020464751178872666,
+        "ci95_cluster_bootstrap": [
+          0.015418827432052494,
+          0.025547750874355
+        ],
+        "n_withheld_positives": 22232,
+        "n_bootstrap_reps": 2000
+      }
+    },
+    "R_rand44090": [
+      {
+        "seed": 11,
+        "summary": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "pooled_dti": 0.04701384113821129,
+          "ci95_cluster_bootstrap": [
+            0.041770049511696224,
+            0.051857615391805806
+          ],
+          "n_withheld_positives": 22232,
+          "n_bootstrap_reps": 2000
+        }
+      },
+      {
+        "seed": 22,
+        "summary": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "pooled_dti": 0.048233702625416465,
+          "ci95_cluster_bootstrap": [
+            0.04239477077964301,
+            0.053867988236083145
+          ],
+          "n_withheld_positives": 22232,
+          "n_bootstrap_reps": 2000
+        }
+      },
+      {
+        "seed": 33,
+        "summary": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "pooled_dti": 0.04728158485361987,
+          "ci95_cluster_bootstrap": [
+            0.04195348573239874,
+            0.05211249118348939
+          ],
+          "n_withheld_positives": 22232,
+          "n_bootstrap_reps": 2000
+        }
+      },
+      {
+        "seed": 44,
+        "summary": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "pooled_dti": 0.04427408384548958,
+          "ci95_cluster_bootstrap": [
+            0.03937223657390585,
+            0.049076238705048326
+          ],
+          "n_withheld_positives": 22232,
+          "n_bootstrap_reps": 2000
+        }
+      },
+      {
+        "seed": 55,
+        "summary": {
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "score_label": "HOLDOUT-DTI",
+          "pooled_dti": 0.04673014809123983,
+          "ci95_cluster_bootstrap": [
+            0.041250941966912806,
+            0.051934833228565895
+          ],
+          "n_withheld_positives": 22232,
+          "n_bootstrap_reps": 2000
+        }
+      }
+    ]
+  },
+  "paired_vs_random": {
+    "S_strat37654": {
+      "S_pooled_dti": 0.018515665125965346,
+      "random_mean_pooled_dti": 0.04337202361370075,
+      "delta_vs_random_mean": -0.024856358487735406,
+      "delta_ci95_paired_bootstrap": [
+        -0.029730409692739844,
+        -0.02006208722711884
+      ],
+      "promote_rule_pass": false
+    },
+    "S_strat44090": {
+      "S_pooled_dti": 0.020464751178872666,
+      "random_mean_pooled_dti": 0.04670667211079541,
+      "delta_vs_random_mean": -0.026241920931922746,
+      "delta_ci95_paired_bootstrap": [
+        -0.031146607779004062,
+        -0.02139444714844095
+      ],
+      "promote_rule_pass": false
+    }
+  },
+  "decision": {
+    "promoted": [],
+    "verdict": "negative: block-stratified ranking does not beat random"
+  }
+}
