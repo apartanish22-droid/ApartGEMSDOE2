@@ -1,0 +1,60 @@
+{
+  "schema": "blind-conduit-submission-build-record-v1",
+  "hypothesis": "H-BLIND-CONDUIT",
+  "hypothesis_rank": 1,
+  "mechanism": "radiometric potassium enrichment \u00d7 magnetic demagnetization \u00d7 curvature convergence targeting blind geothermal conduits missing from the USGS/INGENIOUS catalogue",
+  "mimicking_non_fault_process": "uneven crustal radioactivity / igneous-contact boundaries; mafic/ultramafic contacts; concave mass-wasting terrain",
+  "file": "apartgemsdoe2-h-blind-conduit-radiometric-magnetic-curvature-25k-20261031T044226Z-c92314e1-zeros.tif",
+  "path": "/home/user/ApartGEMSDOE2/docs/downloads/apartgemsdoe2-h-blind-conduit-radiometric-magnetic-curvature-25k-20261031T044226Z-c92314e1-zeros.tif",
+  "sha256": "5c41d6382c113196c340d0edfadddc94b3618d145f2e8cfa39597c3da1509cff",
+  "size_bytes": 340264,
+  "grid": {
+    "epsg": 32611,
+    "height": 3730,
+    "width": 3292,
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ]
+  },
+  "checks": {
+    "single_band": true,
+    "dtype_float32": true,
+    "shape_3730x3292": true,
+    "crs_epsg_32611": true,
+    "transform_match": true,
+    "in_footprint_all_finite": true,
+    "in_footprint_zero_nan": true,
+    "in_footprint_zero_inf": true,
+    "in_footprint_range_0_1": true,
+    "outside_all_zero": true,
+    "zero_nan_anywhere": true,
+    "full_grid_range_0_1": true,
+    "emitted_positive_pixels": 25000,
+    "footprint_pixels": 12279160
+  },
+  "all_checks_passed": true,
+  "emitted_dots": 25000,
+  "belief_min": 0.050005871802568436,
+  "belief_max": 0.9995205402374268,
+  "submission_name": "apartgemsdoe2-h-blind-conduit-radiometric-magnetic-curvature-25k-20261031T044226Z-c92314e1",
+  "note": "ApartGEMSDOE2 H-BLIND-CONDUIT: radiometric\u00d7magnetic\u00d7curvature blind-conduit, 25k dots, novel method, format-valid demo.",
+  "note_length_chars": 119,
+  "note_under_140": true,
+  "holdout_dti": null,
+  "holdout_ci95": [
+    null,
+    null
+  ],
+  "score_label": "not estimable \u2014 no competition training data in sandbox (DrivenData login-walled; Dropbox mirrors unreachable). Projection only, never written as a score.",
+  "unique_vs_focus_sites": null,
+  "uniqueness_basis": "different method family from all nine focus sites (dotted ridge / catalogue-distance / Poisson scatter / PINN / stepover); synthetic structural-convergence field not derived from any archival dot set",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "reason_not_approved": "no holdout estimate (no training data), no registry uniqueness audit, no selector approval; format-valid demo only",
+  "generated_at_utc": "20261031T044226Z"
+}

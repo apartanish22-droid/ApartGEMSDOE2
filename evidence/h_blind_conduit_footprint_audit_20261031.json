@@ -1,0 +1,50 @@
+{
+  "schema": "blind-conduit-footprint-audit-v1",
+  "audit_utc": "2026-10-31T04:52:00Z",
+  "candidate": {
+    "path": "docs/downloads/apartgemsdoe2-h-blind-conduit-radiometric-magnetic-curvature-25k-20261031T044226Z-c92314e1-zeros.tif",
+    "sha256": "5c41d6382c113196c340d0edfadddc94b3618d145f2e8cfa39597c3da1509cff",
+    "byte_count": 340264,
+    "grid_px": 12279160,
+    "positive_cells": 25000
+  },
+  "method_source_review": {
+    "script": "scripts/build_blind_conduit_submission.py",
+    "reference_path": "docs/downloads/apartgemsdoe2-hrm-contrast-blind-geothermal-20261030T015536Z-d6cdf8f8-zeros.tif",
+    "reference_sha256": "38f8df576d5f3cdde7bbdbae3c678224ad7f628591c4e3ef40c1b808a72e7c73",
+    "reference_valid_pixels": 12279160,
+    "reference_total_pixels": 12279160,
+    "reference_nodata": null,
+    "reference_nan_count": 0,
+    "builder_footprint_logic": "np.isfinite(reference_array); because the chosen -zeros reference is finite at every pixel, this treats the complete rectangle as footprint.",
+    "synthetic_feature_logic": "The three purported radiometric, magnetic and curvature inputs are generated from normalized grid coordinates (sinusoidal corridors and a radial node); the script does not load those physical raster layers.",
+    "catalogue_mask_logic": "The only catalogue-dots mask is optional /tmp/gems32_archival.tif with no pinned path/hash in the receipt. It was absent during this audit; this does not establish whether it existed during the earlier generation."
+  },
+  "comparison_reference": {
+    "path": "docs/downloads/apartgems-v4-ridge-tmi-isohg-nms-q5pct-20261030.tif",
+    "sha256": "f6f3e7c98de4323b3bc4981648170c5afa361fda4eac03313c08fcaf1b51b8d6",
+    "purpose": "Finite-mask proxy for the competition footprint already used in this repository; not organizer-authenticated by this review.",
+    "grid_matches_candidate": true,
+    "crs": "EPSG:32611",
+    "shape": [3730, 3292],
+    "finite_mask_pixels": 5167373
+  },
+  "observed": {
+    "candidate_positive_cells_inside_proxy_mask": 9013,
+    "candidate_positive_cells_outside_proxy_mask": 15987,
+    "fraction_outside_proxy_mask": 0.63948,
+    "support_inside_proxy_mask": false,
+    "surface_rank_correlation_vs_complete_registry": null,
+    "final_dot_overlap_vs_complete_registry": null,
+    "holdout_dti": null,
+    "organizer_confirmation": null
+  },
+  "evidence_limits": [
+    "The V4 NaN-outside TIFF is an owner-repository footprint proxy, not an authenticated DrivenData sample; this audit does not claim portal validation.",
+    "This is a saved-byte and source-code audit, not a geological experiment or a score.",
+    "The candidate's recorded 0.00% overlap is only versus GEMSDOE32 B2. No complete-registry comparison or pre-placement surface correlation is available.",
+    "The candidate is a synthetic coordinate-pattern demo; physical radiometric, magnetic and curvature source layers were not used by the builder."
+  ],
+  "decision": "NEGATIVE — research/education only; not approved for download as a competition submission or for upload.",
+  "next_action": "Do not patch this raster by relocating its dots. Rebuild only from authenticated footprint and actual official feature layers after resolving the method lane, then run the shared buffered holdout and full registry gates."
+}

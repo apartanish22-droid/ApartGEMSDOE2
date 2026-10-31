@@ -1,0 +1,134 @@
+{
+  "schema": "gate-density-check-v1",
+  "date_utc": "2026-10-31",
+  "footprint_px": 5167373,
+  "lattice_dots_in_footprint": 206895,
+  "lattice_3px_footprint_coverage": 0.99871,
+  "literal_threshold": 0.7,
+  "random_null": [
+    {
+      "n_dots": 34500,
+      "seeds": 3,
+      "within_3px_of_lattice": [
+        0.9987,
+        0.99855,
+        0.99896
+      ]
+    },
+    {
+      "n_dots": 37654,
+      "seeds": 3,
+      "within_3px_of_lattice": [
+        0.99878,
+        0.99862,
+        0.99825
+      ]
+    },
+    {
+      "n_dots": 203418,
+      "seeds": 3,
+      "within_3px_of_lattice": [
+        0.99868,
+        0.99879,
+        0.99875
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "file": "docs/downloads/apartgems-v4-ridge-tmi-isohg-nms-q5pct-20261030.tif",
+      "sha256": "f6f3e7c98de4323b3bc4981648170c5afa361fda4eac03313c08fcaf1b51b8d6",
+      "format": {
+        "crs_matches_sample": true,
+        "shape_matches_sample": true,
+        "transform_matches_sample": true,
+        "dtype": "float32",
+        "nodata": "nan",
+        "inside_footprint_all_finite": true,
+        "inside_min": 0.0,
+        "inside_max": 1.0,
+        "inside_in_0_1": true,
+        "outside_policy": "nan"
+      },
+      "dots": 203418,
+      "within_3px_of_lattice": 0.9983,
+      "literal_gate_70pct_passed": false
+    },
+    {
+      "file": "docs/downloads/apartgemsdoe2-h-ridge3-tensorfuse-37654-20261030-nan.tif",
+      "sha256": "9ef2450c48ce72d65be7e0f7bbf021e4e838a17ca71f1c8067f91353a976ce82",
+      "format": {
+        "crs_matches_sample": true,
+        "shape_matches_sample": true,
+        "transform_matches_sample": true,
+        "dtype": "float32",
+        "nodata": "nan",
+        "inside_footprint_all_finite": true,
+        "inside_min": 0.0,
+        "inside_max": 1.0,
+        "inside_in_0_1": true,
+        "outside_policy": "nan"
+      },
+      "dots": 37654,
+      "within_3px_of_lattice": 0.99254,
+      "literal_gate_70pct_passed": false
+    },
+    {
+      "file": "docs/downloads/apartgemsdoe2-h-ridge3-tensorfuse-37654-20261030-zeros.tif",
+      "sha256": "2031ebd623f0bfe9c0566c3c346362f8915330669d0ab9933c460537181051bf",
+      "format": {
+        "crs_matches_sample": true,
+        "shape_matches_sample": true,
+        "transform_matches_sample": true,
+        "dtype": "float32",
+        "nodata": null,
+        "inside_footprint_all_finite": true,
+        "inside_min": 0.0,
+        "inside_max": 1.0,
+        "inside_in_0_1": true,
+        "outside_policy": "zeros"
+      },
+      "dots": 37654,
+      "within_3px_of_lattice": 0.99254,
+      "literal_gate_70pct_passed": false
+    },
+    {
+      "file": "docs/downloads/apartgemsdoe2-spmd-exp-2-sarpu-unified-34500dots-20261028T235800Z-2a51285d-nan.tif",
+      "sha256": "cc534d7f5b6a2a00f84f2600f1f2435d5fafaa855dd42b8f908b3d0f9f2b61e2",
+      "format": {
+        "crs_matches_sample": true,
+        "shape_matches_sample": true,
+        "transform_matches_sample": true,
+        "dtype": "float32",
+        "nodata": "nan",
+        "inside_footprint_all_finite": true,
+        "inside_min": 0.0,
+        "inside_max": 1.0,
+        "inside_in_0_1": true,
+        "outside_policy": "nan"
+      },
+      "dots": 34500,
+      "within_3px_of_lattice": 0.99852,
+      "literal_gate_70pct_passed": false
+    },
+    {
+      "file": "docs/downloads/apartgemsdoe2-sarpu-exp2-lefm-sarpu-37654dots-20261028T235500Z-25593731-zeros.tif",
+      "sha256": "030153b3bd16fb04eef1afa95f8931f27cd132e645c6825309e197cd3a85aa82",
+      "format": {
+        "crs_matches_sample": true,
+        "shape_matches_sample": true,
+        "transform_matches_sample": true,
+        "dtype": "float32",
+        "nodata": null,
+        "inside_footprint_all_finite": true,
+        "inside_min": 0.0,
+        "inside_max": 1.0,
+        "inside_in_0_1": true,
+        "outside_policy": "zeros"
+      },
+      "dots": 37654,
+      "within_3px_of_lattice": 0.99822,
+      "literal_gate_70pct_passed": false
+    }
+  ]
+}
