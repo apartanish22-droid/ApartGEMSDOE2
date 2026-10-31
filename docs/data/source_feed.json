@@ -1,87 +1,87 @@
 {
   "schema": "apartgems-public-feed-v1",
-  "updated_utc": "2026-10-27T21:22:26.460933+00:00",
-  "note": "Initial observation retrieved through the page reader, not an authenticated submission receipt. A scheduled feed refresh is only as current as its last successful check.",
+  "updated_utc": "2026-10-31T04:41:01.977323+00:00",
+  "note": "Snapshot only; source movement is not a new audit, score estimate, receipt, or upload approval.",
   "leaderboard": {
     "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
-    "last_attempt_utc": "2026-10-27T21:20:59Z",
+    "last_attempt_utc": "2026-10-31T04:41:01.977323+00:00",
     "last_success_utc": "2026-10-27T21:20:59Z",
-    "status": "ok",
+    "status": "stale",
     "top_public_value": "0.4544",
     "evidence_class": "OFFICIAL PUBLIC LEADERBOARD OBSERVATION (not a file-bound submission receipt)",
-    "last_error": null
+    "last_error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
   },
   "site_heads": {
     "GEMSDOE24": {
       "status": "ok",
-      "head_sha": "a73f9ffba29260cc7708e8e0557c84c5bea7d47b",
-      "changed_since_previous_check": null,
-      "last_attempt_utc": "2026-10-27T21:22:26.460933+00:00",
-      "last_success_utc": "2026-10-27T21:22:26.460933+00:00",
+      "head_sha": "2ac5f2a280d4240b8d197b04c8c0b679fec4e3d3",
+      "changed_since_previous_check": true,
+      "last_attempt_utc": "2026-10-31T04:41:01.977323+00:00",
+      "last_success_utc": "2026-10-31T04:41:01.977323+00:00",
       "last_error": null
     },
     "GEMSDOE25": {
       "status": "ok",
-      "head_sha": "19b219f629440b9975b093f459c74e21a42476ca",
-      "changed_since_previous_check": null,
-      "last_attempt_utc": "2026-10-27T21:22:26.460933+00:00",
-      "last_success_utc": "2026-10-27T21:22:26.460933+00:00",
+      "head_sha": "1ef9625a7d4a2c2132b94e332eddda2c3a51005a",
+      "changed_since_previous_check": true,
+      "last_attempt_utc": "2026-10-31T04:41:01.977323+00:00",
+      "last_success_utc": "2026-10-31T04:41:01.977323+00:00",
       "last_error": null
     },
     "GEMSDOE27": {
       "status": "ok",
-      "head_sha": "4f34228a9f39e99da592aa34fd835c96d1b693f5",
-      "changed_since_previous_check": null,
-      "last_attempt_utc": "2026-10-27T21:22:26.460933+00:00",
-      "last_success_utc": "2026-10-27T21:22:26.460933+00:00",
+      "head_sha": "27b52d69bd58f610d2f19348d67f7907028e5752",
+      "changed_since_previous_check": true,
+      "last_attempt_utc": "2026-10-31T04:41:01.977323+00:00",
+      "last_success_utc": "2026-10-31T04:41:01.977323+00:00",
       "last_error": null
     },
     "GEMSDOE28": {
       "status": "ok",
-      "head_sha": "4955e29c7b66503ba2178b25d356d713dc1bc534",
-      "changed_since_previous_check": null,
-      "last_attempt_utc": "2026-10-27T21:22:26.460933+00:00",
-      "last_success_utc": "2026-10-27T21:22:26.460933+00:00",
+      "head_sha": "d7be4bf94766592bad6d193288b1d286c376ea93",
+      "changed_since_previous_check": true,
+      "last_attempt_utc": "2026-10-31T04:41:01.977323+00:00",
+      "last_success_utc": "2026-10-31T04:41:01.977323+00:00",
       "last_error": null
     },
     "GEMSDOE30": {
       "status": "ok",
-      "head_sha": "d21ddd9502f3c3911e8d77b8f1e6abfaadffc876",
-      "changed_since_previous_check": null,
-      "last_attempt_utc": "2026-10-27T21:22:26.460933+00:00",
-      "last_success_utc": "2026-10-27T21:22:26.460933+00:00",
+      "head_sha": "099defe53015de334bebb82224300beca2c0ed0d",
+      "changed_since_previous_check": true,
+      "last_attempt_utc": "2026-10-31T04:41:01.977323+00:00",
+      "last_success_utc": "2026-10-31T04:41:01.977323+00:00",
       "last_error": null
     },
     "GEMSDOE31": {
       "status": "ok",
-      "head_sha": "88ec212955353f7590e94b8ef2a9763ffa035d45",
-      "changed_since_previous_check": null,
-      "last_attempt_utc": "2026-10-27T21:22:26.460933+00:00",
-      "last_success_utc": "2026-10-27T21:22:26.460933+00:00",
+      "head_sha": "f9248200f20def2654af596c1cc13ab2f9d96687",
+      "changed_since_previous_check": true,
+      "last_attempt_utc": "2026-10-31T04:41:01.977323+00:00",
+      "last_success_utc": "2026-10-31T04:41:01.977323+00:00",
       "last_error": null
     },
     "GEMSDOE32": {
       "status": "ok",
-      "head_sha": "73485f27cf230af770167397c2b72cb9ce3b3f25",
-      "changed_since_previous_check": null,
-      "last_attempt_utc": "2026-10-27T21:22:26.460933+00:00",
-      "last_success_utc": "2026-10-27T21:22:26.460933+00:00",
+      "head_sha": "c8e560f1aae650b120dc31c9e7495ced6a587701",
+      "changed_since_previous_check": true,
+      "last_attempt_utc": "2026-10-31T04:41:01.977323+00:00",
+      "last_success_utc": "2026-10-31T04:41:01.977323+00:00",
       "last_error": null
     },
     "GEMSDOE33": {
       "status": "ok",
-      "head_sha": "844f514819041c7be9efd345a24cf5cd70263f00",
-      "changed_since_previous_check": null,
-      "last_attempt_utc": "2026-10-27T21:22:26.460933+00:00",
-      "last_success_utc": "2026-10-27T21:22:26.460933+00:00",
+      "head_sha": "ee2e464b61cb0e0aa604b0525044ad9ff31c9ec7",
+      "changed_since_previous_check": true,
+      "last_attempt_utc": "2026-10-31T04:41:01.977323+00:00",
+      "last_success_utc": "2026-10-31T04:41:01.977323+00:00",
       "last_error": null
     },
     "GEMSDOE36": {
       "status": "ok",
-      "head_sha": "7edcc9b58e6ad0f88c6e6f5ee9218761a391769d",
-      "changed_since_previous_check": null,
-      "last_attempt_utc": "2026-10-27T21:22:26.460933+00:00",
-      "last_success_utc": "2026-10-27T21:22:26.460933+00:00",
+      "head_sha": "b0824c550c02792897d0ebe3aba1cb0e75583ea1",
+      "changed_since_previous_check": true,
+      "last_attempt_utc": "2026-10-31T04:41:01.977323+00:00",
+      "last_success_utc": "2026-10-31T04:41:01.977323+00:00",
       "last_error": null
     }
   }

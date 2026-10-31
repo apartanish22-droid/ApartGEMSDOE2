@@ -1,0 +1,69 @@
+{
+  "schema": "apartgems-preflight-v1",
+  "checked_utc": "2026-10-27T21:36:53.596129+00:00",
+  "status": "BLOCKED",
+  "verdict": "negative",
+  "experiments_run": 0,
+  "parallel_run_reported_experiments": 3,
+  "weekly_slots_used": 0,
+  "lane_assigned": false,
+  "complete_parallel_registry": false,
+  "shared_assets": [
+    {
+      "id": "template-__init__",
+      "verified": true
+    },
+    {
+      "id": "template-holdout",
+      "verified": true
+    },
+    {
+      "id": "template-metric",
+      "verified": true
+    },
+    {
+      "id": "template-submission",
+      "verified": true
+    },
+    {
+      "id": "template-validator",
+      "verified": true
+    },
+    {
+      "id": "template-novelty",
+      "verified": true
+    },
+    {
+      "id": "template-evaluate_holdout",
+      "verified": true
+    },
+    {
+      "id": "template-submission_writer",
+      "verified": true
+    },
+    {
+      "id": "template-priority-registry",
+      "verified": true
+    }
+  ],
+  "shared_assets_scope": "Pinned files only. They do not constitute a full runnable checkout or validated feature stack.",
+  "feature_stack_present": false,
+  "feature_stack_verified": false,
+  "lattice_witness": {
+    "uncovered_pixels": 6649,
+    "champion_sized_budget": 37654,
+    "minimum_overlap": 0.8234184947150369,
+    "scope": "Conditional geometry bound, not a score and not proof against all smaller budgets."
+  },
+  "blockers": [
+    "No explicitly user-assigned method lane or assignment source was identified; the parallel AP-1 lane was self-selected.",
+    "The shared parallel-run registry is not complete; no all-registry surface/final-dot pass is possible.",
+    "The parallel holdout/control comparison was not independently replayed and uses different refill rules.",
+    "The cached prepared feature stack and metadata are absent or not verified here.",
+    "At the historical champion's dot count, the literal registry lattice bound exceeds the 70% overlap limit.",
+    "This review ran no experiment; the parallel AP-1 research TIFF fails the literal lattice gate and has no selector approval."
+  ],
+  "candidate": null,
+  "parallel_research_candidate": "evidence/parallel_candidate_audit.json",
+  "submission_authorized": false
+}
