@@ -94,3 +94,11 @@ def test_sarpu_pages_are_deterministic_and_expose_checksums() -> None:
         assert CARD["raster_sha256"] in txt
         assert CARD["submission_name"] in txt
         assert "HOLDOUT-DTI" in txt
+        assert "DO NOT SUBMIT" in txt
+        assert "ready for selector review" not in txt
+        assert "Download Validated H-SARPU" not in txt
+    guide = p_gde.read_text()
+    assert "DO NOT DOWNLOAD OR UPLOAD THE H-SARPU TIFF/ZIP" in guide
+    assert "No approved file" in guide
+    assert "not a valid estimate" in guide
+    assert "Upload &amp; paste" not in guide
