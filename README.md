@@ -4,6 +4,13 @@
 
 **Arena AI Core Values:** **Maximize P(Win)** · **Own the Outcome**
 
+> ## LATEST (31 Oct 2026): executive summary — DO NOT UPLOAD ANY FILE
+> **[Read the executive summary with the download table →](docs/EXECUTIVE_SUMMARY_20261031.md)**
+> - **Blocker found:** the literal 70% lattice gate fails for *any* dot set. The 13GEMSDOE lattice covers 99.87% of the footprint within 3 px, and uniform random dots score 99.86–99.90% against it (reproduce: `scripts/gate_density_check.py` → `evidence/gate_density_check_20261031.json`). No file can pass, so the gate needs an owner decision.
+> - **Leaderboard (fetched 31 Oct 2026):** #1 0.4544, #2 0.3934. 0.4413 and 0.3195 are not in ranks 1–23.
+> - **Metric correction:** DTI is recall-weighted (`TP / (TP + 0.2·FP + 0.8·FN)`), not precision-weighted. Organizers say known-fault pixels are masked, but their 300 m halo is not ([forum](https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516)).
+> - **GEMSDOE32 (0.2778) vs GEMSDOE30 (0.2600):** GEMSDOE32 is GEMSDOE30 minus 6,436 dots that all sit 1–3 px from the catalogue. Verified; the score effect is a hypothesis.
+
 > ## START HERE (30 Oct 2026): DO NOT SUBMIT ANY FILE
 > Two independent sessions reviewed this repository today. Both reach a negative verdict.
 >
