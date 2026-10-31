@@ -1,11 +1,21 @@
 # ApartGEMS · evidence before the next upload
 
-**Start every session here.** This repository is a research and decision desk for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/). The target is geological faults, not confirmed geothermal vents. We seek a genuinely new, high-quality, reproducible competition submission—not a copied TIFF, renamed prior submission, invented score, or format-only pass. **Latest repository review (30 Oct 2026): [negative decision, verification results, stale-feed notice, and blockers](docs/repo-review-20261030.md).**
+**Start every session here.** This repository is a research and decision desk for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/). The target is geological faults, not confirmed geothermal vents. We seek a genuinely new, high-quality, reproducible competition submission—not a copied TIFF, renamed prior submission, invented score, or format-only pass. **Latest repository review (31 Oct 2026): [negative decision, refreshed source-feed status, test results, and blockers](docs/repo-review-20261031.md) · [negative run card](evidence/repo_review_run_card_20261031.json).**
 
 **Arena AI Core Values:** **Maximize P(Win)** · **Own the Outcome**
 
+> ## CURRENT STATUS (31 Oct 2026): DO NOT SUBMIT ANY FILE
+> **No TIFF is approved to download or submit.** Current preflight is BLOCKED: the competition inputs and sample/template are absent, the prepared feature stack is absent or unverified, there is no explicitly assigned method lane, the full registry is unavailable, and the shared holdout/evaluator/writer issues are unresolved. No experiment, candidate, score estimate, or weekly slot was produced in this review.
+>
+> The leaderboard request failed on 31 Oct with a TLS/SSL EOF; its saved 0.4544 public observation dates to 27 Oct and is stale. GitHub source-head checks succeeded for all nine focus sites, but all nine heads changed since the previous snapshot. Their historical files and scores must not be represented as re-audited. The nine historical values (including 0.2778 for GEMSDOE32) remain user-reported / unverified; the estimated score for a new candidate is **not estimable**.
+>
+> Validation this review: `202 passed, 9 skipped, 4 subtests passed`; feed UI and 2 freshness tests passed. This does not establish scientific performance. Full details: [31 Oct repository review](docs/repo-review-20261031.md), [preflight JSON](evidence/preflight.json), and [review run card](evidence/repo_review_run_card_20261031.json).
+>
+> ### Historical 30 Oct review (superseded)
+> The details below preserve earlier independent sessions and experiments. They are evidence history, **not today's refreshed source audit or permission to submit**.
+>
 > ## START HERE (30 Oct 2026): DO NOT SUBMIT ANY FILE
-> Two independent sessions reviewed this repository today. Both reach a negative verdict.
+> Two independent sessions reviewed this repository that day. Both reached a negative verdict.
 >
 > ### Session A: submission decision desk (H-RIDGE3 and nine-site table)
 > **Executive summary and per-site download table: [docs/submission-decision.html](docs/submission-decision.html).** Machine-readable: [evidence/submission_decision_20261030.json](evidence/submission_decision_20261030.json).
