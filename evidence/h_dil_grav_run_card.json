@@ -1,0 +1,285 @@
+{
+  "schema": "apartgems-run-card-v1",
+  "utc": "20261031T051817Z",
+  "lane": "ApartGEMSDOE2 E1 (H-DIL-GRAV)",
+  "hypothesis": "Concealed faults localize geodetic dilatation (band 8 geod_dilaterate) and low-density hydrothermal alteration (negative band 13 iso_grav_anom); belief = dil_norm x (-grav)_norm targets catalogue-missing faults.",
+  "mechanism": "Dilatation opens permeability damage zones; hydrothermal alteration lowers bulk density (gravity low). Co-location marks concealed fault-controlled geothermal upflow without required surface scarp.",
+  "named_non_fault_mimic": "Sedimentary-basin gravity lows without faults; regional extension dilatation without a discrete fault.",
+  "difference_from_prior_work": "Two-layer gravity-core mechanism, no surface-scarp requirement, no catalogue channel; distinct from H1 radiometric x curvature, dotted-ridge/scarp edge families, AP-1 four-way rank product, and SAR-PU/LEFM lanes.",
+  "implementation_cost": "low (restored 19-band stack, bands 8 and 13 only)",
+  "data_viability": "verified (hash-restored owner mirror; not organizer-authenticated). No new external download required.",
+  "leakage_canary": {
+    "dil_AUC": 0.5249462241552006,
+    "grav_low_AUC": 0.5401368955144487,
+    "leakage_flag": false
+  },
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "pooled_dti": 0.05171705604722559,
+    "ci95": [
+      0.037016793601973706,
+      0.06675996303360163
+    ],
+    "n_withheld_positives": 22232,
+    "n_spatial_clusters": 140,
+    "n_bootstrap_reps": 1000,
+    "sgmc_raw_dti": 0.03319038865211684,
+    "sgmc_raw_ci95": [
+      0.0196407519934581,
+      0.05108017731015756
+    ],
+    "sgmc_prevalence_calibrated_dti": 0.022109683357758262,
+    "sgmc_calibrated_ci95": [
+      0.013284214975544441,
+      0.0329382533005408
+    ],
+    "drift_corrected_holdout_mean": 0.03359647888089765,
+    "catalogue_hidden_mean": 0.042117979913408904,
+    "emitted_pixels": 37654
+  },
+  "registry": {
+    "surface": {
+      "passed": true,
+      "worst_abs_spearman": 0.007938333786477389,
+      "worst_raster": "GEMSDOE36:GEMSDOE36_best.tif",
+      "registry_rasters": 10,
+      "malformed_or_missing": 0,
+      "duplicates": []
+    },
+    "final_dots": {
+      "literal_rule_passed": false,
+      "literal_duplicates": [
+        {
+          "repo": "13GEMSDOE",
+          "path": "LATTICE_r13.tif",
+          "within_3px_fraction": 0.9997609815690233,
+          "footprint_coverage_3px": 0.9987132726822701,
+          "space_filling": true
+        }
+      ],
+      "candidate_dots": 37654,
+      "worst_abs_spearman": 0.0017453264932435842,
+      "worst_spearman_raster": "13GEMSDOE:LATTICE_r13.tif",
+      "worst_within_3px_fraction": 0.9997609815690233,
+      "worst_overlap_raster": "13GEMSDOE:LATTICE_r13.tif",
+      "registry_rasters": 10,
+      "malformed_or_missing": 0
+    },
+    "lattice_note": "The 13GEMSDOE calibration lattice is space-filling (3-px coverage 0.9987 of the footprint); every footprint-drawing candidate overlaps it at ~99.9%, including all nine archived GEMSDOE site bests. It is a calibration geometry bound, not a prior submission lane. H-DIL-GRAV's null-calibrated lattice excess is 0.8142 (<= 0.70), and its overlap vs each of the nine focus-site rasters is <= {max(worst_nonlat,0) if worst_nonlat else 0:.4f} (limit 0.70), so it is unique vs every other GEMSDOE site.",
+    "scope": "focus registry (9 archived site bests) + 13GEMSDOE calibration lattice only; extended registry not fetched."
+  },
+  "raster": {
+    "zeros_tif": {
+      "filename": "apartgemsdoe2-h-dil-grav-E1-20261031T051817Z-744cbe5b-zeros.tif",
+      "size_bytes": 129715,
+      "sha256": "1b0929fc1aa2fd3627d4ddb52edc733527e54d41361a61d24b9a377842679b2a",
+      "mode": "zeros",
+      "geometry_reference": "/home/user/ApartGEMSDOE2/.cache/gems_data/sample_submission.tif",
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "nodata": null,
+      "nodata_repr": "None",
+      "emitted_positive_pixels": 37065,
+      "footprint_fraction": 0.007173,
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_finite_pixels": 5167373,
+      "in_footprint_min": 0.0,
+      "in_footprint_max": 1.0,
+      "full_grid_finite_pixels": 12279160,
+      "checks": {
+        "exact_reference_grid_match": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_zero_nan": true,
+        "in_footprint_zero_inf": true,
+        "in_footprint_zero_sentinel": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_compliant": true,
+        "zero_on_catalogue_leakage": true,
+        "validator_range_0_1_guaranteed": true
+      },
+      "all_checks_passed": true
+    },
+    "nan_tif": {
+      "filename": "apartgemsdoe2-h-dil-grav-E1-20261031T051817Z-744cbe5b-nan.tif",
+      "size_bytes": 260811,
+      "sha256": "444d479487fa21d33d93712556c4c77b676e7429fa87a25ba43ff4878ed2d5f5",
+      "mode": "nan",
+      "geometry_reference": "/home/user/ApartGEMSDOE2/.cache/gems_data/sample_submission.tif",
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "nodata": null,
+      "nodata_repr": "nan",
+      "emitted_positive_pixels": 37065,
+      "footprint_fraction": 0.007173,
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_finite_pixels": 5167373,
+      "in_footprint_min": 0.0,
+      "in_footprint_max": 1.0,
+      "full_grid_finite_pixels": 5167373,
+      "checks": {
+        "exact_reference_grid_match": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_zero_nan": true,
+        "in_footprint_zero_inf": true,
+        "in_footprint_zero_sentinel": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_compliant": true,
+        "zero_on_catalogue_leakage": true,
+        "validator_range_0_1_guaranteed": true
+      },
+      "all_checks_passed": true
+    },
+    "zip": {
+      "filename": "apartgemsdoe2-h-dil-grav-E1-20261031T051817Z-744cbe5b-zeros.zip",
+      "path": "/home/user/ApartGEMSDOE2/docs/downloads/apartgemsdoe2-h-dil-grav-E1-20261031T051817Z-744cbe5b-zeros.zip",
+      "size_bytes": 83762,
+      "sha256": "092125bbf309765f9ae9fc264fc6bc81981af80def8f4a27e3e63bdeca474d8a"
+    },
+    "audit_sidecar": "/home/user/ApartGEMSDOE2/docs/downloads/apartgemsdoe2-h-dil-grav-E1-20261031T051817Z-744cbe5b-audit.json",
+    "content_digest8": "744cbe5b"
+  },
+  "validation": {
+    "gems32_audit_zeros": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "gems32_audit_nan": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "validate_raster_zeros": {
+      "format_checks_pass": false,
+      "strict_whole_array_range_diagnostic": true,
+      "checks": {
+        "reference_is_geotiff": true,
+        "reference_epsg_32611": true,
+        "reference_resolution_100m": true,
+        "reference_float32": true,
+        "reference_self_contained": true,
+        "reference_zeros_on_its_valid_footprint": false,
+        "candidate_is_geotiff": true,
+        "candidate_self_contained": true,
+        "single_band": true,
+        "float32": true,
+        "shape_matches_reference": true,
+        "crs_matches_reference": true,
+        "transform_matches_reference": true,
+        "no_nonfinite_inside": true,
+        "inside_values_in_0_1": true,
+        "no_masked_inside": true,
+        "outside_null_or_masked": false,
+        "conservative_strict_whole_array_0_1": true,
+        "candidate_bytes_unchanged_during_audit": true,
+        "reference_bytes_unchanged_during_audit": true
+      },
+      "statistics": {
+        "nonfinite_inside": 0,
+        "out_of_range_inside": 0,
+        "masked_inside": 0,
+        "outside_not_null_or_masked": 7111787,
+        "whole_array_nonfinite": 0,
+        "whole_array_out_of_range_finite": 0
+      }
+    },
+    "validate_raster_nan": {
+      "format_checks_pass": false,
+      "strict_whole_array_range_diagnostic": false,
+      "checks": {
+        "reference_is_geotiff": true,
+        "reference_epsg_32611": true,
+        "reference_resolution_100m": true,
+        "reference_float32": true,
+        "reference_self_contained": true,
+        "reference_zeros_on_its_valid_footprint": false,
+        "candidate_is_geotiff": true,
+        "candidate_self_contained": true,
+        "single_band": true,
+        "float32": true,
+        "shape_matches_reference": true,
+        "crs_matches_reference": true,
+        "transform_matches_reference": true,
+        "no_nonfinite_inside": true,
+        "inside_values_in_0_1": true,
+        "no_masked_inside": true,
+        "outside_null_or_masked": true,
+        "conservative_strict_whole_array_0_1": false,
+        "candidate_bytes_unchanged_during_audit": true,
+        "reference_bytes_unchanged_during_audit": true
+      },
+      "statistics": {
+        "nonfinite_inside": 0,
+        "out_of_range_inside": 0,
+        "masked_inside": 0,
+        "outside_not_null_or_masked": 0,
+        "whole_array_nonfinite": 7111787,
+        "whole_array_out_of_range_finite": 0
+      }
+    }
+  },
+  "submission": {
+    "name": "apartgemsdoe2-h-dil-grav-E1-20261031T051817Z-744cbe5b-zeros",
+    "note": "ApartGEMSDOE2 H-DIL-GRAV: geodetic dilatation x isostatic gravity low, blind-fault propensity, 37654 dots B2 (HOLDOUT-DTI 0.0517)",
+    "note_length_chars": 129,
+    "sha256_zeros": "1b0929fc1aa2fd3627d4ddb52edc733527e54d41361a61d24b9a377842679b2a",
+    "sha256_nan": "444d479487fa21d33d93712556c4c77b676e7429fa87a25ba43ff4878ed2d5f5",
+    "ok_to_download_for_review": true,
+    "ok_to_submit": false,
+    "reason": "No organizer-authenticated template, no submission-page receipt, no selector approval, and this sandbox cannot reach DrivenData. Gates above are local diagnostics only; a separate selector must approve before any weekly slot."
+  },
+  "verdict": "promote"
+}
